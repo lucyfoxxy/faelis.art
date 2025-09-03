@@ -1,40 +1,25 @@
 ---
 import Layout from '../../components/Layout.astro';
 import manifest from '../../data/galleries-manifest.json';
-const title = 'Galerien';
+const title = 'My Work - Overview';
 ---
 <Layout {title}>
   <section>
-    <h1>Galerie-Überblick</h1>
+    <h1>My Work - Overview</h1>
     <ul style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;list-style:none;padding:0">
       {manifest.slugs.map((slug) => (
         <li>
           <a href={`/galleries/${slug}/`} style="text-decoration:none;display:block">
-            <div style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:#111">
-              <img
-                src={`/data/galleries/${slug}.json`}
-                loading="lazy"
-                style="display:none"
-                alt=""
-                onload={`(async function(el){
-                  try {
-                    const r=await fetch('/data/galleries/${slug}.json');
-                    const j=await r.json();
-                    const first=j.assets?.[0];
-                    if(first){
-                      const img=document.createElement('img');
-                      img.src=first.thumb; img.alt=''; img.loading='lazy';
-                      img.style='width:100%;height:100%;object-fit:cover;display:block';
-                      el.parentNode.replaceChild(img, el);
-                    }
-                  } catch(e){}
-                })(this)`}
-              />
+            <div class="card" style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:#111">
+              <div class="thumb" data-slug={slug} style="width:100%;height:100%"></div>
             </div>
-            <div style="margin-top:.5rem;color:var(--text, #eee)">{slug}</div>
+            <div style="margin-top:.5rem;color:var(--text,#eee)">{slug}</div>
           </a>
         </li>
       ))}
     </ul>
   </section>
+
+  <script src="/js/galleries-index.js" defer></script>
 </Layout>
+

@@ -27,10 +27,10 @@ const { title = "🐾 Faelis' Paw Artistry ", description = "Furry Art & Commiss
         </button>
 
         <nav class="primary" id="primaryNav">
-          <a href="/galleries">Galerien</a>
-          <a href="/commissions">Preise</a>
-          <a href="/about">Über mich</a>
-          <a href="/contact">Kontakt</a>
+          <a href="/galleries">My Work</a>
+          <a href="/commissions">Pricing</a>
+          <!--a href="/about">Über mich</a-->
+          <a href="/contact">Socials</a>
         </nav>
       </div>
     </header>
@@ -40,24 +40,11 @@ const { title = "🐾 Faelis' Paw Artistry ", description = "Furry Art & Commiss
         <slot />
       </main>
       <footer style="margin:24px 0;color:#bbb;text-align:center">
-        © {new Date().getFullYear()} Faelis — Made with ♥
+        © {new Date().getFullYear()} Faelis.Art — Site made with ♥ by Lucy Foxx 
       </footer>
     </div>
 
-    <!-- <script>
-      const btn = document.getElementById('burger');
-      const nav = document.getElementById('primaryNav');
-      btn?.addEventListener('click', ()=> nav.classList.toggle('open'));
-    </script> -->
-
-    <script is:inline>
-      const btn = document.getElementById('btn-burger');
-      const nav = document.getElementById('navbar');
-
-      if (btn && nav) {
-        btn.addEventListener('click', () => nav.classList.toggle('open'));
-      }
-    </script>
+    <script src="/js/nav.js" defer></script>
 
   </body>
 </html>

@@ -1,16 +1,13 @@
 // scripts/fetch-immich.mjs
-// Lädt .env über `node -r dotenv/config` (siehe package.json unten) ODER aktiviere hier:
-// import 'dotenv/config';
-
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const BASE = process.env.IMMICH_BASE_URL || process.env.IMMICH_URL;
+const BASE = process.env.IMMICH_BASE_URL || process.env.IMMICH_URL; // z.B. https://i.faelis.art
 const KEY  = process.env.IMMICH_API_KEY;
-const MAP  = (process.env.IMMICH_ALBUMS || '').trim();
+const MAP  = (process.env.IMMICH_ALBUMS || '').trim(); // "sketch:uuid,line-art:uuid,…"
 
 if (!BASE || !KEY || !MAP) {
-  console.error('[fetch-immich] Fehlende ENV:', { BASE, KEY: !!KEY, MAPlen: MAP.length });
+  console.error('[fetch-immich] ENV fehlt:', { BASE, hasKEY: !!KEY, MAPlen: MAP.length });
   process.exit(1);
 }
 
@@ -18,55 +15,21 @@ const ALBUM_MAP = MAP.split(',')
   .map(s => s.split(':'))
   .reduce((acc,[slug,id]) => (acc[slug]=id, acc), {});
 
-const OUT_DIR = path.join('public', 'data', 'galleries');
-const MANIFEST_PUBLIC = path.join('public', 'data', 'galleries', '_manifest.json');
-const MANIFEST_SRC    = path.join('src', 'data', 'galleries-manifest.json'); // für Build-Imports
+const OUT_ROOT = path.join('public', 'assets'); // ziel: public/assets/<slug>/
+const MANIFEST  = path.join('src','data','galleries-manifest.json'); // für Routen
 
-
-async function trySearchAssets(albumId, size=500) {
-  // neuerer Weg – bei dir 404
-  const body = { albumIds: [albumId], page: 1, size };
-  const res = await fetch(`${BASE}/api/search/assets`, {
-    method: 'POST',
-    headers: { 'x-api-key': KEY, 'content-type': 'application/json' },
-    body: JSON.stringify(body)
-  });
-  if (!res.ok) throw new Error(`SEARCH ${res.status}`);
-  const data = await res.json();
-  const items = data.assets?.items || data.items || [];
-  return items;
-}
-
-async function fetchAlbumPage(albumId, page=1, size=500) {
-  // älterer Weg – funktioniert bei dir
-  // viele Instanzen akzeptieren diese Query-Parameter:
-  // ?withAssets=true&assetPagination[page]=1&assetPagination[size]=500
-  const url = `${BASE}/api/albums/${albumId}` +
-    `?withAssets=true&assetPagination[page]=${page}&assetPagination[size]=${size}`;
+async function fetchAlbum(albumId, page=1, size=500) {
+  const url = `${BASE}/api/albums/${albumId}?withAssets=true&assetPagination[page]=${page}&assetPagination[size]=${size}`;
   const res = await fetch(url, { headers: { 'x-api-key': KEY } });
-  if (!res.ok) {
-    const txt = await res.text();
-    throw new Error(`ALBUM ${res.status}: ${txt}`);
-  }
+  if (!res.ok) throw new Error(`ALBUM ${res.status}`);
   return res.json();
 }
 
-async function listAssetsByAlbum(albumId) {
-  // 1) versuch Search-API
-  try {
-    const items = await trySearchAssets(albumId, 500);
-    if (items.length) return items;
-  } catch (e) {
-    if (!String(e.message).startsWith('SEARCH')) throw e;
-    // 404/405 → einfach auf Album-Endpoint fallen
-  }
-
-  // 2) Album-Endpoint mit möglicher Pagination
+async function listAssets(albumId) {
   const all = [];
   let page = 1;
   for (;;) {
-    const data = await fetchAlbumPage(albumId, page, 500);
-    // viele Builds liefern die Liste unter data.assets (Array) + evtl. data.assetsPagination
+    const data = await fetchAlbum(albumId, page, 500);
     const items = Array.isArray(data.assets) ? data.assets : [];
     all.push(...items);
     const total = data.assetsPagination?.totalItems ?? data.totalItems ?? null;
@@ -76,46 +39,82 @@ async function listAssetsByAlbum(albumId) {
   return all;
 }
 
-function mapItem(a) {
-  // Felder nachrüsten, falls deine Galerie mehr braucht
-  const id = a.id;
-  const width  = a.exifInfo?.exifImageWidth ?? a.exifInfo?.imageWidth ?? null;
-  const height = a.exifInfo?.exifImageHeight ?? a.exifInfo?.imageHeight ?? null;
-  return {
-    id,
-    filename: a.originalFileName,
-    type: a.type,
-    width, height,
-    thumb: `${BASE}/api/assets/${id}/thumbnail?size=preview`,
-    src:   `${BASE}/api/assets/${id}/original`,
-  };
+function extFromMime(m) {
+  if (!m) return 'jpg';
+  if (m.includes('png')) return 'png';
+  if (m.includes('webp')) return 'webp';
+  if (m.includes('gif')) return 'gif';
+  return 'jpg';
 }
 
-(async () => {
-  console.log('[fetch-immich] BASE=', BASE);
-  console.log('[fetch-immich] Alben=', Object.keys(ALBUM_MAP));
+async function downloadToFile(url, filePath) {
+  const r = await fetch(url, { headers: { 'x-api-key': KEY } });
+  if (!r.ok) throw new Error(`GET ${url} -> ${r.status}`);
+  const buf = Buffer.from(await r.arrayBuffer());
+  await fs.writeFile(filePath, buf);
+}
 
-  await fs.mkdir(OUT_DIR, { recursive: true });
-  // alte Sammeldatei entsorgen, damit Astro nicht verwirrt ist
-  try { await fs.unlink(path.join('src','content','galleries.json')); } catch {}
+async function processAlbum(slug, albumId, { saveOriginal=false } = {}) {
+  const outDir = path.join(OUT_ROOT, slug);
+  await fs.mkdir(outDir, { recursive: true });
 
-  for (const [slug, albumId] of Object.entries(ALBUM_MAP)) {
-    console.log(`[fetch-immich] → ${slug} (${albumId})`);
-    const raw = await listAssetsByAlbum(albumId);
-    const items = raw.map(mapItem);
+  const assets = await listAssets(albumId);
+  const list = [];
 
-    const doc = { album: slug, source: 'album', sourceId: albumId, count: items.length, assets: items };
-    const outFile = path.join(OUT_DIR, `${slug}.json`);
-    await fs.writeFile(outFile, JSON.stringify(doc, null, 2), 'utf-8');
-    console.log(`  ✓ wrote ${outFile} (${items.length} assets)`);
+  for (const a of assets) {
+    const id = a.id;
+    const ext = extFromMime(a.originalMimeType || '');
+    const thumbName = `thumb-${id}.${ext}`;
+    const fullName  = `full-${id}.${ext}`;
+
+    const thumbUrl = `${BASE}/api/assets/${id}/thumbnail?size=preview`;
+    const fullUrl  = `${BASE}/api/assets/${id}/original`;
+
+    // thumbnail speichern
+    try {
+      await downloadToFile(thumbUrl, path.join(outDir, thumbName));
+    } catch (e) {
+      console.warn(`[thumb fail] ${slug}/${id}:`, e.message);
+      continue; // ohne Thumb nicht listen
+    }
+
+    // optional original speichern
+    if (saveOriginal) {
+      try { await downloadToFile(fullUrl, path.join(outDir, fullName)); }
+      catch { /* nicht kritisch */ }
+    }
+
+    list.push({
+      id,
+      thumb: `/assets/${slug}/${thumbName}`,
+      src:   saveOriginal ? `/assets/${slug}/${fullName}` : `/assets/${slug}/${thumbName}`,
+      filename: a.originalFileName,
+      width: a.exifInfo?.exifImageWidth ?? null,
+      height: a.exifInfo?.exifImageHeight ?? null
+    });
   }
-  
-  const slugs = Object.keys(ALBUM_MAP);
-  await fs.writeFile(MANIFEST_PUBLIC, JSON.stringify({ slugs }, null, 2), 'utf-8');
-  await fs.mkdir(path.dirname(MANIFEST_SRC), { recursive: true });
-  await fs.writeFile(MANIFEST_SRC, JSON.stringify({ slugs }, null, 2), 'utf-8');
-  console.log(`✓ wrote manifest for ${slugs.length} galleries`); 
-})().catch(e => {
-  console.error('[fetch-immich] ERROR:', e);
-  process.exit(1);
-});
+
+  // index.json schreiben
+  const index = { album: slug, count: list.length, assets: list };
+  await fs.writeFile(path.join(outDir, 'index.json'), JSON.stringify(index, null, 2), 'utf-8');
+  console.log(`✓ ${slug}: ${list.length} Dateien`);
+
+  return slug;
+}
+
+async function main() {
+  await fs.mkdir(OUT_ROOT, { recursive: true });
+
+  const slugs = [];
+  for (const [slug, id] of Object.entries(ALBUM_MAP)) {
+    const done = await processAlbum(slug, id, { saveOriginal: process.env.IMMICH_SAVE_ORIGINAL === 'true' });
+    slugs.push(done);
+  }
+
+  // Manifest für Routen
+  await fs.mkdir(path.dirname(MANIFEST), { recursive: true });
+  await fs.writeFile(MANIFEST, JSON.stringify({ slugs }, null, 2), 'utf-8');
+  console.log(`✓ Manifest aktualisiert (${slugs.length} Galerien)`);
+}
+
+main().catch(e => { console.error('[fetch-immich] ERROR', e); process.exit(1); });

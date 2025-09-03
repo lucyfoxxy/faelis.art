@@ -1,14 +1,17 @@
-DEV_HOST ?= /var/www/dev.faelis.art/public
+DEV_APP_DIR ?= /srv/faelis.art/dev/app
+DEV_DEPLOY_DST ?= /var/www/dev.faelis.art/public
+DEV_DEPLOY_SRC ?= $(DEV_APP_DIR)/dist/
 APACHE_SITE=dev.faelis.art
 APACHE_SRC=deploy/apache/dev.faelis.art.conf
 APACHE_DST=/etc/apache2/sites-available/$(APACHE_SITE).conf
 
 .PHONY: dev build deploy fetch clean-build apache-include apache-copy apache-reload
-dev:        ; cd app && npm run dev
-build:      ; cd app && npm ci && npm run build
-deploy:     ; cd app && npm run fetch && npm run build && echo 'Deploying to /var/www/dev.faelis.art/public/...' && sudo rsync -a --delete dist/ /var/www/dev.faelis.art/public/ && echo 'done.'
-fetch:		; cd app && npm run fetch 
-clean-build: ; cd app && rm -rf node_modules package-lock.json && npm install && npm ci && npm run fetch && npm run build
+dev:        ; cd $(DEV_APP_DIR) && npm run dev
+build:      ; cd $(DEV_APP_DIR) && npm ci && npm run build
+deploy:     ; cd $(DEV_APP_DIR) && npm run fetch && npm run build && echo 'Deploying $(DEV_DEPLOY_SRC) to $(DEV_DEPLOY_DST)' && sudo rsync -a --delete $(DEV_DEPLOY_SRC) $(DEV_DEPLOY_DST) && echo 'done.'
+fetch:		; cd $(DEV_APP_DIR) && npm run fetch 
+clean-build: ; cd $(DEV_APP_DIR) && rm -rf node_modules package-lock.json && npm install && npm ci && npm run fetch && npm run build
+
 
 apache-include:
 	@echo 'IncludeOptional '$(abspath $(APACHE_SRC)) | sudo tee $(APACHE_DST) >/dev/null
