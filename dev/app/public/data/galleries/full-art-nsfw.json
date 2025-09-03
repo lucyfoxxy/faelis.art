@@ -1,0 +1,197 @@
+{
+  "album": "full-art-nsfw",
+  "source": "album",
+  "sourceId": "493344e9-21c1-4ce9-939f-026ee1d2f78e",
+  "count": 21,
+  "assets": [
+    {
+      "id": "1bf33fee-5e2d-448e-8cb6-ebd285640a54",
+      "filename": "12.png",
+      "type": "IMAGE",
+      "width": 2560,
+      "height": 2180,
+      "thumb": "https://i.faelis.art/api/assets/1bf33fee-5e2d-448e-8cb6-ebd285640a54/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/1bf33fee-5e2d-448e-8cb6-ebd285640a54/original"
+    },
+    {
+      "id": "2a53386c-9686-49b7-a8a8-98e6d6ff5a75",
+      "filename": "1.jpg",
+      "type": "IMAGE",
+      "width": 1500,
+      "height": 1106,
+      "thumb": "https://i.faelis.art/api/assets/2a53386c-9686-49b7-a8a8-98e6d6ff5a75/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/2a53386c-9686-49b7-a8a8-98e6d6ff5a75/original"
+    },
+    {
+      "id": "fdca63e2-9ab2-4f51-8d30-9de4d6218374",
+      "filename": "5.jpg",
+      "type": "IMAGE",
+      "width": 935,
+      "height": 1500,
+      "thumb": "https://i.faelis.art/api/assets/fdca63e2-9ab2-4f51-8d30-9de4d6218374/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/fdca63e2-9ab2-4f51-8d30-9de4d6218374/original"
+    },
+    {
+      "id": "a633c759-e792-43a2-9192-4d88768ab53b",
+      "filename": "17.jpg",
+      "type": "IMAGE",
+      "width": 910,
+      "height": 1200,
+      "thumb": "https://i.faelis.art/api/assets/a633c759-e792-43a2-9192-4d88768ab53b/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/a633c759-e792-43a2-9192-4d88768ab53b/original"
+    },
+    {
+      "id": "19fdc865-c539-4cdf-a148-8289ff50d054",
+      "filename": "0.jpg",
+      "type": "IMAGE",
+      "width": 960,
+      "height": 1200,
+      "thumb": "https://i.faelis.art/api/assets/19fdc865-c539-4cdf-a148-8289ff50d054/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/19fdc865-c539-4cdf-a148-8289ff50d054/original"
+    },
+    {
+      "id": "203a3676-a406-436c-bf3e-ffb8bb130838",
+      "filename": "15.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 908,
+      "thumb": "https://i.faelis.art/api/assets/203a3676-a406-436c-bf3e-ffb8bb130838/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/203a3676-a406-436c-bf3e-ffb8bb130838/original"
+    },
+    {
+      "id": "68537763-7dc8-4d5d-b643-f73dbe991034",
+      "filename": "10.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 1037,
+      "thumb": "https://i.faelis.art/api/assets/68537763-7dc8-4d5d-b643-f73dbe991034/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/68537763-7dc8-4d5d-b643-f73dbe991034/original"
+    },
+    {
+      "id": "c78dc7b4-a430-402b-a8a8-5258ba0ccf7d",
+      "filename": "7.jpg",
+      "type": "IMAGE",
+      "width": 900,
+      "height": 666,
+      "thumb": "https://i.faelis.art/api/assets/c78dc7b4-a430-402b-a8a8-5258ba0ccf7d/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/c78dc7b4-a430-402b-a8a8-5258ba0ccf7d/original"
+    },
+    {
+      "id": "c909742b-e1c1-45ec-afa3-4fd3a44c15d1",
+      "filename": "11.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 939,
+      "thumb": "https://i.faelis.art/api/assets/c909742b-e1c1-45ec-afa3-4fd3a44c15d1/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/c909742b-e1c1-45ec-afa3-4fd3a44c15d1/original"
+    },
+    {
+      "id": "4e51a97f-dc35-425b-a021-8a6791c13d22",
+      "filename": "6.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 834,
+      "thumb": "https://i.faelis.art/api/assets/4e51a97f-dc35-425b-a021-8a6791c13d22/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/4e51a97f-dc35-425b-a021-8a6791c13d22/original"
+    },
+    {
+      "id": "99fa3c58-e940-4483-975c-00f9fb0ca438",
+      "filename": "4.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 713,
+      "thumb": "https://i.faelis.art/api/assets/99fa3c58-e940-4483-975c-00f9fb0ca438/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/99fa3c58-e940-4483-975c-00f9fb0ca438/original"
+    },
+    {
+      "id": "6908c87b-1cb8-4504-8123-d25ace2e88ae",
+      "filename": "2.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 1186,
+      "thumb": "https://i.faelis.art/api/assets/6908c87b-1cb8-4504-8123-d25ace2e88ae/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/6908c87b-1cb8-4504-8123-d25ace2e88ae/original"
+    },
+    {
+      "id": "bce28244-c018-4b45-9063-d413a0b4df7b",
+      "filename": "13.jpg",
+      "type": "IMAGE",
+      "width": 900,
+      "height": 894,
+      "thumb": "https://i.faelis.art/api/assets/bce28244-c018-4b45-9063-d413a0b4df7b/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/bce28244-c018-4b45-9063-d413a0b4df7b/original"
+    },
+    {
+      "id": "b7f37686-00d5-4a7e-80c3-c01ca40e5b47",
+      "filename": "3.jpg",
+      "type": "IMAGE",
+      "width": 854,
+      "height": 1200,
+      "thumb": "https://i.faelis.art/api/assets/b7f37686-00d5-4a7e-80c3-c01ca40e5b47/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/b7f37686-00d5-4a7e-80c3-c01ca40e5b47/original"
+    },
+    {
+      "id": "2421fda4-2601-414f-a54f-421018eefec5",
+      "filename": "14.jpg",
+      "type": "IMAGE",
+      "width": 843,
+      "height": 1200,
+      "thumb": "https://i.faelis.art/api/assets/2421fda4-2601-414f-a54f-421018eefec5/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/2421fda4-2601-414f-a54f-421018eefec5/original"
+    },
+    {
+      "id": "2beed8b2-31bc-4035-882c-ca4d88d3465a",
+      "filename": "1332438125.faelis_numero2_final_small.jpg",
+      "type": "IMAGE",
+      "width": 424,
+      "height": 600,
+      "thumb": "https://i.faelis.art/api/assets/2beed8b2-31bc-4035-882c-ca4d88d3465a/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/2beed8b2-31bc-4035-882c-ca4d88d3465a/original"
+    },
+    {
+      "id": "68283f4f-b5dd-4c2a-951b-21bdf97280b6",
+      "filename": "16.jpg",
+      "type": "IMAGE",
+      "width": 1370,
+      "height": 2000,
+      "thumb": "https://i.faelis.art/api/assets/68283f4f-b5dd-4c2a-951b-21bdf97280b6/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/68283f4f-b5dd-4c2a-951b-21bdf97280b6/original"
+    },
+    {
+      "id": "eddd6134-8ea3-4673-b9c3-c384079d9d2a",
+      "filename": "nest-epiele.jpg",
+      "type": "IMAGE",
+      "width": 1193,
+      "height": 842,
+      "thumb": "https://i.faelis.art/api/assets/eddd6134-8ea3-4673-b9c3-c384079d9d2a/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/eddd6134-8ea3-4673-b9c3-c384079d9d2a/original"
+    },
+    {
+      "id": "8ce19ade-d876-4d42-a9ae-f6bb7d2c460f",
+      "filename": "herma_twillight.jpg",
+      "type": "IMAGE",
+      "width": 932,
+      "height": 1100,
+      "thumb": "https://i.faelis.art/api/assets/8ce19ade-d876-4d42-a9ae-f6bb7d2c460f/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/8ce19ade-d876-4d42-a9ae-f6bb7d2c460f/original"
+    },
+    {
+      "id": "a7981212-e172-4057-ab66-d4d8c33db20e",
+      "filename": "PoisXSaith.jpg",
+      "type": "IMAGE",
+      "width": 1200,
+      "height": 875,
+      "thumb": "https://i.faelis.art/api/assets/a7981212-e172-4057-ab66-d4d8c33db20e/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/a7981212-e172-4057-ab66-d4d8c33db20e/original"
+    },
+    {
+      "id": "79609129-8f00-4269-a57b-e646a78ee0b1",
+      "filename": "bild1_harko.jpg",
+      "type": "IMAGE",
+      "width": 1000,
+      "height": 987,
+      "thumb": "https://i.faelis.art/api/assets/79609129-8f00-4269-a57b-e646a78ee0b1/thumbnail?size=preview",
+      "src": "https://i.faelis.art/api/assets/79609129-8f00-4269-a57b-e646a78ee0b1/original"
+    }
+  ]
+}

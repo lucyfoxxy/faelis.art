@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+const { title = "🐾 Faelis' Paw Artistry ", description = "Furry Art & Commissions" } = Astro.props;
+---
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- Fuzzy Bubbles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <img src="/assets/logo-faelis.png" alt="Faelis Logo" />
+          <span>Faelis Paw Artistry</span>
+        </a>
+
+        <button class="btn-burger" id="burger" aria-label="Menü öffnen">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="primary" id="primaryNav">
+          <a href="/galleries">Galerien</a>
+          <a href="/commissions">Preise</a>
+          <a href="/about">Über mich</a>
+          <a href="/contact">Kontakt</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <main class="panel">
+        <slot />
+      </main>
+      <footer style="margin:24px 0;color:#bbb;text-align:center">
+        © {new Date().getFullYear()} Faelis — Made with ♥
+      </footer>
+    </div>
+
+    <!-- <script>
+      const btn = document.getElementById('burger');
+      const nav = document.getElementById('primaryNav');
+      btn?.addEventListener('click', ()=> nav.classList.toggle('open'));
+    </script> -->
+
+    <script is:inline>
+      const btn = document.getElementById('btn-burger');
+      const nav = document.getElementById('navbar');
+
+      if (btn && nav) {
+        btn.addEventListener('click', () => nav.classList.toggle('open'));
+      }
+    </script>
+
+  </body>
+</html>

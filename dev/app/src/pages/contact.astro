@@ -1,0 +1,11 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../components/Layout.astro';
+const entry = await getEntry('pages', 'contact');
+const { Content } = await entry.render();
+const title = 'Contact me';
+---
+<Layout {title}>
+  <h1>{title}</h1>
+  <Content />
+</Layout>
