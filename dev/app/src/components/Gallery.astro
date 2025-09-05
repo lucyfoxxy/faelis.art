@@ -2,12 +2,24 @@
 type Props = { albumSlug: string; title?: string }
 const { albumSlug, title = 'Galerie' } = Astro.props as Props;
 ---
-
-<section>
+<section
+  class="fae-gallery"
+  data-slug={albumSlug}
+  data-autoplay="true"     
+  data-interval="5000"     
+  data-random="true"       
+>
   <h1>{title}</h1>
-  <!-- wir „verdraten“ den Slug als data-Attribut, damit das Client-Script ihn sicher hat -->
-  <div id="gallery" data-slug={albumSlug} class="grid"></div>
+
+  <div class="fae-viewer">
+    <button class="nav prev" aria-label="Vorheriges Bild">❮</button>
+    <img class="image" alt="" />
+    <button class="nav next" aria-label="Nächstes Bild">❯</button>
+    <button class="playpause" aria-label="Play/Pause">⏸</button>
+    <div class="progress"></div>
+  </div>
+
+  <div class="fae-thumbs" role="list"></div>
 </section>
 
 <script src="/js/gallery-page.js" defer></script>
-
