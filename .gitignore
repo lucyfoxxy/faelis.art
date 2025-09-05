@@ -2,5 +2,4 @@
 **/node_modules/**
 **/dist
 **/dist/**
-**/public/assets
-**/public/assets/**
+**/public/assets/**/**
