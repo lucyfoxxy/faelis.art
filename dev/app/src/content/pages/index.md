@@ -1,9 +1,10 @@
 ---
 title: 'Welcome to'
 ---
-## 🐾 A hearty meow, everyfur! 💜 
+# 🐾 A hearty meow, everyfur! 💜 
 
-![logo-faelis.png](/assets/logo-faelis.png)
+<img src="/assets/logo-faelis-no-text.png" alt="Logo" class="hero-img" />
+
 
 I'm Faelis Skribblekitty, experienced and passionate artist at your service!
 
@@ -13,5 +14,5 @@ It doesn't even necessarily has to be furry art you want to commission - althoug
 
 No matter what you are looking for, come and have a look to what I've done so far in over a decade now! 
 
-And please don't hestitate to send me a message on one of my [social's](/contact) **(preferrably Telegram)** 
-- in case you may have any questions or request, so we can discuss every detail of your comission!
+And please don't hestitate to send me a message on one of my [social's](/contact) ***(preferrably Telegram)***
+in case you may have any questions or request, so we can discuss every detail of your comission!
