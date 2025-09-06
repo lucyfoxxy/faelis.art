@@ -1,6 +1,19 @@
 ---
+/* NEU: Styles sauber importieren */
+import '../styles/tokens.css';
 import '../styles/global.css';
-const { title = "🐾 Faelis' Paw Artistry ", description = "Furry Art & Commissions" } = Astro.props;
+import '../styles/base.css';
+
+/* NEU: UI-Assets importieren – sorgt für korrekte, gehashte URLs */
+import bg from '../assets/bg.webp';
+import favicon from '../assets/favicon.webp';
+import logoHeader from '../assets/logo-header.webp';
+import logoFull from '../assets/logo-full.webp';
+
+const {
+  title = "🐾 Faelis' Paw Artistry ",
+  description = "Furry Art & Commissions"
+} = Astro.props;
 ---
 
 <html lang="de">
@@ -9,42 +22,33 @@ const { title = "🐾 Faelis' Paw Artistry ", description = "Furry Art & Commiss
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- Favicon (aus src/assets) -->
+    <link rel="icon" type="image/webp" href={favicon.src} />
+    <meta name="theme-color" content="#0b0b0f" />
+
     <!-- Fuzzy Bubbles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Optional: Preload fürs Header-Logo -->
+    <link rel="preload" as="image" href={logoHeader.src} />
   </head>
-  <body>
-    <header class="navbar">
-      <div class="nav-inner">
-        <a class="brand" href="/">
-          <img src="/assets/logo-faelis.png" alt="Faelis Logo" />
-          <span>Faelis Paw Artistry</span>
-        </a>
 
-        <button class="btn-burger" id="burger" aria-label="Menü öffnen">
-          <span></span><span></span><span></span>
-        </button>
-
-        <nav class="primary" id="primaryNav">
-          <a href="/galleries">My Work</a>
-          <a href="/commissions">Pricing</a>
-          <!--a href="/about">Über mich</a-->
-          <a href="/contact">Socials</a>
-        </nav>
-      </div>
-    </header>
+  <!-- NEU: Bildpfade als CSS-Variablen setzen -->
+  <body style={`--bg-image: url(${bg.src}); --header-logo: url(${logoHeader.src}); --home-hero: url(${logoFull.src});`}>
+    <!-- ... dein bestehendes Header/Nav-Markup bleibt ... -->
 
     <div class="container">
       <main class="panel">
         <slot />
       </main>
       <footer class="footer">
-        © {new Date().getFullYear()} Faelis.Art — Site made with ♥ by Lucy Foxx 
+        © {new Date().getFullYear()} Faelis.Art — Site made with ♥ by Lucy Foxx
       </footer>
     </div>
 
     <script src="/js/nav.js" defer></script>
-
   </body>
 </html>
