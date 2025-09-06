@@ -1,0 +1,43 @@
+:root {
+  /* Farben – aus deinem global.css übernommen */
+  --primary-background-color: rgba(85, 32, 134, 0.65);
+  --secondary-background-color: rgba(96, 31, 162, 0.753);
+  --container-bg: var(--primary-background-color);
+  --navbar-bg: var(--primary-background-color);
+  --nav-primary-bg: var(--secondary-background-color);
+  --nav-burger-bg: var(--nav-primary-bg);
+
+  --panel: #8b45d6;
+  --text: #e9e9ef;
+  --secondary-text-color: rgb(113, 41, 238);
+  --muted: #b0b0bb;
+  --accent: #d3b0f6;
+  --accent2: #7cf6ff;
+
+  /* Typografie / Scale (leicht normalisiert) */
+  --font-sm: 1.2rem;
+  --font-md: 1.3rem;
+  --font-lg: 1.45rem;
+  --font-xl: 1.9rem;
+
+  /* Spacing */
+  --space-sm: 12px;
+  --space-md: 18px;
+  --space-lg: 24px;
+
+  /* Radius & Shadow */
+  --radius: 16px;
+  --shadow-soft: 0 2px 6px rgba(0,0,0,0);
+  --shadow-strong: 0 4px 12px rgba(0,0,0,0);
+
+  /* Motion & Backdrop */
+  --backdrop-filter: blur(12px);
+  --motion-fast: 150ms;
+  --motion-base: 250ms;
+
+  /* Overlay für den Hintergrund (leichtes Vignette) */
+  --bg-overlay: radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
+
+  /* Bildpfade NICHT hier definieren – kommen aus dem Layout via CSS-Variablen:
+     --bg-image, --header-logo, --home-hero */
+}

@@ -1,0 +1,50 @@
+/* Reset / Baseline */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html:focus-within { scroll-behavior: smooth; }
+html, body { min-height: 100%; }
+:root { color-scheme: dark; } /* Dark-first – passt zu deinem Design */
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: var(--text);
+  background: none; /* Hintergrund über ::before */
+}
+
+/* Medien & Form Controls */
+img, picture, video, canvas, svg { display: block; max-inline-size: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; }
+
+/* Vollflächiger, letterbox-freier Hintergrund */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    var(--bg-overlay),
+    var(--bg-image, none) center / cover no-repeat;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Grund-Typo (greift nur, wenn dein global.css es nicht schon setzt) */
+h1 { font-size: var(--font-xl); line-height: 1.1; }
+h2 { font-size: var(--font-lg); line-height: 1.15; }
+h3 { font-size: var(--font-md); line-height: 1.2; }
+
+/* Fokus gut sichtbar */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Bewegungsreduktion respektieren */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
