@@ -4,3 +4,5 @@
 **/dist/**
 **/public/assets/**/**
 **/deploy.log
+**/*.log
+*.log
