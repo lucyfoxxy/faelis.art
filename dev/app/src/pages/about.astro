@@ -1,9 +1,0 @@
----
-import { getEntry } from 'astro:content';
-import Layout from '../components/Layout.astro';
-const entry = await getEntry('pages', 'about'); // Dateiname ohne .md
-const { Content } = await entry.render();
----
-<Layout >
-  <Content />
-</Layout>
