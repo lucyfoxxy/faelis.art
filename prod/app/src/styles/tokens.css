@@ -1,0 +1,68 @@
+:root {
+  /* === Main Colors === */
+  --primary-color:              oklch(45% 0.07 310);   /* dunkler, weniger gesättigt Lila */
+  --accent-color:               oklch(55% 0.11 315);   /* heller Akzent, leicht pinkiger */
+
+  --primary-background-color:   oklch(26% 0.09 305 / 0.85); /* dunkles, gedämpftes Violett */
+  --secondary-background-color: oklch(20% 0.08 300 / 0.85); /* noch dunkler für Layer */
+  --border-color:               oklch(45% 0.07 305 / 0.5);
+  --outline-color:              oklch(90% 0.01 305 / 0.08);
+
+  --primary-shadow-color:       oklch(30% 0.08 310 / 0.7);
+  --secondary-shadow-color:     oklch(30% 0.05 310 / 0.3);
+
+  --primary-text-color:         oklch(92% 0.07 295);   /* helles, leicht violett-weiß */
+  --secondary-text-color:       oklch(85% 0.17 295);   /* mittleres, etwas farbigeres Textlila */
+
+  --link:                       var(--secondary-text-color);
+  --link-hover:                 var(--accent-color);   /* etwas heller, knalliger beim Hover */
+ 
+  /* === Decorations === */
+  --bg-overlay:                  radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
+
+  --blur-hidden:                 0px;
+  --blur-small:                  6px;
+  --blur-medium:                10px;   
+  --blur-large:                 14px;
+
+  --radius-small:               8px;
+  --radius-medium:              12px;
+  --radius-large:               14px;
+ 
+  --shadow-soft:                 0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
+  --shadow-normal:               0 0 0.125rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
+  --shadow-strong:               0 0 0.125rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
+
+  /* === Spacing === */
+  --z-header:                   100;     
+  --gutter:                     1rem;
+  --bar-gap:                    clamp(1.5rem, 3.5vw, 2.75rem);
+  --page-pad:                   var(--bar-gap);/*clamp(.75rem, 2vw, 1.25rem);      */
+  --thumb:                      clamp(96px, 12vw, 136px); 
+
+  /* === Layout / Structures === */
+  --container-bg:               color-mix(in oklab, var(--secondary-background-color), black 6%);
+  --container-max:              1280px;
+  --container-width:            clamp(200px, 80%, var(--container-max));
+  --container-blur:             var(--blur-hidden);   /* Cards/Buttons; meist ohne Blur */
+  --container-shadow:           var(--shadow-small);
+
+  --panel-bg:                   var(--primary-background-color);  /* 8-digit hex inkl. Alpha */
+  --panel-padding:              clamp(1.25rem, 1.2vw + .75rem, 2rem);
+  --panel-blur:                 var(--blur-large);   /* großes Hauptpanel */
+  --panel-shadow:               var(--shadow-large);
+
+  --navbar-bg:                  color-mix(in oklab, var(--secondary-background-color), black 10%);
+  --navbar-blur:                var(--blur-medium);   /* Bars */
+  --navbar-shadow:              var(--shadow-medium); 
+
+  /* === Typography / Focus === */
+  --font-sans:                 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Grandstander, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display:              "Fuzzy Bubbles", var(--font-sans);
+
+                         
+
+
+
+
+}

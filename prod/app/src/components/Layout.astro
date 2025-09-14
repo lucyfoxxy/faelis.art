@@ -1,0 +1,52 @@
+---
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/typography.css';
+import '../styles/site.css';
+import '../styles/content.css';
+
+import bg from '../assets/bg.webp';
+import favicon from '../assets/favicon.webp';
+import logoHeader from '../assets/logo-header.webp';
+import logoFull from '../assets/logo-full.webp';
+
+const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/webp" href={favicon.src} />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet" />
+  </head>
+
+  <!-- Header/Footer-Variante hier wählen: bars-contained / bars-full / bars-edge / bars-edge-rounded / bars-full-tight -->
+  <body style={`--bg-image: url(${bg.src}); --header-logo: url(${logoHeader.src}); --home-hero: url(${logoFull.src});`}>
+
+    <header class="site-header">
+      <a class="brand" href="/"><img src={logoHeader.src} alt="Faelis.Art" height="40" /></a>
+      <nav id="site-nav" class="site-nav">
+        <ul class="site-nav__list">
+          <li><a href="/galleries">My Work</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="container">
+      <main class="panel">
+        <slot />
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      © {new Date().getFullYear()} faelis.ART — Site made with ♥ by <a href="https://lucy.foxx.pet/">Lucy Foxx</a> — <a href="/imprint">Imprint</a>
+    </footer>
+  </body>
+</html>

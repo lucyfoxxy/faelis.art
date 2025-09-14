@@ -1,0 +1,40 @@
+{
+  "galleries": [
+    {
+      "slug": "sketch",
+      "title": "Sketches"
+    },
+    {
+      "slug": "line-art",
+      "title": "Line Art"
+    },
+    {
+      "slug": "full-art-sfw",
+      "title": "Full Art (SFW)"
+    },
+    {
+      "slug": "full-art-nsfw",
+      "title": "Full Art (NSFW)"
+    },
+    {
+      "slug": "sticker-packs",
+      "title": "Sticker Packs (Telegram)"
+    },
+    {
+      "slug": "badges",
+      "title": "Badges"
+    },
+    {
+      "slug": "prints",
+      "title": "Button- & Sticker-Prints"
+    },
+    {
+      "slug": "ref-sheets",
+      "title": "Reference Sheets"
+    },
+    {
+      "slug": "logos-tribals",
+      "title": "Logos & Tribals"
+    }
+  ]
+}

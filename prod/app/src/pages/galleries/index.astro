@@ -1,0 +1,19 @@
+---
+import Layout from '../../components/Layout.astro';
+import manifest from '../../data/galleries-manifest.json';
+export const prerender = true;
+---
+<Layout title="My Work">
+  <h1>My Work</h1>
+
+  <div class="gallery-grid">
+    {manifest.galleries.map(({ slug, title }) => (
+      <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
+        <div class="thumb" data-slug={slug}></div>
+        <h3>{title}</h3>
+      </a>
+    ))}
+  </div>
+
+  <script src="/js/galleries-index.js" defer></script>
+</Layout>
