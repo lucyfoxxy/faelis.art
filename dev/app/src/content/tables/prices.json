@@ -4,15 +4,15 @@
     {
       "title": "Badges",
       "items": [
-        { "name": "Simple Badge", "price": 25, "note": "einfarbiger Hintergrund" },
-        { "name": "Detailed Badge", "price": 45, "note": "Schatten + Textur" }
+        { "name": "Simple", "price": 25, "note": "flat colored, simple background" },
+        { "name": "Detailed", "price": 45, "note": "shadings, complex background" }
       ]
     },
     {
       "title": "Ref-Sheets",
       "items": [
-        { "name": "2-View Ref", "price": 120, "note": "Front + Back" },
-        { "name": "3-View Ref", "price": 160, "note": "Front + Back + Side" }
+        { "name": "2-View", "price": 120, "note": "Front + Back" },
+        { "name": "3-View", "price": 160, "note": "Front + Back + Side" }
       ]
     }
   ]

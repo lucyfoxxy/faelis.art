@@ -6,16 +6,18 @@ const { albumSlug, title = 'Galerie' } = Astro.props as Props;
   class="fae-gallery"
   data-slug={albumSlug}
   data-autoplay="true"     
-  data-interval="5000"     
+  data-interval="10000"     
   data-random="true"       
 >
   <h1>{title}</h1>
 
   <div class="fae-viewer">
-    <button class="nav prev" aria-label="Vorheriges Bild">❮</button>
-    <img class="image" alt="" />
-    <button class="nav next" aria-label="Nächstes Bild">❯</button>
-    <button class="playpause" aria-label="Play/Pause">⏸</button>
+    <!--button class="nav prev" aria-label="Vorheriges Bild">❮</button-->
+    <div class="frame">
+      <img class="image" alt="" />
+    </div>
+    <!--button class="nav next" aria-label="Nächstes Bild">❯</button>
+    <button class="playpause" aria-label="Play/Pause">⏸</button-->
     <div class="progress"></div>
   </div>
 

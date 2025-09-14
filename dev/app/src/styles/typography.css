@@ -1,0 +1,26 @@
+/* Grundschrift */
+body { font-family: var(--font-sans); }
+
+/* Headings im Panel im Display-Font */
+.panel :where(h1,h2,h3,h4){
+  font-family: var(--font-display);
+  letter-spacing: .2px;
+}
+
+.panel h1{ font-size:clamp(1.9rem,1.2rem+1.6vw,2.6rem); line-height:1.1; margin:0 0 .6rem;  }
+.panel h2{ font-size:clamp(1.3rem,1.0rem+.9vw,1.8rem); line-height:1.15; margin:.9rem 0 .5rem; }
+.panel h3{ font-size:clamp(1.15rem,.95rem+.6vw,1.4rem); line-height:1.2; margin:.8rem 0 .4rem; }
+
+.panel p { margin:.55rem 0 .75rem; }
+.panel a { color:var(--link); text-underline-offset:.15em; }
+.panel a:hover, .panel a:focus-visible { color:var(--link-hover); }
+
+.panel ul, .panel ol { padding-inline-start:1.2rem; margin:.5rem 0 .8rem; }
+.panel li { margin:.2rem 0; }
+
+.panel blockquote{
+  margin:.8rem 0; padding:.6rem .8rem;
+  border-left:3px solid var(--link);
+  background: color-mix(in oklab, var(--container-bg), black 10%);
+  border-radius:.5rem;
+}

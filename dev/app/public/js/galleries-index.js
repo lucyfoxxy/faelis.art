@@ -1,25 +1,39 @@
-(function () {
-  function init() {
-    document.querySelectorAll('.thumb[data-slug]').forEach(async (el) => {
-      const slug = el.getAttribute('data-slug');
-      try {
-        const r = await fetch(`/assets/${slug}/index.json`, { cache: 'no-store' });
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        const j = await r.json();
-        const first = j.assets && j.assets[0];
-        if (first) {
-          const img = document.createElement('img');
-          img.src = first.thumb || first.src;
-          img.loading = 'lazy';
-          img.alt = '';
-          img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block';
-          el.replaceWith(img);
-        }
-      } catch (e) {
-        console.warn('thumb failed', slug, e);
-      }
+// /public/js/galleries-index.js
+(async () => {
+  const slots = document.querySelectorAll('.gallery-card .thumb[data-slug]');
+  await Promise.all([...slots].map(async (el) => {
+    const slug = el.getAttribute('data-slug');
+    const coverUrl = `/assets/${slug}/_cover.webp`;
+    const idxUrl   = `/assets/${slug}/index.json`;
+
+    const render = (src) => {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.decoding = 'async';
+      img.loading = 'lazy';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'none';
+      el.replaceChildren(img);
+    };
+
+    // 1) Versuche _cover.webp
+    const probe = new Image();
+    const ok = await new Promise((resolve) => {
+      probe.onload = () => resolve(true);
+      probe.onerror = () => resolve(false);
+      probe.src = coverUrl;
     });
-  }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+    if (ok) { render(coverUrl); return; }
+
+    // 2) Fallback: erstes Asset aus index.json
+    try {
+      const r = await fetch(idxUrl, { cache: 'no-store' });
+      if (!r.ok) throw 0;
+      const j = await r.json();
+      const first = j?.items?.[0];
+      if (first) render(first.thumb || first.src);
+    } catch { /* Platzhalter behalten */ }
+  }));
 })();

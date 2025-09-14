@@ -1,43 +1,68 @@
 :root {
-  /* Farben – aus deinem global.css übernommen */
-  --primary-background-color: rgba(85, 32, 134, 0.65);
-  --secondary-background-color: rgba(96, 31, 162, 0.753);
-  --container-bg: var(--primary-background-color);
-  --navbar-bg: var(--primary-background-color);
-  --nav-primary-bg: var(--secondary-background-color);
-  --nav-burger-bg: var(--nav-primary-bg);
+  /* === Main Colors === */
+  --primary-color:              oklch(45% 0.07 310);   /* dunkler, weniger gesättigt Lila */
+  --accent-color:               oklch(55% 0.11 315);   /* heller Akzent, leicht pinkiger */
 
-  --panel: #8b45d6;
-  --text: #e9e9ef;
-  --secondary-text-color: rgb(113, 41, 238);
-  --muted: #b0b0bb;
-  --accent: #d3b0f6;
-  --accent2: #7cf6ff;
+  --primary-background-color:   oklch(26% 0.09 305 / 0.85); /* dunkles, gedämpftes Violett */
+  --secondary-background-color: oklch(20% 0.08 300 / 0.85); /* noch dunkler für Layer */
+  --border-color:               oklch(45% 0.07 305 / 0.5);
+  --outline-color:              oklch(90% 0.01 305 / 0.08);
 
-  /* Typografie / Scale (leicht normalisiert) */
-  --font-sm: 1.2rem;
-  --font-md: 1.3rem;
-  --font-lg: 1.45rem;
-  --font-xl: 1.9rem;
+  --primary-shadow-color:       oklch(30% 0.08 310 / 0.7);
+  --secondary-shadow-color:     oklch(30% 0.05 310 / 0.3);
 
-  /* Spacing */
-  --space-sm: 12px;
-  --space-md: 18px;
-  --space-lg: 24px;
+  --primary-text-color:         oklch(92% 0.07 295);   /* helles, leicht violett-weiß */
+  --secondary-text-color:       oklch(85% 0.17 295);   /* mittleres, etwas farbigeres Textlila */
 
-  /* Radius & Shadow */
-  --radius: 16px;
-  --shadow-soft: 0 2px 6px rgba(0,0,0,0);
-  --shadow-strong: 0 4px 12px rgba(0,0,0,0);
+  --link:                       var(--secondary-text-color);
+  --link-hover:                 var(--accent-color);   /* etwas heller, knalliger beim Hover */
+ 
+  /* === Decorations === */
+  --bg-overlay:                  radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
 
-  /* Motion & Backdrop */
-  --backdrop-filter: blur(12px);
-  --motion-fast: 150ms;
-  --motion-base: 250ms;
+  --blur-hidden:                 0px;
+  --blur-small:                  6px;
+  --blur-medium:                10px;   
+  --blur-large:                 14px;
 
-  /* Overlay für den Hintergrund (leichtes Vignette) */
-  --bg-overlay: radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
+  --radius-small:               8px;
+  --radius-medium:              12px;
+  --radius-large:               14px;
+ 
+  --shadow-soft:                 0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
+  --shadow-normal:               0 0 0.125rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
+  --shadow-strong:               0 0 0.125rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
 
-  /* Bildpfade NICHT hier definieren – kommen aus dem Layout via CSS-Variablen:
-     --bg-image, --header-logo, --home-hero */
+  /* === Spacing === */
+  --z-header:                   100;     
+  --gutter:                     1rem;
+  --bar-gap:                    clamp(1.5rem, 3.5vw, 2.75rem);
+  --page-pad:                   var(--bar-gap);/*clamp(.75rem, 2vw, 1.25rem);      */
+  --thumb:                      clamp(96px, 12vw, 136px); 
+
+  /* === Layout / Structures === */
+  --container-bg:               color-mix(in oklab, var(--secondary-background-color), black 6%);
+  --container-max:              1280px;
+  --container-width:            clamp(200px, 80%, var(--container-max));
+  --container-blur:             var(--blur-hidden);   /* Cards/Buttons; meist ohne Blur */
+  --container-shadow:           var(--shadow-small);
+
+  --panel-bg:                   var(--primary-background-color);  /* 8-digit hex inkl. Alpha */
+  --panel-padding:              clamp(1.25rem, 1.2vw + .75rem, 2rem);
+  --panel-blur:                 var(--blur-large);   /* großes Hauptpanel */
+  --panel-shadow:               var(--shadow-large);
+
+  --navbar-bg:                  color-mix(in oklab, var(--secondary-background-color), black 10%);
+  --navbar-blur:                var(--blur-medium);   /* Bars */
+  --navbar-shadow:              var(--shadow-medium); 
+
+  /* === Typography / Focus === */
+  --font-sans:                 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Grandstander, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display:              "Fuzzy Bubbles", var(--font-sans);
+
+                         
+
+
+
+
 }

@@ -1,10 +1,30 @@
 ---
-import { getEntry } from 'astro:content';
 import Layout from '../components/Layout.astro';
-const entry = await getEntry('pages', 'index'); // Dateiname ohne .md
-const { Content } = await entry.render();
+import logoFull from '../assets/logo-full.webp';
+export const prerender = true;
 ---
-<Layout title="Faelis' Paw Artistry — Art & Commissions">
-  <Content />
-</Layout>
+<Layout title="Faelis Paw Artistry — Home">
+  <section class="hero">
+    <picture class="hero__logo">
+      <img src={logoFull.src} alt="Faelis Paw Artistry – full logo" />
+    </picture>
 
+    <div class="hero__content">
+      <h1>Welcome!</h1>
+      <h2><i>A hearty meow, everyfur! 💜</i></h2>
+
+      <p>Hey there, my fellow furballs! I’m Faelis Skribblekitty — experienced & passionate artist at your service.</p>
+
+      <p>Whether you want to bring your new sona idea to life, need a logo, a ref sheet, or a professionally designed, printed & laminated badge to wear at cons & meets — I’m the right artistic kitty to create all of that for you (even if it’s something kinky!).</p>
+
+      <p>No matter if you prefer digital or traditional art — I can do both.</p>
+
+      <ul>
+        <li>Take a peek at <a href="/galleries">my work</a> to see my art style.</li>
+        <li>Questions or commission details? Ping me via <a href="/contact">social media</a>.</li>
+      </ul>
+
+      <h3>Faelis Skribblekitty 💜</h3>
+    </div>
+  </section>
+</Layout>

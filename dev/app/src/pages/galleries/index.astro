@@ -1,26 +1,19 @@
 ---
 import Layout from '../../components/Layout.astro';
 import manifest from '../../data/galleries-manifest.json';
-const title = 'My Work - Overview';
+export const prerender = true;
 ---
-<Layout {title}>
-  <section>
-    <h1>My Work - Overview</h1>
-    <ul style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;list-style:none;padding:0">
-      {manifest.slugs.map((slug) => (
-        <li>
-          <a href={`/galleries/${slug}/`} style="text-decoration:none;display:block">
-            <div style="margin-bottom:0.75rem;margin-top:0.5em;font-size:18px;color:var(--text,#eee)">{slug}</div>
-            <div class="card" style="border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:#111">
-              <div class="thumb" data-slug={slug} style="width:100%;height:100%"></div>
-            </div>
-            
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
+<Layout title="My Work">
+  <h1>My Work</h1>
+
+  <div class="gallery-grid">
+    {manifest.galleries.map(({ slug, title }) => (
+      <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
+        <div class="thumb" data-slug={slug}></div>
+        <h3>{title}</h3>
+      </a>
+    ))}
+  </div>
 
   <script src="/js/galleries-index.js" defer></script>
 </Layout>
-

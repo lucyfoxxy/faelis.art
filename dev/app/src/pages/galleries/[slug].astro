@@ -1,15 +1,18 @@
 ---
 import Layout from '../../components/Layout.astro';
 import Gallery from '../../components/Gallery.astro';
-import manifest from '../../data/galleries-manifest.json'; // vom Script erzeugt
+import manifest from '../../data/galleries-manifest.json';
 
 export function getStaticPaths() {
-  return manifest.slugs.map((slug) => ({ params: { slug } }));
+  return manifest.galleries.map(({ slug, title }) => ({
+    params: { slug },
+    props:  { title },
+  }));
 }
 
-const { slug } = Astro.params;
-const title = `Galerie – ${slug}`;
+const { slug }  = Astro.params;
+const { title } = Astro.props;
 ---
-<Layout {title}>
+<Layout title={title}>
   <Gallery albumSlug={slug} title={title} />
 </Layout>
