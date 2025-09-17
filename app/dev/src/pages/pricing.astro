@@ -1,0 +1,13 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../components/Layout.astro';
+import PriceTable from '../components/PriceTable.astro';
+
+const title = 'Pricing';
+const prices = (await getEntry('tables', 'prices')).data; // lädt src/content/tables/prices.json
+---
+<Layout {title}>
+  <h1>{title}</h1>
+  <p>Here you gonna find my current pricing for each category. Shown prices are approximates and final prices may vary.</p>
+  <PriceTable {prices} />
+</Layout>

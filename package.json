@@ -1,0 +1,14 @@
+{
+  "name": "faelis.art",
+  "private": true,
+  "type": "module",
+  "workspaces": ["app/dev", "app/prod"],
+  "scripts": {
+    "fetch:dev": "node scripts/fetch-immich.mjs --target=dev",
+    "fetch:prod": "node scripts/fetch-immich.mjs --target=prod"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "sharp": "^0.33.4"
+  }
+}

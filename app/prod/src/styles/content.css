@@ -1,0 +1,172 @@
+/* ========================================================================== */
+/* === CONTENT: COMPONENTS & ELEMENTS ====================================== */
+/* === Depends on: tokens.css (vars), site.css (layout) ==================== */
+/* ========================================================================== */
+
+/* === TYPO FLOW (Panel) ==================================================== */
+.panel p { hyphens: auto; }
+
+/* === HERO (Logo + Text) === */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 42%) 1fr; /* Logo | Text */
+  align-items: center;
+  gap: clamp(.8rem, 2.2vw, 1.4rem);
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero__logo { justify-self: center; }
+}
+.hero__logo img {
+  inline-size: min(520px, 100%);
+  block-size: auto;
+  border-style: hidden;
+}
+.hero__content { min-inline-size: 16ch; } 
+
+/* === CONTACT BUTTONS === */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .75rem;
+  margin-block: .75rem 1rem;
+}
+.contact-btn {
+  --bg: #666;              /* pro Button überschreiben */
+  --fg: #fff;              /* Textfarbe fix: gute Lesbarkeit */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Text zentriert */
+  gap: .55rem;
+  padding: .72rem 1.05rem;
+  border-radius: 999px;    /* Pill */
+  background: var(--bg);
+  color: var(--fg);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow:
+    0 10px 22px -12px oklch(0% 0 0 / .55),
+    inset 0 1px 0 0 oklch(100% 0 0 / .20);
+  transition: background-color .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;
+}
+.contact-btn:hover {
+  background: color-mix(in oklch, var(--bg) 82%, white 18%);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px -14px oklch(0% 0 0 / .6);
+}
+.contact-btn:active {
+  background: color-mix(in oklch, var(--bg) 88%, black 12%);
+  transform: translateY(0);
+}
+@supports not (color: oklch(50% 0 0)) {
+  .contact-btn:hover { filter: brightness(1.08); }
+  .contact-btn:active { filter: brightness(.92); }
+}
+.contact-btn:focus-visible {
+  outline: 2px solid oklch(85% .04 310 / .8);
+  outline-offset: 2px;
+}
+.contact-btn .icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.35rem;
+  block-size: 1.35rem;
+  border-radius: 999px;
+  background: color-mix(in oklch, black 12%, var(--bg));
+}
+.contact-btn--telegram   { --bg: #28a8e9; }
+.contact-btn--mail       { --bg: #a858c0; }
+.contact-btn--facebook   { --bg: #1778f2; }
+.contact-btn--instagram  { --bg: #e1306c; }
+.contact-btn--furaffinity{ --bg: #08a57b; }
+
+
+/* === GALLERY: Index === */
+.gallery-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  min-inline-size: 0; /* verhindert Shrink-Bugs in Grids */
+}
+
+.gallery-card {
+  display: flex;                /* Grid brauchst du hier nicht */
+  flex-direction: column;
+  gap: .6rem;
+  background: var(--secondary-background-color, #2a1540);
+  border-radius: var(--radius-medium);
+  padding: .75rem;
+}
+
+.gallery-card .thumb {
+  aspect-ratio: 1 / 1;
+  background: color-mix(in oklab, var(--primary-background-color) 80%, black 20%);
+  border-radius: var(--radius-medium);
+  overflow: hidden;
+}
+.gallery-card h3 { margin: 0; }
+
+
+/* === Viewer === */
+.fae-viewer {
+  inline-size: 100%;
+  border-radius: var(--radius-large);
+  background: var(--primary-background-color, #2a1540);
+  padding: .75rem .75rem 1rem;
+  position: relative;
+}
+
+.fae-viewer .frame {
+  inline-size: 100%;
+  block-size: clamp(300px, 58vh, 720px); /* elastische Höhe */
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  position: relative;
+  background:
+    conic-gradient(#0000 90deg, #0003 0) 0 0/20px 20px,
+    color-mix(in oklab, var(--primary-background-color) 85%, black 15%);
+}
+
+.fae-viewer .image {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  max-inline-size: 100%;
+  max-block-size: 100%;
+  object-fit: contain; /* Bild passt in Frame, verzerrungsfrei */
+  display: block;
+}
+
+/* === Thumbnails === */
+.fae-thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--thumb), 1fr));
+  gap: .55rem;
+  align-content: start;
+  min-inline-size: 0; /* verhindert Shrink-Bugs im Grid */
+}
+
+.fae-thumbs .thumb {
+  inline-size: var(--thumb);
+  block-size: var(--thumb);
+  border: 0;
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  cursor: pointer;
+  background:
+    conic-gradient(#0000 90deg, #0003 0) 0 0/12px 12px,
+    color-mix(in oklab, var(--primary-background-color) 85%, black 15%);
+}
+
+.fae-thumbs .thumb img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain; /* transparente Sticker bleiben sichtbar */
+  display: block;
+}
+
+.fae-thumbs .thumb.active {
+  outline: 2px solid color-mix(in oklab, var(--border-color) 35%, transparent);
+}

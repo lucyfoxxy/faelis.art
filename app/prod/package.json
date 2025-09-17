@@ -1,0 +1,17 @@
+{
+  "name": "faelis-art-prod-stub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "fetch": "node ../../scripts/fetch-immich.mjs --target=prod",
+    "gen": "npm run fetch && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "astro": "^5.13.5"
+  }
+}
