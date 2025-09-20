@@ -24,7 +24,7 @@ Die Reihenfolge ist wichtig und wird in `layout.astro` bereits korrekt eingebund
 - Ziel: das **Gerüst der Seite**.
 
 ### 5. `content.css`
-- Inhaltliche Komponenten & Widgets: Hero, Contact-Buttons, Gallery, Fae-Viewer, Price-Table.
+- Inhaltliche Komponenten & Widgets: Hero, Contact-Buttons, Gallery, galleryViewer, table.
 - Ziel: wiederverwendbare Module, die im Container/Panel platziert werden.
 
 ---
@@ -32,8 +32,10 @@ Die Reihenfolge ist wichtig und wird in `layout.astro` bereits korrekt eingebund
 ## Einbindung
 
 ```astro
-import '../styles/tokens.css';
-import '../styles/base.css';
-import '../styles/typography.css';
-import '../styles/site.css';
-import '../styles/content.css';
+import '@styles/tokens.css';
+import '@styles/base.css';
+import '@styles/typography.css';
+import '@styles/site.css';
+import '@styles/content.css';
+import '@styles/gallery.css';
+import '@styles/table.css';

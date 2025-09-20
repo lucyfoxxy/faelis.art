@@ -1,11 +1,11 @@
 :root {
   /* === Main Colors === */
-  --primary-color:              oklch(45% 0.07 310);   /* dunkler, weniger gesättigt Lila */
+  --primary-color:              oklch(40% 0.15 305);   /* dunkler, weniger gesättigt Lila */
   --accent-color:               oklch(55% 0.11 315);   /* heller Akzent, leicht pinkiger */
 
-  --primary-background-color:   oklch(26% 0.09 305 / 0.85); /* dunkles, gedämpftes Violett */
-  --secondary-background-color: oklch(20% 0.08 300 / 0.85); /* noch dunkler für Layer */
-  --border-color:               oklch(45% 0.07 305 / 0.5);
+  --primary-background-color:   oklch(26% 0.09 305 / 0.75); /* dunkles, gedämpftes Violett */
+  --secondary-background-color: oklch(20% 0.08 300 / 0.75); /* noch dunkler für Layer */
+  --border-color:               oklch(var(--primary-color) / 0.5);
   --outline-color:              oklch(90% 0.01 305 / 0.08);
 
   --primary-shadow-color:       oklch(30% 0.08 310 / 0.7);
@@ -20,46 +20,47 @@
   /* === Decorations === */
   --bg-overlay:                  radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
 
-  --blur-hidden:                 0px;
-  --blur-small:                  6px;
-  --blur-medium:                10px;   
-  --blur-large:                 14px;
+  --small-blur:                 10px;
+  --medium-blur:                14px;   
+  --large-blur:                 18px;
 
-  --radius-small:               8px;
-  --radius-medium:              12px;
-  --radius-large:               14px;
+  --small-radius:               10px;
+  --medium-radius:              14px;
+  --large-radius:               18px;
  
-  --shadow-soft:                0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
-  --shadow-normal:              0 0 0.125rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
-  --shadow-strong:              0 0 0.125rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
+  --small-shadow:               0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
+  --medium-shadow:              0 0 0.175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
+  --large-shadow:               0 0 0.225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
 
-  /* === Spacing === */
-  --page-gap:                   clamp(1.5rem, 3.5vw, 2.75rem);
-             
   /* === Layout / Structures === */
-  --container-bg:               color-mix(in oklab, var(--secondary-background-color), black 6%);
-  --container-max:              1200px;
-  --container-width:            clamp(200px, 80%, var(--container-max));
-  --container-blur:             var(--blur-hidden);   
-  --container-shadow:           var(--shadow-small);
-  --container-padding:          max(var(--page-gap), calc((100vw - var(--container-max)) / 2));
+  --container-max:              1280px;
+  --container-gap:              clamp(1.5rem, 3.5vw, 2.75rem);
+  --container-padding:          max(var(--container-gap), calc((100vw - var(--container-max)) / 2));
 
-  --panel-bg:                   var(--primary-background-color); 
-  --panel-padding:              clamp(1.5rem, 1.5vw + 1rem, 2.75rem);
-  --panel-blur:                 var(--blur-large);   
-  --panel-shadow:               var(--shadow-large);
-
-  --navbar-bg:                  color-mix(in oklab, var(--primary-background-color), black 10%);
-  --navbar-blur:                var(--blur-medium);   
-  --navbar-shadow:              var(--shadow-medium); 
+  --navbar-background:          color-mix(in oklab, var(--secondary-background-color), black 6%);
+  --navbar-blur:                var(--medium-blur);   
+  --navbar-shadow:              var(--medium-shadow); 
   --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
+  --navbar-gap:                 var(--container-gap);
+
+  --panel-background:           var(--primary-background-color); 
+  --panel-padding:              clamp(1.5rem, 2vw, 3rem);
+  --panel-blur:                 var(--large-blur);   
+  --panel-shadow:               var(--large-shadow);
+
+  --content-gap:                clamp(1rem, 2vw, 1.5rem);
+  --content-background:         color-mix(in oklab, var(--navbar-background), transparent 56%);          
+  --content-padding:            var(--panel-padding);
+  --content-margin:             clamp(1.5rem, 2vw, 1.75rem);
+  --content-blur:               var(--panel-blur);   
+  --content-shadow:             var(--panel-shadow);
 
   /* === Typography / Focus === */
-  --font-sans:                  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Grandstander, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans:                  Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display:               "Fuzzy Bubbles", var(--font-sans);
 
   /* === Gallery === */
-  --thumb:                      clamp(96px, 12vw, 136px); 
+  --thumb:                      clamp(156px, 12vw, 196px);
                          
 
 
