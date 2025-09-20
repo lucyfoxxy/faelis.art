@@ -1,0 +1,29 @@
+---
+import manifest from '@content/galleries/manifest.json';
+---
+<section>
+  <h1>Art Gallery</h1>
+
+  <div class="gallery-grid">
+    {manifest.galleries.map(({ slug, title }) => (
+      <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
+        <div class="gallery-card-thumb" data-slug={slug}></div>
+        <h3>{title}</h3>
+      </a>
+    ))}
+  </div>
+</section>  
+
+<script>
+  import initGalleryCovers from "@scripts/gallery-index.js";
+  const boot = () => initGalleryCovers();
+
+  // robust für SSR, CSR und Astro View-Transitions
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    requestAnimationFrame(boot);
+  } else {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+    document.addEventListener("astro:page-load", boot, { once: true });
+  }
+
+</script>

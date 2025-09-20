@@ -1,0 +1,46 @@
+---
+type Props = { albumSlug: string; title?: string }
+const { albumSlug, title = 'Galerie' } = Astro.props as Props;
+---
+<section
+  class="gallery"
+  data-slug={albumSlug}
+  data-autoplay="true"
+  data-interval="5000"
+  data-random="true"
+>
+  <h1>{title}</h1>
+
+  <section class="section content-card">
+    <div class="gallery-viewer">
+      <div class="gallery-viewer-controls">
+        <button class="gallery-viewer-nav gallery-viewer-prev" aria-label="Previous">❮</button>
+        <button class="gallery-viewer-nav gallery-viewer-playpause" aria-label="Play/Pause">⏸</button>
+        <button class="gallery-viewer-nav gallery-viewer-next" aria-label="Next">❯</button>
+      </div>
+      <div class="gallery-viewer-frame">
+        <img class="gallery-viewer-image" alt="" />
+      </div>
+      <div class="gallery-viewer-progress" />
+    </div>
+  </section>
+
+  <section class="section content-card">
+    <div class="gallery-thumbs" role="list" />
+  </section>
+</section>
+
+<script>
+  // Läuft ausschließlich im Browser, weil wir die Komponente mit client:load mounten
+  import initGalleryPage from "@scripts/gallery-page.js";
+  const boot = () => initGalleryPage();
+
+  // robust für SSR, CSR und Astro View-Transitions
+  if (document.readyState === "complete" || document.readyState === "interactive") {
+    requestAnimationFrame(boot);
+  } else {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+    document.addEventListener("astro:page-load", boot, { once: true });
+  }
+
+</script>
