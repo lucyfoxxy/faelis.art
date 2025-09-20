@@ -5,7 +5,15 @@
   "workspaces": ["app/dev", "app/prod"],
   "scripts": {
     "fetch:dev": "node scripts/fetch-immich.mjs --target=dev",
-    "fetch:prod": "node scripts/fetch-immich.mjs --target=prod"
+    "fetch:prod": "node scripts/fetch-immich.mjs --target=prod",
+    "build:dev": "npm run -w app/dev build",
+    "build:prod": "npm run -w app/prod build",
+    "preview:dev": "npm run -w app/dev preview",
+    "preview:prod": "npm run -w app/prod preview",
+    "sync:dev": "npm run -w app/dev sync",
+    "sync:prod": "npm run -w app/prod sync",
+    "dev:dev": "npm run -w app/dev dev",
+    "dev:prod": "npm run -w app/prod dev"
   },
   "dependencies": {
     "dotenv": "^17.2.1",
