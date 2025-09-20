@@ -14,7 +14,7 @@
       img.loading = 'lazy';
       img.style.width = '100%';
       img.style.height = '100%';
-      img.style.objectFit = 'none';
+      img.style.objectFit = 'cover';
       el.replaceChildren(img);
     };
 

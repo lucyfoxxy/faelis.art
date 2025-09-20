@@ -2,7 +2,10 @@
 **/node_modules/**
 **/dist
 **/dist/**
-**/public/assets/**/**
+**/app/**/src/assets/galleries/**
+**/app/**/src/assets/galleries/
 **/deploy.log
 **/*.log
 *.log
+**thumb-**
+**full-**

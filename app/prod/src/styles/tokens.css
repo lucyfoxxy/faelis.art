@@ -29,37 +29,37 @@
   --radius-medium:              12px;
   --radius-large:               14px;
  
-  --shadow-soft:                 0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
-  --shadow-normal:               0 0 0.125rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
-  --shadow-strong:               0 0 0.125rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
+  --shadow-soft:                0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
+  --shadow-normal:              0 0 0.125rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
+  --shadow-strong:              0 0 0.125rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
 
   /* === Spacing === */
-  --z-header:                   100;     
-  --gutter:                     1rem;
-  --bar-gap:                    clamp(1.5rem, 3.5vw, 2.75rem);
-  --page-pad:                   var(--bar-gap);/*clamp(.75rem, 2vw, 1.25rem);      */
-  --thumb:                      clamp(96px, 12vw, 136px); 
-
+  --page-gap:                   clamp(1.5rem, 3.5vw, 2.75rem);
+             
   /* === Layout / Structures === */
   --container-bg:               color-mix(in oklab, var(--secondary-background-color), black 6%);
   --container-max:              1280px;
   --container-width:            clamp(200px, 80%, var(--container-max));
-  --container-blur:             var(--blur-hidden);   /* Cards/Buttons; meist ohne Blur */
+  --container-blur:             var(--blur-hidden);   
   --container-shadow:           var(--shadow-small);
+  --container-padding:          max(var(--page-gap), calc((100vw - var(--container-max)) / 2));
 
-  --panel-bg:                   var(--primary-background-color);  /* 8-digit hex inkl. Alpha */
-  --panel-padding:              clamp(1.25rem, 1.2vw + .75rem, 2rem);
-  --panel-blur:                 var(--blur-large);   /* großes Hauptpanel */
+  --panel-bg:                   var(--primary-background-color); 
+  --panel-padding:              clamp(1.5rem, 1.5vw + 1rem, 2.75rem);
+  --panel-blur:                 var(--blur-large);   
   --panel-shadow:               var(--shadow-large);
 
-  --navbar-bg:                  color-mix(in oklab, var(--secondary-background-color), black 10%);
-  --navbar-blur:                var(--blur-medium);   /* Bars */
+  --navbar-bg:                  color-mix(in oklab, var(--primary-background-color), black 10%);
+  --navbar-blur:                var(--blur-medium);   
   --navbar-shadow:              var(--shadow-medium); 
+  --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
 
   /* === Typography / Focus === */
-  --font-sans:                 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Grandstander, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display:              "Fuzzy Bubbles", var(--font-sans);
+  --font-sans:                  ui-sans-serif, system-ui, -apple-system, "Segoe UI", Grandstander, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display:               "Fuzzy Bubbles", var(--font-sans);
 
+  /* === Gallery === */
+  --thumb:                      clamp(96px, 12vw, 136px); 
                          
 
 

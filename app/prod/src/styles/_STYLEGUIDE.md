@@ -24,7 +24,7 @@ Die Reihenfolge ist wichtig und wird in `layout.astro` bereits korrekt eingebund
 - Ziel: das **Gerüst der Seite**.
 
 ### 5. `content.css`
-- Inhaltliche Komponenten & Widgets: Hero, Contact-Buttons, Gallery, Fae-Viewer.
+- Inhaltliche Komponenten & Widgets: Hero, Contact-Buttons, Gallery, Fae-Viewer, Price-Table.
 - Ziel: wiederverwendbare Module, die im Container/Panel platziert werden.
 
 ---

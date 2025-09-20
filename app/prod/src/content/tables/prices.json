@@ -3,16 +3,97 @@
   "categories": [
     {
       "title": "Badges",
+      "subtitle": "Each badge will get laminated with high quality foil and cut in shape. A metallic hole for keychains will be added. Shipping possible on request.",
       "items": [
-        { "name": "Simple", "price": 25, "note": "flat colored, simple background" },
-        { "name": "Detailed", "price": 45, "note": "shadings, complex background" }
+        { "name": "Halfbody (Head & Chest only)", "price": 35 },
+        { "name": "Fullbody", "price": 40, "note": "from" },
+        { "name": "Background", "price": 10, "note": "extra" }
       ]
     },
     {
       "title": "Ref-Sheets",
+      "subtitle": "Prices depend on character complexity (colors, accessories, hair, etc.) and number of views.",
       "items": [
-        { "name": "2-View", "price": 120, "note": "Front + Back" },
-        { "name": "3-View", "price": 160, "note": "Front + Back + Side" }
+        { "name": "Simple – 2 Views", "price": 45 },
+        { "name": "Medium – 3 Views", "price": 60 },
+        { "name": "High – 4+ Views", "price": 80, "note": "from" },
+        { "name": "Additional view", "price": 20, "note": "each" },
+        { "name": "Accessories (e.g. collar)", "price": 10, "note": "each" }
+      ]
+    },
+    {
+      "title": "Sketches",
+      "items": [
+        { "name": "Headshot", "price": 20 },
+        { "name": "Fullbody", "price": 30 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 20, "note": "each" }
+      ]
+    },
+    {
+      "title": "Line Art",
+      "items": [
+        { "name": "Headshot", "price": 20 },
+        { "name": "Fullbody", "price": 30 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 20, "note": "each" }
+      ]
+    },
+    {
+      "title": "Full Art (SFW)",
+      "items": [
+        { "name": "Headshot", "price": 40 },
+        { "name": "Fullbody", "price": 50 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 20, "note": "each" }
+      ]
+    },
+    {
+      "title": "Full Art (NSFW)",
+      "items": [
+        { "name": "Headshot", "price": 40 },
+        { "name": "Fullbody", "price": 50 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 20, "note": "each" }
+      ]
+    },
+    {
+      "title": "Logos & Tribals",
+      "subtitle": "Let's create your very own sign of individuality! · Suitable as a car, wall, skin tattoo or similiar · Only limited by your imagination! · Disclaimer: I won’t apply the tattoo onto your skin, car etc. 😇",
+      "items": [
+        { "name": "Simple (B/W)", "price": 30 },
+        { "name": "Detailed (B/W)", "price": 45, "note": "from" },
+        { "name": "Detailed (Colored)", "price": 55, "note": "from" }
+      ]
+    },
+    {
+      "title": "Sticker Packs – Flat Color",
+      "subtitle": "Any emotion/situation (incl. NSFW) · Prices per character · Digital only · Stickers can be added to a new (Telegram-) set on request",
+      "items": [
+        { "name": "1 Sticker", "price": 13 },
+        { "name": "5 Stickers", "price": 60 },
+        { "name": "10 Stickers", "price": 110 },
+        { "name": "15+ Stickers", "price": 150, "note": "from" }
+      ]
+    },
+    {
+      "title": "Sticker Packs – Full Color (incl. Shadings)",
+      "items": [
+        { "name": "1 Sticker", "price": 15 },
+        { "name": "5 Stickers", "price": 70 },
+        { "name": "10 Stickers", "price": 130 },
+        { "name": "15+ Stickers", "price": 180, "note": "from" }
+      ]
+    },
+    {
+      "title": "Button & Sticker Prints",
+      "subtitle": "Assortment of designs available · Prices excl. shipping · Custom design (e.g. your fursona) possible on request!",
+      "items": [
+        { "name": "1–9 pcs.", "price": 3.5, "note": "each" },
+        { "name": "10–19 pcs.", "price": 2.5, "note": "each" },
+        { "name": "20–49 pcs.", "price": 1.5, "note": "each" },
+        { "name": "50+ pcs.", "price": 1.0, "note": "each" },
+        { "name": "Custom design", "price": 30, "note": "from" }
       ]
     }
   ]
