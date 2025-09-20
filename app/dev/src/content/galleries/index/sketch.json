@@ -1,0 +1,142 @@
+{
+  "album": "sketch",
+  "count": 17,
+  "items": [
+    {
+      "id": "bca9115a-a9c0-46ec-b74c-6f4b853b6914",
+      "thumb": "galleries/sketch/thumb-bca9115a-a9c0-46ec-b74c-6f4b853b6914.webp",
+      "full": "galleries/sketch/full-bca9115a-a9c0-46ec-b74c-6f4b853b6914.webp",
+      "filename": "9.jpg",
+      "width": 787,
+      "height": 398
+    },
+    {
+      "id": "21503ce3-ff37-4243-98cd-02105c019694",
+      "thumb": "galleries/sketch/thumb-21503ce3-ff37-4243-98cd-02105c019694.webp",
+      "full": "galleries/sketch/full-21503ce3-ff37-4243-98cd-02105c019694.webp",
+      "filename": "8.jpg",
+      "width": 879,
+      "height": 1200
+    },
+    {
+      "id": "a1d50346-c9d5-40bd-a4de-ec2cacbcdcd0",
+      "thumb": "galleries/sketch/thumb-a1d50346-c9d5-40bd-a4de-ec2cacbcdcd0.webp",
+      "full": "galleries/sketch/full-a1d50346-c9d5-40bd-a4de-ec2cacbcdcd0.webp",
+      "filename": "11.jpg",
+      "width": 1024,
+      "height": 724
+    },
+    {
+      "id": "73f00cb9-16cc-4ef3-9063-63b83708961c",
+      "thumb": "galleries/sketch/thumb-73f00cb9-16cc-4ef3-9063-63b83708961c.webp",
+      "full": "galleries/sketch/full-73f00cb9-16cc-4ef3-9063-63b83708961c.webp",
+      "filename": "4.jpg",
+      "width": 750,
+      "height": 592
+    },
+    {
+      "id": "754d122b-1ef7-42d4-b0da-eeb9085bae70",
+      "thumb": "galleries/sketch/thumb-754d122b-1ef7-42d4-b0da-eeb9085bae70.webp",
+      "full": "galleries/sketch/full-754d122b-1ef7-42d4-b0da-eeb9085bae70.webp",
+      "filename": "12.jpg",
+      "width": 603,
+      "height": 900
+    },
+    {
+      "id": "476bedbe-9554-4d8e-8068-ac4cd4fc28af",
+      "thumb": "galleries/sketch/thumb-476bedbe-9554-4d8e-8068-ac4cd4fc28af.webp",
+      "full": "galleries/sketch/full-476bedbe-9554-4d8e-8068-ac4cd4fc28af.webp",
+      "filename": "15.jpg",
+      "width": 698,
+      "height": 900
+    },
+    {
+      "id": "d21b588e-d9c8-4a63-81d3-704e8f8405df",
+      "thumb": "galleries/sketch/thumb-d21b588e-d9c8-4a63-81d3-704e8f8405df.webp",
+      "full": "galleries/sketch/full-d21b588e-d9c8-4a63-81d3-704e8f8405df.webp",
+      "filename": "17.png",
+      "width": 1583,
+      "height": 1103
+    },
+    {
+      "id": "8895b700-20fe-410c-a4fa-0add2e760b0a",
+      "thumb": "galleries/sketch/thumb-8895b700-20fe-410c-a4fa-0add2e760b0a.webp",
+      "full": "galleries/sketch/full-8895b700-20fe-410c-a4fa-0add2e760b0a.webp",
+      "filename": "6.jpg",
+      "width": 900,
+      "height": 918
+    },
+    {
+      "id": "9753fb3e-fe25-4679-8bf1-d076ce6c1fc3",
+      "thumb": "galleries/sketch/thumb-9753fb3e-fe25-4679-8bf1-d076ce6c1fc3.webp",
+      "full": "galleries/sketch/full-9753fb3e-fe25-4679-8bf1-d076ce6c1fc3.webp",
+      "filename": "14.jpg",
+      "width": 800,
+      "height": 556
+    },
+    {
+      "id": "b7b81ec8-d651-47fc-9b64-dd75e40420dd",
+      "thumb": "galleries/sketch/thumb-b7b81ec8-d651-47fc-9b64-dd75e40420dd.webp",
+      "full": "galleries/sketch/full-b7b81ec8-d651-47fc-9b64-dd75e40420dd.webp",
+      "filename": "0.jpg",
+      "width": 2016,
+      "height": 3028
+    },
+    {
+      "id": "2349887c-a32b-429f-9c27-744125cb9c68",
+      "thumb": "galleries/sketch/thumb-2349887c-a32b-429f-9c27-744125cb9c68.webp",
+      "full": "galleries/sketch/full-2349887c-a32b-429f-9c27-744125cb9c68.webp",
+      "filename": "1.jpg",
+      "width": 900,
+      "height": 641
+    },
+    {
+      "id": "be8a45c8-31e3-4eb7-94c4-db120bb1ef9a",
+      "thumb": "galleries/sketch/thumb-be8a45c8-31e3-4eb7-94c4-db120bb1ef9a.webp",
+      "full": "galleries/sketch/full-be8a45c8-31e3-4eb7-94c4-db120bb1ef9a.webp",
+      "filename": "13.jpg",
+      "width": 787,
+      "height": 398
+    },
+    {
+      "id": "f5358726-9b4f-4d7c-af6a-1fc86b537bc9",
+      "thumb": "galleries/sketch/thumb-f5358726-9b4f-4d7c-af6a-1fc86b537bc9.webp",
+      "full": "galleries/sketch/full-f5358726-9b4f-4d7c-af6a-1fc86b537bc9.webp",
+      "filename": "10.jpg",
+      "width": 1200,
+      "height": 813
+    },
+    {
+      "id": "5d47f0bf-9c63-482d-b341-8097c5148a8d",
+      "thumb": "galleries/sketch/thumb-5d47f0bf-9c63-482d-b341-8097c5148a8d.webp",
+      "full": "galleries/sketch/full-5d47f0bf-9c63-482d-b341-8097c5148a8d.webp",
+      "filename": "5.png",
+      "width": 2457,
+      "height": 3411
+    },
+    {
+      "id": "da626c3b-ecd6-47ab-9475-c89f4d141220",
+      "thumb": "galleries/sketch/thumb-da626c3b-ecd6-47ab-9475-c89f4d141220.webp",
+      "full": "galleries/sketch/full-da626c3b-ecd6-47ab-9475-c89f4d141220.webp",
+      "filename": "7.jpg",
+      "width": 1000,
+      "height": 1579
+    },
+    {
+      "id": "267452ab-8f3f-45f8-a9da-e7751bbaaf91",
+      "thumb": "galleries/sketch/thumb-267452ab-8f3f-45f8-a9da-e7751bbaaf91.webp",
+      "full": "galleries/sketch/full-267452ab-8f3f-45f8-a9da-e7751bbaaf91.webp",
+      "filename": "3.jpg",
+      "width": 800,
+      "height": 533
+    },
+    {
+      "id": "c9053bbe-3a7f-4ff6-bb49-ac2146f8d83d",
+      "thumb": "galleries/sketch/thumb-c9053bbe-3a7f-4ff6-bb49-ac2146f8d83d.webp",
+      "full": "galleries/sketch/full-c9053bbe-3a7f-4ff6-bb49-ac2146f8d83d.webp",
+      "filename": "2.jpg",
+      "width": 573,
+      "height": 800
+    }
+  ]
+}
