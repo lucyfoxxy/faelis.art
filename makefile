@@ -20,103 +20,82 @@ PROD_PUB			  ?= ${WEB_ROOT}/faelis.art/public
 
 sync-src:
 	@echo "⚙️  Syncing DEV → PROD sources"
-	@rsync -avh --delete --exclude-from=scripts/excludes.list $(DEV_APP)/ $(PROD_APP)/
+	rsync -ah --delete --exclude-from=scripts/excludes.list $(DEV_APP)/ $(PROD_APP)/
 	@echo "✅ Sources synced"
 
 do-release:
 	@echo "🚀 Starting release (sync + build + deploy)"
-	$(MAKE) sync-src
-	$(MAKE) prod-clean-gen
-	$(MAKE) prod-deploy
+	$(MAKE) -s sync-src
+	$(MAKE) -s prod-publish
 	@echo "🎉 Release finished"
 
 # ===== DEV =====
+clean:
+	@echo "🧹 Cleaning nodee_modules + lockfile"
+	rm -rf "node_modules" "package-lock.json"
+	@echo "✅ DEV done"
 
-dev-install:
-	@echo "📦 Installing DEV dependencies"
-	cd "$(DEV_APP)" && npm install
-	@echo "✅ DEV install done"
+install:
+	@echo "📦 Installing dependencies"
+	npm install && npm ci
+	@echo "✅ dependencies installed successfully"
 
-dev-dev:
-	@echo "🛠️  Starting DEV server"
-	cd "$(DEV_APP)" && npm run dev
-
-dev-build:
-	@echo "🔨 Building DEV project"
-	cd "$(DEV_APP)" && npm ci && npm run build
-	@echo "✅ DEV build complete"
-
-dev-deploy:
-	@echo "📤 Deploying DEV build → $(DEV_PUB)"
-	sudo rsync -a --delete "$(DEV_DIST)/" "$(DEV_PUB)/"
-	@echo "✅ DEV deploy complete"
-
+# ===== Fetch =====
 dev-fetch:
 	@echo "🔄 Fetching DEV data"
-	cd "$(DEV_APP)" && npm run fetch
+	npm run fetch:dev
 	@echo "✅ DEV fetch done"
-
-dev-gen:
-	@echo "🔄 Fetch + build (DEV)"
-	cd "$(DEV_APP)" && npm run fetch && npm run build
-	@echo "✅ DEV gen done"
-
-dev-publish:
-	@echo "🚀 Publishing DEV (fetch+build+deploy)"
-	$(MAKE) dev-gen
-	$(MAKE) dev-deploy
-	@echo "✅ DEV publish done"
-
-dev-clean-gen:
-	@echo "🧹 Cleaning DEV node_modules + lockfile"
-	rm -rf "$(DEV_APP)/node_modules" "$(DEV_APP)/package-lock.json"
-	$(MAKE) dev-install
-	$(MAKE) dev-gen
-	@echo "✅ DEV clean-gen done"
-
-# ===== PROD =====
-
-prod-install:
-	@echo "📦 Installing PROD dependencies"
-	cd "$(PROD_APP)" && npm install
-	@echo "✅ PROD install done"
-
-prod-dev:
-	@echo "🛠️  Starting PROD server"
-	cd "$(PROD_APP)" && npm run dev
-
-prod-build:
-	@echo "🔨 Building PROD project"
-	cd "$(PROD_APP)" && npm ci && npm run build
-	@echo "✅ PROD build complete"
-
-prod-deploy:
-	@echo "📤 Deploying PROD build → $(PROD_PUB)"
-	sudo rsync -a --delete "$(PROD_DIST)/" "$(PROD_PUB)/"
-	@echo "✅ PROD deploy complete"
 
 prod-fetch:
 	@echo "🔄 Fetching PROD data"
-	cd "$(PROD_APP)" && npm run fetch
+	npm run fetch:prod
 	@echo "✅ PROD fetch done"
 
-prod-gen:
-	@echo "🔄 Fetch + build (PROD)"
-	cd "$(PROD_APP)" && npm run fetch && npm run build
-	@echo "✅ PROD gen done"
+# ===== Build =====
+dev-build:
+	@echo "🏗️  Building DEV"
+	npm run build:dev
+	@echo "✅ DEV build done"
+
+prod-build:
+	@echo "🏗️  Building PROD"
+	npm run build:prod
+	@echo "✅ PROD build done"
+
+# ===== Deploy (nur rsync) =====
+dev-deploy:
+	@echo "🚚 Deploying DEV → $(DEV_PUB)"
+	sudo rsync -a --delete $(DEV_DIST)/ $(DEV_PUB)
+	@echo "✅ DEV deploy done"
+
+prod-deploy:
+	@echo "🚚 Deploying PROD → $(PROD_PUB)"
+	sudo rsync -a --delete $(PROD_DIST)/ $(PROD_PUB)
+	@echo "✅ PROD deploy done"
+# ===== Sync =====
+dev-sync:
+	@echo "🏗️  Syncing DEV"
+	npm run sync:dev
+	@echo "✅ PROD sync done"
+
+prod-sync:
+	@echo "🏗️  Syncing PROD"
+	npm run sync:prod
+	@echo "✅ PROD sync done"
+# ===== Publish =====
+dev-publish:
+	@echo "🚀 Publishing DEV (fetch+build+deploy)"
+	$(MAKE) -s dev-fetch
+	$(MAKE) -s dev-build
+	$(MAKE) -s dev-deploy
+	@echo "✅ DEV publish done"
 
 prod-publish:
 	@echo "🚀 Publishing PROD (fetch+build+deploy)"
-	$(MAKE) prod-gen
-	$(MAKE) prod-deploy
+	$(MAKE) -s prod-fetch
+	$(MAKE) -s prod-build
+	$(MAKE) -s prod-deploy
 	@echo "✅ PROD publish done"
-
-prod-clean-gen:
-	@echo "🧹 Cleaning PROD node_modules + lockfile"
-	rm -rf "$(PROD_APP)/node_modules" "$(PROD_APP)/package-lock.json"
-	$(MAKE) prod-install
-	$(MAKE) prod-gen
-	@echo "✅ PROD clean-gen done"
 
 prod-pretty-publish:
 	echo "✨ Gallery update started! ✨" 
@@ -132,6 +111,6 @@ prod-pretty-publish:
 	
 	echo ""; echo "📤 [3/3] Publishing site..." 
 	$(MAKE) -s prod-deploy >/dev/null 2>&1
-	echo "✅ [3/3] Deploy done." 
+	echo "✅ [3/3] Publishing done." 
 	
 	echo ""; echo "🐱🎉 [INFO] successfully updated site galleries! 🦊🎉"
