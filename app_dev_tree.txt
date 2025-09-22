@@ -1,0 +1,77 @@
+app/dev/src
+├── assets
+│   ├── galleries
+│   │   ├── badges
+│   │   ├── bestof
+│   │   ├── _covers
+│   │   │   ├── badges.webp
+│   │   │   ├── _default.webp
+│   │   │   ├── line-art.webp
+│   │   │   ├── logos-tribals.webp
+│   │   │   ├── prints.webp
+│   │   │   ├── ref-sheets.webp
+│   │   │   ├── sketch.webp
+│   │   │   └── sticker-packs.webp
+│   │   ├── line-art
+│   │   ├── logos-tribals
+│   │   ├── prints
+│   │   ├── ref-sheets
+│   │   ├── sketch
+│   │   └── sticker-packs
+│   └── ui
+│       ├── bg.webp
+│       ├── favicon.webp
+│       ├── logo.webp
+│       └── mascot.webp
+├── components
+│   ├── Design
+│   │   ├── Assets.astro
+│   │   ├── Icons.astro
+│   │   └── Layout.astro
+│   └── Pages
+│       ├── Gallery
+│       │   ├── DetailPage.astro
+│       │   └── OverviewPage.astro
+│       ├── ImprintPage.astro
+│       ├── PricingPage.astro
+│       └── StartPage.astro
+├── content
+│   ├── config.ts
+│   ├── galleries
+│   │   ├── index
+│   │   │   ├── badges.json
+│   │   │   ├── bestof.json
+│   │   │   ├── line-art.json
+│   │   │   ├── logos-tribals.json
+│   │   │   ├── prints.json
+│   │   │   ├── ref-sheets.json
+│   │   │   ├── sketch.json
+│   │   │   └── sticker-packs.json
+│   │   └── manifest.json
+│   └── tables
+│       └── prices.json
+├── env.d.ts
+├── pages
+│   ├── galleries
+│   │   ├── index.astro
+│   │   └── [slug].astro
+│   ├── imprint.astro
+│   ├── index.astro
+│   └── pricing.astro
+├── scripts
+│   ├── GalleryDetail.js
+│   └── GalleryOverview.js
+├── styles
+│   ├── base.css
+│   ├── content.css
+│   ├── gallery.css
+│   ├── site.css
+│   ├── _STYLEGUIDE.md
+│   ├── table.css
+│   ├── tokens.css
+│   └── typography.css
+└── types
+    ├── json.d.ts
+    └── webp.d.ts
+
+26 directories, 49 files

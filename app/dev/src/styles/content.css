@@ -4,12 +4,12 @@
 /* === TYPO FLOW (Panel) === */
 .panel p .prose p { hyphens: auto; }
 
-/* Section */
+/* === Section === */
 .section + .section { margin-top: var(--content-margin); }
 .section h2 { margin: 0 0 .25rem 0; }
 .section p.lead { opacity: .9; margin: 0 0 .75rem 0; }
 
-/* === MAIN CONTENT BLOCK === */
+/* === GENERAL CONTENT BLOCK === */
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -24,7 +24,6 @@
   font-size: 1.35rem;
   font-weight: 600;
 }
-
 .content-card {
   display: flex;                     
   flex-direction: column;            
@@ -36,13 +35,10 @@
   -webkit-backdrop-filter: blur(var(--content-blur)); 
   border-radius: var(--large-radius);          
 }
-
-/* Text Content */
 .prose > * + * { margin-top: .65rem; }             /* Grundrhythmus */
 .prose ul { padding-left: 1.2em; margin: .5rem 0 0; }
 .prose li + li { margin-top: .25rem; }
 
-/* Media Content */
 .content-media {
   display: grid;
   place-items: start;
@@ -54,7 +50,6 @@
   border-radius: var(--small-radius);
 }
 
-/* Key-Value / Adress-Listen fürs Impressum */
 .kv {
   display: grid;
   grid-template-columns: auto 1fr; /* Label | Wert */
@@ -72,15 +67,15 @@
 /* === Intro / Brand-Zone =============================================== */
 .intro .brand {
   display: flex;
-  grid-template-columns: auto 1fr;      /* Mascot links, Wortmarke rechts */
+  flex-wrap: nowrap;
   align-items: end; 
   justify-content: center;
-  gap: clamp(1rem, 2vw, 2rem);
-  margin-block-end: var(--panel-padding); /* Abstand zur Grid-Zone darunter */
+  gap: clamp(.5rem, 2vw, 1.25rem);
+  margin-block: 0 var(--content-margin);
+  padding-inline: var(--panel-padding);
   position: relative;
 }
 
-/* Gemeinsame Baseline als feine Linie – gibt Halt und Gewicht */
 .intro .brand::after {
   content: "";
   position: absolute;
@@ -133,10 +128,11 @@
   justify-content: center; /* Text zentriert */
   gap: .55rem;
   padding: .72rem 1.05rem;
-  border-radius: var(--medium-radius);
+  border-radius: var(--large-radius);
   background: var(--bg);
-  color: var(--fg);
-  font-weight: 600;
+  
+
+  font-weight: 500;
   line-height: 1;
   text-decoration: none;
   box-shadow:
@@ -157,16 +153,16 @@
   .contact-btn:hover { filter: brightness(1.08); }
   .contact-btn:active { filter: brightness(.92); }}
 .contact-btn:focus-visible {
-  outline: 2px solid oklch(85% .04 310 / .8);
+  outline: 0px solid oklch(85% .04 310 / .8);
   outline-offset: 2px;
 }
 .contact-btn .icon {
   display: inline-grid;
   place-items: center;
-  inline-size: 1.35rem;
-  block-size: 1.35rem;
+  inline-size: 1.55rem;
+  block-size: 1.55rem;
   border-radius: 999px;
-  background: color-mix(in oklch, black 12%, var(--bg));
+  background: color-mix(in oklch, black 12%, var(--accent-color));
 }
 .contact-btn--telegram   { --bg: #28a8e9; }
 .contact-btn--mail       { --bg: #a858c0; }

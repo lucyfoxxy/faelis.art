@@ -1,14 +1,12 @@
 # ToDo's 
 --------------------------------------------------------------------------
 ## General: 
-- Struktur von Components/Pages (src/pages src/components)
+
 - CSS Refactoring, obsoletes/redundantes entfernen (src/styles)
 - meta media links (preview)
 - Anlegen einer generellen Projektdoku, ähnlich dem bereits vorhandenen Style-Guide + Style-Guide erweitern
 
 ## Startpage: 
-- intro / brand block skaliert nicht mit + Check der html Struktur im allgemeinen 
-- minimalistische BestOf Gallery einbinden
 - Contact Buttons: Änderung der Schriftfarbe, auf mobile statt line-break kreise mit logos, ohne text
 - Angleichung des brand section margins , Ziel selbes margin zum panel-rand wie zur nächsten section
 
@@ -21,3 +19,6 @@
 
 ## Pricing & Gallery-Index:
 - Verlinkung mit Sprungmarken (zB #badges -> um direkt zur passenden Preistabelle zu springen,
+
+## Gallery Index Page
+- auf mobile nicht ein großes thumbnail

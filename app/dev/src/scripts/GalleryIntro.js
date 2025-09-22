@@ -1,9 +1,9 @@
-const metas = import.meta.glob('@Content/galleries/index/*.json', {
+const metas = import.meta.glob('@Content/galleries/index/bestof.json', {
   query: '?json',
   eager: true,
 });
 
-const assetModules = import.meta.glob('@Assets/galleries/**/*', {
+const assetModules = import.meta.glob('@Assets/galleries/bestof/*', {
   query: '?url',
   import: 'default',
   eager: true,
@@ -54,7 +54,7 @@ for (const [path, data] of Object.entries(metas)) {
   itemsBySlug.set(slug, items);
 }
 
-export default function initGalleryPage() {
+export default function initGalleryIntro() {
   const root = document.querySelector('.gallery[data-slug]');
   if (!root) return;
 
@@ -65,11 +65,8 @@ export default function initGalleryPage() {
 
   const viewer    = root.querySelector('.gallery-viewer');
   const imgEl     = viewer.querySelector('.gallery-viewer-image');
-  const btnPrev   = viewer.querySelector('.gallery-viewer-prev');
-  const btnNext   = viewer.querySelector('.gallery-viewer-next');
-  const btnPlay   = viewer.querySelector('.gallery-viewer-playpause');
   const progress  = viewer.querySelector('.gallery-viewer-progress');
-  const thumbsWrap= root.querySelector('.gallery-viewer-thumbs');
+
 
   // hier: items kommen bereits mit gehashten URLs aus itemsBySlug
   let items = itemsBySlug.get(slug) || [];
@@ -91,14 +88,12 @@ export default function initGalleryPage() {
     imgEl.src = item.full;
     imgEl.alt = item.alt || '';
 
-    thumbsWrap.querySelectorAll('.gallery-viewer-thumb').forEach((t, k) => {
-      t.classList.toggle('active', k === i);
-    });
+
     setProgress(0);
   };
 
   const next = () => show(i + 1);
-  const prev = () => show(i - 1);
+
 
   const tick = () => {
     const started = performance.now();
@@ -123,34 +118,7 @@ export default function initGalleryPage() {
     if (playing) tick();
   };
 
-  btnPrev.addEventListener('click', () => { prev(); run(); });
-  btnNext.addEventListener('click', () => { next(); run(); });
-  btnPlay.addEventListener('click', () => {
-    playing = !playing;
-    btnPlay.textContent = playing ? '⏸' : '▶';
-    run();
-  });
 
-  // Thumbnails rendern
-  thumbsWrap.innerHTML = '';
-  order.forEach((itemIdx, orderIdx) => {
-    const item = items[itemIdx];
-    const a = document.createElement('button');
-    a.className = 'gallery-viewer-thumb';
-    a.type = 'button';
-    a.setAttribute('aria-label', item.alt || `Image ${orderIdx + 1}`);
- 
-    const t = document.createElement('img');
-    t.src = item.thumb;
-    t.alt = '';
-    t.loading = 'lazy';
-    t.decoding = 'async';
-
- 
-    a.appendChild(t);
-    a.addEventListener('click', () => { show(orderIdx); run(); });
-    thumbsWrap.appendChild(a);
-  });
 
   // Galerie starten
   show(0);

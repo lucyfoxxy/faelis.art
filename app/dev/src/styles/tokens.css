@@ -56,7 +56,7 @@
   --content-shadow:             var(--panel-shadow);
   --content-media-size:         min(360px, 100%);
 
-  --brand-size:                 clamp(80px, 12vw, 180px);
+  --brand-size:                 clamp(80px, 12vw, 160px);
 
   /* === Typography / Focus === */
   --font-sans:                  Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -65,7 +65,7 @@
   /* === Gallery === */
   --thumb:                      clamp(120px, 12vw, 164px);
   --gallery-frame-size:         clamp(300px, 50vh, 540px);                       
-
+  --gallery-frame-size-compact: clamp(160px, 25vh, 320px);
 
 
 

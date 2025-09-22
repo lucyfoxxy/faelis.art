@@ -1,4 +1,4 @@
-const covers = import.meta.glob('@assets/galleries/_covers/*.webp', {
+const covers = import.meta.glob('@Assets/galleries/_covers/*.webp', {
   query: '?url',
   import: 'default',
   eager: true,
