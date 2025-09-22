@@ -16,3 +16,6 @@
 **/app/**/.env
 package-lock.json
 **/**/package-lock.json
+**/.astro
+**/.astro/**
+.astro
