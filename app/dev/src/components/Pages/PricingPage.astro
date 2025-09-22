@@ -19,10 +19,7 @@ interface PricesData {
 }
 
 const { prices } = Astro.props as { prices: PricesData };
-
-// Einheitliches Raster (2 Spalten, Notes wandern als Chip in die Preiszelle)
 const COLS = ["60%", "40%"]; // Type / Price(+Note)
-
 const title = "Pricing"
 const currency = prices.currency ?? "EUR";
 const fmt = (value?: number) => {
@@ -30,7 +27,6 @@ const fmt = (value?: number) => {
   try { return new Intl.NumberFormat("de-DE", { style: "currency", currency }).format(value); }
   catch { return `${value} ${currency}`; }
 };
-
 const formatPrice = (it: PriceItem) => {
   if (it.price != null) return fmt(it.price);
   if (it.from != null && it.to != null) return `${fmt(it.from)} – ${fmt(it.to)}`;
@@ -39,12 +35,13 @@ const formatPrice = (it: PriceItem) => {
 };
 ---
 <h1>{title}</h1>
-<p>Here you gonna find the detailed pricing for each category. <br>Shown prices are approximates and final prices may vary depending on the effort needed.</p>
+<p>Here you gonna find the detailed pricing for each category. 
+<br>Shown prices are approximates and final prices may vary depending on the effort needed.
+</p>
 {prices.categories.map((cat) => (
-  <section class="table__section content-card">
+  <section class="table__section content-card section">
     <h2 class="table__title">{cat.title}</h2>
     {cat.subtitle && <p class="table__subtitle">{cat.subtitle}</p>}
-
     <div class="table__wrap">
       <table class="table">
         <colgroup>

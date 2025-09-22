@@ -1,11 +1,11 @@
 ---
 import { getEntry } from 'astro:content';
-import Layout from '@components/Layout.astro';
-import PriceTable from '@components/PriceTable.astro';
+import Layout from '@Design/Layout.astro';
+import PricingPage from '@Pages/PricingPage.astro';
 
 const title = 'Pricing';
 const prices = (await getEntry('tables', 'prices')).data; // lädt src/content/tables/prices.json
 ---
 <Layout {title}>
-  <PriceTable {prices} />
+  <PricingPage {prices} />
 </Layout>

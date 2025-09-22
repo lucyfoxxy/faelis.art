@@ -8,12 +8,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@components/*": ["src/components/*"],
-      "@styles/*": ["src/styles/*"],
-      "@data/*": ["src/data/*"],
-      "@content/*": ["src/content/*"],
-      "@assets/*": ["src/assets/*"],
-      "@scripts/*": ["src/scripts/*"]
+      "@components/Design/*": ["src/components/Design/*"],
+      "@Styles/*": ["src/styles/*"],
+      "@Pages/*": ["src/components/Pages/*"],
+      "@Content/*": ["src/content/*"],
+      "@Assets/*": ["src/assets/*"],
+      "@Scripts/*": ["src/scripts/*"]
     },
     "types": ["astro/client"]
   }

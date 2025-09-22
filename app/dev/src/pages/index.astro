@@ -1,59 +1,10 @@
 ---
-import Layout from '@components/Layout.astro';
-import Icon from '@components/Icon.astro';
-const links = [
-  { href: 'https://t.me/faelispawartistry',          label: 'Telegram',    kind: 'telegram'   },
-  { href: 'mailto:info@faelis.art',                  label: 'Email',       kind: 'mail'       },
-  { href: 'https://www.facebook.com/FaelisPawArtistry', label: 'Facebook', kind: 'facebook' },
-  { href: 'https://www.instagram.com/faeliskitty',   label: 'Instagram',   kind: 'instagram'  },
-  { href: 'https://www.furaffinity.net/user/faelis', label: 'FurAffinity', kind: 'furaffinity'}
-];
-import { ASSETS } from '@components/Assets.astro';
+import Layout from '@Design/Layout.astro';
+import StartPage from 'Pages/StartPage.astro';
+
 export const prerender = true;
+const title = 'Faelis Paw Artistry — Home';
 ---
-<Layout title="Faelis Paw Artistry — Home">
-<section class="intro">
-  <!-- Brand-Zone -->
-  <section class="brand section">
-    <img class="brand__mascot" src={ASSETS.mascot.src}  alt="" />
-    <img class="brand__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
-  </section>
-
-  <!-- Zwei Spalten darunter -->
-  <section class="content-grid section">
-    <section class="content-card">
-      <div class="prose"> 
-        <p>My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
-        <p>Whether you need some logo for your website, 
-          a ref-sheet / badge for your fursona or something completely different <em>(maybe...something kinky? :P)</em>
-           — you found the right artistic kitten for all sorts of creative tasks! </p>
-      </div>
-      <h3 class="content-grid-headline">Faelis Skribblekitty 💜</h3>
-    </section>
-
-    <section class="content-card">
-      <div class="prose">
-        <p><b>Interested?</b> <i>... here's a little sneak-peek for you:</i></p>
-      </div>
-      <br>[.....gallery here....]<br>
-      <div class="prose">
-        <p><b>Wanna see more?</b> <em>... take a look at my <b><a href="/galleries">Art Gallery</a></b></em></p>
-      </div>
-        
-      
-      
-    </section>
-  </section>
-  <section class="content-card section">
-    <h3 class="content-grid-headline">Questions? <i>... contact me at:</i></h3>
-    <div class="contact-grid">
-      {links.map((l) => (
-        <a class={`contact-btn contact-btn--${l.kind}`} href={l.href} rel="me noopener" target="_blank">
-          <span class="contact-ico"><Icon kind={l.kind} /></span>
-          <span>{l.label}</span>
-        </a>
-      ))}
-    </div>
-  </section>
-</section>
+<Layout title={title}>
+  <StartPage />
 </Layout>

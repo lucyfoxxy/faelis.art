@@ -1,5 +1,5 @@
 ---
-import manifest from '@content/galleries/manifest.json';
+import manifest from '@Content/galleries/manifest.json';
 ---
 <section>
   <h1>Art Gallery</h1>
@@ -15,7 +15,7 @@ import manifest from '@content/galleries/manifest.json';
 </section>  
 
 <script>
-  import initGalleryCovers from "@scripts/gallery-index.js";
+  import initGalleryCovers from "@Scripts/GalleryOverview.js";
   const boot = () => initGalleryCovers();
 
   // robust für SSR, CSR und Astro View-Transitions
