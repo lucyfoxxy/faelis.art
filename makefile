@@ -20,7 +20,7 @@ PROD_PUB			  ?= ${WEB_ROOT}/faelis.art/public
 
 sync-src:
 	@echo "⚙️  Syncing DEV → PROD sources"
-	rsync -ah --delete --exclude-from=scripts/excludes.list $(DEV_APP)/ $(PROD_APP)/
+	sudo rsync -avh --delete --exclude-from=scripts/excludes.list $(DEV_APP)/ $(PROD_APP)/
 	@echo "✅ Sources synced"
 
 do-release:
@@ -32,7 +32,7 @@ do-release:
 # ===== DEV =====
 clean:
 	@echo "🧹 Cleaning nodee_modules + lockfile"
-	rm -rf "node_modules" "package-lock.json"
+	sudo rm -rf "node_modules" "package-lock.json"
 	@echo "✅ DEV done"
 
 install:

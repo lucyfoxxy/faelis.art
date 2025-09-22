@@ -23,6 +23,7 @@ const { prices } = Astro.props as { prices: PricesData };
 // Einheitliches Raster (2 Spalten, Notes wandern als Chip in die Preiszelle)
 const COLS = ["60%", "40%"]; // Type / Price(+Note)
 
+const title = "Pricing"
 const currency = prices.currency ?? "EUR";
 const fmt = (value?: number) => {
   if (value == null) return "–";
@@ -37,14 +38,15 @@ const formatPrice = (it: PriceItem) => {
   return "auf Anfrage";
 };
 ---
-
+<h1>{title}</h1>
+<p>Here you gonna find the detailed pricing for each category. <br>Shown prices are approximates and final prices may vary depending on the effort needed.</p>
 {prices.categories.map((cat) => (
-  <section class="price-table__section">
-    <h2 class="price-table__title">{cat.title}</h2>
-    {cat.subtitle && <p class="price-table__subtitle">{cat.subtitle}</p>}
+  <section class="table__section content-card">
+    <h2 class="table__title">{cat.title}</h2>
+    {cat.subtitle && <p class="table__subtitle">{cat.subtitle}</p>}
 
-    <div class="price-table__wrap">
-      <table class="price-table">
+    <div class="table__wrap">
+      <table class="table">
         <colgroup>
           <col style={`width:${COLS[0]}`} />
           <col style={`width:${COLS[1]}`} />
@@ -52,22 +54,22 @@ const formatPrice = (it: PriceItem) => {
 
         <thead>
           <tr>
-            <th class="price-table__th price-table__th--left">Type</th>
-            <th class="price-table__th price-table__th--right">Price</th>
+            <th class="table__th table__th--left">Type</th>
+            <th class="table__th table__th--right">Price</th>
           </tr>
         </thead>
 
         <tbody>
           {cat.items.map((it, i) => (
-            <tr class={`price-table__tr ${i % 2 ? "is-alt" : ""}`}>
-              <td class="price-table__td">
+            <tr class={`table__tr ${i % 2 ? "is-alt" : ""}`}>
+              <td class="table__td">
                 {it.link ? <a href={it.link} rel="noopener" target="_blank">{it.name}</a> : it.name}
-                {it.unit && <span class="price-table__unit"> / {it.unit}</span>}
+                {it.unit && <span class="table__unit"> / {it.unit}</span>}
               </td>
 
-              <td class="price-table__td price-table__td--right">
-                {it.note && <span class="price-table__note-chip">{it.note}</span>}
-                <span class="price-table__price">{formatPrice(it)}</span>                
+              <td class="table__td table__td--right">
+                {it.note && <span class="table__note-chip">{it.note}</span>}
+                <span class="table__price">{formatPrice(it)}</span>                
               </td>
             </tr>
           ))}

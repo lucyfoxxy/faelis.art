@@ -1,30 +1,59 @@
 ---
-import Layout from '../components/Layout.astro';
-import logoFull from '../assets/logo-full.webp';
+import Layout from '@components/Layout.astro';
+import Icon from '@components/Icon.astro';
+const links = [
+  { href: 'https://t.me/faelispawartistry',          label: 'Telegram',    kind: 'telegram'   },
+  { href: 'mailto:info@faelis.art',                  label: 'Email',       kind: 'mail'       },
+  { href: 'https://www.facebook.com/FaelisPawArtistry', label: 'Facebook', kind: 'facebook' },
+  { href: 'https://www.instagram.com/faeliskitty',   label: 'Instagram',   kind: 'instagram'  },
+  { href: 'https://www.furaffinity.net/user/faelis', label: 'FurAffinity', kind: 'furaffinity'}
+];
+import { ASSETS } from '@components/Assets.astro';
 export const prerender = true;
 ---
 <Layout title="Faelis Paw Artistry — Home">
-  <section class="hero">
-    <picture class="hero__logo">
-      <img src={logoFull.src} alt="Faelis Paw Artistry – full logo" />
-    </picture>
+<section class="intro">
+  <!-- Brand-Zone -->
+  <section class="brand section">
+    <img class="brand__mascot" src={ASSETS.mascot.src}  alt="" />
+    <img class="brand__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
+  </section>
 
-    <div class="hero__content">
-      <h1>Welcome!</h1>
-      <h2><i>A hearty meow, everyfur! 💜</i></h2>
+  <!-- Zwei Spalten darunter -->
+  <section class="content-grid section">
+    <section class="content-card">
+      <div class="prose"> 
+        <p>My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
+        <p>Whether you need some logo for your website, 
+          a ref-sheet / badge for your fursona or something completely different <em>(maybe...something kinky? :P)</em>
+           — you found the right artistic kitten for all sorts of creative tasks! </p>
+      </div>
+      <h3 class="content-grid-headline">Faelis Skribblekitty 💜</h3>
+    </section>
 
-      <p>Hey there, my fellow furballs! I’m Faelis Skribblekitty — experienced & passionate artist at your service.</p>
-
-      <p>Whether you want to bring your new sona idea to life, need a logo, a ref sheet, or a professionally designed, printed & laminated badge to wear at cons & meets — I’m the right artistic kitty to create all of that for you (even if it’s something kinky!).</p>
-
-      <p>No matter if you prefer digital or traditional art — I can do both.</p>
-
-      <ul>
-        <li>Take a peek at <a href="/galleries">my work</a> to see my art style.</li>
-        <li>Questions or commission details? Ping me via <a href="/contact">social media</a>.</li>
-      </ul>
-
-      <h3>Faelis Skribblekitty 💜</h3>
+    <section class="content-card">
+      <div class="prose">
+        <p><b>Interested?</b> <i>... here's a little sneak-peek for you:</i></p>
+      </div>
+      <br>[.....gallery here....]<br>
+      <div class="prose">
+        <p><b>Wanna see more?</b> <em>... take a look at my <b><a href="/galleries">Art Gallery</a></b></em></p>
+      </div>
+        
+      
+      
+    </section>
+  </section>
+  <section class="content-card section">
+    <h3 class="content-grid-headline">Questions? <i>... contact me at:</i></h3>
+    <div class="contact-grid">
+      {links.map((l) => (
+        <a class={`contact-btn contact-btn--${l.kind}`} href={l.href} rel="me noopener" target="_blank">
+          <span class="contact-ico"><Icon kind={l.kind} /></span>
+          <span>{l.label}</span>
+        </a>
+      ))}
     </div>
   </section>
+</section>
 </Layout>

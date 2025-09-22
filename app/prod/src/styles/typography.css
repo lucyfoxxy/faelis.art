@@ -1,5 +1,9 @@
 /* Grundschrift */
-body { font-family: var(--font-sans); }
+body { 
+  font-family: var(--font-sans);
+  
+  color: var(--primary-text-color);
+}
 
 /* Headings im Panel im Display-Font */
 .panel :where(h1,h2,h3,h4){
@@ -9,9 +13,9 @@ body { font-family: var(--font-sans); }
 
 .panel h1{ font-size:clamp(1.9rem,1.2rem+1.6vw,2.6rem); line-height:1.1; margin:0 0 .6rem;  }
 .panel h2{ font-size:clamp(1.3rem,1.0rem+.9vw,1.8rem); line-height:1.15; margin:.9rem 0 .5rem; }
-.panel h3{ font-size:clamp(1.15rem,.95rem+.6vw,1.4rem); line-height:1.2; margin:.8rem 0 .4rem; }
+.panel h3{ font-size:clamp(1.3rem,.95rem+.6vw,1.5rem); line-height:1.2; margin:.8rem 0 .4rem; }
 
-.panel p { margin:.55rem 0 .75rem; }
+.panel p { font-size:clamp(1.2rem,.9rem+.4vw,1.35rem); line-height:1.2; margin:.75rem 0 .75rem; letter-spacing: .4px; }
 .panel a { color:var(--link); text-underline-offset:.15em; }
 .panel a:hover, .panel a:focus-visible { color:var(--link-hover); }
 

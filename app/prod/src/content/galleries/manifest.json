@@ -1,14 +1,6 @@
 {
   "galleries": [
     {
-      "slug": "sketch",
-      "title": "Sketches"
-    },
-    {
-      "slug": "line-art",
-      "title": "Line Art"
-    },
-    {
       "slug": "full-art-sfw",
       "title": "Full Art (SFW)"
     },
@@ -21,6 +13,10 @@
       "title": "Sticker Packs (Telegram)"
     },
     {
+      "slug": "ref-sheets",
+      "title": "Reference Sheets"
+    },
+    {
       "slug": "badges",
       "title": "Badges"
     },
@@ -29,8 +25,12 @@
       "title": "Button- & Sticker-Prints"
     },
     {
-      "slug": "ref-sheets",
-      "title": "Reference Sheets"
+      "slug": "sketch",
+      "title": "Sketches"
+    },
+    {
+      "slug": "line-art",
+      "title": "Line Art"
     },
     {
       "slug": "logos-tribals",

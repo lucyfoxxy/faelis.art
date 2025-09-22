@@ -1,14 +1,13 @@
 ---
-import '../styles/tokens.css';
-import '../styles/base.css';
-import '../styles/typography.css';
-import '../styles/site.css';
-import '../styles/content.css';
+import '@styles/tokens.css';
+import '@styles/base.css';
+import '@styles/typography.css';
+import '@styles/site.css';
+import '@styles/content.css';
+import '@styles/gallery.css';
+import '@styles/table.css';
 
-import bg from '../assets/bg.webp';
-import favicon from '../assets/favicon.webp';
-import logoHeader from '../assets/logo-header.webp';
-import logoFull from '../assets/logo-full.webp';
+import { ASSETS } from '@components/Assets.astro';
 
 const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" } = Astro.props;
 ---
@@ -18,24 +17,20 @@ const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" }
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/webp" href={favicon.src} />
-    <!-- Fonts -->
+    <link rel="icon" type="image/webp" href={ASSETS.favicon.src} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@400;700&display=swap" rel="stylesheet" />
   </head>
-
-  <!-- Header/Footer-Variante hier wählen: bars-contained / bars-full / bars-edge / bars-edge-rounded / bars-full-tight -->
-  <body style={`--bg-image: url(${bg.src}); --header-logo: url(${logoHeader.src}); --home-hero: url(${logoFull.src});`}>
-
+  <body style={`--background-image: url(${ASSETS.bg.src});`}>
+   
     <header class="site-header">
-      <a class="brand" href="/"><img src={logoHeader.src} alt="Faelis.Art" height="40" /></a>
-      <nav id="site-nav" class="site-nav">
-        <ul class="site-nav__list">
-          <li><a href="/galleries">My Work</a></li>
-          <li><a href="/pricing">Pricing</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
+      <a href="/"><img class="header-logo" src={ASSETS.logo.src} alt="Faelis.Art" /></a>
+      <nav class="site-nav">
+         <a href="/galleries">Gallery</a>
+         <a href="/pricing">Pricing</a>
+         <a href="/imprint">Imprint</a>
       </nav>
     </header>
 

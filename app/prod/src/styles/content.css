@@ -2,29 +2,129 @@
 /* === Depends on: tokens.css (vars), site.css (layout) === */
 
 /* === TYPO FLOW (Panel) === */
-.panel p { hyphens: auto; }
+.panel p .prose p { hyphens: auto; }
 
-/* === HERO (Logo + Text) === */
-.hero {
+/* Section */
+.section + .section { margin-top: var(--content-margin); }
+.section h2 { margin: 0 0 .25rem 0; }
+.section p.lead { opacity: .9; margin: 0 0 .75rem 0; }
+
+/* === MAIN CONTENT BLOCK === */
+.content-grid {
   display: grid;
-  grid-template-columns: minmax(220px, 42%) 1fr; /* Logo | Text */
-  align-items: center;
-  gap: clamp(.8rem, 2.2vw, 1.4rem);}
-@media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero__logo { justify-self: center; }}
-.hero__logo img {
-  inline-size: min(520px, 100%);
-  block-size: auto;
-  border-style: hidden;}
-.hero__content { min-inline-size: 16ch; } 
+  grid-template-columns: 1fr 1fr;
+  gap: var(--content-gap);
+  align-items: stretch;
+  margin-top: var(--content-margin);
+}
+@media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; }}
+.content-grid-headline {
+  grid-column: 1 / -1;       /* nimmt beide Spalten ein */
+  margin: 1rem 0 .5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.content-card {
+  display: flex;                     
+  flex-direction: column;            
+  height: 100%;   
+  padding: var(--content-padding) ;
+  background: var(--content-background);
+  box-shadow: var(--content-shadow);
+  backdrop-filter: blur(var(--content-blur));
+  -webkit-backdrop-filter: blur(var(--content-blur)); 
+  border-radius: var(--large-radius);          
+}
+
+/* Text Content */
+.prose > * + * { margin-top: .65rem; }             /* Grundrhythmus */
+.prose ul { padding-left: 1.2em; margin: .5rem 0 0; }
+.prose li + li { margin-top: .25rem; }
+
+/* Media Content */
+.content-media {
+  display: grid;
+  place-items: start;
+}
+.content-media img, .content-media picture, .content-media svg {
+  max-inline-size: var(--content-media-size);
+  height: fit-content;
+  display: block;
+  border-radius: var(--small-radius);
+}
+
+/* Key-Value / Adress-Listen fürs Impressum */
+.kv {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Label | Wert */
+  gap: .35rem .75rem;
+  margin: .5rem 0 0;
+}
+.kv dt {
+  opacity: .8;
+  white-space: nowrap;
+}
+.kv dd {
+  margin: 0;
+  word-break: break-word;
+}
+/* === Intro / Brand-Zone =============================================== */
+.intro .brand {
+  display: flex;
+  grid-template-columns: auto 1fr;      /* Mascot links, Wortmarke rechts */
+  align-items: end; 
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-block-end: var(--panel-padding); /* Abstand zur Grid-Zone darunter */
+  position: relative;
+}
+
+/* Gemeinsame Baseline als feine Linie – gibt Halt und Gewicht */
+.intro .brand::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -calc(var(--panel-padding) * .5);
+  height: 0;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--secondary-background-color) 35%, white 10%);
+  opacity: .55;
+}
+
+.brand__wordmark {
+  height: var(--brand-size);
+  inline-size: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
+}
+
+.brand__mascot {
+  height: calc(var(--brand-size) * 1.25);  /* > Wortmarke: wirkt lebendig */
+  inline-size: auto;
+  display: block;
+  transform: translateY(4%);               /* minimal auf die Linie „setzen“ */
+  filter: drop-shadow(0 3px 12px rgba(0,0,0,.35));
+}
+
+/* Mobile: untereinander, mittig – trotzdem Baseline-Linie lassen */
+@media (max-width: 780px) {
+  .intro .brand {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+  .brand__mascot { order: 1; }
+  .brand__wordmark { order: 2; height: clamp(56px, 10vw, 120px); }
+}
 
 /* === CONTACT BUTTONS === */
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: .75rem;
-  margin-block: .75rem 1rem;}
+  margin-block: .75rem 1rem;
+}
 .contact-btn {
   --bg: #666;              /* pro Button überschreiben */
   --fg: #fff;              /* Textfarbe fix: gute Lesbarkeit */
@@ -33,7 +133,7 @@
   justify-content: center; /* Text zentriert */
   gap: .55rem;
   padding: .72rem 1.05rem;
-  border-radius: 999px;    /* Pill */
+  border-radius: var(--medium-radius);
   background: var(--bg);
   color: var(--fg);
   font-weight: 600;
@@ -42,170 +142,34 @@
   box-shadow:
     0 10px 22px -12px oklch(0% 0 0 / .55),
     inset 0 1px 0 0 oklch(100% 0 0 / .20);
-  transition: background-color .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;}
+  transition: background-color .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;
+}
 .contact-btn:hover {
   background: color-mix(in oklch, var(--bg) 82%, white 18%);
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px -14px oklch(0% 0 0 / .6);}
+  box-shadow: 0 12px 24px -14px oklch(0% 0 0 / .6);
+}
 .contact-btn:active {
   background: color-mix(in oklch, var(--bg) 88%, black 12%);
-  transform: translateY(0);}
+  transform: translateY(0);
+}
 @supports not (color: oklch(50% 0 0)) {
   .contact-btn:hover { filter: brightness(1.08); }
   .contact-btn:active { filter: brightness(.92); }}
 .contact-btn:focus-visible {
   outline: 2px solid oklch(85% .04 310 / .8);
-  outline-offset: 2px;}
+  outline-offset: 2px;
+}
 .contact-btn .icon {
   display: inline-grid;
   place-items: center;
   inline-size: 1.35rem;
   block-size: 1.35rem;
   border-radius: 999px;
-  background: color-mix(in oklch, black 12%, var(--bg));}
+  background: color-mix(in oklch, black 12%, var(--bg));
+}
 .contact-btn--telegram   { --bg: #28a8e9; }
 .contact-btn--mail       { --bg: #a858c0; }
 .contact-btn--facebook   { --bg: #1778f2; }
 .contact-btn--instagram  { --bg: #e1306c; }
 .contact-btn--furaffinity{ --bg: #08a57b; }
-
-/* === GALLERY: Index === */
-.gallery-grid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  min-inline-size: 0; /* verhindert Shrink-Bugs in Grids */}
-.gallery-card {
-  display: flex;                /* Grid brauchst du hier nicht */
-  flex-direction: column;
-  gap: .6rem;
-  background: var(--secondary-background-color, #2a1540);
-  border-radius: var(--radius-medium);
-  padding: .75rem;}
-.gallery-card .thumb {
-  aspect-ratio: 1 / 1;
-  background: color-mix(in oklab, var(--primary-background-color) 80%, black 20%);
-  border-radius: var(--radius-medium);
-  overflow: hidden;}
-.gallery-card h3 { margin: 0; }
-
-/* === GALLERY: Viewer === */
-.fae-viewer {
-  inline-size: 100%;
-  border-radius: var(--radius-large);
-  background: var(--primary-background-color, #2a1540);
-  padding: .75rem .75rem 1rem;
-  position: relative;}
-.fae-viewer .frame {
-  inline-size: 100%;
-  block-size: clamp(300px, 58vh, 720px); /* elastische Höhe */
-  border-radius: var(--radius-small);
-  overflow: hidden;
-  position: relative;
-  background:
-    conic-gradient(#0000 90deg, #0003 0) 0 0/20px 20px,
-    color-mix(in oklab, var(--primary-background-color) 85%, black 15%);}
-.fae-viewer .image {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  max-inline-size: 100%;
-  max-block-size: 100%;
-  object-fit: contain; /* Bild passt in Frame, verzerrungsfrei */
-  display: block;}
-
-/* === GALLERY: Thumbnails === */
-.fae-thumbs {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--thumb), 1fr));
-  gap: .55rem;
-  align-content: start;
-  min-inline-size: 0; /* verhindert Shrink-Bugs im Grid */}
-.fae-thumbs .thumb {
-  inline-size: var(--thumb);
-  block-size: var(--thumb);
-  border: 0;
-  border-radius: var(--radius-small);
-  overflow: hidden;
-  cursor: pointer;
-  background:
-    conic-gradient(#0000 90deg, #0003 0) 0 0/12px 12px,
-    color-mix(in oklab, var(--primary-background-color) 85%, black 15%);}
-.fae-thumbs .thumb img {
-  inline-size: 100%;
-  block-size: 100%;
-  object-fit: contain; /* transparente Sticker bleiben sichtbar */
-  display: block;}
-.fae-thumbs .thumb.active {
-  outline: 2px solid color-mix(in oklab, var(--border-color) 35%, transparent);}
-
-/* === Pricing Table === */
-.price-table__section { margin-block: clamp(1rem, 1.2vw + .6rem, 1.75rem); }
-.price-table__title { margin: 0 0 .25rem 0; }
-.price-table__subtitle {
-  margin: .15rem 0 .75rem 0;
-  opacity: .85;
-  font-size: .95rem;
-  line-height: 1.35;}
-.price-table__wrap { 
-  overflow-x: clip; 
-  overflow-y: visible; 
-  border-radius: var(--radius-medium); 
-  scrollbar-gutter: stable both-edges; }
-.price-table {
-  width: 100%;
-  min-width: 0;                 
-  border-collapse: separate;
-  border-spacing: 0;
-  table-layout: fixed;}
-.price-table__th,
-.price-table__td {
-  padding-block: .6rem;
-  padding-inline: var(--panel-padding); }              
-.price-table__th {
-  background: var(--secondary-background-color);
-  color: var(--color-text);
-  font-weight: 700;}
-.price-table__th--left  { border-top-left-radius: var(--radius-medium);  text-align: left; }
-.price-table__th--right { border-top-right-radius: var(--radius-medium); text-align: right; }
-.price-table__tr { background: transparent; }
-.price-table__tr.is-alt { background: color-mix(in oklab, var(--panel-bg, #000) 85%, black 15%); }
-.price-table__td {
-  vertical-align: middle;
-  word-break: break-word;}
-.price-table__td--right { 
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: .5rem;
-  white-space: nowrap; }
-.price-table__price { display: inline-block; }
-.price-table__note-chip {
-  display: inline-block;
-  margin-inline-start: 0;
-  margin-inline-end: .5rem;
-  padding: .15rem .5rem;
-  border-radius: 999px;
-  font-size: .85em;
-  line-height: 1.2;
-  opacity: .9;
-  background: color-mix(in oklab, var(--secondary-background-color) 70%, black 30%);
-  outline: 2px solid color-mix(in oklab, var(--secondary-background-color) 30%, white 10%);}
-.price-table__unit {
-  opacity: .7;}
-
-
-@media (max-width: 430px) {
-  .price-table__td--right {
-    flex-direction: column;     /* Chip oben, Preis darunter */
-    align-items: flex-end;
-    gap: .25rem;
-  }
-  .price-table__note-chip {
-    margin: 0;                  /* kein seitlicher Abstand nötig */
-    order: -1;                  /* sicherstellen, dass Chip vor Preis steht */
-  }
-  .price-table__price {
-    display: block;             /* bricht in eigene Zeile */
-  }
-}
