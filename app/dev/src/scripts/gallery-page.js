@@ -69,7 +69,7 @@ export default function initGalleryPage() {
   const btnNext   = viewer.querySelector('.gallery-viewer-next');
   const btnPlay   = viewer.querySelector('.gallery-viewer-playpause');
   const progress  = viewer.querySelector('.gallery-viewer-progress');
-  const thumbsWrap= root.querySelector('.gallery-thumbs');
+  const thumbsWrap= root.querySelector('.gallery-viewer-thumbs');
 
   // hier: items kommen bereits mit gehashten URLs aus itemsBySlug
   let items = itemsBySlug.get(slug) || [];
@@ -91,7 +91,7 @@ export default function initGalleryPage() {
     imgEl.src = item.full;
     imgEl.alt = item.alt || '';
 
-    thumbsWrap.querySelectorAll('.gallery-thumb').forEach((t, k) => {
+    thumbsWrap.querySelectorAll('.gallery-viewer-thumb').forEach((t, k) => {
       t.classList.toggle('active', k === i);
     });
     setProgress(0);
@@ -136,7 +136,7 @@ export default function initGalleryPage() {
   order.forEach((itemIdx, orderIdx) => {
     const item = items[itemIdx];
     const a = document.createElement('button');
-    a.className = 'gallery-thumb';
+    a.className = 'gallery-viewer-thumb';
     a.type = 'button';
     a.setAttribute('aria-label', item.alt || `Image ${orderIdx + 1}`);
  
