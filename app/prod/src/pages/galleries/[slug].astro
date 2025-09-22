@@ -1,7 +1,7 @@
 ---
-import Layout from '@components/Layout.astro';
-import GalleryPage from '@components/GalleryPage.astro';
-import manifest from '@content/galleries/manifest.json';
+import Layout from '@Design/Layout.astro';
+import GalleryDetailPage from '@Pages/Gallery/DetailPage.astro';
+import manifest from '@Content/galleries/manifest.json';
 
 export function getStaticPaths() {
   return manifest.galleries.map(({ slug, title }) => ({
@@ -14,5 +14,5 @@ const { slug }  = Astro.params;
 const { title } = Astro.props;
 ---
 <Layout title={title}>
-  <GalleryPage albumSlug={slug} title={title}/>
+  <GalleryDetailPage albumSlug={slug} title={title}/>
 </Layout>

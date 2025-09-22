@@ -2,6 +2,7 @@
 type Props = { albumSlug: string; title?: string }
 const { albumSlug, title = 'Galerie' } = Astro.props as Props;
 ---
+<h1>{title}</h1>
 <section
   class="gallery"
   data-slug={albumSlug}
@@ -9,8 +10,6 @@ const { albumSlug, title = 'Galerie' } = Astro.props as Props;
   data-interval="5000"
   data-random="true"
 >
-  <h1>{title}</h1>
-
   <section class="section content-card">
     <div class="gallery-viewer">
   
@@ -27,12 +26,12 @@ const { albumSlug, title = 'Galerie' } = Astro.props as Props;
   </section>
 
   <section class="section content-card">
-    <div class="gallery-viewer-thumbs" role="list" />
+    <div class="gallery-viewer-thumbs" role="list"><div class="gallery-viewer-thumb"></div> /></div> />
   </section>
 </section>
 
 <script>
-  import initGalleryPage from "@scripts/gallery-page.js";
+  import initGalleryPage from "@Scripts/GalleryDetail.js";
   const boot = () => initGalleryPage();
 
   if (document.readyState === "complete" || document.readyState === "interactive") {

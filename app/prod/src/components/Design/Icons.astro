@@ -49,15 +49,18 @@ const { kind, size = 28, stroke = 2 } = Astro.props;
     </>
   )}
 
-  {kind === 'furaffinity' && (
-    <>
-      {/* einfache Paw-Marke: 4 Zehen + Ballen, als Füllformen */}
+{kind === 'furaffinity' && (
+  <>
+    {/* Pfote größer: um 18% skalieren, zentriert um 12/12 */}
+    <g transform="translate(14 14) scale(1.25) translate(-14 -14)">
       <circle cx="8.2" cy="7.2" r="2.0" fill="currentColor" stroke="none" />
       <circle cx="12.0" cy="6.5" r="2.1" fill="currentColor" stroke="none" />
       <circle cx="15.8" cy="7.4" r="1.9" fill="currentColor" stroke="none" />
       <circle cx="10.1" cy="8.9" r="1.6" fill="currentColor" stroke="none" />
       <path fill="currentColor" stroke="none"
         d="M7.5,13.5c0-2.6,2.2-4.4,4.7-4.4s4.8,1.8,4.8,4.4c0,2.1-1.7,3.6-4.8,3.6s-4.7-1.5-4.7-3.6Z" />
-    </>
-  )}
+    </g>
+  </>
+)}
+
 </svg>

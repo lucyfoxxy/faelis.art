@@ -1,37 +1,10 @@
 ---
-import Layout from '../components/Layout.astro';
+import Layout from '@Design/Layout.astro';
+import ImprintPage from '@Pages/ImprintPage.astro';
 export const prerender = true;
+const title = 'Imprint / Impressum';
 ---
-<Layout title="Imprint / Impressum">
-  <h1>Imprint / Impressum</h1>
-  <p class="lead"><em>In case of any suspected copyright infringement or any other legal claims, you may contact us at:</em></p>
-  <section class="content-grid section">
-    <section class="content-card ">
-      <h2 class="content-grid-headline">Content Management</h2>
-      <em>Artworks & Pricing</em>
-      <dl class="kv">
-        <dt>Nickname</dt><dd>Faelis Skribblekitty</dd>
-        <dt>Name, Surname</dt><dd>Jungmann, Stephanie</dd>
-        <dt>Address</dt><dd>Michaelstr.&nbsp;38, 47055 Duisburg, NRW, Germany</dd>
-        <dt>Email</dt><dd><a href="mailto:content@faelis.art">content@faelis.art</a></dd>
-      </dl>
-    </section>
-
-    <!-- Content Management -->
-    <section class="content-card ">
-      <h2 class="content-grid-headline">Site Administration</h2>
-      <em>Domain & Server Infrastructure</em>
-      <dl class="kv">
-        <dt>Nickname</dt><dd>Lucy Foxx</dd>
-        <dt>Name, Surname</dt><dd>Wiese, Julian</dd>
-        <dt>Address</dt><dd>Michaelstr.&nbsp;38, 47055 Duisburg, NRW, Germany</dd>
-        <dt>Email</dt><dd><a href="mailto:admin@faelis.art">admin@faelis.art</a></dd>
-      </dl>
-    </section>
-  </section>
-  <!--div class="content-gap" /-->
-  <section class="content-card section">
-    <h2>Disclaimer</h2>
-    <p>This is a private art website. No liability for external links; operators of linked pages are responsible for their content. <br>Prices are subject to change and can change without any further notice.</p>
-  </section>
+<Layout title = {title}>
+  <h1>{title}</h1>
+  <ImprintPage />
 </Layout>

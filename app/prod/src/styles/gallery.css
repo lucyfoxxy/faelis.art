@@ -51,12 +51,15 @@
 .gallery-viewer-frame {
   inline-size: 100%;
   block-size: var(--gallery-frame-size);
-  border-radius: var(--radius-medium);
+  border-radius: var(--medium-radius);
   overflow: hidden;
   position: relative;
   background: color-mix(in oklab, var(--panel-background) 85%, black 15%);
 }
-
+.gallery-viewer-frame.compact {
+  block-size: var(--gallery-frame-size-compact);
+  inline-size: none;
+}
 .gallery-viewer-image {
   position: absolute;
   inset: 0;
@@ -67,6 +70,11 @@
   inline-size: 100%;
 }
 
+.gallery-viewer-image.compact {
+
+  object-fit: cover; /* bei Minis angenehmer; auf Wunsch auf 'cover' stellen */
+}
+
 .gallery-viewer-progress {
   position: relative;
   height: .25rem;
@@ -74,6 +82,7 @@
   background: color-mix(in oklab, var(--secondary-background-color) 35%, white 6%);
   overflow: hidden;
 }
+
 .gallery-viewer-progress::before {
   content: "";
   position: absolute;
@@ -84,6 +93,11 @@
   opacity: .9;
   transition: transform .12s linear;
 }
+
+.gallery-viewer-progress.compact{
+  height: .2rem;
+}
+
 .gallery-viewer-thumbs {
   display: flex;
   flex-wrap: wrap;
@@ -128,5 +142,3 @@
 .gallery-viewer-thumb:not(.active):hover {
   box-shadow: 0 0 0 4px var(--accent-color), var(--medium-shadow);
 }
-
-
