@@ -11,3 +11,8 @@
 **full-**
 **/.env
 .env
+**/**/.env
+**.env
+**/app/**/.env
+package-lock.json
+**/**/package-lock.json
