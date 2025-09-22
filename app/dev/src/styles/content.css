@@ -45,10 +45,10 @@
 /* Media Content */
 .content-media {
   display: grid;
-  place-items: center;
+  place-items: start;
 }
 .content-media img, .content-media picture, .content-media svg {
-  max-inline-size: min(480px, 100%);
+  max-inline-size: var(--content-media-size);
   height: fit-content;
   display: block;
   border-radius: var(--small-radius);
@@ -69,6 +69,54 @@
   margin: 0;
   word-break: break-word;
 }
+/* === Intro / Brand-Zone =============================================== */
+.intro .brand {
+  display: flex;
+  grid-template-columns: auto 1fr;      /* Mascot links, Wortmarke rechts */
+  align-items: end; 
+  justify-content: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  margin-block-end: var(--panel-padding); /* Abstand zur Grid-Zone darunter */
+  position: relative;
+}
+
+/* Gemeinsame Baseline als feine Linie – gibt Halt und Gewicht */
+.intro .brand::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -calc(var(--panel-padding) * .5);
+  height: 0;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--secondary-background-color) 35%, white 10%);
+  opacity: .55;
+}
+
+.brand__wordmark {
+  height: var(--brand-size);
+  inline-size: auto;
+  display: block;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
+}
+
+.brand__mascot {
+  height: calc(var(--brand-size) * 1.25);  /* > Wortmarke: wirkt lebendig */
+  inline-size: auto;
+  display: block;
+  transform: translateY(4%);               /* minimal auf die Linie „setzen“ */
+  filter: drop-shadow(0 3px 12px rgba(0,0,0,.35));
+}
+
+/* Mobile: untereinander, mittig – trotzdem Baseline-Linie lassen */
+@media (max-width: 780px) {
+  .intro .brand {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+  .brand__mascot { order: 1; }
+  .brand__wordmark { order: 2; height: clamp(56px, 10vw, 120px); }
+}
 
 /* === CONTACT BUTTONS === */
 .contact-grid {
@@ -85,7 +133,7 @@
   justify-content: center; /* Text zentriert */
   gap: .55rem;
   padding: .72rem 1.05rem;
-  border-radius: 999px;    /* Pill */
+  border-radius: var(--medium-radius);
   background: var(--bg);
   color: var(--fg);
   font-weight: 600;

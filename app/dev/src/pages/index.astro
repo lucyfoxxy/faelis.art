@@ -1,42 +1,59 @@
 ---
 import Layout from '@components/Layout.astro';
-import logoFull from '@assets/ui/logo-full.webp';
+import Icon from '@components/Icon.astro';
+const links = [
+  { href: 'https://t.me/faelispawartistry',          label: 'Telegram',    kind: 'telegram'   },
+  { href: 'mailto:info@faelis.art',                  label: 'Email',       kind: 'mail'       },
+  { href: 'https://www.facebook.com/FaelisPawArtistry', label: 'Facebook', kind: 'facebook' },
+  { href: 'https://www.instagram.com/faeliskitty',   label: 'Instagram',   kind: 'instagram'  },
+  { href: 'https://www.furaffinity.net/user/faelis', label: 'FurAffinity', kind: 'furaffinity'}
+];
+import { ASSETS } from '@components/Assets.astro';
 export const prerender = true;
 ---
 <Layout title="Faelis Paw Artistry — Home">
-  <h1>Welcome,</h1>
- <h2 class="content-grid-headline">...and a hearty meow @everyfur! 💜</h2>   <section class="content-grid section">
-    <section class="content-card ">
-      <div class="content-media">
-        <img src={logoFull.src} alt="Faelis Paw Artistry – full logo" />
-      </div>
-      <div class="prose">
-        <p>Hey there, my fellow furballs!<br>
-        My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
+<section class="intro">
+  <!-- Brand-Zone -->
+  <section class="brand section">
+    <img class="brand__mascot" src={ASSETS.mascot.src}  alt="" />
+    <img class="brand__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
+  </section>
+
+  <!-- Zwei Spalten darunter -->
+  <section class="content-grid section">
+    <section class="content-card">
+      <div class="prose"> 
+        <p>My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
         <p>Whether you need some logo for your website, 
-          a ref-sheet / badge for your fursona, want to bring your kinkiest idea to life in an artistic way or something completely different
+          a ref-sheet / badge for your fursona or something completely different <em>(maybe...something kinky? :P)</em>
            — you found the right artistic kitten for all sorts of creative tasks! </p>
       </div>
+      <h3 class="content-grid-headline">Faelis Skribblekitty 💜</h3>
     </section>
 
-    <!-- Content Management -->
-    <section class="content-card section">
-     <div class="prose">    
-        <p><b>Interested?</b> <i>... here's a little sneak-peak for you:</i></p>
-      </div>  
-      <div class="content-media">
-        <img src={logoFull.src} alt="Faelis Paw Artistry – full logo" />
-      </div>         
-      <div class="prose">       
-        <p>Wanna see more? <i>... take a look at my <b><a href="/galleries">Art Gallery</a></b></i></p>
-        <p>Questions? <i>... feel free to  <b><a href="/contact">Contact Me</a></b></i></p>       
-        <h3>Faelis Skribblekitty 💜</h3>           
+    <section class="content-card">
+      <div class="prose">
+        <p><b>Interested?</b> <i>... here's a little sneak-peek for you:</i></p>
       </div>
+      <br>[.....gallery here....]<br>
+      <div class="prose">
+        <p><b>Wanna see more?</b> <em>... take a look at my <b><a href="/galleries">Art Gallery</a></b></em></p>
+      </div>
+        
+      
+      
     </section>
   </section>
-  <!--div class="content-gap" /-->
   <section class="content-card section">
-    <h2>Contact</h2>
-    <p>placeholder********</p>
+    <h3 class="content-grid-headline">Questions? <i>... contact me at:</i></h3>
+    <div class="contact-grid">
+      {links.map((l) => (
+        <a class={`contact-btn contact-btn--${l.kind}`} href={l.href} rel="me noopener" target="_blank">
+          <span class="contact-ico"><Icon kind={l.kind} /></span>
+          <span>{l.label}</span>
+        </a>
+      ))}
+    </div>
   </section>
+</section>
 </Layout>
