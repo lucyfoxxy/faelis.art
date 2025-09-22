@@ -5,10 +5,11 @@
 .gallery-grid {
   display: grid;
   gap: var(--content-gap);
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  min-inline-size: 0; /* verhindert Shrink-Bugs in Grids */}
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  min-inline-size: 0;
+}
 .gallery-card {
-  display: flex;                /* Grid brauchst du hier nicht */
+  display: flex;                
   flex-direction: column;
   gap: .6rem;
   background: var(--content-background);
@@ -24,7 +25,6 @@
 .gallery-card h3 { margin: 0; }
 
 /* === Viewer Page === */
-/* Viewer */
 .gallery-viewer {
   position: relative;
   display: flex;
@@ -48,10 +48,9 @@
   cursor: pointer;
 }
 
-/* Frame = Bühne fürs Bild */
 .gallery-viewer-frame {
   inline-size: 100%;
-  block-size: clamp(300px, 58vh, 720px);
+  block-size: var(--gallery-frame-size);
   border-radius: var(--radius-medium);
   overflow: hidden;
   position: relative;
@@ -68,7 +67,6 @@
   inline-size: 100%;
 }
 
-/* Progress-Bar */
 .gallery-viewer-progress {
   position: relative;
   height: .25rem;
@@ -86,24 +84,19 @@
   opacity: .9;
   transition: transform .12s linear;
 }
-
-/* Container: wrappen + NICHT stretchen */
-.gallery-thumbs,
 .gallery-viewer-thumbs {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;                /* kein Stretch pro Zeile */
+  align-items: flex-start;               
   gap: var(--content-gap);
 }
 
-/* Thumbnail-Button: sauberes Quadrat über ::before */
-.gallery-thumb {
+.gallery-viewer-thumb {
   position: relative;
-  display: block;                         /* kein inline-block/line-height Effekt */
+  display: block;                         
   box-sizing: border-box;
-  width: var(--thumb, 120px);
-  /* kein height/line-height/aspect-ratio nötig */
+  width: var(--thumb);
   padding: 0;                             
   border: 0;
   border-radius: var(--medium-radius);
@@ -113,15 +106,13 @@
   cursor: pointer;
 }
 
-/* erzeugt 1:1-Quadrat */
-.gallery-thumb::before {
+.gallery-viewer-thumb::before {
   content: "";
   display: block;
   padding-top: 100%;
 }
 
-/* Bild füllt das Quadrat */
-.gallery-thumb img {
+.gallery-viewer-thumb img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -131,16 +122,11 @@
   display: block;
 }
 
-/* Fokus-/Hover-Ring ohne Überlappung (kein outline) */
-.gallery-thumb.active {
+.gallery-viewer-thumb.active {
   box-shadow: 0 0 0 4px var(--primary-color), var(--medium-shadow);
 }
-.gallery-thumb:not(.active):hover {
+.gallery-viewer-thumb:not(.active):hover {
   box-shadow: 0 0 0 4px var(--accent-color), var(--medium-shadow);
 }
 
-/* Abstand Viewer ↔ Thumbs konsistent mit Panels */
-.gallery-viewer + .gallery-viewer-thumbs,
-.content-card + .content-card {
-  margin-top: var(--panel-padding);
-}
+
