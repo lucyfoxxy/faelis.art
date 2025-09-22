@@ -4,26 +4,50 @@
 /* ============================================ */
 
 /* === Header & Footer === */
-.site-header,
-.site-footer {
-  flex: 0 0 auto;
-  box-sizing: border-box;
-  min-width: max-content;
-  max-width: none;
-  width: 100%;
-  margin-inline: 0;
+
+
+/* Header selbst bleibt full-width */
+.site-header {
+  border-radius: 0 0 var(--medium-radius) var(--medium-radius);
+  margin-block: 0 var(--navbar-gap);
   padding: var(--navbar-padding);
   background: var(--navbar-background);
   box-shadow: var(--navbar-shadow);
   backdrop-filter: blur(var(--navbar-blur));
   -webkit-backdrop-filter: blur(var(--navbar-blur));
-  color: var(--color-text);
+  color: var(--primary-text-color);
   outline: 1px solid var(--outline-color);
+
+  display: flex;                /* horizontal layout */
+  align-items: center;          /* vertikal mittig */
+  justify-content: space-around; /* Logo links, Navigation rechts */
 }
 
-/* rounded corners + gap to Content-Container */
-.site-header { border-radius: 0 0 var(--medium-radius) var(--medium-radius); margin-block: 0 var(--navbar-gap); }
-.site-footer { border-radius: var(--medium-radius) var(--medium-radius) 0 0; margin-block: var(--navbar-gap) 0; }
+/* Logo-Block */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: .5rem; /* falls Text/Img nebeneinander */
+  height: 50px;
+}
+
+/* Navigation */
+.site-nav {
+  display: flex;
+  gap: 2rem; /* Abstand zwischen Links */
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 500;
+  transition: color .2s ease;
+  font-size: large;
+}
+.site-nav a:hover {
+  color: var(--accent-color);
+}
+
 
 /* === CONTAINER === */
 .container {
@@ -47,28 +71,20 @@ main.panel {
   box-shadow: var(--panel-shadow);
   outline: 1px solid var(--outline-color);
 }
-
-/* === NAVIGATION === */
-.site-nav { position: static; }
-
-.site-nav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-}
-
-.site-nav__list a {
-  display: block;
-  padding: .4rem .6rem;
-  border-radius: var(--medium-radius);
+.site-footer {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-width: max-content;
+  max-width: none;
+  width: 100%;
+  margin-inline: 0;
+  padding: var(--navbar-padding);
+  background: var(--navbar-background);
+  box-shadow: var(--navbar-shadow);
+  backdrop-filter: blur(var(--navbar-blur));
+  -webkit-backdrop-filter: blur(var(--navbar-blur));
   color: var(--primary-text-color);
-  text-decoration: none;
-}
-
-.site-nav__list a:hover,
-.site-nav__list a:focus-visible {
-  background: color-mix(in oklab, var(--container-bg), black 12%);
+  outline: 1px solid var(--outline-color);
+  border-radius: var(--medium-radius) var(--medium-radius) 0 0; 
+  margin-block: var(--navbar-gap) 0;
 }

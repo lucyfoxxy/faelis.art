@@ -7,10 +7,7 @@ import '@styles/content.css';
 import '@styles/gallery.css';
 import '@styles/table.css';
 
-import bg from '@assets/ui/bg.webp';
-import favicon from '@assets/ui/favicon.webp';
-import logoHeader from '@assets/ui/logo-header.webp';
-import logoNoText from '@assets/ui/logo-no-text.webp';
+import { ASSETS } from '@components/Assets.astro';
 
 const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" } = Astro.props;
 ---
@@ -20,16 +17,16 @@ const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" }
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/webp" href={favicon.src} />
+    <link rel="icon" type="image/webp" href={ASSETS.favicon.src} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@400;700&display=swap" rel="stylesheet" />
   </head>
-  <body style={`--bg-image: url(${bg.src}); --logo-header: url(${logoHeader.src}); --logo-no-text: url(${logoNoText.src});`}>
-
+  <body style={`--background-image: url(${ASSETS.bg.src});`}>
+   
     <header class="site-header">
-      <a href="/"><img class="header-logo" src={logoHeader.src} alt="Faelis.Art" /></a>
+      <a href="/"><img class="header-logo" src={ASSETS.logo.src} alt="Faelis.Art" /></a>
       <nav class="site-nav">
          <a href="/galleries">Gallery</a>
          <a href="/pricing">Pricing</a>
