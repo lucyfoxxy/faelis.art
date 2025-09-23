@@ -19,3 +19,7 @@ package-lock.json
 **/.astro
 **/.astro/**
 .astro
+**/prod/src/
+**/prod/src/**
+**/prod/public/
+**/prod/public/**
