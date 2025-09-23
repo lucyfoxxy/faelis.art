@@ -14,7 +14,7 @@ const slug = 'bestof';
 const autoplay = true;
 const interval = 5000;   // 5s
 const random   = true;
-
+const isExternalLink = (href: string) => href.startsWith('http');
 ---
 <section class="intro">
   <section class="brand section">
@@ -53,12 +53,20 @@ const random   = true;
   <section class="content-card section">
     <h3 class="content-grid-headline">Contact me at:</h3>
     <div class="contact-grid">
-      {links.map((l) => (
-        <a class={`contact-btn contact-btn--${l.kind}`} href={l.href} rel="me noopener" target="_blank">
-          <span class="contact-ico"><Icon kind={l.kind} /></span>
-          <span>{l.label}</span>
-        </a>
-      ))}
+      {links.map((l) => {
+        const external = isExternalLink(l.href);
+        return (
+          <a
+            class={`contact-btn contact-btn--${l.kind}`}
+            href={l.href}
+            rel={external ? 'me noopener noreferrer' : 'me'}
+            target={external ? '_blank' : undefined}
+          >
+            <span class="contact-ico"><Icon kind={l.kind} /></span>
+            <span>{l.label}</span>
+          </a>
+        );
+      })}
     </div>
   </section>
 </section>
