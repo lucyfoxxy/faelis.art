@@ -1,8 +1,8 @@
 # ToDo's 
 --------------------------------------------------------------------------
-## General: 
+## Pages General: 
 
-- CSS Refactoring, obsoletes/redundantes entfernen (src/styles)
+- CSS Refactoring, obsoletes/redundantes entfernen, styles vereinheitlichen
 - meta media links (preview)
 - Anlegen einer generellen Projektdoku, ähnlich dem bereits vorhandenen Style-Guide + Style-Guide erweitern
 
@@ -12,13 +12,14 @@
 
 ## Footer: 
 - Layout Anpassungen, Ziel: 3 columns (links/rechts/mittig)
+- Datum nicht einfrieren
 
-## Gallery-Page:
+## Gallery Detail Page:
 - nur eine reihe thumbnails statt alle, dafür rechts und links davon buttons prev/next
 - Main Image kleiner, dafür lightbox inkl. thumbnail navigation, pause auto slideshow während lightbox offen ist
 
-## Pricing & Gallery-Index:
+## Pricing + Gallery Detail Pages:
 - Verlinkung mit Sprungmarken (zB #badges -> um direkt zur passenden Preistabelle zu springen,
 
-## Gallery Index Page
-- auf mobile nicht ein großes thumbnail
+## Gallery Overview Page
+- auf mobile aktuell ein großes Icon pro row, hier wären min. 2 angebracht.

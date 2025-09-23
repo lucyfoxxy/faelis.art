@@ -8,7 +8,7 @@
   --border-color:               oklch(var(--primary-color) / 0.5);
   --outline-color:              oklch(90% 0.01 305 / 0.08);
 
-  --primary-shadow-color:       oklch(30% 0.08 310 / 0.7);
+  --primary-shadow-color:       oklch(25% 0.08 310 / 0.7);
   --secondary-shadow-color:     oklch(30% 0.05 310 / 0.3);
 
   --primary-text-color:         oklch(92% 0.07 295);   /* helles, leicht violett-weiß */
@@ -28,7 +28,7 @@
   --medium-radius:              14px;
   --large-radius:               18px;
  
-  --small-shadow:               0 0 0.125rem var(--primary-shadow-color), 0 8px 24px var(--secondary-shadow-color);
+  --small-shadow:               10px 44px 100px 320px var(--secondary-shadow-color);
   --medium-shadow:              0 0 0.175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
   --large-shadow:               0 0 0.225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
 
@@ -57,10 +57,75 @@
   --content-media-size:         min(360px, 100%);
 
   --brand-size:                 clamp(80px, 12vw, 160px);
+  --brand-gap:                  calc(var(--content-gap) * .85);
+  --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
-  /* === Typography / Focus === */
-  --font-sans:                  Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display:               "Fuzzy Bubbles", var(--font-sans);
+  /* === Fonts === */
+  --primary-font-family:        'Fuzzy Bubbles', var(--secondary-font-family);
+  --secondary-font-family:      Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --normal-font-weight:         400;
+  --bold-font-weight:           700;
+
+  /* skalierbare, generische Typo-Skala */
+  --small-font-size:            clamp( .9rem, calc( .4rem +  .5vw), 1.1rem);
+  --medium-font-size:           clamp(1.1rem, calc( .6rem +  .8vw), 1.2rem);
+  --large-font-size:            clamp(1.3rem, calc(1.1rem + 1.1vw), 1.6rem);
+  --xlarge-font-size:           clamp(1.7rem, calc(1.2rem + 1.6vw), 2.4rem);
+
+  /* Zeilenhöhen */
+  --small-line-height:          1.25;
+  --medium-line-height:         1.35;
+  --large-line-height:          1.2;
+  --xlarge-line-height:         1.15;
+
+  /* Laufweiten */
+  --small-letter-spacing:       0;
+  --medium-letter-spacing:      .01em;
+  --large-letter-spacing:       .015em;
+
+
+  /* domänenspezifisch (Beispiele) */
+  --title-font-family:          var(--primary-font-family);
+  --title-font-weight:          var(--bold-font-weight);
+  --title-font-size:            var(--xlarge-font-size);
+  --title-letter-spacing:       var(--large-letter-spacing);
+  --title-line-height:          var(--xlarge-line-height);
+
+
+  --subtitle-font-family:       var(--primary-font-family);
+  --subtitle-font-weight:       var(--normal-font-weight);
+  --subtitle-font-size:         var(--large-font-size);
+  --subtitle-letter-spacing:    var(--medium-letter-spacing);
+  --subtitle-line-height:       var(--large-line-height);
+  --subtitle-margin:            .9rem 0 .5rem;
+
+  --heading-font-family:       var(--secondary-font-family);
+  --heading-font-weight:       var(--bold-font-weight);
+  --heading-font-size:         var(--medium-font-size);
+  --heading-letter-spacing:    var(--medium-letter-spacing);
+  --heading-line-height:       var(--medium-line-height);
+  --heading-margin:            .8rem 0 .55rem;  
+
+  --navbar-font-family:         var(--primary-font-family);
+  --navbar-font-weight:         var(--normal-font-weight);
+  --navbar-font-size:           var(--large-font-size);
+  --navbar-letter-spacing:      var(--medium-letter-spacing);
+  --navbar-line-height:         var(--large-line-height);
+
+  --prose-font-family:          var(--secondary-font-family);
+  --prose-font-weight:          var(--normal-font-weight);
+  --prose-font-size:            var(--medium-font-size);
+  --prose-letter-spacing:       var(--medium-letter-spacing);  
+  --prose-line-height:          var(--medium-line-height);
+  --prose-margin:               .75rem 0 .75rem;
+
+  --footer-font-family:        var(--secondary-font-family);
+  --footer-font-weight:        var(--normal-font-weight);
+  --footer-font-size:          var(--small-font-size);
+  --footer-letter-spacing:     var(--small-letter-spacing);  
+  --footer-line-height:        var(--small-line-height);  
+
 
   /* === Gallery === */
   --thumb:                      clamp(120px, 12vw, 164px);

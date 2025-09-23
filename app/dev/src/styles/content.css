@@ -2,7 +2,7 @@
 /* === Depends on: tokens.css (vars), site.css (layout) === */
 
 /* === TYPO FLOW (Panel) === */
-.panel p .prose { hyphens: auto; }
+.panel p, .panel .prose { hyphens: auto; }
 
 /* === Section === */
 .section + .section { margin-top: var(--content-margin); }
@@ -20,9 +20,7 @@
 @media (max-width: 900px) { .content-grid { grid-template-columns: 1fr; }}
 .content-grid-headline {
   grid-column: 1 / -1;       /* nimmt beide Spalten ein */
-  margin: 1rem 0 .5rem;
-  font-size: 1.35rem;
-  font-weight: 600;
+
 }
 .content-card {
   display: flex;                     
@@ -68,10 +66,10 @@
 .intro .brand {
   display: flex;
   flex-wrap: nowrap;
-  flex-direction: column;
+  flex-direction: row;
   align-items: end; 
   justify-content: center;
-  gap: var(--content-gap) * .75;
+  gap: var(--brand-gap);
   margin-block: 0 var(--content-margin);
   padding-inline: var(--panel-padding);
   position: relative;
@@ -80,7 +78,7 @@
   content: "";
   position: absolute;
   left: 0; right: 0;
-  bottom: -calc(var(--panel-padding) * .5);
+  bottom: calc(var(--panel-padding) * .5);
   height: 0;
   border-radius: 999px;
   background: color-mix(in oklab, var(--secondary-background-color) 35%, white 10%);
@@ -90,7 +88,9 @@
 .brand__mascot, .brand__wordmark {
   inline-size: auto;
   display: block;
-  filter: drop-shadow(var(--small-shadow));
+  filter: drop-shadow(0 3px 12px var(--primary-shadow-color));
+    filter: drop-shadow(0 3px 12px rgba(0, 0, 0, .35));
+
 }
 .brand__wordmark { height: var(--brand-size); }
 .brand__mascot   { height: calc(var(--brand-size) * 1.25);  transform: translateY(4%); }
@@ -100,7 +100,7 @@
 @media (max-width: 780px) {
   .intro .brand {
     --brand-size: clamp(54px, calc((100vw - 4rem) / 4.5), 84px);
-    gap: var(--content-gap) * .5;
+    gap: var(--brand-gap-mobile);
     padding-inline: clamp(1rem, 5vw, var(--panel-padding));
   }
 }

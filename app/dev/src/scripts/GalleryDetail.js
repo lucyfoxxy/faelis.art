@@ -155,8 +155,8 @@ export default function initGalleryPage() {
     run();
   });
 
-  thumbsWrap.replaceChildren();
-  const fragment = document.createDocumentFragment();
+  // Thumbnails rendern
+  thumbsWrap.innerHTML = '';
   order.forEach((itemIdx, orderIdx) => {
     const item = items[itemIdx];
     const a = document.createElement('button');
@@ -173,10 +173,10 @@ export default function initGalleryPage() {
  
     a.appendChild(t);
     a.addEventListener('click', () => { show(orderIdx); run(); });
-    fragment.appendChild(a);
+    thumbsWrap.appendChild(a);
   });
 
   // Galerie starten
   show(0);
-  if (playing) run();
+  if (autoplay) run();
 }

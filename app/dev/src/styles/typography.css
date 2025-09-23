@@ -1,36 +1,75 @@
 @font-face {
   font-family: 'Grandstander';
-  src: url('/fonts/Grandstander-400-700.woff2') format('woff2');
-  font-weight: 400 700;
+  src: url('/fonts/Grandstander_normal_100-900.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: 'Grandstander';
+  src: url('/fonts/Grandstander_italic_100-900.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
 @font-face {
   font-family: 'Fuzzy Bubbles';
-  src: url('/fonts/FuzzyBubbles-400-700.woff2') format('woff2');
-  font-weight: 400 700;
+  src: url('/fonts/FuzzyBubbles_400.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
+@font-face {
+  font-family: 'Fuzzy Bubbles';
+  src: url('/fonts/FuzzyBubbles_700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 body { 
-  font-family: var(--font-sans);
+  font-family: 'Fuzzy Bubbles';
   
   color: var(--primary-text-color);
 }
 
 /* Headings im Panel im Display-Font */
-.panel :where(h1,h2,h3,h4){
-  font-family: var(--font-display);
-  letter-spacing: .2px;
+.panel :where(h1,h2){
+  font-family: var(--primary-font-family);
+}
+.panel :where(h3,p){
+  font-family: var(--secondary-font-family);
+}
+.panel h1 {
+  font-weight: var(--title-font-weight);
+  font-size: var(--title-font-size);
+  line-height: var(--title-line-height);
+  letter-spacing: var(--title-letter-spacing);
+  margin: var(--title-margin);
 }
 
-.panel h1{ font-size:clamp(1.9rem,1.2rem+1.6vw,2.6rem); line-height:1.1; margin:0 0 .6rem;  }
-.panel h2{ font-size:clamp(1.3rem,1.0rem+.9vw,1.8rem); line-height:1.15; margin:.9rem 0 .5rem; }
-.panel h3{ font-size:clamp(1.3rem,.95rem+.6vw,1.5rem); line-height:1.2; margin:.8rem 0 .4rem; }
+.panel h2 {
+  font-weight: var(--subtitle-font-weight);
+  font-size: var(--subtitle-font-size);
+  line-height: var(--subtitle-line-height);
+  letter-spacing: var(--subtitle-letter-spacing);
+  margin: var(--subtitle-margin);
+}
 
-.panel p { font-size:clamp(1.2rem,.9rem+.4vw,1.35rem); line-height:1.2; margin:.75rem 0 .75rem; letter-spacing: .4px; }
+.panel h3 {
+  font-weight: var(--heading-font-weight);
+  font-size: var(--heading-font-size);
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--heading-letter-spacing);
+  margin: var(--heading-margin);
+}
+
+.panel p, .panel a {
+  font-weight: var(--prose-font-weight);
+  font-size: var(--prose-font-size);
+  line-height: var(--prose-line-height);
+  letter-spacing: var(--prose-letter-spacing);
+  margin: var(--prose-margin);
+}
 .panel a { color:var(--link); text-underline-offset:.15em; }
 .panel a:hover, .panel a:focus-visible { color:var(--link-hover); }
 
@@ -40,6 +79,6 @@ body {
 .panel blockquote{
   margin:.8rem 0; padding:.6rem .8rem;
   border-left:3px solid var(--link);
-  background: color-mix(in oklab, var(--container-bg), black 10%);
+  background: color-mix(in oklab, var(--content-bg), black 10%);
   border-radius:.5rem;
 }

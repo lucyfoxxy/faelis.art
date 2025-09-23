@@ -2,9 +2,8 @@
 import Layout from '@Design/Layout.astro';
 import ImprintPage from '@Pages/ImprintPage.astro';
 export const prerender = true;
-const title = 'Imprint / Impressum';
+import title from '@Pages/ImprintPage.astro';
 ---
 <Layout title = {title}>
-  <h1>{title}</h1>
   <ImprintPage />
 </Layout>
