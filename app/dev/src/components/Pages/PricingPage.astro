@@ -36,11 +36,13 @@ const formatPrice = (it: PriceItem) => {
 ---
 <section class="content-head section">
   <h1>{title}</h1>
-  <p>Here you gonna find the detailed pricing for each category.<br>
-  Shown prices are approximates and final prices may vary depending on the effort needed.</p>
+  <div class="prose">
+    <p>Here you gonna find the detailed pricing for each category.<br>
+    Shown prices are approximates and final prices may vary depending on the effort needed.</p>
+  </div>
 </section>
 
-<section class="content-layout section">
+<section class="content-layout">
   {prices.categories.map((cat) => (
     <section class="table__section content-card">
       <h2 class="table__title">{cat.title}</h2>

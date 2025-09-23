@@ -45,7 +45,7 @@ body {
 .panel :where(h1,h2), .site-nav a{
   font-family: var(--primary-font-family);
 }
-.panel :where(h3){
+.panel :where(h3,.prose,p){
   font-family: var(--secondary-font-family);
 }
 .panel h1 {
@@ -67,10 +67,10 @@ body {
   line-height: var(--heading-line-height);
   letter-spacing: var(--heading-letter-spacing);
 }
-.panel p {
+.panel .prose {
   font-weight: var(--prose-font-weight);
   font-size: var(--prose-font-size);
-  line-height: var(--prose-line-height);
+  
   letter-spacing: var(--prose-letter-spacing);
   margin: var(--prose-margin);
 }

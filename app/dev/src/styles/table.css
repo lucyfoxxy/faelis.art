@@ -52,8 +52,8 @@
   margin-inline-end: .5rem;
   padding: .15rem .5rem;
   border-radius: 999px;
-  font-size: .85em;
-  line-height: 1.2;
+  font-size: var(--small-font-size);
+  line-height: var(--small-line-height);
   opacity: .9;
   background: color-mix(in oklab, var(--primary-background-color) 70%, black 20%);
   outline: 2px solid color-mix(in oklab, var(--primary-color) 50%, white 10%);
