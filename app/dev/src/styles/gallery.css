@@ -142,3 +142,9 @@
 .gallery-viewer-thumb:not(.active):hover {
   box-shadow: 0 0 0 4px var(--accent-color), var(--medium-shadow);
 }
+
+.gallery-empty {
+  margin: .5rem 0;
+  text-align: center;
+  opacity: .75;
+}

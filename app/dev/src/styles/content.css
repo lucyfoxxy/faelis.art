@@ -2,7 +2,7 @@
 /* === Depends on: tokens.css (vars), site.css (layout) === */
 
 /* === TYPO FLOW (Panel) === */
-.panel p .prose p { hyphens: auto; }
+.panel p .prose { hyphens: auto; }
 
 /* === Section === */
 .section + .section { margin-top: var(--content-margin); }
@@ -68,14 +68,14 @@
 .intro .brand {
   display: flex;
   flex-wrap: nowrap;
+  flex-direction: column;
   align-items: end; 
   justify-content: center;
-  gap: clamp(.5rem, 2vw, 1.25rem);
+  gap: var(--content-gap) * .75;
   margin-block: 0 var(--content-margin);
   padding-inline: var(--panel-padding);
   position: relative;
 }
-
 .intro .brand::after {
   content: "";
   position: absolute;
@@ -87,30 +87,22 @@
   opacity: .55;
 }
 
-.brand__wordmark {
-  height: var(--brand-size);
+.brand__mascot, .brand__wordmark {
   inline-size: auto;
   display: block;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,.25));
+  filter: drop-shadow(var(--small-shadow));
 }
+.brand__wordmark { height: var(--brand-size); }
+.brand__mascot   { height: calc(var(--brand-size) * 1.25);  transform: translateY(4%); }
 
-.brand__mascot {
-  height: calc(var(--brand-size) * 1.25);  /* > Wortmarke: wirkt lebendig */
-  inline-size: auto;
-  display: block;
-  transform: translateY(4%);               /* minimal auf die Linie „setzen“ */
-  filter: drop-shadow(0 3px 12px rgba(0,0,0,.35));
-}
 
-/* Mobile: untereinander, mittig – trotzdem Baseline-Linie lassen */
+/* Mobile: keep the lockup horizontal but shrink it responsively */
 @media (max-width: 780px) {
   .intro .brand {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    align-items: center;
+    --brand-size: clamp(54px, calc((100vw - 4rem) / 4.5), 84px);
+    gap: var(--content-gap) * .5;
+    padding-inline: clamp(1rem, 5vw, var(--panel-padding));
   }
-  .brand__mascot { order: 1; }
-  .brand__wordmark { order: 2; height: clamp(56px, 10vw, 120px); }
 }
 
 /* === CONTACT BUTTONS === */
@@ -121,7 +113,7 @@
   margin-block: .75rem 1rem;
 }
 .contact-btn {
-  --bg: #666;              /* pro Button überschreiben */
+  --bg: var(--primary-background-color);              /* pro Button überschreiben */
   --fg: #fff;              /* Textfarbe fix: gute Lesbarkeit */
   display: inline-flex;
   align-items: center;
@@ -130,8 +122,7 @@
   padding: .72rem 1.05rem;
   border-radius: var(--large-radius);
   background: var(--bg);
-  
-
+  color: var(--fg);
   font-weight: 500;
   line-height: 1;
   text-decoration: none;
@@ -156,7 +147,7 @@
   outline: 0px solid oklch(85% .04 310 / .8);
   outline-offset: 2px;
 }
-.contact-btn .icon {
+.contact-ico {
   display: inline-grid;
   place-items: center;
   inline-size: 1.55rem;
@@ -164,6 +155,11 @@
   border-radius: 999px;
   background: color-mix(in oklch, black 12%, var(--accent-color));
 }
+.contact-ico svg {
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+}
+
 .contact-btn--telegram   { --bg: #28a8e9; }
 .contact-btn--mail       { --bg: #a858c0; }
 .contact-btn--facebook   { --bg: #1778f2; }
