@@ -1,4 +1,19 @@
-/* Grundschrift */
+@font-face {
+  font-family: 'Grandstander';
+  src: url('/fonts/Grandstander-400-700.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fuzzy Bubbles';
+  src: url('/fonts/FuzzyBubbles-400-700.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body { 
   font-family: var(--font-sans);
   
