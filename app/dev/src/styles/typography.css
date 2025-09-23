@@ -32,15 +32,20 @@ body {
   color: var(--primary-text-color);
 }
 
+.site-nav a {
+  font-size: var(--navbar-font-size);
+  font-weight: var(--navbar-font-weight);
+}
+
 .site-footer {
-  font: normal normal var(--footer-font-weight) normal var(--footer-font-size) var(--footer-line-height) var(--footer-font-family);
+  font: normal normal var(--footer-font-weight) normal var(--footer-font-size) var(--footer-line-height) var(--secondary-font-family);
 }
 
 /* Headings im Panel im Display-Font */
-.panel :where(h1,h2){
+.panel :where(h1,h2), .site-nav a{
   font-family: var(--primary-font-family);
 }
-.panel :where(h3,p){
+.panel :where(h3){
   font-family: var(--secondary-font-family);
 }
 .panel h1 {
@@ -48,26 +53,21 @@ body {
   font-size: var(--title-font-size);
   line-height: var(--title-line-height);
   letter-spacing: var(--title-letter-spacing);
-  margin: var(--title-margin);
-}
 
+}
 .panel h2 {
   font-weight: var(--subtitle-font-weight);
   font-size: var(--subtitle-font-size);
   line-height: var(--subtitle-line-height);
   letter-spacing: var(--subtitle-letter-spacing);
-  margin: var(--subtitle-margin);
 }
-
 .panel h3 {
   font-weight: var(--heading-font-weight);
   font-size: var(--heading-font-size);
   line-height: var(--heading-line-height);
   letter-spacing: var(--heading-letter-spacing);
-  margin: var(--heading-margin);
 }
-
-.panel p, .panel a {
+.panel p {
   font-weight: var(--prose-font-weight);
   font-size: var(--prose-font-size);
   line-height: var(--prose-line-height);
@@ -76,10 +76,8 @@ body {
 }
 .panel a { color:var(--link); text-underline-offset:.15em; }
 .panel a:hover, .panel a:focus-visible { color:var(--link-hover); }
-
 .panel ul, .panel ol { padding-inline-start:1.2rem; margin:.5rem 0 .8rem; }
 .panel li { margin:.2rem 0; }
-
 .panel blockquote{
   margin:.8rem 0; padding:.6rem .8rem;
   border-left:3px solid var(--link);

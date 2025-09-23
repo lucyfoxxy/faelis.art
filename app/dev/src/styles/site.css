@@ -12,7 +12,7 @@
   align-items: center;          /* vertikal mittig */
   justify-content: space-around; /* Logo links, Navigation rechts */  
   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
-  margin-block: 0 var(--navbar-gap);
+  margin-block: var(--navbar-margin);
   padding: var(--navbar-padding);
   background: var(--navbar-background);
   box-shadow: var(--navbar-shadow);
@@ -51,15 +51,13 @@
 /* Navigation */
 .site-nav {
   display: flex;
-  gap: 2rem; /* Abstand zwischen Links */
+  gap: var(--navbar-gap); 
 }
 
 .site-nav a {
   text-decoration: none;
   color: inherit;
-  font-weight: 500;
   transition: color .2s ease;
-  font-size: large;
 }
 .site-nav a:hover {
   color: var(--accent-color);

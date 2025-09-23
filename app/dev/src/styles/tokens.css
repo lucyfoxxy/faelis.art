@@ -41,7 +41,12 @@
   --navbar-blur:                var(--medium-blur);   
   --navbar-shadow:              var(--medium-shadow); 
   --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
-  --navbar-gap:                 var(--container-gap);
+  --navbar-margin:              0 var(--container-gap);
+  --navbar-gap:                 clamp(.75rem, 2vw, 2rem);
+  --navbar-font-weight:         var(--bold-font-weight);
+  --navbar-font-size:           var(--medium-font-size);
+  --navbar-letter-spacing:      var(--medium-letter-spacing);
+  --navbar-line-height:         var(--medium-line-height);
 
   --panel-background:           var(--primary-background-color); 
   --panel-padding:              clamp(1.5rem, 2vw, 3rem);
@@ -68,10 +73,10 @@
   --bold-font-weight:           700;
 
   /* skalierbare, generische Typo-Skala */
-  --small-font-size:            clamp( .9rem, calc( .4rem +  .5vw), 1.0rem);
-  --medium-font-size:           clamp(1.1rem, calc( .6rem +  .8vw), 1.2rem);
-  --large-font-size:            clamp(1.3rem, calc(1.1rem + 1.1vw), 1.6rem);
-  --xlarge-font-size:           clamp(1.7rem, calc(1.2rem + 1.6vw), 2.4rem);
+  --small-font-size:            clamp( .9rem, calc( .4rem +  .5vw), 1.1rem);
+  --medium-font-size:           clamp(1.1rem, calc( .6rem +  .8vw), 1.15rem);
+  --large-font-size:            clamp(1.3rem, calc(1.1rem + 1.1vw), 1.7rem);
+  --xlarge-font-size:           clamp(1.7rem, calc(1.2rem + 1.6vw), 2.25rem);
 
   /* Zeilenhöhen */
   --small-line-height:          1.25;
@@ -80,9 +85,9 @@
   --xlarge-line-height:         1.15;
 
   /* Laufweiten */
-  --small-letter-spacing:       0;
-  --medium-letter-spacing:      .01em;
-  --large-letter-spacing:       .015em;
+  --small-letter-spacing:       .01em;
+  --medium-letter-spacing:      .02em;
+  --large-letter-spacing:       .075em;
 
 
   /* domänenspezifisch (Beispiele) */
@@ -98,29 +103,24 @@
   --subtitle-font-size:         var(--large-font-size);
   --subtitle-letter-spacing:    var(--medium-letter-spacing);
   --subtitle-line-height:       var(--large-line-height);
-  --subtitle-margin:            .9rem 0 .5rem;
+
 
   --heading-font-family:       var(--secondary-font-family);
   --heading-font-weight:       var(--bold-font-weight);
   --heading-font-size:         var(--medium-font-size);
   --heading-letter-spacing:    var(--medium-letter-spacing);
   --heading-line-height:       var(--medium-line-height);
-  --heading-margin:            .8rem 0 .55rem;  
 
-  --navbar-font-family:         var(--primary-font-family);
-  --navbar-font-weight:         var(--normal-font-weight);
-  --navbar-font-size:           var(--large-font-size);
-  --navbar-letter-spacing:      var(--medium-letter-spacing);
-  --navbar-line-height:         var(--large-line-height);
 
-  --prose-font-family:          var(--secondary-font-family);
+
+  
+
   --prose-font-weight:          var(--normal-font-weight);
   --prose-font-size:            var(--medium-font-size);
-  --prose-letter-spacing:       var(--medium-letter-spacing);  
-  --prose-line-height:          var(--medium-line-height);
+  --prose-letter-spacing:       var(--small-letter-spacing);  
+  --prose-line-height:          var(--small-line-height);
   --prose-margin:               .75rem 0 .75rem;
 
-  --footer-font-family:        var(--secondary-font-family);
   --footer-font-weight:        var(--normal-font-weight);
   --footer-font-size:          var(--small-font-size);
   --footer-letter-spacing:     var(--small-letter-spacing);  
