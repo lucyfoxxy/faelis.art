@@ -23,7 +23,7 @@
 }
 .site-footer {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
   box-sizing: border-box;
   min-width: max-content;
   max-width: none;
