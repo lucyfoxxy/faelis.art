@@ -1,3 +1,5 @@
+import { createGalleryItemsBySlug } from './galleryData';
+
 const metas = import.meta.glob('@Content/galleries/index/*.json', {
   query: '?json',
   eager: true,
@@ -9,50 +11,7 @@ const assetModules = import.meta.glob('@Assets/galleries/**/*', {
   eager: true,
 });
 
-const urlByFile = {};
-for (const [abs, url] of Object.entries(assetModules)) {
-  const name = abs.split('/').pop(); // z.B. 'full-<id>.webp'
-  urlByFile[name] = url;
-}
-
-
-const urlFromId = (id, kind) =>
-  urlByFile[`${kind}-${id}.webp`]
-  || urlByFile[`${kind}-${id}.avif`]
-  || urlByFile[`${kind}-${id}.jpg`]
-  || urlByFile[`${kind}-${id}.jpeg`]
-  || urlByFile[`${kind}-${id}.png`];
-
-const urlFromJsonPath = (p) => p ? urlByFile[p.split('/').pop()] : undefined;
-
-const itemsBySlug = new Map();
-for (const [path, data] of Object.entries(metas)) {
-  const m = path.match(/\/index\/([^/]+)\.json$/);
-  if (!m) continue;
-  const slug = m[1];
-  const items = (data?.items ?? []).map((it) => {
-    // id bevorzugen; sonst aus Dateinamen extrahieren
-    const id = it.id
-      || it.full?.match(/full-(.+)\.\w+$/)?.[1]
-      || it.thumb?.match(/thumb-(.+)\.\w+$/)?.[1];
-
-    const fullUrl  = id ? urlFromId(id, 'full')  : urlFromJsonPath(it.full);
-    const thumbUrl = id ? urlFromId(id, 'thumb') : urlFromJsonPath(it.thumb);
-
-    // Warnung beim Debuggen hilft, Tippfehler sofort zu sehen
-    if (!fullUrl)  console.warn('[gallery] missing full asset for', id ?? it.full);
-    if (!thumbUrl) console.warn('[gallery] missing thumb asset for', id ?? it.thumb);
-
-    return {
-      ...it,
-      id,
-      full:  fullUrl  || it.full,   // Fallback: originaler String
-      thumb: thumbUrl || it.thumb,
-    };
-  });
-
-  itemsBySlug.set(slug, items);
-}
+const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
 
 export default function initGalleryPage() {
   const root = document.querySelector('.gallery[data-slug]');
@@ -156,7 +115,7 @@ export default function initGalleryPage() {
   });
 
   // Thumbnails rendern
-  thumbsWrap.innerHTML = '';
+  const fragment = document.createDocumentFragment();
   order.forEach((itemIdx, orderIdx) => {
     const item = items[itemIdx];
     const a = document.createElement('button');
@@ -173,9 +132,9 @@ export default function initGalleryPage() {
  
     a.appendChild(t);
     a.addEventListener('click', () => { show(orderIdx); run(); });
-    thumbsWrap.appendChild(a);
+    fragment.appendChild(a);
   });
-
+  thumbsWrap.replaceChildren(fragment);
   // Galerie starten
   show(0);
   if (autoplay) run();

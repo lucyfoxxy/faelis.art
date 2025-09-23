@@ -34,44 +34,48 @@ const formatPrice = (it: PriceItem) => {
   return "auf Anfrage";
 };
 ---
-<h1>{title}</h1>
-<p>Here you gonna find the detailed pricing for each category. 
-<br>Shown prices are approximates and final prices may vary depending on the effort needed.
-</p>
-{prices.categories.map((cat) => (
-  <section class="table__section content-card section">
-    <h2 class="table__title">{cat.title}</h2>
-    {cat.subtitle && <p class="table__subtitle">{cat.subtitle}</p>}
-    <div class="table__wrap">
-      <table class="table">
-        <colgroup>
-          <col style={`width:${COLS[0]}`} />
-          <col style={`width:${COLS[1]}`} />
-        </colgroup>
+<section class="content-head section">
+  <h1>{title}</h1>
+  <p>Here you gonna find the detailed pricing for each category.<br>
+  Shown prices are approximates and final prices may vary depending on the effort needed.</p>
+</section>
 
-        <thead>
-          <tr>
-            <th class="table__th table__th--left">Type</th>
-            <th class="table__th table__th--right">Price</th>
-          </tr>
-        </thead>
+<section class="content-layout section">
+  {prices.categories.map((cat) => (
+    <section class="table__section content-card">
+      <h2 class="table__title">{cat.title}</h2>
+      {cat.subtitle && <p class="table__subtitle">{cat.subtitle}</p>}
+      <div class="table__wrap">
+        <table class="table">
+          <colgroup>
+            <col style={`width:${COLS[0]}`} />
+            <col style={`width:${COLS[1]}`} />
+          </colgroup>
 
-        <tbody>
-          {cat.items.map((it, i) => (
-            <tr class={`table__tr ${i % 2 ? "is-alt" : ""}`}>
-              <td class="table__td">
-                {it.link ? <a href={it.link} rel="noopener" target="_blank">{it.name}</a> : it.name}
-                {it.unit && <span class="table__unit"> / {it.unit}</span>}
-              </td>
-
-              <td class="table__td table__td--right">
-                {it.note && <span class="table__note-chip">{it.note}</span>}
-                <span class="table__price">{formatPrice(it)}</span>                
-              </td>
+          <thead>
+            <tr>
+              <th class="table__th table__th--left">Type</th>
+              <th class="table__th table__th--right">Price</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  </section>
-))}
+          </thead>
+
+          <tbody>
+            {cat.items.map((it, i) => (
+              <tr class={`table__tr ${i % 2 ? "is-alt" : ""}`}>
+                <td class="table__td">
+                  {it.link ? <a href={it.link} rel="noopener" target="_blank">{it.name}</a> : it.name}
+                  {it.unit && <span class="table__unit"> / {it.unit}</span>}
+                </td>
+
+                <td class="table__td table__td--right">
+                  {it.note && <span class="table__note-chip">{it.note}</span>}
+                  <span class="table__price">{formatPrice(it)}</span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  ))}
+</section>

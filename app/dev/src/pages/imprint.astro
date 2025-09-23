@@ -1,9 +1,8 @@
 ---
 import Layout from '@Design/Layout.astro';
-import ImprintPage from '@Pages/ImprintPage.astro';
+import ImprintPage, { title } from '@Pages/ImprintPage.astro';
 export const prerender = true;
-import title from '@Pages/ImprintPage.astro';
 ---
-<Layout title = {title}>
+<Layout {title}>
   <ImprintPage />
 </Layout>

@@ -27,9 +27,13 @@
   font-display: swap;
 }
 body { 
-  font-family: 'Fuzzy Bubbles';
+  font-family: var(--primary-font-family);
   
   color: var(--primary-text-color);
+}
+
+.site-footer {
+  font: normal normal var(--footer-font-weight) normal var(--footer-font-size) var(--footer-line-height) var(--footer-font-family);
 }
 
 /* Headings im Panel im Display-Font */

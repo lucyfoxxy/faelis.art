@@ -23,3 +23,5 @@ package-lock.json
 **/prod/src/**
 **/prod/public/
 **/prod/public/**
+**/patch.diff
+**/app_dev_tree.txt

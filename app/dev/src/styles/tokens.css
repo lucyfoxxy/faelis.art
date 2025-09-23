@@ -68,7 +68,7 @@
   --bold-font-weight:           700;
 
   /* skalierbare, generische Typo-Skala */
-  --small-font-size:            clamp( .9rem, calc( .4rem +  .5vw), 1.1rem);
+  --small-font-size:            clamp( .9rem, calc( .4rem +  .5vw), 1.0rem);
   --medium-font-size:           clamp(1.1rem, calc( .6rem +  .8vw), 1.2rem);
   --large-font-size:            clamp(1.3rem, calc(1.1rem + 1.1vw), 1.6rem);
   --xlarge-font-size:           clamp(1.7rem, calc(1.2rem + 1.6vw), 2.4rem);

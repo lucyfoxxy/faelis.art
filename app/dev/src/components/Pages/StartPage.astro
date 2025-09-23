@@ -15,24 +15,25 @@ const autoplay = true;
 const interval = 5000;   // 5s
 const random   = true;
 const isExternalLink = (href: string) => href.startsWith('http');
+export const title = 'Home - Faelis Paw Artistry'
 ---
 <section class="intro">
-  <section class="brand section">
-    <img class="brand__mascot" src={ASSETS.mascot.src}  alt="" />
-    <img class="brand__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
+  <section class="intro__hero section">
+    <img class="intro__mascot" src={ASSETS.mascot.src}  alt="" />
+    <img class="intro__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
   </section>
 
-  <section class="content-grid section">
+  <section class="content-layout content-layout--split section">
     <section class="content-card">
       <h1>Welcome,</h1>
-      <div class="prose"> 
+      <div class="prose">
         <p>My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
-        <p>Whether you need some logo for your website, 
+        <p>Whether you need some logo for your website,
           a ref-sheet / badge for your fursona or something completely different <em>(maybe...something kinky? :P)</em>
            — you found the right artistic kitten for all sorts of creative tasks! </p>
         <p><i>Take a look to my <a href="/galleries">Art Gallery</a></i> to get an idea of my personal art style.</p>
       </div>
-      <h2 class="content-grid-headline"><i>Faelis Skribblekitty 💜</i></h2>
+      <h2><i>Faelis Skribblekitty 💜</i></h2>
     </section>
 
     <section class="content-card">

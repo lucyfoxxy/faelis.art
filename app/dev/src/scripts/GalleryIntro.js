@@ -1,3 +1,5 @@
+import { createGalleryItemsBySlug } from './galleryData';
+
 const metas = import.meta.glob('@Content/galleries/index/bestof.json', {
   query: '?json',
   eager: true,
@@ -9,49 +11,7 @@ const assetModules = import.meta.glob('@Assets/galleries/bestof/*', {
   eager: true,
 });
 
-const urlByFile = {};
-for (const [abs, url] of Object.entries(assetModules)) {
-  const name = abs.split('/').pop(); // z.B. 'full-<id>.webp'
-  urlByFile[name] = url;
-}
-
-const urlFromId = (id, kind) =>
-  urlByFile[`${kind}-${id}.webp`]
-  || urlByFile[`${kind}-${id}.avif`]
-  || urlByFile[`${kind}-${id}.jpg`]
-  || urlByFile[`${kind}-${id}.jpeg`]
-  || urlByFile[`${kind}-${id}.png`];
-
-const urlFromJsonPath = (p) => p ? urlByFile[p.split('/').pop()] : undefined;
-
-const itemsBySlug = new Map();
-for (const [path, data] of Object.entries(metas)) {
-  const m = path.match(/\/index\/([^/]+)\.json$/);
-  if (!m) continue;
-  const slug = m[1];
-  const items = (data?.items ?? []).map((it) => {
-    // id bevorzugen; sonst aus Dateinamen extrahieren
-    const id = it.id
-      || it.full?.match(/full-(.+)\.\w+$/)?.[1]
-      || it.thumb?.match(/thumb-(.+)\.\w+$/)?.[1];
-
-    const fullUrl  = id ? urlFromId(id, 'full')  : urlFromJsonPath(it.full);
-    const thumbUrl = id ? urlFromId(id, 'thumb') : urlFromJsonPath(it.thumb);
-
-    // Warnung beim Debuggen hilft, Tippfehler sofort zu sehen
-    if (!fullUrl)  console.warn('[gallery] missing full asset for', id ?? it.full);
-    if (!thumbUrl) console.warn('[gallery] missing thumb asset for', id ?? it.thumb);
-
-    return {
-      ...it,
-      id,
-      full:  fullUrl  || it.full,   // Fallback: originaler String
-      thumb: thumbUrl || it.thumb,
-    };
-  });
-
-  itemsBySlug.set(slug, items);
-}
+const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
 
 export default function initGalleryIntro() {
   const root = document.querySelector('.gallery[data-slug]');

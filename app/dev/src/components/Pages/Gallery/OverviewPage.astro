@@ -1,18 +1,22 @@
 ---
 import manifest from '@Content/galleries/manifest.json';
 ---
-<section>
+<section class="content-head section">
   <h1>Art Gallery</h1>
+</section>
 
-  <div class="gallery-grid">
-    {manifest.galleries.map(({ slug, title }) => (
-      <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
-        <div class="gallery-card-thumb" data-slug={slug}></div>
-        <h3>{title}</h3>
-      </a>
-    ))}
-  </div>
-</section>  
+<section class="content-layout section">
+  <section class="content-card">
+    <div class="gallery-grid">
+      {manifest.galleries.map(({ slug, title }) => (
+        <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
+          <div class="gallery-card-thumb" data-slug={slug}></div>
+          <h3>{title}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+</section>
 
 <script>
   import initGalleryCovers from "@Scripts/GalleryOverview.js";
