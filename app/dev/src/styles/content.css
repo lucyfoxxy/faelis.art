@@ -2,7 +2,7 @@
 /* === Depends on: tokens.css (vars), site.css (layout) === */
 
 /* === TYPO FLOW (Panel) === */
-.panel p, .panel .prose { hyphens: auto; }
+.panel :where(p, .prose) { hyphens: auto; }
 
 /* === Section === */
 .section + .section { margin-top: var(--content-margin); }
@@ -41,9 +41,19 @@
   -webkit-backdrop-filter: blur(var(--content-blur)); 
   border-radius: var(--large-radius);          
 }
-.prose > * + * { margin-top: .65rem; }             /* Grundrhythmus */
-.prose ul { padding-left: 1.2em; margin: .5rem 0 0; }
-.prose li + li { margin-top: .25rem; }
+.prose {
+  display: grid;
+  gap: var(--prose-flow-spacing);
+  margin-block: var(--prose-flow-spacing);
+}
+.prose:first-child { margin-top: 0; }
+.prose > * { margin: 0; }
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.2em;
+  margin: 0;
+}
+.prose li + li { margin-top: calc(var(--prose-flow-spacing) * .5); }
 
 .content-media {
   display: grid;
