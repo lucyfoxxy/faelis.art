@@ -7,8 +7,6 @@
 .table__subtitle {
   margin: .15rem 0 .75rem 0;
   opacity: .85;
-  font-size: var(--small-font-size);
-  line-height: var(--medium-line-height);
  }
 .table__wrap { 
   overflow-x: clip; 
@@ -29,7 +27,6 @@
 .table__th {
   background: color-mix(in oklab, var(--panel-background, #000) 65%, white 1%);
   color: var(--primary-text-color);
-  font-weight: 700;
 }
 .table__th--left  { border-top-left-radius: var(--medium-radius);  text-align: left; }
 .table__th--right { border-top-right-radius: var(--medium-radius); text-align: right; }
@@ -52,8 +49,6 @@
   margin-inline-end: .5rem;
   padding: .15rem .5rem;
   border-radius: 999px;
-  font-size: var(--small-font-size);
-  line-height: var(--small-line-height);
   opacity: .9;
   background: color-mix(in oklab, var(--primary-background-color) 70%, black 20%);
   outline: 2px solid color-mix(in oklab, var(--primary-color) 50%, white 10%);

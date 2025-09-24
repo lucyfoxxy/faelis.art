@@ -28,6 +28,7 @@
 }
 body {
   font-family: var(--primary-font-family);
+  font-weight: var(--normal-font-weight);
   font-size: var(--medium-font-size);
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
@@ -35,73 +36,58 @@ body {
 }
 
 .site-nav a {
-  font-size: var(--navbar-font-size);
-  font-weight: var(--navbar-font-weight);
-  line-height: var(--navbar-line-height);
-  letter-spacing: var(--navbar-letter-spacing);
+  font-weight: var(--bold-font-weight);
+  line-height: var(--medium-line-height);
+  letter-spacing: var(--medium-letter-spacing);
 }
 
 .site-footer {
-  font-family: var(--secondary-font-family);
-  font-weight: var(--normal-font-weight);
   font-size: var(--small-font-size);
-  line-height: var(--medium-line-height);
-  letter-spacing: var(--small-letter-spacing);
+  line-height: var(--small-line-height);
+  letter-spacing: var(--medium-letter-spacing);
 }
 
-/* Headings im Panel im Display-Font */
-.panel :where(h1,h2), .site-nav a{
-  font-family: var(--primary-font-family);
+:where(h1,h2,h3,.table__th,.table__price,.table__note-chip, .site-nav a){
+   font-family: var(--secondary-font-family); 
 }
-.panel :where(h3,.prose,p){
-  font-family: var(--secondary-font-family);
-}
-.panel :where(h1,h2,h3) {
-  margin: 0;
-}
-.panel h1 {
+
+.panel :where(h1,h2,h3) {  margin: 0; }
+.panel :where(h1) {
   font-weight: var(--bold-font-weight);
   font-size: var(--xlarge-font-size);
   line-height: var(--xlarge-line-height);
   letter-spacing: var(--large-letter-spacing);
 }
-.panel h2 {
-  font-weight: var(--normal-font-weight);
+.panel :where(h2) { 
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
   letter-spacing: var(--medium-letter-spacing);
 }
-.panel h3 {
+.panel :where(h3) {
   font-weight: var(--bold-font-weight);
-  font-size: var(--medium-font-size);
-  line-height: var(--medium-line-height);
-  letter-spacing: var(--small-letter-spacing);
+   line-height: var(--medium-line-height);
+ }
+
+.panel :where(p) {  margin: 0 0 var(--prose-flow-spacing);  }
+.panel :where(.prose p) {  margin: 0; }
+.panel :where(a) {  
+  color:var(--secondary-text-color); 
+  text-underline-offset:.15em;  
 }
-.panel :where(p, .prose) {
-  font-weight: var(--normal-font-weight);
-  font-size: var(--medium-font-size);
-  line-height: var(--small-line-height);
-  letter-spacing: var(--small-letter-spacing);
-}
-.panel p {
-  margin: 0 0 var(--prose-flow-spacing);
-}
-.panel .prose p {
-  margin: 0;
-}
-.panel a { color:var(--link); text-underline-offset:.15em; }
-.panel a:hover, .panel a:focus-visible { color:var(--link-hover); }
-.panel ul, .panel ol {
+.panel :where(a:hover,a:focus-visible) {  color:var(--accent-color);  }
+.panel :where(ul,ol) {
   padding-inline-start: 1.2rem;
   margin: var(--prose-flow-spacing) 0;
 }
-.panel li {
-  margin: calc(var(--prose-flow-spacing) * .35) 0;
-}
-.panel blockquote{
+.panel :where(li) {  margin: calc(var(--prose-flow-spacing) * .35) 0;  }
+.panel :where(blockquote){
   margin: var(--prose-flow-spacing) 0;
   padding: calc(var(--prose-flow-spacing) * .75) var(--prose-flow-spacing);
   border-left:3px solid var(--link);
   background: color-mix(in oklab, var(--content-background), black 10%);
   border-radius:.5rem;
 }
+
+.table__note-chip {  font-size: var(--small-font-size);  }
+.table__subtitle { line-height: var(--medium-line-height); }
+.table__th { font-weight: var(--bold-font-weight); }

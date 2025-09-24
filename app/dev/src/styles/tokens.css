@@ -43,10 +43,6 @@
   --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
   --navbar-margin:              0 var(--container-gap);
   --navbar-gap:                 clamp(.75rem, 2vw, 2rem);
-  --navbar-font-weight:         var(--bold-font-weight);
-  --navbar-font-size:           var(--medium-font-size);
-  --navbar-letter-spacing:      var(--medium-letter-spacing);
-  --navbar-line-height:         var(--medium-line-height);
 
   --panel-background:           var(--primary-background-color); 
   --panel-padding:              clamp(1.5rem, 2vw, 3rem);
@@ -65,35 +61,32 @@
   --brand-gap:                  calc(var(--content-gap) * .85);
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
-  /* === Fonts === */
-  --primary-font-family:        'Fuzzy Bubbles', var(--secondary-font-family);
-  --secondary-font-family:      Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-
-  --normal-font-weight:         400;
-  --bold-font-weight:           700;
-
-  /* skalierbare, generische Typo-Skala */
-  --small-font-size:            clamp(.95rem,  .54rem + .4vw, 1.05rem);
-  --medium-font-size:           clamp(1.08rem, .66rem + .55vw, 1.2rem);
-  --large-font-size:            clamp(1.38rem, .85rem + .9vw, 1.65rem);
-  --xlarge-font-size:           clamp(1.78rem, 1.1rem + 1.3vw, 2.2rem);
-
-  /* Zeilenhöhen */
-  --small-line-height:          1.5;
-  --medium-line-height:         1.35;
-  --large-line-height:          1.2;
-  --xlarge-line-height:         1.15;
-
-  /* Laufweiten */
-  --small-letter-spacing:       .005em;
-  --medium-letter-spacing:      .02em;
-  --large-letter-spacing:       .04em;
-  --prose-flow-spacing:         clamp(.65rem, .5rem + .3vw, .95rem);
   /* === Gallery === */
   --thumb:                      clamp(120px, 12vw, 164px);
   --gallery-frame-size:         clamp(300px, 50vh, 540px);                       
   --gallery-frame-size-compact: clamp(160px, 25vh, 320px);
 
+  /* === Fonts === */
+  --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --secondary-font-family:      'Fuzzy Bubbles', var(--primary-font-family);
+
+  --normal-font-weight:         400;
+  --bold-font-weight:           700;
+
+  --small-font-size:            clamp(.95rem,  .54rem + .4vw, 1.05rem);
+  --medium-font-size:           clamp(1.08rem, .66rem + .55vw, 1.2rem);
+  --large-font-size:            clamp(1.38rem, .85rem + .9vw, 1.65rem);
+  --xlarge-font-size:           clamp(1.78rem, 1.1rem + 1.3vw, 2.2rem);
+
+  --small-line-height:          1.5;
+  --medium-line-height:         1.35;
+  --large-line-height:          1.2;
+  --xlarge-line-height:         1.15;
+
+  --small-letter-spacing:       .005em;
+  --medium-letter-spacing:      .02em;
+  --large-letter-spacing:       .04em;
+  --prose-flow-spacing:         clamp(.65rem, .5rem + .3vw, .95rem);
 
 
 }
