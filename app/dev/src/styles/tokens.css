@@ -73,60 +73,22 @@
   --bold-font-weight:           700;
 
   /* skalierbare, generische Typo-Skala */
-  --small-font-size:            clamp( .9rem, calc( .4rem +  .5vw), 1.1rem);
-  --medium-font-size:           clamp(1.1rem, calc( .6rem +  .8vw), 1.15rem);
-  --large-font-size:            clamp(1.3rem, calc(1.1rem + 1.1vw), 1.7rem);
-  --xlarge-font-size:           clamp(1.7rem, calc(1.2rem + 1.6vw), 2.25rem);
+  --small-font-size:            clamp(.95rem,  .54rem + .4vw, 1.05rem);
+  --medium-font-size:           clamp(1.08rem, .66rem + .55vw, 1.2rem);
+  --large-font-size:            clamp(1.38rem, .85rem + .9vw, 1.65rem);
+  --xlarge-font-size:           clamp(1.78rem, 1.1rem + 1.3vw, 2.2rem);
 
   /* Zeilenhöhen */
-  --small-line-height:          1.25;
+  --small-line-height:          1.5;
   --medium-line-height:         1.35;
   --large-line-height:          1.2;
   --xlarge-line-height:         1.15;
 
   /* Laufweiten */
-  --small-letter-spacing:       .01em;
+  --small-letter-spacing:       .005em;
   --medium-letter-spacing:      .02em;
-  --large-letter-spacing:       .075em;
-
-
-  /* domänenspezifisch (Beispiele) */
-  --title-font-family:          var(--primary-font-family);
-  --title-font-weight:          var(--bold-font-weight);
-  --title-font-size:            var(--xlarge-font-size);
-  --title-letter-spacing:       var(--large-letter-spacing);
-  --title-line-height:          var(--xlarge-line-height);
-
-
-  --subtitle-font-family:       var(--primary-font-family);
-  --subtitle-font-weight:       var(--normal-font-weight);
-  --subtitle-font-size:         var(--large-font-size);
-  --subtitle-letter-spacing:    var(--medium-letter-spacing);
-  --subtitle-line-height:       var(--large-line-height);
-
-
-  --heading-font-family:       var(--secondary-font-family);
-  --heading-font-weight:       var(--bold-font-weight);
-  --heading-font-size:         var(--medium-font-size);
-  --heading-letter-spacing:    var(--medium-letter-spacing);
-  --heading-line-height:       var(--medium-line-height);
-
-
-
-  
-
-  --prose-font-weight:          var(--normal-font-weight);
-  --prose-font-size:            var(--medium-font-size);
-  --prose-letter-spacing:       var(--small-letter-spacing);  
-  --prose-line-height:          var(--small-line-height);
-  --prose-margin:               .75rem 0 .75rem;
-
-  --footer-font-weight:        var(--normal-font-weight);
-  --footer-font-size:          var(--small-font-size);
-  --footer-letter-spacing:     var(--small-letter-spacing);  
-  --footer-line-height:        var(--small-line-height);  
-
-
+  --large-letter-spacing:       .04em;
+  --prose-flow-spacing:         clamp(.65rem, .5rem + .3vw, .95rem);
   /* === Gallery === */
   --thumb:                      clamp(120px, 12vw, 164px);
   --gallery-frame-size:         clamp(300px, 50vh, 540px);                       
