@@ -26,19 +26,27 @@
   font-style: normal;
   font-display: swap;
 }
-body { 
+body {
   font-family: var(--primary-font-family);
-  
+  font-size: var(--medium-font-size);
+  line-height: var(--small-line-height);
+  letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
 }
 
 .site-nav a {
   font-size: var(--navbar-font-size);
   font-weight: var(--navbar-font-weight);
+  line-height: var(--navbar-line-height);
+  letter-spacing: var(--navbar-letter-spacing);
 }
 
 .site-footer {
-  font: normal normal var(--footer-font-weight) normal var(--footer-font-size) var(--footer-line-height) var(--secondary-font-family);
+  font-family: var(--secondary-font-family);
+  font-weight: var(--normal-font-weight);
+  font-size: var(--small-font-size);
+  line-height: var(--medium-line-height);
+  letter-spacing: var(--small-letter-spacing);
 }
 
 /* Headings im Panel im Display-Font */
@@ -48,39 +56,52 @@ body {
 .panel :where(h3,.prose,p){
   font-family: var(--secondary-font-family);
 }
+.panel :where(h1,h2,h3) {
+  margin: 0;
+}
 .panel h1 {
-  font-weight: var(--title-font-weight);
-  font-size: var(--title-font-size);
-  line-height: var(--title-line-height);
-  letter-spacing: var(--title-letter-spacing);
-
+  font-weight: var(--bold-font-weight);
+  font-size: var(--xlarge-font-size);
+  line-height: var(--xlarge-line-height);
+  letter-spacing: var(--large-letter-spacing);
 }
 .panel h2 {
-  font-weight: var(--subtitle-font-weight);
-  font-size: var(--subtitle-font-size);
-  line-height: var(--subtitle-line-height);
-  letter-spacing: var(--subtitle-letter-spacing);
+  font-weight: var(--normal-font-weight);
+  font-size: var(--large-font-size);
+  line-height: var(--large-line-height);
+  letter-spacing: var(--medium-letter-spacing);
 }
 .panel h3 {
-  font-weight: var(--heading-font-weight);
-  font-size: var(--heading-font-size);
-  line-height: var(--heading-line-height);
-  letter-spacing: var(--heading-letter-spacing);
+  font-weight: var(--bold-font-weight);
+  font-size: var(--medium-font-size);
+  line-height: var(--medium-line-height);
+  letter-spacing: var(--small-letter-spacing);
 }
-.panel .prose {
-  font-weight: var(--prose-font-weight);
-  font-size: var(--prose-font-size);
-  
-  letter-spacing: var(--prose-letter-spacing);
-  margin: var(--prose-margin);
+.panel :where(p, .prose) {
+  font-weight: var(--normal-font-weight);
+  font-size: var(--medium-font-size);
+  line-height: var(--small-line-height);
+  letter-spacing: var(--small-letter-spacing);
+}
+.panel p {
+  margin: 0 0 var(--prose-flow-spacing);
+}
+.panel .prose p {
+  margin: 0;
 }
 .panel a { color:var(--link); text-underline-offset:.15em; }
 .panel a:hover, .panel a:focus-visible { color:var(--link-hover); }
-.panel ul, .panel ol { padding-inline-start:1.2rem; margin:.5rem 0 .8rem; }
-.panel li { margin:.2rem 0; }
+.panel ul, .panel ol {
+  padding-inline-start: 1.2rem;
+  margin: var(--prose-flow-spacing) 0;
+}
+.panel li {
+  margin: calc(var(--prose-flow-spacing) * .35) 0;
+}
 .panel blockquote{
-  margin:.8rem 0; padding:.6rem .8rem;
+  margin: var(--prose-flow-spacing) 0;
+  padding: calc(var(--prose-flow-spacing) * .75) var(--prose-flow-spacing);
   border-left:3px solid var(--link);
-  background: color-mix(in oklab, var(--content-bg), black 10%);
+  background: color-mix(in oklab, var(--content-background), black 10%);
   border-radius:.5rem;
 }
