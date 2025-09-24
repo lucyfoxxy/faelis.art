@@ -9,6 +9,13 @@ import '@Styles/table.css';
 import { ASSETS } from '@Design/Assets.astro';
 
 const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" } = Astro.props;
+
+const navLinks = [
+  { href: '/', label: 'Home', includeInHeader: false },
+  { href: '/galleries', label: 'Gallery', includeInHeader: true },
+  { href: '/pricing', label: 'Pricing', includeInHeader: true },
+  { href: '/imprint', label: 'Imprint', includeInHeader: true }
+];
 ---
 <html lang="en">
   <head>
@@ -27,9 +34,11 @@ const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" }
     <header class="site-header">
       <a href="/"><img class="header-logo" src={ASSETS.logo.src} alt="Faelis.Art" /></a>
       <nav class="site-nav">
-         <a href="/galleries">Gallery</a>
-         <a href="/pricing">Pricing</a>
-         <a href="/imprint">Imprint</a>
+        {navLinks
+          .filter((link) => link.includeInHeader)
+          .map((link) => (
+            <a href={link.href}>{link.label}</a>
+          ))}
       </nav>
     </header>
 
@@ -40,7 +49,28 @@ const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" }
     </div>
 
     <footer class="site-footer">
-      © {new Date().getFullYear()} faelis.ART — Site made with ♥ by <a href="https://lucy.foxx.pet/">Lucy Foxx</a> — <a href="/imprint">Imprint</a>
+      <div class="site-footer__column site-footer__column--left">
+        © <span class="site-footer__year" data-current-year></span> by faelis.art
+      </div>
+      <nav class="site-footer__column site-footer__column--middle" aria-label="Site map">
+        <p class="site-footer__heading">Site Map</p>
+        <ul class="site-footer__nav">
+          {navLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <div class="site-footer__column site-footer__column--right">
+        Site made with ♥ by <a href="https://lucy.foxx.pet/">Lucy Foxx</a>
+      </div>
     </footer>
+    <script is:inline>
+      const yearEl = document.querySelector('[data-current-year]');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear().toString();
+      }
+    </script>
   </body>
 </html>

@@ -74,7 +74,7 @@ body {
   color:var(--secondary-text-color); 
   text-underline-offset:.15em;  
 }
-.panel :where(a:hover,a:focus-visible) {  color:var(--accent-color);  }
+:where(a:hover,a:focus-visible) {  color:var(--accent-color);  }
 .panel :where(ul,ol) {
   padding-inline-start: 1.2rem;
   margin: var(--prose-flow-spacing) 0;
