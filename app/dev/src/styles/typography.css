@@ -34,23 +34,19 @@ body {
   letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
 }
-
-.site-nav a {
+:where(em,i) { font-style: italic; }
+.site-nav a,.site-footer,.panel :where(h2) { letter-spacing: var(--medium-letter-spacing); }
+.site-nav a,.panel :where(h3) {
   font-weight: var(--bold-font-weight);
-  line-height: var(--medium-line-height);
-  letter-spacing: var(--medium-letter-spacing);
+  line-height: var(--medium-line-height); 
 }
-
-.site-footer {
-  font-size: var(--small-font-size);
-  line-height: var(--small-line-height);
-  letter-spacing: var(--medium-letter-spacing);
-}
+.site-footer,.table__note-chip { font-size: var(--small-font-size); }
+.table__subtitle { line-height: var(--medium-line-height); }
+.table__th { font-weight: var(--bold-font-weight); }
 
 :where(h1,h2,h3,.table__th,.table__price,.table__note-chip, .site-nav a){
    font-family: var(--secondary-font-family); 
 }
-
 .panel :where(h1,h2,h3) {  margin: 0; }
 .panel :where(h1) {
   font-weight: var(--bold-font-weight);
@@ -61,24 +57,21 @@ body {
 .panel :where(h2) { 
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
-  letter-spacing: var(--medium-letter-spacing);
+  
 }
-.panel :where(h3) {
-  font-weight: var(--bold-font-weight);
-   line-height: var(--medium-line-height);
- }
+.panel :where(h3){color: var(--secondary-text-color);}
 
 .panel :where(p) {  margin: 0 0 var(--prose-flow-spacing);  }
 .panel :where(.prose p) {  margin: 0; }
-.panel :where(a) {  
-  color:var(--secondary-text-color); 
-  text-underline-offset:.15em;  
-}
-:where(a:hover,a:focus-visible) {  color:var(--accent-color);  }
+
+a {text-decoration: none;}
+a:hover,a:focus-visible { color:var(--primary-color); transition: color .2s ease; }
+
 .panel :where(ul,ol) {
   padding-inline-start: 1.2rem;
   margin: var(--prose-flow-spacing) 0;
 }
+
 .panel :where(li) {  margin: calc(var(--prose-flow-spacing) * .35) 0;  }
 .panel :where(blockquote){
   margin: var(--prose-flow-spacing) 0;
@@ -88,6 +81,3 @@ body {
   border-radius:.5rem;
 }
 
-.table__note-chip {  font-size: var(--small-font-size);  }
-.table__subtitle { line-height: var(--medium-line-height); }
-.table__th { font-weight: var(--bold-font-weight); }

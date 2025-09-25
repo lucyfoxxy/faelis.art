@@ -49,24 +49,9 @@ const navLinks = [
     </div>
 
     <footer class="site-footer">
-      <div class="site-footer__column site-footer__column--left">
-        © <span class="site-footer__year" data-current-year></span> by faelis.art
-      </div>
-      <nav class="site-footer__column site-footer__column--middle" aria-label="Site map">
-        <p class="site-footer__heading">Site Map</p>
-        <ul class="site-footer__nav">
-          {navLinks.map((link) => (
-            <li>
-              <a href={link.href}>{link.label}</a>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div class="site-footer__column site-footer__column--right">
-        Site made with ♥ by <a href="https://lucy.foxx.pet/">Lucy Foxx</a>
-      </div>
+      ©<span data-current-year></span>&nbsp;faelis.art – Site made with ♥ by&nbsp;<a href="https://lucy.foxx.pet/">Lucy Foxx</a>
     </footer>
-    <script is:inline>
+    <script>
       const yearEl = document.querySelector('[data-current-year]');
       if (yearEl) {
         yearEl.textContent = new Date().getFullYear().toString();

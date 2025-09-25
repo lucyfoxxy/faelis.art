@@ -89,10 +89,10 @@
       "title": "Button & Sticker Prints",
       "subtitle": "Assortment of designs available · Prices excl. shipping · Custom design (e.g. your fursona) possible on request!",
       "items": [
-        { "name": "1–9 pcs.", "price": 3.5, "note": "each" },
-        { "name": "10–19 pcs.", "price": 2.5, "note": "each" },
-        { "name": "20–49 pcs.", "price": 1.5, "note": "each" },
-        { "name": "50+ pcs.", "price": 1.0, "note": "each" },
+        { "name": "1–9 pcs.", "price": 4, "note": "each" },
+        { "name": "10–19 pcs.", "price": 3, "note": "each" },
+        { "name": "20–49 pcs.", "price": 2, "note": "each" },
+        { "name": "50+ pcs.", "price": 1, "note": "each" },
         { "name": "Custom design", "price": 30, "note": "from" }
       ]
     }

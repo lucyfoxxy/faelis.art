@@ -21,7 +21,9 @@
   color: inherit;
   transition: color .2s ease;
 }
-
+.site-nav a:hover,a:focus-visible {
+  color: var(--accent-color);
+}
 /* === CONTAINER === */
 .container {
   flex: 1 0 auto;
@@ -46,7 +48,13 @@ main.panel {
 }
 
 /* === Header & Footer === */
-.site-header, .site-footer {
+.site-header,
+.site-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  flex-wrap: nowrap;
   padding: var(--navbar-padding);
   background: var(--navbar-background);
   box-shadow: var(--navbar-shadow);
@@ -54,91 +62,22 @@ main.panel {
   -webkit-backdrop-filter: blur(var(--navbar-blur));
   color: var(--primary-text-color);
   outline: 1px solid var(--outline-color);
-  gap: var(--navbar-gap);
+  
   margin-inline: 0;
 }
 .site-header {
-  display: flex;                
-  align-items: center;          
-  justify-content: space-around;  
   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
   margin-block: 0 var(--navbar-gap);
+  justify-content: space-around;
+  gap: var(--navbar-gap);
 }
 .site-footer {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  box-sizing: border-box;
   width: 100%;
   border-radius: var(--medium-radius) var(--medium-radius) 0 0;
   margin-block: var(--navbar-gap) 0;
-}
-
-.site-footer__column {
-  display: flex;
-  flex-direction: row;
-  gap: .35rem;
-  font-size: var(--small-font-size);
-}
-
-.site-footer__column--left {
-  align-items: flex-start;
-  text-align: left;
-}
-
-.site-footer__column--middle {
-  align-items: center;
-  text-align: center;
-}
-
-.site-footer__column--right {
-  align-items: flex-end;
-  text-align: right;
-}
-
-.site-footer__heading {
-  margin: 0;
-  font-weight: var(--bold-font-weight);
-  letter-spacing: var(--medium-letter-spacing);
-}
-
-.site-footer__nav {
-  display: flex;
-  flex-direction: row;
-  gap: .25rem;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.site-footer__nav a {
+  justify-content: center;
   text-decoration: none;
-  color: inherit;
-  transition: color .2s ease;
+  text-shadow: var(--primary-shadow-color);
 }
 
-.site-footer__year {
-  min-width: 3ch;
-  display: inline-block;
-}
-
-@media (max-width: 780px) {
-  .site-footer {
-    grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-  }
-
-  .site-footer__column,
-  .site-footer__column--left,
-  .site-footer__column--middle,
-  .site-footer__column--right {
-    align-items: center;
-    text-align: center;
-  }
-
-  .site-footer__nav {
-    width: 100%;
-  }
-}
 

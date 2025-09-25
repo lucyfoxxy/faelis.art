@@ -22,7 +22,7 @@
 }
 .table__th,
 .table__td {
-  padding-block: .65rem .6rem;
+  padding-block: .6rem .6rem;
   padding-inline: var(--panel-padding); }              
 .table__th {
   background: color-mix(in oklab, var(--panel-background, #000) 65%, white 1%);
@@ -51,7 +51,7 @@
   border-radius: 999px;
   opacity: .9;
   background: color-mix(in oklab, var(--primary-background-color) 70%, black 20%);
-  outline: 2px solid color-mix(in oklab, var(--primary-color) 50%, white 10%);
+  outline: 1px solid color-mix(in oklab, var(--primary-color) 50%, white 10%);
 }
 .table__unit {
   opacity: .7;

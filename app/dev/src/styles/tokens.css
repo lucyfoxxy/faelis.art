@@ -14,9 +14,7 @@
   --primary-text-color:         oklch(92% 0.07 295);   /* helles, leicht violett-weiß */
   --secondary-text-color:       oklch(85% 0.17 295);   /* mittleres, etwas farbigeres Textlila */
 
-  --link:                       var(--secondary-text-color);
-  --link-hover:                 var(--accent-color);   /* etwas heller, knalliger beim Hover */
- 
+
   /* === Decorations === */
   --background-overlay:         radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
   

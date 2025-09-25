@@ -51,6 +51,16 @@ prod-fetch:
 	npm run fetch:prod
 	@echo "✅ PROD fetch done"
 
+dev-fetch-quiet:
+	
+	@npm run fetch-quiet:dev
+	
+
+prod-fetch-quiet:
+	
+	
+	
+
 # ===== Build =====
 dev-build:
 	@echo "🏗️  Building DEV"
@@ -101,16 +111,20 @@ prod-pretty-publish:
 	echo "✨ Gallery update started! ✨" 
 	exec > >(tee -a "scripts/prod-pretty-publish.log") 
 
-	echo "";echo "🔄 [1/3] Fetching images... this may take a while..." 
-	$(MAKE) -s prod-fetch 
+	echo "";
+	echo "🔄 [1/3] Fetching images... this may take a while..." 
+	@npm run --loglevel=silent --silent fetch-quiet:prod
 	echo "✅ [1/3] Fetch done." 
 
-	echo ""; echo "⚙️  [2/3] Building site..." 
+	echo ""; 
+	echo "🔨 [2/3] Building site..." 
 	$(MAKE) -s prod-build >/dev/null 2>&1
 	echo "✅ [2/3] Build done." 
 	
-	echo ""; echo "📤 [3/3] Publishing site..." 
+	echo ""; 
+	echo "📤 [3/3] Publishing site..." 
 	$(MAKE) -s prod-deploy >/dev/null 2>&1
 	echo "✅ [3/3] Publishing done." 
 	
-	echo ""; echo "🐱🎉 [INFO] successfully updated site galleries! 🦊🎉"
+	echo ""; 
+	echo "🎉 Gallery update successful! 🎉"

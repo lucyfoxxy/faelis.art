@@ -33,12 +33,15 @@ export const title = 'Home - Faelis Paw Artistry'
            — you found the right artistic kitten for all sorts of creative tasks! </p>
         <p><i>Take a look to my <a href="/galleries">Art Gallery</a></i> to get an idea of my personal art style.</p>
       </div>
-      <h2><i>Faelis Skribblekitty 💜</i></h2>
+      <h3><i>Faelis Skribblekitty 💜</i></h3>
     </section>
 
     <section class="content-card">
       <h2>Preview:</h2>
-      <div class="prose">  
+      <p><i>Here's a small preview for you:</i></p>
+      
+      <div class="prose">
+        
       <section class="gallery"  data-slug={slug}  data-autoplay={String(autoplay)}  data-interval={String(interval)}  data-random={String(random)}>
         <div class="gallery-viewer">
           <div class="gallery-viewer-frame compact">
@@ -52,7 +55,7 @@ export const title = 'Home - Faelis Paw Artistry'
   </section>
   
   <section class="content-card section">
-    <h2>Contact me at:</h2>
+    <h2>Contact:</h2>
     <div class="contact-grid">
       {links.map((l) => {
         const external = isExternalLink(l.href);

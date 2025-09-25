@@ -4,8 +4,10 @@
   "type": "module",
   "workspaces": ["app/dev", "app/prod"],
   "scripts": {
-    "fetch:dev": "node scripts/fetch-immich.mjs --target=dev",
-    "fetch:prod": "node scripts/fetch-immich.mjs --target=prod",
+    "fetch:dev": "npm run -w app/dev fetch",
+    "fetch:prod": "npm run -w app/prod fetch",
+    "fetch-quiet:dev": "npm run --silent --loglevel=silent -w app/dev fetch-quiet",
+    "fetch-quiet:prod": "npm run --silent --loglevel=silent -w app/prod fetch-quiet",
     "build:dev": "npm run -w app/dev build",
     "build:prod": "npm run -w app/prod build",
     "preview:dev": "npm run -w app/dev preview",

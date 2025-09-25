@@ -1,0 +1,158 @@
+diff a/app/dev/src/styles/site.css b/app/dev/src/styles/site.css	(rejected hunks)
+@@ -1,66 +1,138 @@
+ /* ============================================ */
+ /* ======== SITE: LAYOUT & STRUCTURE ========== */
+ /* === Depends on= tokens, base, typography === */
+ /* ============================================ */
+ 
+ /* === Header & Footer === */
+ 
+ 
+ /* Header selbst bleibt full-width */
+ .site-header {
+   display: flex;                /* horizontal layout */
+   align-items: center;          /* vertikal mittig */
+   justify-content: space-around; /* Logo links, Navigation rechts */  
+   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
+   margin-block: var(--navbar-margin);
+   padding: var(--navbar-padding);
+   background: var(--navbar-background);
+   box-shadow: var(--navbar-shadow);
+   backdrop-filter: blur(var(--navbar-blur));
+   -webkit-backdrop-filter: blur(var(--navbar-blur));
+   color: var(--primary-text-color);
+   outline: 1px solid var(--outline-color);
+ }
+-.site-footer {
+-  display: grid;
+-  grid-template-columns: repeat(3, 1fr);
+-  box-sizing: border-box;
+-  min-width: max-content;
+-  max-width: none;
+-  width: 100%;
+-  margin-inline: 0;
+-  padding: var(--navbar-padding);
+-  background: var(--navbar-background);
+-  box-shadow: var(--navbar-shadow);
+-  backdrop-filter: blur(var(--navbar-blur));
+-  -webkit-backdrop-filter: blur(var(--navbar-blur));
+-  color: var(--primary-text-color);
+-  outline: 1px solid var(--outline-color);
+-  border-radius: var(--medium-radius) var(--medium-radius) 0 0; 
+-  margin-block: var(--navbar-gap) 0;
+-}
++.site-footer {
++  display: grid;
++  grid-template-columns: repeat(3, minmax(0, 1fr));
++  gap: var(--navbar-gap);
++  box-sizing: border-box;
++  width: 100%;
++  margin-inline: 0;
++  padding: var(--navbar-padding);
++  background: var(--navbar-background);
++  box-shadow: var(--navbar-shadow);
++  backdrop-filter: blur(var(--navbar-blur));
++  -webkit-backdrop-filter: blur(var(--navbar-blur));
++  color: var(--primary-text-color);
++  outline: 1px solid var(--outline-color);
++  border-radius: var(--medium-radius) var(--medium-radius) 0 0;
++  margin-block: var(--navbar-gap) 0;
++}
++
++.site-footer__column {
++  display: flex;
++  flex-direction: column;
++  gap: .35rem;
++  font-size: var(--small-font-size);
++}
++
++.site-footer__column--left {
++  align-items: flex-start;
++  text-align: left;
++}
++
++.site-footer__column--middle {
++  align-items: center;
++  text-align: center;
++}
++
++.site-footer__column--right {
++  align-items: flex-end;
++  text-align: right;
++}
++
++.site-footer__heading {
++  margin: 0;
++  font-weight: var(--bold-font-weight);
++  letter-spacing: var(--medium-letter-spacing);
++}
++
++.site-footer__nav {
++  display: flex;
++  flex-direction: column;
++  gap: .25rem;
++  align-items: center;
++  padding: 0;
++  margin: 0;
++  list-style: none;
++}
++
++.site-footer__nav a {
++  text-decoration: none;
++  color: inherit;
++  transition: color .2s ease;
++}
++
++.site-footer__nav a:hover {
++  color: var(--accent-color);
++}
++
++.site-footer__year {
++  min-width: 3ch;
++  display: inline-block;
++}
++
++@media (max-width: 780px) {
++  .site-footer {
++    grid-template-columns: 1fr;
++    justify-items: center;
++    text-align: center;
++  }
++
++  .site-footer__column,
++  .site-footer__column--left,
++  .site-footer__column--middle,
++  .site-footer__column--right {
++    align-items: center;
++    text-align: center;
++  }
++
++  .site-footer__nav {
++    width: 100%;
++  }
++}
+ 
+ /* Logo-Block */
+ .header-logo {
+   display: flex;
+   align-items: center;
+   gap: .5rem; /* falls Text/Img nebeneinander */
+   height: 50px;
+ }
+ 
+ /* Navigation */
+ .site-nav {
+   display: flex;
+   gap: var(--navbar-gap); 
+ }
+ 
+ .site-nav a {
+   text-decoration: none;
+   color: inherit;
+   transition: color .2s ease;
+ }
+ .site-nav a:hover {
+   color: var(--accent-color);
+ }
+ 
+ 

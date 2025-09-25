@@ -8,7 +8,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "sync": "astro sync",
-    "fetch": "node ../../scripts/fetch-immich.mjs --target=dev",
+    "fetch": "DOTENV_CONFIG_PATH=.env node ../../scripts/fetch-immich.mjs --target=dev",
+    "fetch-quiet": "DOTENV_CONFIG_PATH=.env DOTENV_SILENT=true node --redirect-warnings=../../dev-fetch.log ../../scripts/fetch-immich.mjs --target=dev --quiet",
     "gen": "npm run fetch && npm run build"
   },
   "devDependencies": {

@@ -1,98 +1,272 @@
-// scripts/fetch-immich.mjs
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import sharp from 'sharp';
 import { fileURLToPath } from 'node:url';
-
+import sharp from 'sharp';
+import 'dotenv/config';
 // ──────────────────────────────────────────────────────────────────────────────
-// TITLES bleibt wie gehabt
+// Configuration ----------------------------------------------------------------
+
 const TITLES = {
-  "full-art-sfw": "Full Art (SFW)",
-  "full-art-nsfw": "Full Art (NSFW)",
-  "line-art": "Line Art",
-  "sketch": "Sketches",
-  "sticker-packs": "Sticker Packs (Telegram)",
-  "badges": "Badges",
-  "prints": "Button- & Sticker-Prints",
-  "ref-sheets": "Reference Sheets",
-  "logos-tribals": "Logos & Tribals"
+  'full-art-sfw': 'Full Art (SFW)',
+  'full-art-nsfw': 'Full Art (NSFW)',
+  'line-art': 'Line Art',
+  sketch: 'Sketches',
+  'sticker-packs': 'Sticker Packs (Telegram)',
+  badges: 'Badges',
+  prints: 'Button- & Sticker-Prints',
+  'ref-sheets': 'Reference Sheets',
+  'logos-tribals': 'Logos & Tribals'
 };
 
-// TARGET-Handling wie gehabt
-const argvTarget = process.argv.find(a => a.startsWith('--target='))?.split('=')[1];
-const TARGET = (argvTarget || process.env.TARGET || 'dev').toLowerCase();
+const { target: TARGET, quiet: QUIET } = parseCliArgs(process.argv.slice(2));
 const __filename = fileURLToPath(import.meta.url);
-const __dirname  = path.dirname(__filename);
-const REPO_ROOT  = path.resolve(__dirname, '..');
+const __dirname = path.dirname(__filename);
+const REPO_ROOT = path.resolve(__dirname, '..');
+const PATHS = createPathConfig(REPO_ROOT, TARGET);
 
-if (!['dev','prod'].includes(TARGET)) {
-  console.error(`Invalid TARGET "${TARGET}". Use "dev" or "prod".`);
-  process.exit(1);
+const BASE = process.env.IMMICH_BASE_URL || process.env.IMMICH_URL;
+const KEY = process.env.IMMICH_API_KEY;
+const MAP = (process.env.IMMICH_ALBUMS || '').trim();
+const BESTOF_ID = (process.env.IMMICH_BESTOF_ALBUM || '').trim();
+
+if (!['dev', 'prod'].includes(TARGET)) { console.error(`Invalid TARGET "${TARGET}". Exiting.`);  process.exit(1); }
+if (!BASE || !KEY || !MAP) { console.error('.env not found, exiting:', { BASE, hasKEY: Boolean(KEY), MAPlen: MAP.length }); process.exit(1); }
+
+const ALBUM_MAP = parseAlbumMap(MAP);
+const CLR = '\x1b[2K';
+const UP1 = '\x1b[1A';
+let barsActive = false;
+
+
+function barsInit() {
+  if (!process.stdout.isTTY || barsActive) return;
+  process.stdout.write('\n\n');
+  process.stdout.write(UP1 + UP1);
+  barsActive = true;
+}
+function barsUpdate({ slug, albumCurrent, albumTotal, allCurrent, allTotal }) {
+  if (!process.stdout.isTTY) return;
+  if (!barsActive) barsInit();
+  const pct = (c, t) => (t ? Math.floor((c / t) * 100) : 100);
+  const bar = (p, w = 28) =>
+    '█'.repeat(Math.floor((p * w) / 100)).padEnd(w, '░');
+  const pad = (s, w = 16) => String('['+s+']').padEnd(w, ' ');
+
+  const pctAll = pct(allCurrent, allTotal);
+  const pctAlbum = pct(albumCurrent, albumTotal);
+  const lineAll = `🔄 [TOTAL]          [${bar(pctAll)}] ${String(pctAll).padStart(
+    3
+  )}% (${allCurrent}/${allTotal})`;
+  const lineCur = `🔄 ${pad(slug)} [${bar(pctAlbum)}] ${String(
+    pctAlbum
+  ).padStart(3)}% (${albumCurrent}/${albumTotal})`;
+
+  process.stdout.write('\r' + CLR + lineAll + '\n' + CLR + lineCur);
+  process.stdout.write(UP1);
+ 
+
+}
+function barsRelease() {
+  if (!process.stdout.isTTY || !barsActive) return;
+  process.stdout.write('\n\n');
+  
+  barsActive = false;
 }
 
-// .env laden (app/<target>/.env)
-try {
-  const dotenv = await import('dotenv');
-  dotenv.config({ path: path.join(REPO_ROOT, 'app', TARGET, '.env') });
-} catch { /* optional */ }
+const assetsCache = new Map();
+function getAssetsCached(id) {
+  if (!assetsCache.has(id)) assetsCache.set(id, listAssets(id));
+  return assetsCache.get(id);
+}
 
 // ──────────────────────────────────────────────────────────────────────────────
-// WICHTIG: neue Zielpfade
-// - Assets wandern nach:   app/<target>/src/assets/galleries/<slug>/
-// - Manifest liegt weiter: app/<target>/src/data/galleries-manifest.json
-const APP_ROOT = path.join(REPO_ROOT, 'app', TARGET);
-const OUT_ROOT = path.join(APP_ROOT, 'src', 'assets', 'galleries');      // <— NEU
-const MANIFEST = path.join(APP_ROOT, 'src', 'content', 'galleries' , 'manifest.json');
-const INDEX_PATH = path.join(APP_ROOT, 'src', 'content', 'galleries' , 'index');
+// Main workflow ----------------------------------------------------------------
 
-const BASE = process.env.IMMICH_BASE_URL || process.env.IMMICH_URL;      // z.B. https://i.faelis.art
-const KEY  = process.env.IMMICH_API_KEY;
-const MAP  = (process.env.IMMICH_ALBUMS || '').trim();                   // "sketch:uuid,line-art:uuid,…"
-const BESTOF_ID = (process.env.IMMICH_BESTOF_ALBUM || '').trim();        // <— NEU: EIN Album
-
-const ALBUM_MAP = MAP.split(',')
-  .map(s => s.split(':'))
-  .filter(([slug,id]) => slug && id)
-  .reduce((acc,[slug,id]) => (acc[slug]=id, acc), {});
-
-if (!BASE || !KEY || !MAP) {
-  console.error('[fetch-immich] ENV fehlt:', { BASE, hasKEY: !!KEY, MAPlen: MAP.length });
-  process.exit(1);
-}
-
-console.log(`→ fetch-immich target: ${TARGET}`);
-console.log(`   assets:   ${OUT_ROOT}`);
-console.log(`   manifest: ${MANIFEST}`);
-
-const LABEL_WIDTH =
-  Math.max(...Object.keys(ALBUM_MAP).map(s => s.length).concat(16));
-const BAR_WIDTH = 28;
-
-function isTTY() {
-  return !!(process.stdout && process.stdout.isTTY);
-}
-function padLabel(slug) {
-  return String(slug).padEnd(LABEL_WIDTH, ' ');
-}
-function drawBar(pct, current, total, slug) {
-  const filled = Math.floor((pct * BAR_WIDTH) / 100);
-  const bar = '█'.repeat(filled) + '░'.repeat(BAR_WIDTH - filled);
-  const line = `${padLabel(slug)} [${bar}] ${String(pct).padStart(3, ' ')}% (${current}/${total})`;
-  if (isTTY()) {
-    process.stdout.write(`\r\x1b[K${line}`);
-    if (pct >= 100) process.stdout.write('\n');
-  } else {
-    if (pct % 10 === 0 || pct === 100) console.log(line);
+async function main() {
+  await fs.mkdir(PATHS.srcRoot, { recursive: true });
+  if(!QUIET){
+    console.log(`→ fetch-immich target: ${TARGET}`);
+    console.log(`   assets:   ${PATHS.assetsPath}`);
+    console.log(`   entries: ${PATHS.entriesPath}`);
+    console.log(`   slugs: ${PATHS.slugsPath}`);
   }
+  const allAlbumIds = [
+    ...Object.values(ALBUM_MAP),
+    ...(BESTOF_ID ? [BESTOF_ID] : [])
+  ];
+
+  const totals = await Promise.all(
+    allAlbumIds.map(async (id) => (await getAssetsCached(id)).length)
+  );
+  const grandTotal = totals.reduce((acc, len) => acc + len, 0);
+  const counters = { processedAll: 0, grandTotal };
+
+  const included = [];
+  for (const [slug, albumId] of Object.entries(ALBUM_MAP)) {
+    const assets = await getAssetsCached(albumId);
+    await processAlbum({
+      slug,
+      albumId,
+      assets,
+      includeInSlugs: true,
+      counters,
+      paths: PATHS,
+      baseUrl: BASE
+    });
+    included.push(slug);
+    if(QUIET){await new Promise(r => setTimeout(r, 1500));}
+
+  }
+
+  if (BESTOF_ID) {
+    const assets = await getAssetsCached(BESTOF_ID);
+    await processAlbum({
+      slug: 'bestof',
+      albumId: BESTOF_ID,
+      assets,
+      includeInSlugs: false,
+      counters,
+      paths: PATHS,
+      baseUrl: BASE
+    });
+
+  }
+  barsRelease();
+  const albums = await writeSlugs({
+    slugsPath: PATHS.slugsPath,
+    slugs: included,
+    titles: TITLES
+  });
+
+  if(!QUIET){ console.log(`✓ Slugs aktualisiert (${albums.length} Galerien)`);}
 }
 
-// ───────────────── API helpers ─────────────────
-async function fetchAlbum(albumId, page=1, size=500) {
-  const url = `${BASE}/api/albums/${albumId}?withAssets=true&assetPagination[page]=${page}&assetPagination[size]=${size}`;
-  const res = await fetch(url, { headers: { 'x-api-key': KEY } });
-  if (!res.ok) throw new Error(`ALBUM ${res.status}`);
-  return res.json();
+main().catch((error) => {
+  console.error('[fetch-immich] ERROR', error);
+  process.exit(1);
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Album processing -------------------------------------------------------------
+
+async function processAlbum({
+  slug,
+  albumId,
+  assets = null,
+  includeInSlugs = true,
+  counters,
+  paths,
+  baseUrl
+}) {
+  const outDir = path.join(paths.assetsPath, slug);
+  await fs.mkdir(outDir, { recursive: true });
+
+  const albumAssets = assets ?? (await listAssets(albumId));
+  const totalAlbum = albumAssets.length;
+
+  const removed = await pruneRemovedFiles(outDir, albumAssets.map((asset) => asset.id));
+  if (removed) {
+    console.log(`• ${slug}: removed ${removed} stale file(s)`);
+  }
+
+    barsUpdate({ slug, albumCurrent: 0, albumTotal: totalAlbum, allCurrent: counters.processedAll, allTotal: counters.grandTotal });
+
+
+  const items = [];
+
+  if (totalAlbum === 0) {
+
+    await writeAlbumIndex({
+      entriesPath: paths.entriesPath,
+      slug,
+      items
+    });
+
+    if(!QUIET){ console.log(`✓ ${slug}: 0/0 Dateien verarbeitet`); }
+
+    return { slug, included: includeInSlugs };
+  }
+
+  for (let i = 0; i < totalAlbum; i += 1) {
+    const asset = albumAssets[i];
+    try {
+      const { thumbName, fullName } = await ensureAssetVariants({
+        asset,
+        outDir,
+        baseUrl
+      });
+
+      items.push({
+        id: asset.id,
+        thumb: `albums/${slug}/${thumbName}`,
+        full: `albums/${slug}/${fullName}`,
+        filename: asset.originalFileName,
+        width: asset.exifInfo?.exifImageWidth ?? null,
+        height: asset.exifInfo?.exifImageHeight ?? null
+      });
+    } catch (error) {
+      console.warn(`[asset fail] ${slug}/${asset.id}:`, error.message);
+    }
+
+    counters.processedAll += 1;
+
+    barsUpdate({ slug, albumCurrent: i + 1, albumTotal: totalAlbum, allCurrent: counters.processedAll, allTotal: counters.grandTotal });
+  
+    
+  }
+
+  
+  await writeAlbumIndex({
+    entriesPath: paths.entriesPath,
+    slug,
+    items
+  });
+  
+
+  if(!QUIET){ console.log(`\n\n✓ ${slug}: ${items.length}/${totalAlbum} Dateien verarbeitet`); }
+
+  return { slug, included: includeInSlugs };
 }
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Slugs ---------------------------------------------------------------------
+
+async function writeSlugs({ slugsPath, slugs, titles }) {
+  const albums = slugs.map((slug) => ({
+    slug,
+    title: titles[slug] ?? slug
+  }));
+
+  await fs.mkdir(path.dirname(slugsPath), { recursive: true });
+  await fs.writeFile(
+    slugsPath,
+    JSON.stringify({ albums }, null, 2),
+    'utf-8'
+  );
+
+  return albums;
+}
+
+async function writeAlbumIndex({ entriesPath, slug, items }) {
+  await fs.mkdir(entriesPath, { recursive: true });
+  const index = { album: slug, count: items.length, items };
+  await fs.writeFile(
+    path.join(entriesPath, `${slug}.json`),
+    JSON.stringify(index, null, 2),
+    'utf-8'
+  );
+}
+
+// ──────────────────────────────────────────────────────────────────────────────
+// API helpers ------------------------------------------------------------------
+
+async function fetchAlbum(albumId, page = 1, size = 500) {
+  const url = `${BASE}/api/albums/${albumId}?withAssets=true&assetPagination[page]=${page}&assetPagination[size]=${size}`;
+  const response = await fetch(url, { headers: { 'x-api-key': KEY } });
+  if (!response.ok) throw new Error(`ALBUM ${response.status}`);
+  return response.json();
+}
+
 async function listAssets(albumId) {
   const all = [];
   let page = 1;
@@ -100,160 +274,147 @@ async function listAssets(albumId) {
     const data = await fetchAlbum(albumId, page, 500);
     const items = Array.isArray(data.assets) ? data.assets : [];
     all.push(...items);
-    const total = data.assetsPagination?.totalItems ?? data.totalItems ?? null;
-    if (!total || all.length >= total || items.length === 0) break;
+    const totalItems =
+      data.assetsPagination?.totalItems ?? data.totalItems ?? null;
+    if (!totalItems || all.length >= totalItems || items.length === 0) break;
     page += 1;
   }
   return all;
 }
+
 async function downloadBuffer(url) {
-  const r = await fetch(url, { headers: { 'x-api-key': KEY } });
-  if (!r.ok) throw new Error(`GET ${url} -> ${r.status}`);
-  return Buffer.from(await r.arrayBuffer());
+  const response = await fetch(url, { headers: { 'x-api-key': KEY } });
+  if (!response.ok) throw new Error(`GET ${url} -> ${response.status}`);
+  return Buffer.from(await response.arrayBuffer());
 }
 
-// ───────────── Bildvarianten + FS-Checks ─────────────
-// Exists-Check (skip, wenn bereits da)
-async function exists(p) {
-  try { await fs.stat(p); return true; } catch { return false; }
-}
+// ──────────────────────────────────────────────────────────────────────────────
+// File helpers -----------------------------------------------------------------
 
-async function renderVariants(buf, outDir, baseId) {
+async function ensureAssetVariants({ asset, outDir, baseUrl }) {
+  const baseId = asset.id;
   const thumbName = `thumb-${baseId}.webp`;
-  const fullName  = `full-${baseId}.webp`;
+  const fullName = `full-${baseId}.webp`;
   const thumbPath = path.join(outDir, thumbName);
-  const fullPath  = path.join(outDir, fullName);
+  const fullPath = path.join(outDir, fullName);
 
-  // THUMB
-  if (!(await exists(thumbPath))) {
-    await sharp(buf)
+  const needThumb = !(await exists(thumbPath));
+  const needFull = !(await exists(fullPath));
+
+  if (needThumb || needFull) {
+    const buffer = await downloadBuffer(
+      `${baseUrl}/api/assets/${asset.id}/original`
+    );
+    await renderVariants({
+      buffer,
+      thumbPath,
+      fullPath,
+      needThumb,
+      needFull
+    });
+  }
+
+  return { thumbName, fullName };
+}
+
+async function renderVariants({ buffer, thumbPath, fullPath, needThumb, needFull }) {
+  if (needThumb) {
+    await sharp(buffer)
       .rotate()
-      .resize({ width: 256, height: 256, fit: 'contain', background: { r:0,g:0,b:0,alpha:0 } })
+      .resize({
+        width: 256,
+        height: 256,
+        fit: 'contain',
+        background: { r: 0, g: 0, b: 0, alpha: 0 }
+      })
       .webp({ lossless: true })
       .toFile(thumbPath);
   }
 
-  // FULL
-  if (!(await exists(fullPath))) {
-    await sharp(buf)
+  if (needFull) {
+    await sharp(buffer)
       .rotate()
-      .resize({ width: 1920, height: 1920, fit: 'inside', withoutEnlargement: true })
+      .resize({
+        width: 1920,
+        height: 1920,
+        fit: 'inside',
+        withoutEnlargement: true
+      })
       .webp({ quality: 90 })
       .toFile(fullPath);
   }
-
-  return { thumbName, fullName, thumbPath, fullPath };
 }
 
-// Entferne Dateien im Zielordner, die zu keiner Asset-ID mehr gehören
 async function pruneRemovedFiles(outDir, validIds) {
-  const keep = new Set(validIds.map(id => String(id)));
+  const keep = new Set(validIds.map((id) => String(id)));
   let removed = 0;
   try {
     const files = await fs.readdir(outDir);
-    for (const f of files) {
-      const m = f.match(/^(?:thumb|full)-(.+?)\.webp$/);
-      if (!m) continue;
-      const id = m[1];
+    for (const file of files) {
+      const match = file.match(/^(?:thumb|full)-(.+?)\.webp$/);
+      if (!match) continue;
+      const id = match[1];
       if (!keep.has(id)) {
-        await fs.unlink(path.join(outDir, f));
-        removed++;
+        await fs.unlink(path.join(outDir, file));
+        removed += 1;
       }
     }
-  } catch { /* Ordner fehlt evtl. noch */ }
+  } catch {
+    // Directory may not exist yet.
+  }
   return removed;
 }
 
-// ───────────── Album-Verarbeitung ─────────────
-async function processAlbum(slug, albumId, { includeInManifest = true } = {}) {
-  const outDir = path.join(OUT_ROOT, slug);
-  await fs.mkdir(outDir, { recursive: true });
-
-  const assets = await listAssets(albumId);
-  const total = assets.length;
-
-  // Prune zuerst – löscht veraltete Dateien
-  const removed = await pruneRemovedFiles(outDir, assets.map(a => a.id));
-  if (removed) console.log(`• ${padLabel(slug)} removed ${removed} stale file(s)`);
-
-  if (total === 0) {
-    console.log(`${padLabel(slug)} [${'░'.repeat(BAR_WIDTH)}]   0% (0/0)`);
-    await fs.writeFile(path.join(outDir, 'index.json'),
-      JSON.stringify({ album: slug, count: 0, items: [] }, null, 2), 'utf-8');
-    return { slug, included: includeInManifest };
+async function exists(filePath) {
+  try {
+    await fs.stat(filePath);
+    return true;
+  } catch {
+    return false;
   }
+}
 
-  let lastPct = -1;
-  const list = [];
-  drawBar(0, 0, total, slug);
+// ──────────────────────────────────────────────────────────────────────────────
+// CLI / utility helpers --------------------------------------------------------
 
-  for (let i = 0; i < total; i++) {
-    const a = assets[i];
-    try {
-      // Download nur, wenn mindestens eine Variante fehlt
-      const thumbPath = path.join(outDir, `thumb-${a.id}.webp`);
-      const fullPath  = path.join(outDir, `full-${a.id}.webp`);
-      let buf = null;
-      if (!(await exists(thumbPath)) || !(await exists(fullPath))) {
-        buf = await downloadBuffer(`${BASE}/api/assets/${a.id}/original`);
-      }
-      const { thumbName, fullName } =
-        await renderVariants(buf ?? Buffer.alloc(0), outDir, a.id);
-
-      // Pfade: relativ zu src/assets (für import.meta.glob in Astro)
-      list.push({
-        id: a.id,
-        thumb: `galleries/${slug}/${thumbName}`,
-        full:  `galleries/${slug}/${fullName}`,
-        filename: a.originalFileName,
-        width: a.exifInfo?.exifImageWidth ?? null,
-        height: a.exifInfo?.exifImageHeight ?? null
-      });
-    } catch (e) {
-      console.warn(`[asset fail] ${slug}/${a.id}:`, e.message);
+function parseCliArgs(argv) {
+  const args = { target: 'dev', quiet: false };
+  for (const entry of argv) {
+    if (entry === '--quiet') args.quiet = true;
+    else if (entry.startsWith('--target=')) {
+      args.target = entry.split('=')[1]?.toLowerCase() ?? args.target;
     }
-
-    const pct = Math.max(0, Math.min(100, Math.floor(((i + 1) / total) * 100)));
-    if (pct !== lastPct) { drawBar(pct, i + 1, total, slug); lastPct = pct; }
   }
 
-  console.log(`✓ ${padLabel(slug)} ${list.length}/${total} Dateien verarbeitet`);
+  if (!argv.some((arg) => arg.startsWith('--target=')) && process.env.TARGET) {
+    args.target = process.env.TARGET.toLowerCase();
+  }
 
-  const index = { album: slug, count: list.length, items: list };
-  await fs.writeFile(path.join(INDEX_PATH, `${slug}.json`), JSON.stringify(index, null, 2), 'utf-8');
-
-  return { slug, included: includeInManifest };
+  return args;
 }
 
-// ───────────── main ─────────────
-async function main() {
-  await fs.mkdir(OUT_ROOT, { recursive: true });
-
-  // 1) Normale Galerien → ins Manifest
-  const included = [];
-  for (const [slug, id] of Object.entries(ALBUM_MAP)) {
-    const { slug: done } = await processAlbum(slug, id, { includeInManifest: true });
-    included.push(done);
-  }
-
-  // 2) Best-of → KEIN Manifest-Eintrag (nur index + Assets)
-  if (BESTOF_ID) {
-    await processAlbum('bestof', BESTOF_ID, { includeInManifest: false });
-  }
-
-  // Manifest nur für included schreiben
-  const galleries = included.map(slug => ({
-    slug,
-    title: TITLES[slug] ?? slug
-  }));
-
-  await fs.mkdir(path.dirname(MANIFEST), { recursive: true });
-  await fs.writeFile(
-    MANIFEST,
-    JSON.stringify({ galleries }, null, 2),
-    "utf-8"
-  );
-  console.log(`✓ Manifest aktualisiert (${galleries.length} Galerien)`);
+function createPathConfig(repoRoot, target) {
+  const appRoot = path.join(repoRoot, 'app', target);
+  const srcRoot = path.join(appRoot, 'src');
+  return {
+    repoRoot,
+    appRoot,
+    srcRoot,
+    assetsPath: path.join(srcRoot, 'assets', 'albums'),
+    slugsPath: path.join(srcRoot, 'content', 'albums', 'slugs.json'),
+    entriesPath: path.join(srcRoot, 'content', 'albums', 'entries'),
+    envFile: path.join(appRoot, '.env')
+  };
 }
 
-main().catch(e => { console.error('[fetch-immich] ERROR', e); process.exit(1); });
+
+function parseAlbumMap(map) {
+  return map
+    .split(',')
+    .map((segment) => segment.split(':').map((part) => part.trim()))
+    .filter(([slug, id]) => slug && id)
+    .reduce((acc, [slug, id]) => {
+      acc[slug] = id;
+      return acc;
+    }, {});
+}

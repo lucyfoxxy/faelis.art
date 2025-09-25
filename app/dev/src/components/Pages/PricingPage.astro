@@ -24,7 +24,7 @@ const title = "Pricing"
 const currency = prices.currency ?? "EUR";
 const fmt = (value?: number) => {
   if (value == null) return "–";
-  try { return new Intl.NumberFormat("de-DE", { style: "currency", currency }).format(value); }
+  try { return new Intl.NumberFormat("de-DE", { style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value); }
   catch { return `${value} ${currency}`; }
 };
 const formatPrice = (it: PriceItem) => {
