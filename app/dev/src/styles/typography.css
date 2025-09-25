@@ -40,11 +40,11 @@ body {
   font-weight: var(--bold-font-weight);
   line-height: var(--medium-line-height); 
 }
-.site-footer,.table__note-chip { font-size: var(--small-font-size); }
+.site-footer,.badge { font-size: var(--small-font-size); }
 .table__subtitle { line-height: var(--medium-line-height); }
 .table__th { font-weight: var(--bold-font-weight); }
 
-:where(h1,h2,h3,.table__th,.table__price,.table__note-chip, .site-nav a){
+:where(h1,h2,h3,.table__th,.table__price,.badge,.chip, .site-nav a){
    font-family: var(--secondary-font-family); 
 }
 .panel :where(h1,h2,h3) {  margin: 0; }

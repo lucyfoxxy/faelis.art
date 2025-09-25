@@ -1,4 +1,4 @@
-const covers = import.meta.glob('@Assets/galleries/_covers/*.webp', {
+const covers = import.meta.glob('@Assets/albums/_covers/*.webp', {
   query: '?url',
   import: 'default',
   eager: true,
@@ -7,7 +7,7 @@ const covers = import.meta.glob('@Assets/galleries/_covers/*.webp', {
 // Map: "slug" → Bild-URL
 const coverBySlug = new Map();
 for (const [path, url] of Object.entries(covers)) {
-  // z.B. /src/assets/galleries/_covers/full-art.webp
+  // z.B. /src/assets/albums/_covers/full-art.webp
   const match = path.match(/_covers\/([^/]+)\.webp$/);
   if (match) coverBySlug.set(match[1], url);
 }

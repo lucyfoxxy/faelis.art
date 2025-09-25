@@ -1,10 +1,10 @@
 ---
 import Layout from '@Design/Layout.astro';
 import GalleryDetailPage from '@Pages/Gallery/DetailPage.astro';
-import manifest from '@Content/galleries/manifest.json';
+import slugs from '@Content/albums/slugs.json';
 
 export function getStaticPaths() {
-  return manifest.galleries.map(({ slug, title }) => ({
+  return slugs.albums.map(({ slug, title }) => ({
     params: { slug },
     props:  { title },
   }));

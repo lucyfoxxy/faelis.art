@@ -1,5 +1,5 @@
 ---
-import manifest from '@Content/galleries/manifest.json';
+import slugs from '@Content/albums/slugs.json';
 ---
 <section class="content-head section">
   <h1>Art Gallery</h1>
@@ -11,7 +11,7 @@ import manifest from '@Content/galleries/manifest.json';
 <section class="content-layout section">
   <section class="content-card">
     <div class="gallery-grid">
-      {manifest.galleries.map(({ slug, title }) => (
+      {slugs.albums.map(({ slug, title }) => (
         <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
           <div class="gallery-card-thumb" data-slug={slug}></div>
           <h3>{title}</h3>

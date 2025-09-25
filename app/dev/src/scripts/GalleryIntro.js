@@ -1,11 +1,11 @@
 import { createGalleryItemsBySlug } from './galleryData';
 
-const metas = import.meta.glob('@Content/galleries/index/bestof.json', {
+const metas = import.meta.glob('@Content/albums/entries/bestof.json', {
   query: '?json',
   eager: true,
 });
 
-const assetModules = import.meta.glob('@Assets/galleries/bestof/*', {
+const assetModules = import.meta.glob('@Assets/albums/bestof/*', {
   query: '?url',
   import: 'default',
   eager: true,

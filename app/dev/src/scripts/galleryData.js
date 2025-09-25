@@ -17,7 +17,7 @@ export function createGalleryItemsBySlug(metaModules, assetModules) {
 
   const itemsBySlug = new Map();
   for (const [path, data] of Object.entries(metaModules)) {
-    const match = path.match(/\/index\/([^/]+)\.json$/);
+    const match = path.match(/\/entries\/([^/]+)\.json$/);
     if (!match) continue;
 
     const slug = match[1];

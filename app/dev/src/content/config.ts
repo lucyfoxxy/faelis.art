@@ -20,8 +20,8 @@ const tables = defineCollection({
   })
 });
 
-const galleries = defineCollection({
+const albums = defineCollection({
   type: 'data',
   schema: z.any(),
 });
-export const collections = { tables, galleries };
+export const collections = { tables, albums };

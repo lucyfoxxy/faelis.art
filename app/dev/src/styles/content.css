@@ -31,7 +31,6 @@
   .content-layout--split { grid-template-columns: minmax(0, 1fr); }
 }
 .content-card {
-  display: flex;
   flex-direction: column;
   height: 100%;
   padding: var(--content-padding);
@@ -39,7 +38,55 @@
   box-shadow: var(--content-shadow);
   backdrop-filter: blur(var(--content-blur));
   -webkit-backdrop-filter: blur(var(--content-blur)); 
-  border-radius: var(--large-radius);          
+  border-radius: var(--large-radius);  
+}
+.content-card,.content-card--rows {
+  display: flex;
+}
+.content-card--rows {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.content-card--subtitle {
+  font-size: var(--small-font-size);
+}
+.badge,
+.chip {
+  display: inline-block;
+  
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  font-size: var(--small-font-size);
+  line-height: 1.2;
+  vertical-align: middle; /* sorgt für bessere Ausrichtung mit Text */
+}
+
+/* Badge: passiv, für Labels in Tabellen */
+.badge {
+  opacity: .9;
+  margin-inline-end: .25rem;
+  background: color-mix(in oklab, var(--primary-background-color) 45%, white 30%);
+}
+
+/* Chip: aktiv, klickbar (Links / Sprungmarken) */
+.chip {
+  font-weight: var(--bold-font-weight);
+
+  background: color-mix(in oklab, var(--primary-color) 45%, black 45%);
+  color: color-mix(in oklab, var(--primary-color) 40%, white 55%);
+  text-decoration: none;
+
+  transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+
+}
+
+.chip:hover {
+  background: color-mix(in oklab, var(--primary-color) 40%, white 55%);
+  color: color-mix(in oklab, var(--secondary-background-color) 45%, black 45%);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary-color) 40%, white 55%) inset;
+  outline: 2px solid color-mix(in oklab, var(--primary-color) 40%, white 55%);;
 }
 .prose {
   display: grid;
@@ -173,14 +220,14 @@
 .contact-ico {
   display: inline-grid;
   place-items: center;
-  inline-size: 1.55rem;
-  block-size: 1.55rem;
+  inline-size: 1.7rem;
+  block-size: 1.7rem;
   border-radius: 999px;
   background: none;
 }
 .contact-ico svg {
-  inline-size: 1.1rem;
-  block-size: 1.1rem;
+  inline-size: 1.7rem;
+  block-size: 1.7rem;
 }
 
 .contact-btn--telegram   { --bg: #28a8e9; }
