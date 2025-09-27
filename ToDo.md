@@ -6,6 +6,9 @@
 - weiteres CSS Refactoring, obsoletes/redundantes entfernen, styles vereinheitlichen
 - meta media links (preview)
 - konsolidierung slugs.json + prices.json, global-key: categories
+- rename kv -> content-list
+- konsolidierung / rename gallery.css -> media.css
+- split content.css and import sub-css (maybe)
 
 ## Startpage: 
 - Contact Buttons: Änderung der hover Schriftfarbe
@@ -32,5 +35,4 @@
 
 ## Site-Nav header
 - hover: translate-y wie buttons
-
 
