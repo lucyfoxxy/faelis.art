@@ -1,18 +1,6 @@
 /* === TABLE LAYOUT ======================================= */
 /* === Depends on: tokens.css (vars), site.css (layout) === */
 
-/* === Pricing Table === */
-.table__section { margin-block: clamp(.25rem, .2vw + .3rem, .75rem); }
-
-.table__title { 
-   margin: 0; /* nur Headline */
-   display: flex;
-   justify-content: space-between;
-}
-.table__subtitle {
-  margin: .15rem 0 .75rem 0;
-  opacity: .85;
- }
 .table__wrap { 
   overflow-x: clip; 
   overflow-y: visible; 
@@ -30,7 +18,7 @@
   padding-block: .6rem .6rem;
   padding-inline: calc(.5*var(--panel-padding)); }              
 .table__th {
-  background: color-mix(in oklab, var(--panel-background, #000) 65%, white 1%);
+  background: color-mix(in oklab, var(--panel-background, #000) 65%, white 3%);
   color: var(--primary-text-color);
 }
 .table__th--left  { border-top-left-radius: var(--medium-radius);  text-align: left; }
@@ -60,10 +48,7 @@
     align-items: flex-end;
     gap: .25rem;
   }
-  .table__note-chip {
-    margin: 0;                  /* kein seitlicher Abstand nötig */
-    order: -1;                  /* sicherstellen, dass Chip vor Preis steht */
-  }
+
   .table__price {
     display: block;             /* bricht in eigene Zeile */
   }

@@ -33,6 +33,7 @@ body {
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
+  text-shadow: var(--primary-shadow-color);
 }
 :where(em,i) { font-style: italic; }
 .site-nav a,.site-footer,.panel :where(h2) { letter-spacing: var(--medium-letter-spacing); }
@@ -44,7 +45,7 @@ body {
 .table__subtitle { line-height: var(--medium-line-height); }
 .table__th { font-weight: var(--bold-font-weight); }
 
-:where(h1,h2,h3,.table__th,.table__price,.badge,.chip, .site-nav a){
+:where(h1,h2,h3, .site-nav a){
    font-family: var(--secondary-font-family); 
 }
 .panel :where(h1,h2,h3) {  margin: 0; }
@@ -64,8 +65,7 @@ body {
 .panel :where(p) {  margin: 0 0 var(--prose-flow-spacing);  }
 .panel :where(.prose p) {  margin: 0; }
 
-a {text-decoration: none;}
-a:hover,a:focus-visible { color:var(--primary-color); transition: color .2s ease; }
+
 
 .panel :where(ul,ol) {
   padding-inline-start: 1.2rem;

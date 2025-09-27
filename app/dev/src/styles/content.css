@@ -7,7 +7,7 @@
 /* === Section === */
 .section + .section { margin-top: var(--content-margin); }
 .section :where(h2) { margin: 0 0 .25rem 0; }
-.section :where(p.lead) { opacity: .9; margin: 0 0 .75rem 0; }
+
 
 /* === Page / Card Headline === */
 .content-head {
@@ -77,7 +77,7 @@
   background: color-mix(in oklab, var(--primary-color) 45%, black 45%);
   color: color-mix(in oklab, var(--primary-color) 40%, white 55%);
   text-decoration: none;
-
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary-color) 40%, black 45%) inset;
   transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
 
 }
@@ -199,7 +199,7 @@
   box-shadow:
     0 10px 22px -12px oklch(0% 0 0 / .55),
     inset 0 1px 0 0 oklch(100% 0 0 / .20);
-  transition: background-color .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;
+  transition: var(--secondary-text-color) .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;
 }
 .contact-btn:hover {
   background: color-mix(in oklch, var(--bg) 82%, white 18%);
@@ -214,7 +214,7 @@
   .contact-btn:hover { filter: brightness(1.08); }
   .contact-btn:active { filter: brightness(.92); }}
 .contact-btn:focus-visible {
-  outline: 0px solid oklch(85% .04 310 / .8);
+
   outline-offset: 2px;
 }
 .contact-ico {
@@ -226,8 +226,8 @@
   background: none;
 }
 .contact-ico svg {
-  inline-size: 1.7rem;
-  block-size: 1.7rem;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
 }
 
 .contact-btn--telegram   { --bg: #28a8e9; }
@@ -235,3 +235,47 @@
 .contact-btn--facebook   { --bg: #1778f2; }
 .contact-btn--instagram  { --bg: #e1306c; }
 .contact-btn--furaffinity{ --bg: #08a57b; }
+
+
+@media (max-width: 780px) {
+  .contact-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(.5rem, 3vw, .75rem);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-block: .25rem;
+  }
+
+  .contact-btn {
+    position: relative;
+    inline-size: clamp(3rem, 16vw, 3.4rem);
+    block-size: clamp(3rem, 16vw, 3.4rem);
+    padding: 0;
+    border-radius: 999px;
+    gap: 0;
+  }
+
+  .contact-btn > span:last-child {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .contact-ico {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .contact-ico svg {
+    inline-size: clamp(1.35rem, 6vw, 1.6rem);
+    block-size: clamp(1.35rem, 6vw, 1.6rem);
+  }
+}

@@ -1,19 +1,36 @@
 # ToDo's 
 --------------------------------------------------------------------------
-## Pages General: 
+
+## General: 
+- primary / secondary colors: audit - wo werden sie wie verwendet? + Anpassung ins gesamtbild (weniger aggressiv)
 - weiteres CSS Refactoring, obsoletes/redundantes entfernen, styles vereinheitlichen
 - meta media links (preview)
+- konsolidierung slugs.json + prices.json, global-key: categories
 
 ## Startpage: 
-- Contact Buttons: Änderung der Schriftfarbe, auf mobile statt line-break kreise mit logos, ohne text
-
-## Footer: 
-- Layout Anpassungen, Ziel: 3 columns (links/rechts/mittig)
-- Datum nicht einfrieren
+- Contact Buttons: Änderung der hover Schriftfarbe
 
 ## Gallery Detail Page:
-- nur eine reihe thumbnails statt alle, dafür rechts und links davon buttons prev/next
-- Main Image kleiner, dafür lightbox inkl. thumbnail navigation, pause auto slideshow während lightbox offen ist
+- nur eine (oder zwei) reihe(n) thumbnails statt alle, dafür rechts und links davon buttons prev/next
+- bei click aufs bild lightbox inkl. thumbnail navigation, pause auto slideshow während lightbox offen ist
+- thumbnails mit in gallery content card
+
+## Gallery Frame (large)
+- player controls mit ins image-frame, (overlay?)
+
+## Gallery-Frame (both compact + large)
+- progress mit ins frame (overlay?)
+- size soll sich an den verfügbaren parent-container anpassen (um insbesondere auf der startseite leeren platz zu vermeiden) 
+- überführung -> aktuell ungenutzte content-media class?
+
+## StartPage
+- obsolete "intro" class entfernen aus astro
+- intro__hero ggf renaming -> content-media--hero 
 
 ## Pricing + Gallery Detail Pages:
-- Verlinkung mit Sprungmarken (zB #badges -> um direkt zur passenden Preistabelle zu springen,
+- chip restyle: box-shadow/stil wie contact buttons (-> konsolidierung mit diesen und überführung ineinheitliche button class, wobei die chips weiterhin ihre aktuelle größe in etwa beibehalten sollen)
+
+## Site-Nav header
+- hover: translate-y wie buttons
+
+

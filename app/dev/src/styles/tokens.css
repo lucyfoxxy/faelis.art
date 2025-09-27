@@ -1,11 +1,10 @@
 :root { 
   /* === Main Colors === */
-  --primary-color:              oklch(40% 0.15 305);   /* dunkler, weniger gesättigt Lila */
-  --accent-color:               oklch(55% 0.11 315);   /* heller Akzent, leicht pinkiger */
+  --primary-color:              oklch(60% 0.15 305);   /* dunkler, weniger gesättigt Lila */
+  --accent-color:               oklch(55% 0.1 315);   /* heller Akzent, leicht pinkiger */
 
-  --primary-background-color:   oklch(26% 0.09 305 / 0.75); /* dunkles, gedämpftes Violett */
+  --primary-background-color:   oklch(26% 0.09 305 / 0.55); /* dunkles, gedämpftes Violett */
   --secondary-background-color: oklch(20% 0.08 300 / 0.75); /* noch dunkler für Layer */
-  --border-color:               oklch(var(--primary-color) / 0.5);
   --outline-color:              oklch(90% 0.01 305 / 0.08);
 
   --primary-shadow-color:       oklch(25% 0.08 310 / 0.7);
@@ -39,7 +38,7 @@
   --navbar-blur:                var(--medium-blur);   
   --navbar-shadow:              var(--medium-shadow); 
   --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
-  --navbar-margin:              0 var(--container-gap);
+  --navbar-margin:              0 var(--navbar-gap);
   --navbar-gap:                 clamp(.75rem, 2vw, 2rem);
 
   --panel-background:           var(--primary-background-color); 
@@ -60,9 +59,9 @@
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
   /* === Gallery === */
-  --thumb:                      clamp(120px, 12vw, 164px);
-  --gallery-frame-size:         clamp(240px, 42vh, 480px);                       
-  --gallery-frame-size-compact: clamp(160px, 25vh, 320px);
+  --thumb:                      clamp(96px, 10vw, 164px);
+  --gallery-frame-size:         clamp(240px, 45vh, 480px);                       
+  --gallery-frame-size-compact: clamp(160px, 26vh, 360px);
 
   /* === Fonts === */
   --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

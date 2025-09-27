@@ -45,8 +45,7 @@
   align-items: center;
 }
 
-.gallery-viewer-controls .gallery-viewer-nav,
-.gallery-viewer-controls .gallery-viewer-playpause {
+.gallery-viewer-prev, .gallery-viewer-playpause, .gallery-viewer-next {
   background: transparent;
   border: none;
   color: var(--primary-text-color);
@@ -60,12 +59,12 @@
   border-radius: var(--medium-radius);
   overflow: hidden;
   position: relative;
-  margin: calc(var(--content-margin)*.25);
+
   background: color-mix(in oklab, var(--panel-background) 85%, black 15%);
 }
 .gallery-viewer-frame.compact {
   block-size: var(--gallery-frame-size-compact);
-  inline-size: none;
+
 }
 .gallery-viewer-image {
   position: absolute;

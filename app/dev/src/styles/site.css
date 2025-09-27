@@ -9,7 +9,8 @@
   gap: .5rem; /* falls Text/Img nebeneinander */
   height: 50px;
 }
-
+a {text-decoration: none;}
+a:hover,a:focus-visible,.site-nav a:hover,.site-nav a:focus-visible { color: var(--accent-color); transition: color .2s ease; }
 /* Navigation */
 .site-nav {
   display: flex;
@@ -17,13 +18,9 @@
 }
 
 .site-nav a {
-  text-decoration: none;
   color: inherit;
-  transition: color .2s ease;
 }
-.site-nav a:hover,a:focus-visible {
-  color: var(--accent-color);
-}
+
 /* === CONTAINER === */
 .container {
   flex: 1 0 auto;
@@ -67,7 +64,7 @@ main.panel {
 }
 .site-header {
   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
-  margin-block: 0 var(--navbar-gap);
+  margin-block: var(--navbar-margin);
   justify-content: space-around;
   gap: var(--navbar-gap);
 }
