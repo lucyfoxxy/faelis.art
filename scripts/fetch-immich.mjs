@@ -357,8 +357,8 @@ function createPathConfig(repoRoot, target) {
     appRoot,
     srcRoot,
     assetsPath: path.join(srcRoot, 'assets', 'albums'),
-    slugsPath: path.join(srcRoot, 'content', 'albums', 'slugs.json'),
-    entriesPath: path.join(srcRoot, 'content', 'albums', 'entries'),
+    
+    entriesPath: path.join(srcRoot, 'content', '_albums', '_entries'),
     envFile: path.join(appRoot, '.env')
   };
 }

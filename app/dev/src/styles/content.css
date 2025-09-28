@@ -65,14 +65,12 @@
 
 }
 
-/* Badge: passiv, für Labels in Tabellen */
 .badge {
   opacity: .9;
   margin-inline-end: .25rem;
 
 }
 
-/* Chip: aktiv, klickbar (Links / Sprungmarken) */
 .chip {
   
   
