@@ -1,0 +1,137 @@
+/* ====== UI ELEMENTS: Buttons, Info-Badges & Chips ============= */
+/* ====== Depends on: tokens.css (vars), site.css (layout) ====== */
+
+/* ====== Chip & Badge ====== */
+/* === Chips -> small btn === */
+/* == Badges -> info label == */
+
+.ui-badge,
+.ui-chip {
+  display: inline-block;
+  padding: .35rem .75rem;
+  border-radius: 999px;
+  vertical-align: middle;  
+  text-decoration: none;
+  background: color-mix(in oklab,var(--secondary-background-color) 85%,white 0%);
+  box-shadow:  0 0 14px -2px color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+}
+.ui-badge {
+  opacity: .9;
+  margin-inline-end: .25rem;
+}
+.ui-chip {
+  transition: color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+.ui-chip:hover {
+  background: color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+  color:var(--accent-color);
+  transform: translateY(-1px);
+}
+
+/* ====== Contact Buttons ====== */
+.ui-btn__contact--wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .75rem;
+  margin-block: .75rem 1rem;
+}
+.ui-btn__contact {
+  --bg: var(--primary-background-color);              /* pro Button überschreiben */
+  --fg: #fff;              /* Textfarbe fix: gute Lesbarkeit */
+  --fg-hover: var(--primary-text-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center; /* Text zentriert */
+  gap: .55rem;
+  padding: .72rem 1.05rem;
+  border-radius: var(--large-radius);
+  background: var(--bg);
+  color: var(--fg);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow:
+    0 10px 22px -12px oklch(0% 0 0 / .55),
+    inset 0 1px 0 0 oklch(100% 0 0 / .20),
+    0 0 12px -2px color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+  transition: color .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;
+}
+.ui-btn__contact--telegram   { --bg: #28a8e9; }
+.ui-btn__contact--mail       { --bg: #a858c0; }
+.ui-btn__contact--facebook   { --bg: #1778f2; }
+.ui-btn__contact--instagram  { --bg: #e1306c; }
+.ui-btn__contact--furaffinity{ --bg: #08a57b; }
+.ui-btn__contact:hover {
+  background: color-mix(in oklch, var(--bg) 82%, white 22%);
+  transform: translateY(-1px);
+  box-shadow: 0 0 24px -14px oklch(0% 0 0 / .6);
+  color: var(--fg-hover);
+}
+.ui-btn__contact:active {
+  background: color-mix(in oklch, var(--bg) 88%, black 12%);
+  transform: translateY(0);
+  color: var(--fg);
+}
+@supports not (color: oklch(50% 0 0)) {
+  .ui-btn__contact:hover { filter: brightness(1.08); }
+  .ui-btn__contact:active { filter: brightness(.92); }}
+.ui-btn__contact:focus-visible {
+  color: var(--fg-hover);
+  outline-offset: 2px;
+}
+.ui-btn__contact--icon{
+  display: inline-grid;
+  place-items: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  border-radius: 999px;
+  background: none;
+}
+.ui-btn__contact--icon svg {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+}
+
+
+@media (max-width: 780px) {
+  .ui-btn__contact--wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(.5rem, 3vw, .75rem);
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-block: .25rem;
+  }
+
+  .ui-btn__contact {
+    position: relative;
+    inline-size: clamp(3rem, 16vw, 3.4rem);
+    block-size: clamp(3rem, 16vw, 3.4rem);
+    padding: 0;
+    border-radius: 999px;
+    gap: 0;
+  }
+
+  .ui-btn__contact > span:last-child {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .ui-btn__contact--icon{
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .ui-btn__contact--icon svg {
+    inline-size: clamp(1.45rem, 6vw, 1.65rem);
+    block-size: clamp(1.45rem, 6vw, 1.65rem);
+  }
+}

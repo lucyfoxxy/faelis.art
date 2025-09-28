@@ -12,17 +12,17 @@ const links: { href: string; label: string; kind: IconKind }[] = [
 ] as const;
 const slug = 'bestof';
 const autoplay = true;
-const interval = 5000;   // 5s
+const interval = 7000;   
 const random   = true;
 const isExternalLink = (href: string) => href.startsWith('http');
 export const title = 'Home - Faelis Paw Artistry'
 ---
-<section class="intro__hero section">
-  <img class="intro__mascot" src={ASSETS.mascot.src}  alt="" />
-  <img class="intro__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
+<section class="media-hero section">
+  <img class="media-hero__mascot" src={ASSETS.mascot.src}  alt="" />
+  <img class="media-hero__logo" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
 </section>
 
-<section class="content-layout content-layout--split section">
+<section class="content-layout content-layout__split section">
   <section class="content-card">
     <h2>Welcome,</h2>
     <div class="prose">
@@ -35,32 +35,32 @@ export const title = 'Home - Faelis Paw Artistry'
     <h3><i>Faelis Skribblekitty 💜</i></h3>
   </section>
 
-  <section class="content-card">
+  <section class="content-card media-gallery__hook"  data-slug={slug}  data-autoplay={String(autoplay)}  data-interval={String(interval)}  data-random={String(random)}>
     <h2>Preview:</h2>    
-    <div class="gallery"  data-slug={slug}  data-autoplay={String(autoplay)}  data-interval={String(interval)}  data-random={String(random)}>
-      <div class=" gallery-viewer">
-        <div class="gallery-viewer-frame compact">
-          <img class="gallery-viewer-image compact" alt="Best of artworks" loading="lazy" />
-          <div class="gallery-viewer-progress compact" />
+    <div class="prose">  
+      <div class="media-gallery">
+        <div class="media-gallery__frame compact">
+          <img class="media-gallery__image compact" alt="Best of artworks" loading="lazy" />
+          <div class="media-gallery__progress compact" />
         </div>
       </div>
-    </div>   
+    </div>     
   </section>
 </section>
 
 <section class="content-card section">
   <h2>Contact:</h2>
-  <div class="contact-grid">
+  <div class="ui-btn__contact--wrap">
     {links.map((l) => {
       const external = isExternalLink(l.href);
       return (
         <a
-          class={`contact-btn contact-btn--${l.kind}`}
+          class={`ui-btn__contact ui-btn__contact--${l.kind}`}
           href={l.href}
           rel={external ? 'me noopener noreferrer' : 'me'}
           target={external ? '_blank' : undefined}
         >
-          <span class="contact-ico"><Icon kind={l.kind} /></span>
+          <span class="ui-btn__contact--icon"><Icon kind={l.kind} /></span>
           <span>{l.label}</span>
         </a>
       );

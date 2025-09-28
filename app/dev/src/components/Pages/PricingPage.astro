@@ -67,15 +67,15 @@ const formatPrice = (it: PriceItem) => {
     const linkLabelTitle = cat.title;
     return (
       <section id={cat.anchorId} class="content-card content-card--head">
-        <div class="content-card--rows">
+        <div class="content-card__rows">
           <h3>{cat.title}</h3>
           <p>{cat.albumHref ? (
-            <a class="chip" href={cat.albumHref} aria-label={`Open ${linkLabelTitle} album`}>
+            <a class="ui-chip" href={cat.albumHref} aria-label={`Open ${linkLabelTitle} album`}>
                 → Examples
             </a> ) : cat.title}
           </p>
         </div>
-        <div class="content-card--subtitle">
+        <div class="content-card__subtitle">
           {cat.subtitle && <p>{cat.subtitle}</p>}
         </div>
         
@@ -101,7 +101,7 @@ const formatPrice = (it: PriceItem) => {
                   </td>
 
                   <td class="table__td table__td--right">
-                    {it.note && <span class="badge">{it.note}</span>}
+                    {it.note && <span class="ui-badge">{it.note}</span>}
                     <span class="table__price">{formatPrice(it)}</span>
                   </td>
                 </tr>

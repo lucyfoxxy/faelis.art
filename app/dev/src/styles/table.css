@@ -1,6 +1,17 @@
-/* === TABLE LAYOUT ======================================= */
-/* === Depends on: tokens.css (vars), site.css (layout) === */
+/* ====== TABLES / LISTS STRUCTURE =========================== */
+/* ====== Depends on: tokens.css (vars), site.css (layout) ====== */
 
+/* ====== DEFINITION LIST ====== */
+.deflist {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .35rem .75rem;
+  margin: .5rem 0 0;
+}
+.deflist__term {  opacity: .8;  white-space: nowrap;  }
+.deflist__desc {  margin: 0;  word-break: break-word; }
+
+/* ====== TABLE ====== */
 .table__wrap { 
   overflow-x: clip; 
   overflow-y: visible; 
@@ -25,10 +36,7 @@
 .table__th--right { border-top-right-radius: var(--medium-radius); text-align: right; }
 .table__tr { background: transparent; }
 .table__tr.is-alt { background: color-mix(in oklab, var(--panel-background, #000) 74%, white 6%); }
-.table__td {
-  vertical-align: middle;
-  word-break: break-word;
-}
+.table__td { vertical-align: middle;  word-break: break-word; }
 .table__td--right { 
   display: flex;
   align-items: center;
@@ -36,20 +44,14 @@
   gap: .5rem;
   white-space: nowrap; }
 .table__price { display: inline-block; }
-
-.table__unit {
-  opacity: .7;
-}
+.table__unit { opacity: .7; }
 
 
 @media (max-width: 430px) {
   .table__td--right {
-    flex-direction: column;     /* Chip oben, Preis darunter */
+    flex-direction: column;
     align-items: flex-end;
     gap: .25rem;
   }
-
-  .table__price {
-    display: block;             /* bricht in eigene Zeile */
-  }
+  .table__price { display: block; }
 }

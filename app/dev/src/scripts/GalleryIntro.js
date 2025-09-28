@@ -14,7 +14,7 @@ const assetModules = import.meta.glob('@Assets/albums/bestof/*', {
 const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
 
 export default function initGalleryIntro() {
-  const root = document.querySelector('.gallery[data-slug]');
+  const root = document.querySelector('.media-gallery__hook[data-slug]');
   if (!root) return;
 
   const slug     = root.getAttribute('data-slug');
@@ -22,9 +22,9 @@ export default function initGalleryIntro() {
   const random   = root.getAttribute('data-random') === 'true';
   const interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
 
-  const viewer    = root.querySelector('.gallery-viewer');
-  const imgEl    = viewer?.querySelector('.gallery-viewer-image');
-  const progress = viewer?.querySelector('.gallery-viewer-progress');
+  const viewer    = root.querySelector('.media-gallery');
+  const imgEl    = viewer?.querySelector('.media-gallery__image');
+  const progress = viewer?.querySelector('.media-gallery__progress');
 
   if (!viewer || !imgEl || !progress) return;
 

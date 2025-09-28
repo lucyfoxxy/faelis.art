@@ -1,44 +1,40 @@
 ---
-type Props = { albumSlug: string; title?: string; description?: string }
-const { albumSlug, title , description } = Astro.props as Props;
+type Props = { albumSlug: string; title?: string; description?: string };
+const { albumSlug, title, description } = Astro.props as Props;
 const pricingHref = `/pricing#${albumSlug}`;
-
 ---
 <section class="content-head section">
-  <div class="content-card--rows">
+  <div class="content-card__rows">
     <h2>{title}</h2>
-    <p>
-    <a class="chip" href={pricingHref}>→ Pricing</a></p>
-  </div>
-  <div class="prose">
+    <p><a class="ui-chip" href={pricingHref}>→ Pricing</a></p>
     <p>{description}</p>
   </div>
+
 </section>
 
-<section class="gallery content-layout"  data-slug={albumSlug} data-autoplay="true"  data-interval="5000"  data-random="true">
+<section class="content-layout media-gallery__hook" data-slug={albumSlug} data-autoplay="true" data-interval="5000" data-random="true">
   <section class="content-card">
-    <div class="gallery-viewer">
-      <div class="gallery-viewer-frame">
-        <img class="gallery-viewer-image" alt="" />
+    <div class="media-gallery">
+      <div class="media-gallery__frame">
+        <img class="media-gallery__image" alt="" />
       </div>
-      <div class="gallery-viewer-progress"></div>    
-      <div class="gallery-viewer-controls">
-        <button class="gallery-viewer-prev" aria-label="Previous">❮</button>
-        <button class="gallery-viewer-playpause" aria-label="Play/Pause">⏸</button>
-        <button class="gallery-viewer-next" aria-label="Next">❯</button>
+      <div class="media-gallery__progress"></div>
+      <div class="media-gallery__controls">
+        <button class="media-gallery__prev" aria-label="Previous">❮</button>
+        <button class="media-gallery__playpause" aria-label="Play/Pause">⏸</button>
+        <button class="media-gallery__next" aria-label="Next">❯</button>
       </div>
-    </div>      
+    </div>
   </section>
 
   <section class="content-card">
-    <div class="gallery-viewer-thumbs" role="list"></div>
+    <div class="media-gallery__thumbs-wrap" role="list"></div>
   </section>
 </section>
 
 <script>
   import initGalleryPage from "@Scripts/GalleryDetail.js";
   const boot = () => initGalleryPage();
-
   if (document.readyState === "complete" || document.readyState === "interactive") {
     requestAnimationFrame(boot);
   } else {

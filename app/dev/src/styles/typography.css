@@ -1,3 +1,4 @@
+/* ====== FONTS ====== */
 @font-face {
   font-family: 'Grandstander';
   src: url('/fonts/Grandstander_normal_100-900.woff2') format('woff2');
@@ -26,6 +27,8 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* ====== BASE TYPOGRAPHY ====== */
 body {
   font-family: var(--primary-font-family);
   font-weight: var(--thin-font-weight);
@@ -36,62 +39,96 @@ body {
   text-shadow: var(--primary-shadow-color);
   text-decoration: none;
 }
+
 p :where(em,i) { 
   font-style: italic; 
   font-weight: var(--thick-font-weight);
 }
-.site-footer,.site-nav a,.panel :where(h2) { letter-spacing: var(--large-letter-spacing); }
-.site-nav a {
+
+/* ====== LINKS & FOOTER ====== */
+.panel :where(a),
+.site-footer :where(a) {
   font-weight: var(--thick-font-weight);
 }
-.panel :where(a),.site-footer :where(a){
-  font-weight: var(--thick-font-weight);
-} 
-.site-footer,.badge { font-size: var(--xsmall-font-size); }
-.table__subtitle { line-height: var(--medium-line-height); }
-.table__th { font-weight: var(--thick-font-weight); }
-.table__price { font-weight: var(--normal-font-weight); }
-:where(h1,h2,h3, .site-nav a){
-   font-family: var(--secondary-font-family); 
+
+.site-footer,
+.site-header__nav a,
+.panel :where(h2) { 
+  letter-spacing: var(--large-letter-spacing); 
 }
-.panel :where(h1,h2,h3) {  margin: 0; }
+
+.site-header__nav a {
+  font-weight: var(--thick-font-weight);
+}
+
+.site-footer,
+.ui-badge { 
+  font-size: var(--xsmall-font-size); 
+}
+
+/* ====== BADGE & CHIP ====== */
+.ui-chip, 
+.ui-badge {
+  line-height: var(--xsmall-line-height);
+}
+.ui-chip {
+  font-size: var(--small-font-size);
+}
+
+/* ====== HEADINGS ====== */
+:where(h1,h2,h3, .site-header__nav a) { 
+  font-family: var(--secondary-font-family); 
+}
+
+.panel :where(h1,h2,h3,.prose p) { 
+  margin: 0; 
+}
+
 .panel :where(h1) {
   font-weight: var(--bold-font-weight);
   font-size: var(--xlarge-font-size);
   line-height: var(--xlarge-line-height);
   letter-spacing: var(--large-letter-spacing);
 }
+
 .panel :where(h2) { 
   font-size: var(--large-font-size);
   line-height: var(--large-line-height); 
 }
+
 .panel :where(h3){
   color: var(--secondary-text-color);
   font-weight: var(--normal-font-weight);
   font-size: var(--large-font-size);
 }
-.media__galleries--card h3 {
-   font-size: var(--medium-font-size);
+
+/* ====== PROSE & LISTEN ====== */
+.panel :where(p) {  
+  margin: 0 0 var(--prose-flow-spacing);  
 }
-.panel :where(p) {  margin: 0 0 var(--prose-flow-spacing);  }
-.panel :where(.prose p) {  margin: 0; }
 
 .panel :where(ul,ol) {
   padding-inline-start: 1.2rem;
   margin: var(--prose-flow-spacing) 0;
 }
-.panel :where(li) {  margin: calc(var(--prose-flow-spacing) * .35) 0;  }
+.panel :where(li) {  
+  margin: calc(var(--prose-flow-spacing) * .35) 0;  
+}
+
 .panel :where(blockquote){
   margin: var(--prose-flow-spacing) 0;
   padding: calc(var(--prose-flow-spacing) * .75) var(--prose-flow-spacing);
-  border-left:3px solid var(--link);
+  border-left: 3px solid var(--link);
   background: color-mix(in oklab, var(--content-background), black 10%);
-  border-radius:.5rem;
+  border-radius: .5rem;
 }
-.chip, .badge {
-  line-height: var(--xsmall-line-height);
-}
-.chip {
 
-  font-size: var(--small-font-size);
+/* ====== TABLES ====== */
+.table__subtitle { line-height: var(--medium-line-height); }
+.table__th { font-weight: var(--thick-font-weight); }
+.table__price { font-weight: var(--normal-font-weight); }
+
+/* ====== MEDIA GALLERIES ====== */
+.media-galleries__card h3 {
+   font-size: var(--medium-font-size);
 }

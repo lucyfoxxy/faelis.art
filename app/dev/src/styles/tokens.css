@@ -1,5 +1,5 @@
 :root { 
-  /* === Main Colors === */
+  /* ====== Main Colors ====== */
   /*--primary-color:              oklch(60% 0.15 305);   /* dunkler, weniger gesättigt Lila 
   --accent-color:               oklch(55% 0.1 315); */  /* heller Akzent, leicht pinkiger */
   --primary-color:              oklch(30% 0.10 310);   /* dunkler, weniger gesättigt Lila */
@@ -16,7 +16,7 @@
   --secondary-text-color:       oklch(87% 0.085 310);
 
 
-  /* === Decorations === */
+  /* ====== Decorations ====== */
   --background-overlay:         radial-gradient(1200px 600px at 50% 10%, transparent 0%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.6) 100%);
   
   --small-blur:                 10px;
@@ -30,7 +30,7 @@
   --small-shadow:               10px 44px 100px 320px var(--secondary-shadow-color);
   --medium-shadow:              0 0 0.175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
   --large-shadow:               0 0 0.225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
-  /* === Fonts === */
+  /* ====== Fonts ====== */
   --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --secondary-font-family:      'Fuzzy Bubbles', var(--primary-font-family);
 
@@ -58,7 +58,7 @@
 
 
 
-  /* === Layout / Structures === */
+  /* ====== Layout / Structures ====== */
   --container-max:              1280px;
   --container-gap:              clamp(1.5rem, 3.5vw, 2.75rem);
   --container-padding:          max(var(--container-gap), calc((100vw - var(--container-max)) / 2));
@@ -87,7 +87,7 @@
   --brand-gap:                  calc(var(--content-gap) * .85);
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
-  /* === Gallery === */
+  /* ====== Gallery ====== */
   --thumb:                      clamp(96px, 10vw, 164px);
   --gallery-frame-size:         clamp(240px, 45vh, 480px);                       
   --gallery-frame-size-compact: clamp(160px, 26vh, 360px);

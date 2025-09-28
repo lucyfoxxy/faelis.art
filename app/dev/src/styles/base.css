@@ -1,21 +1,22 @@
-/* Reset & Baseline */
+/* ====== Reset & Baseline ====== */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }
 html:focus-within { scroll-behavior: smooth; }
-html, body { min-height: 100dvh; }
+html, 
+body { min-height: 100dvh; }
 :root { color-scheme: dark; }
 
+/* ====== DEFAULT  ====== */
 body {
-  line-height: 1.5;
+  
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   color: var(--primary-text-color);
-  background: none; /* BG via ::before */  
+  background: none; 
   display: flex;
   flex-direction: column;  
 }
 
-/* Vollflächiger Seitenhintergrund */
 body::before{
   content:"";
   position: fixed;
@@ -27,14 +28,12 @@ body::before{
   will-change: transform; transform: translateZ(0);
 }
 
-/* Medien & Controls */
 img, picture, video, canvas, svg { display: block; max-inline-size: 100%; }
 input, button, textarea, select { font: inherit; color: inherit; }
 
-/* Fokus */
+/* ====== ACCESSIBILITY ====== */
 :focus-visible { outline: 2px solid var(--accent-color); outline-offset: 2px; }
 
-/* Bewegungsreduktion */
 @media (prefers-reduced-motion: reduce){
   html:focus-within { scroll-behavior: auto; }
   *, *::before, *::after {

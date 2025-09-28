@@ -14,7 +14,7 @@ const assetModules = import.meta.glob('@Assets/albums/**/*', {
 const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
 
 export default function initGalleryPage() {
-  const root = document.querySelector('.gallery[data-slug]');
+  const root = document.querySelector('.media-gallery__hook[data-slug]');
   if (!root) return;
 
   const slug     = root.getAttribute('data-slug');
@@ -22,13 +22,13 @@ export default function initGalleryPage() {
   const random   = root.getAttribute('data-random') === 'true';
   const interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
 
-  const viewer    = root.querySelector('.gallery-viewer');
-  const imgEl     = viewer?.querySelector('.gallery-viewer-image');
-  const btnPrev   = viewer?.querySelector('.gallery-viewer-prev');
-  const btnNext   = viewer?.querySelector('.gallery-viewer-next');
-  const btnPlay   = viewer?.querySelector('.gallery-viewer-playpause');
-  const progress  = viewer?.querySelector('.gallery-viewer-progress');
-  const thumbsWrap= root.querySelector('.gallery-viewer-thumbs');
+  const viewer    = root.querySelector('.media-gallery');
+  const imgEl     = viewer?.querySelector('.media-gallery__image');
+  const btnPrev   = viewer?.querySelector('.media-gallery__prev');
+  const btnNext   = viewer?.querySelector('.media-gallery__next');
+  const btnPlay   = viewer?.querySelector('.media-gallery__playpause');
+  const progress  = viewer?.querySelector('.media-gallery__progress');
+  const thumbsWrap= root.querySelector('.media-gallery__thumbs-wrap');
 
  if (!viewer || !imgEl || !btnPrev || !btnNext || !btnPlay || !progress || !thumbsWrap) return;
 
@@ -46,7 +46,7 @@ export default function initGalleryPage() {
     btnPlay.disabled = true;
     btnPlay.hidden = true;
     const empty = document.createElement('p');
-    empty.className = 'gallery-empty';
+    empty.className = 'media-gallery__empty';
     empty.textContent = 'No artworks available yet.';
     thumbsWrap.removeAttribute('role');
     thumbsWrap.replaceChildren(empty);
@@ -74,7 +74,7 @@ export default function initGalleryPage() {
     imgEl.src = item.full;
     imgEl.alt = item.alt || '';
 
-    thumbsWrap.querySelectorAll('.gallery-viewer-thumb').forEach((t, k) => {
+    thumbsWrap.querySelectorAll('.media-gallery__thumb').forEach((t, k) => {
       t.classList.toggle('active', k === i);
     });
     setProgress(0);
@@ -119,7 +119,7 @@ export default function initGalleryPage() {
   order.forEach((itemIdx, orderIdx) => {
     const item = items[itemIdx];
     const a = document.createElement('button');
-    a.className = 'gallery-viewer-thumb';
+    a.className = 'media-gallery__thumb';
     a.type = 'button';
     a.setAttribute('aria-label', item.alt || `Image ${orderIdx + 1}`);
  
