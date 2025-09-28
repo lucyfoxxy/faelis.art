@@ -13,7 +13,7 @@
 - player controls mit ins image-frame, (overlay?)
 
 ## Gallery-Frame (both compact + large)
-- progress mit ins frame (overlay?)
-- size soll sich an den verfügbaren parent-container anpassen (um insbesondere auf der startseite leeren platz zu vermeiden) 
-
+- progress bar as overlay on the frames bottom
+- fix improper frame scaling in some cases
+- implement smoother image transitions but keep them decent
 
