@@ -2,12 +2,13 @@
 interface CategoryEntry {
   slug: string;
   title: string;
+  description: string;
 }
 
 const { categories } = Astro.props as { categories: CategoryEntry[] };
 ---
 <section class="content-head section">
-  <h1>Art Gallery</h1>
+  <h1>Gallery</h1>
   <div class="prose">
     <p>Here you gonna find a decent selection of my previous works, seperated by their categories.</p>
   </div>

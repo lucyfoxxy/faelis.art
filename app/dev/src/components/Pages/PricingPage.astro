@@ -1,5 +1,4 @@
 ---
-
 interface PriceItem {
   name: string;
   price?: number;
@@ -9,22 +8,23 @@ interface PriceItem {
   note?: string;   // z.B. "from", "per view", "60 € total"
   link?: string;
 }
-
 interface PriceCategory {
   title: string;
   slug?: string;
   subtitle?: string;
-  description?: string;
   items: PriceItem[];
 }
-
 interface CatalogData {
   currency?: string;
   categories: PriceCategory[];
 }
 
-const { catalog } = Astro.props as { catalog: CatalogData };
+type PriceCategoryWithAnchor = PriceCategory & {
+  anchorId: string;
+  albumHref?: string;
+};
 
+const { catalog } = Astro.props as { catalog: CatalogData };
 const toSlug = (value: string) =>
   value
     .normalize("NFKD")
@@ -34,12 +34,6 @@ const toSlug = (value: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .replace(/-{2,}/g, "-");
-
-type PriceCategoryWithAnchor = PriceCategory & {
-  anchorId: string;
-  albumHref?: string;
-};
-
 const categories: PriceCategoryWithAnchor[] = catalog.categories.map((cat) => {
   const slug = cat.slug?.trim();
   const anchorId = slug && slug.length > 0 ? slug : toSlug(cat.title);
@@ -89,7 +83,6 @@ const formatPrice = (it: PriceItem) => {
         </div>
         <div class="content-card--subtitle">
           {cat.subtitle && <p>{cat.subtitle}</p>}
-          {cat.description && <p>{cat.description}</p>}
         </div>
         
         <div class="table__wrap">

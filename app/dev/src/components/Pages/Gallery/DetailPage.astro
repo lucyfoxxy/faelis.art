@@ -1,14 +1,17 @@
 ---
-type Props = { albumSlug: string; title?: string }
-const { albumSlug, title = 'Galerie' } = Astro.props as Props;
+type Props = { albumSlug: string; title?: string; description?: string }
+const { albumSlug, title , description } = Astro.props as Props;
 const pricingHref = `/pricing#${albumSlug}`;
-const pricingLabel = `Click here for pricing`;
+
 ---
 <section class="content-head section">
   <div class="content-card--rows">
     <h2>{title}</h2>
     <p>
     <a class="chip" href={pricingHref}>→ Pricing</a></p>
+  </div>
+  <div class="prose">
+    <p>{description}</p>
   </div>
 </section>
 
