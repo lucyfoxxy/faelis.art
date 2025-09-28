@@ -1,18 +1,5 @@
 import { defineCollection, z } from "astro:content";
 
-/** === Preis-/Katalog-Struktur (albumCatalog) === */
-const priceItem = z.object({
-
-});
-
-const priceCategory = z.object({
-  title: z.string(),
-  slug: z.string(),                 // required: URL/Datei-Name muss matchen
-  subtitle: z.string().optional(),
-  description: z.string().optional(),
-  items: z.array(priceItem),
-});
-
 const albumCatalog = defineCollection({
   type: "data",
   schema: z.object({
@@ -29,15 +16,15 @@ const albumCatalog = defineCollection({
             price: z.number().optional(),
             note: z.enum(["each","from","extra"]).optional(),            
           })
-        )
-      })
+        ),
+      }),
     ),
   }),
 });
 
 
 const albumData = defineCollection({
-  type: 'data',
+  type: "data",
   schema: z.object({
     slug: z.string(),
     count: z.number(),
@@ -49,8 +36,7 @@ const albumData = defineCollection({
         filename: z.string().optional(),
         width: z.number().nullable().optional(),
         height: z.number().nullable().optional(),
-
-      })
+      }),
     ),
   }),
 });

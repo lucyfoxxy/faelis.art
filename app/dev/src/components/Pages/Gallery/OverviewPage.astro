@@ -2,7 +2,6 @@
 interface CategoryEntry {
   slug: string;
   title: string;
-  description: string;
 }
 
 const { categories } = Astro.props as { categories: CategoryEntry[] };
@@ -16,10 +15,10 @@ const { categories } = Astro.props as { categories: CategoryEntry[] };
 
 <section class="content-layout section">
   <section class="content-card">
-    <div class="media__galleries">
+    <div class="media-galleries">
       {categories.map(({ slug, title }) => (
-        <a class="media__galleries--card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
-          <div class="media__galleries--thumb" data-slug={slug}></div>
+        <a class="media-galleries__card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
+          <div class="media-galleries__thumb" data-slug={slug}></div>
           <h3>{title}</h3>
         </a>
       ))}

@@ -16,7 +16,7 @@
       "title": "Reference Sheets",
       "slug": "ref-sheets",
       "subtitle": "Price depends on character complexity / number of views. · digital only",
-      "description": "A full overview of your character with multiple poses and views. Perfect for artists to capture consistent designs or to introduce your OC to the community.",
+      "description": "A complete overview of your fursona including every single detail (accessories, markings), mainly used by Suitmakers and other artists.",
       "items": [
         { "name": "Simple – 2 Views", "price": 45 },
         { "name": "Medium – 3 Views", "price": 60 },
@@ -29,7 +29,7 @@
       "title": "Sketches",
       "slug": "sketch",
       "subtitle": "Quick sketch style · SFW / NSFW · digital / traditional",
-      "description": "Fast and expressive drawings that capture the essence of a character. Ideal for warm-up art, playful concepts or just a looser take on your OC.",
+      "description": "Not sure how your idea might turn out? Let’s explore it together with a quick sketch first!",
       "items": [
         { "name": "Headshot", "price": 20 },
         { "name": "Fullbody", "price": 30 },
@@ -41,10 +41,10 @@
       "title": "Line Art",
       "slug": "line-art",
       "subtitle": "Clean lines, without coloring · SFW / NSFW · digital / traditional",
-      "description": "Crisp outlines ready for coloring or standalone black-and-white artwork. A versatile style that balances detail and clarity.",
+      "description": "Clear, clean line art — ready for you to colorize, or simply enjoy as it is. Great if you want to add your own creative touch.",
       "items": [
-        { "name": "Headshot", "price": 20 },
-        { "name": "Fullbody", "price": 30 },
+        { "name": "Headshot", "price": 30 },
+        { "name": "Fullbody", "price": 35 },
         { "name": "Background", "price": 15, "note": "from" },
         { "name": "Additional character", "price": 20, "note": "each" }
       ]
@@ -53,7 +53,7 @@
       "title": "Full Art (SFW)",
       "slug": "full-art-sfw",
       "subtitle": "Full-color illustration (incl. shadings) · SFW · digital / traditional",
-      "description": "Finished illustrations with full color and shading, bringing your character to life in a safe-for-work context. Great for profile art or personal galleries.",
+      "description": "Detailed, full-colored illustration (incl. shadings) - bringing your character to life! Perfect as a wallpaper, a poster, or a heartfelt gift for your beloved ones!",
       "items": [
         { "name": "Headshot", "price": 40 },
         { "name": "Fullbody", "price": 50 },
@@ -65,10 +65,10 @@
       "title": "Full Art (NSFW)",
       "slug": "full-art-nsfw",
       "subtitle": "Full-color illustration (incl. shadings) · NSFW (18+) · digital / traditional",
-      "description": "Detailed illustrations with mature themes. Intended for adult audiences only, handled with the same attention to detail as SFW art.",
+      "description": "Detailed, kinky illustrations making your wildest and darkest desires come true - at least as a piece of art!",
       "items": [
-        { "name": "Headshot", "price": 40 },
-        { "name": "Fullbody", "price": 50 },
+        { "name": "Headshot", "price": 45 },
+        { "name": "Fullbody", "price": 55 },
         { "name": "Background", "price": 15, "note": "from" },
         { "name": "Additional character", "price": 20, "note": "each" }
       ]
@@ -77,7 +77,7 @@
       "title": "Logos & Tribals",
       "slug": "logos-tribals",
       "subtitle": "Custom symbol or mark for use as wall-, car-, body-tattoo etc. · b/w or colored · I won't apply them to your wall, car or body! · digital only",
-      "description": "Custom-designed symbols and tribal patterns, usable for branding, decoration, or tattoo concepts. A focus on bold shapes and strong visual identity.",
+      "description": "Unique logos and tribal designs made just for you — whether for your wall, your car, or even yourself. (Disclaimer: I won’t be the one sticking them on!)",
       "items": [
         { "name": "Simple (B/W)", "price": 30 },
         { "name": "Detailed (B/W)", "price": 45, "note": "from" },
@@ -87,8 +87,8 @@
     {
       "title": "Sticker Packs (Telegram)",
       "slug": "sticker-packs",
-      "subtitle": "Shadings will add +2€ per sticker · Bundled as sticker pack (on request) · digital only",
-      "description": "Fun, expressive stickers of your character made for Telegram or other chat apps. Packs can cover different moods and reactions to use in conversation.",
+      "subtitle": "Shadings will add +2€ per sticker · Bundled as sticker pack (on request) · SFW / NSFW · digital only",
+      "description": "Let’s create your very own personal sticker pack for messengers like Telegram. Any emotion or expression — including NSFW — is possible!",
       "items": [
         { "name": "1 Sticker", "price": 13 },
         { "name": "5 Stickers", "price": 60 },
@@ -100,7 +100,7 @@
       "title": "Button- & Sticker-Prints",
       "slug": "prints",
       "subtitle": "Physical items · Various designs available (see gallery) · Custom designs on request.",
-      "description": "Collectible physical items like pin-buttons and vinyl stickers. Popular at conventions and perfect for decorating laptops, bags, or to trade with friends.",
+      "description": "The good old evergreens every furry needs: physical stickers and buttons — perfect to decorate your bag, trade at conventions, or stick to that lantern right outside your door!",
       "items": [
         { "name": "1–9 pcs.", "price": 4, "note": "each" },
         { "name": "10–19 pcs.", "price": 3, "note": "each" },
