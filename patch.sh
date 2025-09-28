@@ -1,3 +1,4 @@
+cat <<'EOF' > app/dev/src/content/config.ts
 import { defineCollection, z } from "astro:content";
 
 /** === Preis-/Katalog-Struktur (albumCatalog) === */
@@ -47,3 +48,4 @@ const albumData = defineCollection({
 });
 
 export const collections = { albumCatalog, albumData };
+EOF

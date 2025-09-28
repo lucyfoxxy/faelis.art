@@ -86,7 +86,7 @@ prod-deploy:
 dev-sync:
 	@echo "🏗️  Syncing DEV"
 	npm run sync:dev
-	@echo "✅ PROD sync done"
+	@echo "✅ DEV sync done"
 
 prod-sync:
 	@echo "🏗️  Syncing PROD"

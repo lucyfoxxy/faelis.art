@@ -75,7 +75,7 @@ async function main() {
   if(!QUIET){
     console.log(`→ fetch-immich target: ${TARGET}`);
     console.log(`   assets:   ${PATHS.assetsPath}`);
-    console.log(`   entries: ${PATHS.entriesPath}`);
+    console.log(`   entries: ${PATHS.albumData}`);
   }
   const allAlbumIds = [
     ...Object.values(ALBUM_MAP),
@@ -152,7 +152,7 @@ async function processAlbum({
   if (totalAlbum === 0) {
 
     await writeAlbumIndex({
-      entriesPath: paths.entriesPath,
+      albumData: paths.albumData,
       slug,
       items
     });
@@ -192,7 +192,7 @@ async function processAlbum({
 
   
   await writeAlbumIndex({
-    entriesPath: paths.entriesPath,
+    albumData: paths.albumData,
     slug,
     items
   });
@@ -203,11 +203,11 @@ async function processAlbum({
   return { slug };
 }
 
-async function writeAlbumIndex({ entriesPath, slug, items }) {
-  await fs.mkdir(entriesPath, { recursive: true });
+async function writeAlbumIndex({ albumData, slug, items }) {
+  await fs.mkdir(albumData, { recursive: true });
   const index = { album: slug, count: items.length, items };
   await fs.writeFile(
-    path.join(entriesPath, `${slug}.json`),
+    path.join(albumData, `${slug}.json`),
     JSON.stringify(index, null, 2),
     'utf-8'
   );
@@ -358,7 +358,7 @@ function createPathConfig(repoRoot, target) {
     srcRoot,
     assetsPath: path.join(srcRoot, 'assets', 'albums'),
     
-    entriesPath: path.join(srcRoot, 'content', 'albums', '_entries'),
+    albumData: path.join(srcRoot, 'content', 'albumData'),
     envFile: path.join(appRoot, '.env')
   };
 }

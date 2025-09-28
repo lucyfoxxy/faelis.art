@@ -3,7 +3,7 @@ import Layout from '@Design/Layout.astro';
 import GalleryDetailPage from '@Pages/Gallery/DetailPage.astro';
 
 export async function getStaticPaths() {
-  const catalog = (await getEntry('categories', 'albums')).data;
+  const catalog = (await getEntry('albumCatalog', 'categories')).data;
   return catalog.categories.reduce((paths, { slug, title }) => {
     if (!slug) return paths;
     paths.push({

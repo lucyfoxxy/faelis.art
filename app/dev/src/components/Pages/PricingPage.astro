@@ -2,11 +2,7 @@
 interface PriceItem {
   name: string;
   price?: number;
-  from?: number;
-  to?: number;
-  unit?: string;
   note?: string;   // z.B. "from", "per view", "60 € total"
-  link?: string;
 }
 interface PriceCategory {
   title: string;
@@ -55,8 +51,6 @@ const fmt = (value?: number) => {
 };
 const formatPrice = (it: PriceItem) => {
   if (it.price != null) return fmt(it.price);
-  if (it.from != null && it.to != null) return `${fmt(it.from)} – ${fmt(it.to)}`;
-  if (it.from != null) return `ab ${fmt(it.from)}`;
   return "auf Anfrage";
 };
 ---
@@ -103,8 +97,7 @@ const formatPrice = (it: PriceItem) => {
               {cat.items.map((it, i) => (
                 <tr class={`table__tr ${i % 2 ? "is-alt" : ""}`}>
                   <td class="table__td">
-                    {it.link ? <a href={it.link} rel="noopener" target="_blank">{it.name}</a> : it.name}
-                    {it.unit && <span class="table__unit"> / {it.unit}</span>}
+                    {it.name}
                   </td>
 
                   <td class="table__td table__td--right">
