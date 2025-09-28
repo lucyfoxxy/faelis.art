@@ -111,7 +111,7 @@ The project follows a five-layer CSS architecture. Stylesheets are located in `a
 3. **`typography.css`** – global typography rules scoped largely to `.panel` containers to give panels their own typographic voice.
 4. **`site.css`** – structural layout for header, footer, navigation, containers, and panels.
 5. **`content.css`** – reusable content modules (hero, contact widgets, gallery components, tables).
-6. **`gallery.css`** – gallery-specific refinements such as viewer transitions.
+6. **`media.css`** – gallery-specific refinements such as viewer transitions.
 7. **`table.css`** – pricing table refinements.
 
 Import order matters to preserve the cascade:
@@ -122,7 +122,7 @@ import '@styles/base.css';
 import '@styles/typography.css';
 import '@styles/site.css';
 import '@styles/content.css';
-import '@styles/gallery.css';
+import '@styles/media.css';
 import '@styles/table.css';
 ```
 

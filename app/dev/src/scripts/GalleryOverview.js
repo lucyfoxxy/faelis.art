@@ -16,7 +16,7 @@ for (const [path, url] of Object.entries(covers)) {
 const fallback = coverBySlug.get('_default');
 
 export default function initGalleryCovers() {
-  const slots = document.querySelectorAll('.gallery-card-thumb[data-slug]');
+  const slots = document.querySelectorAll('.media__galleries--card-thumb[data-slug]');
   slots.forEach((el) => {
     const slug = el.getAttribute('data-slug');
     const src = (slug && coverBySlug.get(slug)) || fallback;

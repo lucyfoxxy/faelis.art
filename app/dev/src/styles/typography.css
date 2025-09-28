@@ -70,6 +70,9 @@ p :where(em,i) {
   font-weight: var(--normal-font-weight);
   font-size: var(--large-font-size);
 }
+.media__galleries--card h3 {
+   font-size: var(--medium-font-size);
+}
 .panel :where(p) {  margin: 0 0 var(--prose-flow-spacing);  }
 .panel :where(.prose p) {  margin: 0; }
 

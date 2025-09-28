@@ -2,19 +2,18 @@
 /* === Depends on: tokens.css (vars), site.css (layout) === */
 
 /* === Index Page === */
-.gallery-grid {
+.media__galleries {
   display: grid;
   gap: var(--content-gap);
   grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
   min-inline-size: 0;
 }
 @media (max-width: 780px) {
-  .gallery-grid {
+  .media__galleries{
     grid-template-columns: repeat(2, 1fr);
   }
 }
-.gallery {margin-top: calc(var(--content-gap)*.25);}
-.gallery-card {
+.media__galleries--card {
   display: flex;                
   flex-direction: column;
   gap: .6rem;
@@ -22,14 +21,14 @@
   border-radius: var(--medium-radius);
   padding: .75rem;
 }
-.gallery-card-thumb {
+.media__galleries--thumb {
   aspect-ratio: 1 / 1;
   background: color-mix(in oklab, var(--primary-background-color) 80%, black 20%);
   border-radius: var(--medium-radius);
   overflow: hidden;
 }
-.gallery-card h3 { margin: 0; }
 
+.gallery {margin-top: calc(var(--content-gap)*.25);}
 /* === Viewer Page === */
 .gallery-viewer {
   position: relative;

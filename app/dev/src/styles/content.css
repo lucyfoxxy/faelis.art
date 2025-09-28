@@ -10,10 +10,7 @@
 
 
 /* === Page / Card Headline === */
-.content-head {
-  display: grid;
-  /*gap: clamp(.5rem, 1.2vw, .9rem);*/
-}
+.content-head {  display: grid; }
 .content-head > :where(h1, h2, h3, p) { margin: 0; }
 .content-head > p { opacity: .9; max-inline-size: 100%; }
 
