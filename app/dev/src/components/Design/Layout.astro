@@ -4,11 +4,16 @@ import '@Styles/base.css';
 import '@Styles/typography.css';
 import '@Styles/site.css';
 import '@Styles/content.css';
+import '@Styles/ui.css';
 import '@Styles/media.css';
 import '@Styles/table.css';
 import { ASSETS } from '@Design/Assets.astro';
 
-const { title = "Faelis Paw Artistry", description = "Furry Art & Commissions" } = Astro.props;
+const {
+  title = 'Faelis Paw Artistry',
+  description = 'Furry Art & Commissions',
+  url = 'https://faelis.art',
+} = Astro.props?.meta ?? {};
 
 const navLinks = [
   { href: '/', label: 'Home', includeInHeader: false },
@@ -19,10 +24,19 @@ const navLinks = [
 ---
 <html lang="en">
   <head>
+    <title>{title}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ASSETS.og.src} />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ASSETS.og.src} />    
     <link rel="icon" type="image/webp" href={ASSETS.favicon.src} />
     <link rel="preload" href={ASSETS.bg.src} as="image" type="image/webp" /> 
     <link rel="preload" href={ASSETS.logo.src} as="image" type="image/webp" /> 
@@ -36,7 +50,7 @@ const navLinks = [
    
     <header class="site-header">
       <a href="/"><img class="header-logo" src={ASSETS.logo.src} alt="Faelis.Art" /></a>
-      <nav class="site-nav">
+      <nav class="site-header__nav">
         {navLinks
           .filter((link) => link.includeInHeader)
           .map((link) => (
