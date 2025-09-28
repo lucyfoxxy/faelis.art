@@ -1,13 +1,17 @@
----
+import { getEntry } from 'astro:content';
 import Layout from '@Design/Layout.astro';
 import GalleryDetailPage from '@Pages/Gallery/DetailPage.astro';
-import slugs from '@Content/albums/slugs.json';
 
-export function getStaticPaths() {
-  return slugs.albums.map(({ slug, title }) => ({
-    params: { slug },
-    props:  { title },
-  }));
+export async function getStaticPaths() {
+  const catalog = (await getEntry('categories', 'albums')).data;
+  return catalog.categories.reduce((paths, { slug, title }) => {
+    if (!slug) return paths;
+    paths.push({
+      params: { slug },
+      props:  { title },
+    });
+    return paths;
+  }, [] as { params: { slug: string }; props: { title?: string } }[]);
 }
 
 const { slug }  = Astro.params;

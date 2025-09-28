@@ -1,5 +1,10 @@
 ---
-import slugs from '@Content/albums/slugs.json';
+interface CategoryEntry {
+  slug: string;
+  title: string;
+}
+
+const { categories } = Astro.props as { categories: CategoryEntry[] };
 ---
 <section class="content-head section">
   <h1>Art Gallery</h1>
@@ -11,7 +16,7 @@ import slugs from '@Content/albums/slugs.json';
 <section class="content-layout section">
   <section class="content-card">
     <div class="gallery-grid">
-      {slugs.albums.map(({ slug, title }) => (
+      {categories.map(({ slug, title }) => (
         <a class="gallery-card" href={`/galleries/${slug}`} aria-label={`Open ${title}`}>
           <div class="gallery-card-thumb" data-slug={slug}></div>
           <h3>{title}</h3>

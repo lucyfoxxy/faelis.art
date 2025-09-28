@@ -6,18 +6,6 @@ import 'dotenv/config';
 // ──────────────────────────────────────────────────────────────────────────────
 // Configuration ----------------------------------------------------------------
 
-const TITLES = {
-  'full-art-sfw': 'Full Art (SFW)',
-  'full-art-nsfw': 'Full Art (NSFW)',
-  'line-art': 'Line Art',
-  sketch: 'Sketches',
-  'sticker-packs': 'Sticker Packs (Telegram)',
-  badges: 'Badges',
-  prints: 'Button- & Sticker-Prints',
-  'ref-sheets': 'Reference Sheets',
-  'logos-tribals': 'Logos & Tribals'
-};
-
 const { target: TARGET, quiet: QUIET } = parseCliArgs(process.argv.slice(2));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -88,7 +76,6 @@ async function main() {
     console.log(`→ fetch-immich target: ${TARGET}`);
     console.log(`   assets:   ${PATHS.assetsPath}`);
     console.log(`   entries: ${PATHS.entriesPath}`);
-    console.log(`   slugs: ${PATHS.slugsPath}`);
   }
   const allAlbumIds = [
     ...Object.values(ALBUM_MAP),
@@ -101,19 +88,16 @@ async function main() {
   const grandTotal = totals.reduce((acc, len) => acc + len, 0);
   const counters = { processedAll: 0, grandTotal };
 
-  const included = [];
   for (const [slug, albumId] of Object.entries(ALBUM_MAP)) {
     const assets = await getAssetsCached(albumId);
     await processAlbum({
       slug,
       albumId,
       assets,
-      includeInSlugs: true,
       counters,
       paths: PATHS,
       baseUrl: BASE
     });
-    included.push(slug);
     if(QUIET){await new Promise(r => setTimeout(r, 1500));}
 
   }
@@ -124,7 +108,6 @@ async function main() {
       slug: 'bestof',
       albumId: BESTOF_ID,
       assets,
-      includeInSlugs: false,
       counters,
       paths: PATHS,
       baseUrl: BASE
@@ -132,13 +115,6 @@ async function main() {
 
   }
   barsRelease();
-  const albums = await writeSlugs({
-    slugsPath: PATHS.slugsPath,
-    slugs: included,
-    titles: TITLES
-  });
-
-  if(!QUIET){ console.log(`✓ Slugs aktualisiert (${albums.length} Galerien)`);}
 }
 
 main().catch((error) => {
@@ -153,7 +129,6 @@ async function processAlbum({
   slug,
   albumId,
   assets = null,
-  includeInSlugs = true,
   counters,
   paths,
   baseUrl
@@ -184,7 +159,7 @@ async function processAlbum({
 
     if(!QUIET){ console.log(`✓ ${slug}: 0/0 Dateien verarbeitet`); }
 
-    return { slug, included: includeInSlugs };
+    return { slug };
   }
 
   for (let i = 0; i < totalAlbum; i += 1) {
@@ -225,26 +200,7 @@ async function processAlbum({
 
   if(!QUIET){ console.log(`\n\n✓ ${slug}: ${items.length}/${totalAlbum} Dateien verarbeitet`); }
 
-  return { slug, included: includeInSlugs };
-}
-
-// ──────────────────────────────────────────────────────────────────────────────
-// Slugs ---------------------------------------------------------------------
-
-async function writeSlugs({ slugsPath, slugs, titles }) {
-  const albums = slugs.map((slug) => ({
-    slug,
-    title: titles[slug] ?? slug
-  }));
-
-  await fs.mkdir(path.dirname(slugsPath), { recursive: true });
-  await fs.writeFile(
-    slugsPath,
-    JSON.stringify({ albums }, null, 2),
-    'utf-8'
-  );
-
-  return albums;
+  return { slug };
 }
 
 async function writeAlbumIndex({ entriesPath, slug, items }) {

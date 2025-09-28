@@ -1,5 +1,4 @@
 ---
-import slugs from "@Content/albums/slugs.json";
 
 interface PriceItem {
   name: string;
@@ -10,20 +9,21 @@ interface PriceItem {
   note?: string;   // z.B. "from", "per view", "60 € total"
   link?: string;
 }
+
 interface PriceCategory {
   title: string;
+  slug?: string;
   subtitle?: string;
+  description?: string;
   items: PriceItem[];
 }
-interface PricesData {
+
+interface CatalogData {
   currency?: string;
   categories: PriceCategory[];
 }
 
-const { prices } = Astro.props as { prices: PricesData };
-type albumDefinition = { slug: string; title: string };
-type albumSlugs = { albums: albumDefinition[] };
-const albums = (slugs as albumSlugs).albums ?? [];
+const { catalog } = Astro.props as { catalog: CatalogData };
 
 const toSlug = (value: string) =>
   value
@@ -35,97 +35,25 @@ const toSlug = (value: string) =>
     .replace(/^-+|-+$/g, "")
     .replace(/-{2,}/g, "-");
 
-const stripParenthetical = (value: string) =>
-  value.replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
-
-const normalizeKey = (value: string) =>
-  value
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "");
-
-const albumBySlug = new Map<string, albumDefinition>();
-const albumByNormalized = new Map<string, albumDefinition>();
-
-for (const album of albums) {
-  const baseTitle = stripParenthetical(album.title);
-  const slugForms = new Set([album.slug, toSlug(album.title), toSlug(baseTitle)]);
-  for (const slug of slugForms) {
-    if (!slug) continue;
-    if (!albumBySlug.has(slug)) albumBySlug.set(slug, album);
-  }
-
-  const normalizedForms = new Set([album.title, baseTitle]);
-  for (const form of normalizedForms) {
-    const key = normalizeKey(form);
-    if (!key) continue;
-    if (!albumByNormalized.has(key)) albumByNormalized.set(key, album);
-  }
-}
-
-const splitCategoryTitle = (title: string) => {
-  const [base, ...rest] = title.split("–");
-  const suffix = rest.join("–").trim();
-  return { base: base.trim(), suffix: suffix.length > 0 ? suffix : "" };
-};
-
-const findAlbumForTitle = (title: string) => {
-  if (!title) return undefined;
-  const base = title.trim();
-  if (!base) return undefined;
-  const baseNoParens = stripParenthetical(base);
-
-  const slugCandidates = new Set([toSlug(base), toSlug(baseNoParens)]);
-  for (const slug of slugCandidates) {
-    if (!slug) continue;
-    const album = albumBySlug.get(slug);
-    if (album) return album;
-  }
-
-  const normalizedCandidates = new Set([normalizeKey(base), normalizeKey(baseNoParens)]);
-  for (const key of normalizedCandidates) {
-    if (!key) continue;
-    const album = albumByNormalized.get(key);
-    if (album) return album;
-  }
-
-  return undefined;
-};
-
 type PriceCategoryWithAnchor = PriceCategory & {
-  anchorId?: string;
-  albumSlug?: string;
-  albumTitle?: string;
-  heading: string;
+  anchorId: string;
+  albumHref?: string;
 };
 
-const slugUsage = new Map<string, number>();
-const categories: PriceCategoryWithAnchor[] = prices.categories.map((cat) => {
-  const { base, suffix } = splitCategoryTitle(cat.title);
-  const album = findAlbumForTitle(base);
-  if (!album) {
-    return { ...cat, heading: cat.title };
-  }
-
-  const count = (slugUsage.get(album.slug) ?? 0) + 1;
-  slugUsage.set(album.slug, count);
-  const anchorId = count === 1 ? album.slug : `${album.slug}-${count}`;
-  const heading = suffix ? `${album.title} – ${suffix}` : album.title;
-
+const categories: PriceCategoryWithAnchor[] = catalog.categories.map((cat) => {
+  const slug = cat.slug?.trim();
+  const anchorId = slug && slug.length > 0 ? slug : toSlug(cat.title);
+  const albumHref = slug ? `/galleries/${slug}` : undefined;
   return {
     ...cat,
-    heading,
-    albumSlug: album.slug,
-    albumTitle: album.title,
-    anchorId,
+    anchorId: anchorId || toSlug(cat.title),
+    albumHref,
   };
 });
 
 const COLS = ["60%", "40%"]; // Type / Price(+Note)
-const title = "Pricing"
-const currency = prices.currency ?? "EUR";
+const title = "Pricing";
+const currency = catalog.currency ?? "EUR";
 const fmt = (value?: number) => {
   if (value == null) return "–";
   try { return new Intl.NumberFormat("de-DE", { style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value); }
@@ -147,20 +75,22 @@ const formatPrice = (it: PriceItem) => {
 </section>
 
 <section class="section content-layout">
- {categories.map((cat) => {
-    const albumHref = cat.albumSlug ? `/galleries/${cat.albumSlug}` : undefined;
-    const linkLabelTitle = cat.albumTitle ?? cat.heading;
+  {categories.map((cat) => {
+    const linkLabelTitle = cat.title;
     return (
       <section id={cat.anchorId} class="content-card content-card--head">
         <div class="content-card--rows">
-          <h3>{cat.heading}</h3>
-          <p>{albumHref ? ( 
-            <a class="chip" href={albumHref} aria-label={`Open ${linkLabelTitle} album`}>
+          <h3>{cat.title}</h3>
+          <p>{cat.albumHref ? (
+            <a class="chip" href={cat.albumHref} aria-label={`Open ${linkLabelTitle} album`}>
                 → Examples
-            </a> ): cat.heading}
-          </p>    
+            </a> ) : cat.title}
+          </p>
         </div>
-        <div class="content-card--subtitle">{cat.subtitle && <p>{cat.subtitle}</p>}</div>
+        <div class="content-card--subtitle">
+          {cat.subtitle && <p>{cat.subtitle}</p>}
+          {cat.description && <p>{cat.description}</p>}
+        </div>
         
         <div class="table__wrap">
           <table class="table">

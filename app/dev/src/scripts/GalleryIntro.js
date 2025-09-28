@@ -1,6 +1,6 @@
 import { createGalleryItemsBySlug } from './galleryData';
 
-const metas = import.meta.glob('@Content/albums/entries/bestof.json', {
+const metas = import.meta.glob('@Content/_albums/_entries/bestof.json', {
   query: '?json',
   eager: true,
 });
