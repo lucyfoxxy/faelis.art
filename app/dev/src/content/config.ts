@@ -2,13 +2,7 @@ import { defineCollection, z } from "astro:content";
 
 /** === Preis-/Katalog-Struktur (albumCatalog) === */
 const priceItem = z.object({
-  name: z.string(),
-  price: z.number().optional(),
-  from: z.number().optional(),
-  to: z.number().optional(),
-  unit: z.string().optional(),
-  note: z.enum(["each","from","extra"]).optional(),
-  link: z.string().url().optional(),
+
 });
 
 const priceCategory = z.object({
@@ -23,26 +17,41 @@ const albumCatalog = defineCollection({
   type: "data",
   schema: z.object({
     currency: z.string().default("EUR"),
-    categories: z.array(priceCategory),
+    categories: z.array(
+      z.object({
+        title: z.string(),
+        slug: z.string(),
+        subtitle: z.string().optional(),
+        description: z.string().optional(),
+        items: z.array(
+          z.object({
+            name: z.string(),
+            price: z.number().optional(),
+            note: z.enum(["each","from","extra"]).optional(),            
+          })
+        )
+      })
+    ),
   }),
 });
 
-/** === Galerie-Datenstruktur (albumData) === */
-const albumItem = z.object({
-  id: z.string(),
-  thumb: z.string(),
-  full: z.string(),
-  filename: z.string(),
-  width: z.number(),
-  height: z.number(),
-});
 
 const albumData = defineCollection({
-  type: "data",
+  type: 'data',
   schema: z.object({
-    album: z.string(),          // sollte == slug sein
+    slug: z.string(),
     count: z.number(),
-    items: z.array(albumItem),
+    items: z.array(
+      z.object({
+        id: z.string().optional(),
+        thumb: z.string(),
+        full: z.string(),
+        filename: z.string().optional(),
+        width: z.number().nullable().optional(),
+        height: z.number().nullable().optional(),
+
+      })
+    ),
   }),
 });
 

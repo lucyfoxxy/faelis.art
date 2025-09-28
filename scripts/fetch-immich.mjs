@@ -205,7 +205,7 @@ async function processAlbum({
 
 async function writeAlbumIndex({ albumData, slug, items }) {
   await fs.mkdir(albumData, { recursive: true });
-  const index = { album: slug, count: items.length, items };
+  const index = { slug: slug, count: items.length, items };
   await fs.writeFile(
     path.join(albumData, `${slug}.json`),
     JSON.stringify(index, null, 2),
