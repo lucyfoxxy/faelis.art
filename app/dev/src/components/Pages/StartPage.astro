@@ -17,62 +17,57 @@ const random   = true;
 const isExternalLink = (href: string) => href.startsWith('http');
 export const title = 'Home - Faelis Paw Artistry'
 ---
-<section class="intro">
-  <section class="intro__hero section">
-    <img class="intro__mascot" src={ASSETS.mascot.src}  alt="" />
-    <img class="intro__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
+<section class="intro__hero section">
+  <img class="intro__mascot" src={ASSETS.mascot.src}  alt="" />
+  <img class="intro__wordmark" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
+</section>
+
+<section class="content-layout content-layout--split section">
+  <section class="content-card">
+    <h2>Welcome,</h2>
+    <div class="prose">
+      <p>My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
+      <p>Whether you need some logo for your website,
+        a ref-sheet / badge for your fursona or something completely different <i> - maybe something kinky? Love it! -</i>
+        You've found the artistic kitten, suitable for all sorts of creative tasks! </p>
+      <p>Wanna see my art style? <i>Take a look at my <a href="/galleries">Gallery</a>! </i></p>
+    </div>
+    <h3><i>Faelis Skribblekitty 💜</i></h3>
   </section>
 
-  <section class="content-layout content-layout--split section">
-    <section class="content-card">
-      <h2>Welcome,</h2>
-      <div class="prose">
-        <p>My name is Faelis Skribblekitty, passionate artistic kitten since 2003.</p>
-        <p>Whether you need some logo for your website,
-          a ref-sheet / badge for your fursona or something completely different <i>(maybe...something kinky? :P)</i><br>
-           — you found the right artistic kitten for all sorts of creative tasks! </p>
-        <p><i>Take a look to my <a href="/galleries">Art Gallery</a></i> to get an idea of my personal art style.</p>
-      </div>
-      <h3><i>Faelis Skribblekitty 💜</i></h3>
-    </section>
-
-    <section class="content-card">
-      <h2>Preview:</h2>
-
-
-        
-      <div class="gallery"  data-slug={slug}  data-autoplay={String(autoplay)}  data-interval={String(interval)}  data-random={String(random)}>
-        <div class=" gallery-viewer">
-          <div class="gallery-viewer-frame compact">
-            <img class="gallery-viewer-image compact" alt="Best of artworks" loading="lazy" />
-            <div class="gallery-viewer-progress compact" />
-          </div>
+  <section class="content-card">
+    <h2>Preview:</h2>    
+    <div class="gallery"  data-slug={slug}  data-autoplay={String(autoplay)}  data-interval={String(interval)}  data-random={String(random)}>
+      <div class=" gallery-viewer">
+        <div class="gallery-viewer-frame compact">
+          <img class="gallery-viewer-image compact" alt="Best of artworks" loading="lazy" />
+          <div class="gallery-viewer-progress compact" />
         </div>
       </div>
-     
-    </section>
-  </section>
-  
-  <section class="content-card section">
-    <h2>Contact:</h2>
-    <div class="contact-grid">
-      {links.map((l) => {
-        const external = isExternalLink(l.href);
-        return (
-          <a
-            class={`contact-btn contact-btn--${l.kind}`}
-            href={l.href}
-            rel={external ? 'me noopener noreferrer' : 'me'}
-            target={external ? '_blank' : undefined}
-          >
-            <span class="contact-ico"><Icon kind={l.kind} /></span>
-            <span>{l.label}</span>
-          </a>
-        );
-      })}
-    </div>
+    </div>   
   </section>
 </section>
+
+<section class="content-card section">
+  <h2>Contact:</h2>
+  <div class="contact-grid">
+    {links.map((l) => {
+      const external = isExternalLink(l.href);
+      return (
+        <a
+          class={`contact-btn contact-btn--${l.kind}`}
+          href={l.href}
+          rel={external ? 'me noopener noreferrer' : 'me'}
+          target={external ? '_blank' : undefined}
+        >
+          <span class="contact-ico"><Icon kind={l.kind} /></span>
+          <span>{l.label}</span>
+        </a>
+      );
+    })}
+  </div>
+</section>
+
 <script>
   import initGalleryIntro from "@Scripts/GalleryIntro.js";
   const boot = () => initGalleryIntro();

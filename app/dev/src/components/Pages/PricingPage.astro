@@ -141,8 +141,8 @@ const formatPrice = (it: PriceItem) => {
 <section class="content-head section">
   <h1>{title}</h1>
   <div class="prose">
-    <p>Here you gonna find the detailed pricing for each category.<br>
-    Shown prices are approximates and final prices may vary depending on the effort needed.</p>
+    <p>Here's my current pricing table.<br>
+    Approximate, per character prices (depending on complexity) · Final price will be dicussed beforehand · excl. shipping (traditional / prints)</p>
   </div>
 </section>
 
@@ -151,7 +151,7 @@ const formatPrice = (it: PriceItem) => {
     const albumHref = cat.albumSlug ? `/galleries/${cat.albumSlug}` : undefined;
     const linkLabelTitle = cat.albumTitle ?? cat.heading;
     return (
-      <section id={cat.anchorId} class="content-card">
+      <section id={cat.anchorId} class="content-card content-card--head">
         <div class="content-card--rows">
           <h3>{cat.heading}</h3>
           <p>{albumHref ? ( 

@@ -9,8 +9,13 @@
   gap: .5rem; /* falls Text/Img nebeneinander */
   height: 50px;
 }
-a {text-decoration: none;}
-a:hover,a:focus-visible,.site-nav a:hover,.site-nav a:focus-visible { color: var(--accent-color); transition: color .2s ease; }
+.prose :where(a),.site-footer :where(a) {text-underline-offset: 2px;}
+.prose a:hover,.prose a:focus-visible,.site-footer a:hover, .site-footer a:focus-visible, .site-nav a:hover,.site-nav a:focus-visible { 
+  color: var(--accent-color); 
+  transition: color .2s ease; 
+  transform: translateY(-1px) ;
+  text-shadow: 0 12px 24px -14px oklch(0% 0 0 / .6);
+}
 /* Navigation */
 .site-nav {
   display: flex;
@@ -19,6 +24,7 @@ a:hover,a:focus-visible,.site-nav a:hover,.site-nav a:focus-visible { color: var
 
 .site-nav a {
   color: inherit;
+  text-decoration: none;
 }
 
 /* === CONTAINER === */

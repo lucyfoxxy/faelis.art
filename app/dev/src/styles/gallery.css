@@ -97,7 +97,7 @@
   inset: 0;
   transform-origin: left center;
   transform: scaleX(var(--p, 0));
-  background: var(--primary-color);
+  background: var(--accent-color);
   opacity: .9;
   transition: transform .12s linear;
 }
@@ -124,7 +124,7 @@
   border-radius: var(--medium-radius);
   overflow: hidden;
   background: color-mix(in oklab, var(--primary-background-color) 94%, white 6%);
-  box-shadow: var(--medium-shadow);
+  box-shadow:  0 0 14px -2px color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
   cursor: pointer;
 }
 
@@ -141,10 +141,11 @@
   object-fit: cover;
   object-position: center;
   display: block;
+  
 }
 
 .gallery-viewer-thumb.active {
-  box-shadow: 0 0 0 4px var(--primary-color), var(--medium-shadow);
+  box-shadow: 0 0 0 2px var(--secondary-text-color), var(--medium-shadow);
 }
 .gallery-viewer-thumb:not(.active):hover {
   box-shadow: 0 0 0 4px var(--accent-color), var(--medium-shadow);

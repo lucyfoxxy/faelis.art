@@ -2,10 +2,7 @@
 --------------------------------------------------------------------------
 
 ## General: 
-- primary / secondary colors: audit - wo werden sie wie verwendet? + Anpassung ins gesamtbild (weniger aggressiv)
-- weiteres CSS Refactoring, obsoletes/redundantes entfernen, styles vereinheitlichen
 - meta media links (preview)
-- konsolidierung slugs.json + prices.json, global-key: categories
 - rename kv -> content-list
 - konsolidierung / rename gallery.css -> media.css
 - split content.css and import sub-css (maybe)
@@ -27,11 +24,7 @@
 - überführung -> aktuell ungenutzte content-media class?
 
 ## StartPage
-- obsolete "intro" class entfernen aus astro
 - intro__hero ggf renaming -> content-media--hero 
-
-## Pricing + Gallery Detail Pages:
-- chip restyle: box-shadow/stil wie contact buttons (-> konsolidierung mit diesen und überführung ineinheitliche button class, wobei die chips weiterhin ihre aktuelle größe in etwa beibehalten sollen)
 
 ## Site-Nav header
 - hover: translate-y wie buttons

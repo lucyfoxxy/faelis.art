@@ -1,17 +1,19 @@
 :root { 
   /* === Main Colors === */
-  --primary-color:              oklch(60% 0.15 305);   /* dunkler, weniger gesättigt Lila */
-  --accent-color:               oklch(55% 0.1 315);   /* heller Akzent, leicht pinkiger */
-
-  --primary-background-color:   oklch(26% 0.09 305 / 0.55); /* dunkles, gedämpftes Violett */
-  --secondary-background-color: oklch(20% 0.08 300 / 0.75); /* noch dunkler für Layer */
-  --outline-color:              oklch(90% 0.01 305 / 0.08);
+  /*--primary-color:              oklch(60% 0.15 305);   /* dunkler, weniger gesättigt Lila 
+  --accent-color:               oklch(55% 0.1 315); */  /* heller Akzent, leicht pinkiger */
+  --primary-color:              oklch(30% 0.10 310);   /* dunkler, weniger gesättigt Lila */
+  /*--accent-color:               oklch(55% 0.11 315);   /* heller Akzent, leicht pinkiger */
+  --accent-color:               oklch(0.91 0.0437 240);
+  --primary-background-color:   oklch(26% 0.09 310 / 0.55); /* dunkles, gedämpftes Violett */
+  --secondary-background-color: oklch(20% 0.08 310 / 0.75); /* noch dunkler für Layer */
+  --outline-color:              oklch(26% 0.09 310 / 10%);
 
   --primary-shadow-color:       oklch(25% 0.08 310 / 0.7);
   --secondary-shadow-color:     oklch(30% 0.05 310 / 0.3);
 
-  --primary-text-color:         oklch(92% 0.07 295);   /* helles, leicht violett-weiß */
-  --secondary-text-color:       oklch(85% 0.17 295);   /* mittleres, etwas farbigeres Textlila */
+  --primary-text-color:         oklch(91% 0.055 310); 
+  --secondary-text-color:       oklch(87% 0.085 310);
 
 
   /* === Decorations === */
@@ -28,6 +30,33 @@
   --small-shadow:               10px 44px 100px 320px var(--secondary-shadow-color);
   --medium-shadow:              0 0 0.175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
   --large-shadow:               0 0 0.225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
+  /* === Fonts === */
+  --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --secondary-font-family:      'Fuzzy Bubbles', var(--primary-font-family);
+
+  --thin-font-weight:           250;
+  --normal-font-weight:         350;
+  --thick-font-weight:          550;
+  --bold-font-weight:           700;
+
+  --xsmall-font-size:           clamp(.85rem, .5rem + .4vw, 1.05rem);
+  --small-font-size:            clamp(.9rem,  .6rem + .45vw, 1.15rem);
+  --medium-font-size:           clamp(.98rem, .7rem + .55vw, 1.2rem);
+  --large-font-size:            clamp(1.28rem, .85rem + .9vw, 1.65rem);
+  --xlarge-font-size:           clamp(1.68rem, 1.1rem + 1.3vw, 2.2rem);
+
+  --xsmall-line-height:         1;
+  --small-line-height:          1.5;
+  --medium-line-height:         1.35;
+  --large-line-height:          1.2;
+  --xlarge-line-height:         1.15;
+
+  --small-letter-spacing:       .005em;
+  --medium-letter-spacing:      .02em;
+  --large-letter-spacing:       .04em;
+  --prose-flow-spacing:         clamp(.65rem, .5rem + .3vw, .95rem);
+
+
 
   /* === Layout / Structures === */
   --container-max:              1280px;
@@ -62,28 +91,5 @@
   --thumb:                      clamp(96px, 10vw, 164px);
   --gallery-frame-size:         clamp(240px, 45vh, 480px);                       
   --gallery-frame-size-compact: clamp(160px, 26vh, 360px);
-
-  /* === Fonts === */
-  --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --secondary-font-family:      'Fuzzy Bubbles', var(--primary-font-family);
-
-  --normal-font-weight:         400;
-  --bold-font-weight:           700;
-
-  --small-font-size:            clamp(.9rem,  .6rem + .45vw, 1.15rem);
-  --medium-font-size:           clamp(.98rem, .7rem + .55vw, 1.2rem);
-  --large-font-size:            clamp(1.28rem, .85rem + .9vw, 1.65rem);
-  --xlarge-font-size:           clamp(1.68rem, 1.1rem + 1.3vw, 2.2rem);
-
-  --small-line-height:          1.5;
-  --medium-line-height:         1.35;
-  --large-line-height:          1.2;
-  --xlarge-line-height:         1.15;
-
-  --small-letter-spacing:       .005em;
-  --medium-letter-spacing:      .02em;
-  --large-letter-spacing:       .04em;
-  --prose-flow-spacing:         clamp(.65rem, .5rem + .3vw, .95rem);
-
 
 }

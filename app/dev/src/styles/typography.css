@@ -28,23 +28,29 @@
 }
 body {
   font-family: var(--primary-font-family);
-  font-weight: var(--normal-font-weight);
+  font-weight: var(--thin-font-weight);
   font-size: var(--medium-font-size);
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
   text-shadow: var(--primary-shadow-color);
+  text-decoration: none;
 }
-:where(em,i) { font-style: italic; }
-.site-nav a,.site-footer,.panel :where(h2) { letter-spacing: var(--medium-letter-spacing); }
-.site-nav a,.panel :where(h3) {
-  font-weight: var(--bold-font-weight);
-  line-height: var(--medium-line-height); 
+p :where(em,i) { 
+  font-style: italic; 
+  font-weight: var(--thick-font-weight);
 }
-.site-footer,.badge { font-size: var(--small-font-size); }
+.site-footer,.site-nav a,.panel :where(h2) { letter-spacing: var(--large-letter-spacing); }
+.site-nav a {
+  font-weight: var(--thick-font-weight);
+}
+.panel :where(a),.site-footer :where(a){
+  font-weight: var(--thick-font-weight);
+} 
+.site-footer,.badge { font-size: var(--xsmall-font-size); }
 .table__subtitle { line-height: var(--medium-line-height); }
-.table__th { font-weight: var(--bold-font-weight); }
-
+.table__th { font-weight: var(--thick-font-weight); }
+.table__price { font-weight: var(--normal-font-weight); }
 :where(h1,h2,h3, .site-nav a){
    font-family: var(--secondary-font-family); 
 }
@@ -57,21 +63,20 @@ body {
 }
 .panel :where(h2) { 
   font-size: var(--large-font-size);
-  line-height: var(--large-line-height);
-  
+  line-height: var(--large-line-height); 
 }
-.panel :where(h3){color: var(--secondary-text-color);}
-
+.panel :where(h3){
+  color: var(--secondary-text-color);
+  font-weight: var(--normal-font-weight);
+  font-size: var(--large-font-size);
+}
 .panel :where(p) {  margin: 0 0 var(--prose-flow-spacing);  }
 .panel :where(.prose p) {  margin: 0; }
-
-
 
 .panel :where(ul,ol) {
   padding-inline-start: 1.2rem;
   margin: var(--prose-flow-spacing) 0;
 }
-
 .panel :where(li) {  margin: calc(var(--prose-flow-spacing) * .35) 0;  }
 .panel :where(blockquote){
   margin: var(--prose-flow-spacing) 0;
@@ -80,4 +85,10 @@ body {
   background: color-mix(in oklab, var(--content-background), black 10%);
   border-radius:.5rem;
 }
+.chip, .badge {
+  line-height: var(--xsmall-line-height);
+}
+.chip {
 
+  font-size: var(--small-font-size);
+}
