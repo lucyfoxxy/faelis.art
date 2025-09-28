@@ -1,22 +1,21 @@
+---
 import { getEntry } from 'astro:content';
 import Layout from '@Design/Layout.astro';
 import GalleryDetailPage from '@Pages/Gallery/DetailPage.astro';
 
 export async function getStaticPaths() {
   const catalog = (await getEntry('albumCatalog', 'categories')).data;
-  return catalog.categories.reduce((paths, { slug, title }) => {
-    if (!slug) return paths;
-    paths.push({
-      params: { slug },
-      props:  { title },
-    });
-    return paths;
-  }, [] as { params: { slug: string }; props: { title?: string } }[]);
+  return catalog.categories
+    .filter((c) => c.slug)
+    .map((c) => ({
+      params: { slug: c.slug! },
+      props:  { title: c.title, description: c.description ?? '' },
+    }));
 }
 
 const { slug }  = Astro.params;
-const { title } = Astro.props;
+const { title, description } = Astro.props as { title?: string; description?: string };
 ---
 <Layout title={title}>
-  <GalleryDetailPage albumSlug={slug} title={title}/>
+  <GalleryDetailPage albumSlug={slug} title={title} description={description} />
 </Layout>
