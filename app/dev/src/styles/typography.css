@@ -46,10 +46,11 @@ p :where(em,i) {
 }
 
 /* ====== LINKS & FOOTER ====== */
-.panel :where(a),
+.content-prose :where(a),
 .site-footer :where(a) {
   font-weight: var(--thick-font-weight);
-
+  color: var(--secondary-text-color);
+  text-shadow: var(--secondary-text-shadow);
 }
 
 .site-footer,
@@ -74,6 +75,7 @@ p :where(em,i) {
 }
 .ui-chip {
   font-size: var(--small-font-size);
+  font-weight: var(--normal-font-weight);
 }
 
 /* ====== HEADINGS ====== */
@@ -84,21 +86,19 @@ p :where(em,i) {
 .panel :where(h1,h2,h3,.prose p) { 
   margin: 0; 
 }
-.panel :where(h1,h2) { 
-  text-shadow: var(--secondary-text-shadow);
-} 
-
 
 .panel :where(h1) {
   font-weight: var(--bold-font-weight);
   font-size: var(--xlarge-font-size);
   line-height: var(--xlarge-line-height);
   letter-spacing: var(--large-letter-spacing);
+  text-shadow: var(--secondary-text-shadow);
 }
 
 .panel :where(h2) { 
   font-size: var(--large-font-size);
-  line-height: var(--large-line-height); 
+  line-height: var(--large-line-height);
+  text-shadow: var(--primary-text-shadow);
 }
 
 .panel :where(h3){

@@ -12,8 +12,8 @@
   --primary-shadow-color:       oklch(25% 0.08 310 / 0.75);
   --secondary-shadow-color:     oklch(30% 0.05 310 / 0.35);
 
-  --primary-text-color:         oklch(89% 0.08 310); 
-  --secondary-text-color:       oklch(80% 0.11 315);
+  --primary-text-color:         oklch(87% 0.03 310); 
+  --secondary-text-color:       oklch(82% 0.09 315);
 
 
   /* ====== Decorations ====== */
@@ -27,8 +27,8 @@
   --medium-radius:              14px;
   --large-radius:               18px;
  
-  --primary-text-shadow:        0 0 .075rem var(--primary-shadow-color);
-  --secondary-text-shadow:      0 0 .125rem var(--primary-shadow-color);
+  --primary-text-shadow:        0 0 10px var(--primary-background-color),0 0 4px color-mix(in oklab, var(--secondary-text-color) 40%, transparent 10%);
+  --secondary-text-shadow:      0 0 10px var(--primary-background-color),0 0 3px var(--secondary-text-color);
   --accent-text-shadow:         0 0 .1rem color-mix(in oklab,(--secondary-text-color) 55%, black 6%);
   --medium-shadow:              0 0 .175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
   --large-shadow:               0 0 .225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
