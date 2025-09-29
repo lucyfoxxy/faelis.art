@@ -13,22 +13,21 @@ const pricingHref = `/pricing#${albumSlug}`;
 </section>
 
 <section class="content-layout media-gallery__hook" data-slug={albumSlug} data-autoplay="true" data-interval="5000" data-random="true">
-  <section class="content-card">
+  <section class="content-card content-card--gallery-detail">
     <div class="media-gallery">
-      <div class="media-gallery__frame">
+      <div class="media-gallery__frame" role="button" tabindex="0" aria-label="Open artwork in lightbox">
         <img class="media-gallery__image" alt="" />
+        <button class="media-gallery__nav media-gallery__prev" aria-label="Previous" type="button">❮</button>
+        <button class="media-gallery__nav media-gallery__next" aria-label="Next" type="button">❯</button>
+        <button class="media-gallery__playpause" aria-label="Pause autoplay" type="button">⏸</button>
+        <div class="media-gallery__progress" aria-hidden="true"></div>
       </div>
-      <div class="media-gallery__progress"></div>
-      <div class="media-gallery__controls">
-        <button class="media-gallery__prev" aria-label="Previous">❮</button>
-        <button class="media-gallery__playpause" aria-label="Play/Pause">⏸</button>
-        <button class="media-gallery__next" aria-label="Next">❯</button>
+      <div class="media-gallery__thumbs" data-window="10">
+        <button class="media-gallery__thumbs-nav media-gallery__thumbs-prev" aria-label="Previous thumbnails" type="button">❮</button>
+        <div class="media-gallery__thumbs-wrap" role="list"></div>
+        <button class="media-gallery__thumbs-nav media-gallery__thumbs-next" aria-label="Next thumbnails" type="button">❯</button>
       </div>
     </div>
-  </section>
-
-  <section class="content-card">
-    <div class="media-gallery__thumbs-wrap" role="list"></div>
   </section>
 </section>
 

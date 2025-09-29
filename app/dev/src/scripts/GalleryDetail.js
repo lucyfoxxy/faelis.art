@@ -12,6 +12,7 @@ const assetModules = import.meta.glob('@Assets/albums/**/*', {
 });
 
 const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
+const MAX_VISIBLE_THUMBS = 10;
 
 export default function initGalleryPage() {
   const root = document.querySelector('.media-gallery__hook[data-slug]');
@@ -22,15 +23,19 @@ export default function initGalleryPage() {
   const random   = root.getAttribute('data-random') === 'true';
   const interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
 
-  const viewer    = root.querySelector('.media-gallery');
-  const imgEl     = viewer?.querySelector('.media-gallery__image');
-  const btnPrev   = viewer?.querySelector('.media-gallery__prev');
-  const btnNext   = viewer?.querySelector('.media-gallery__next');
-  const btnPlay   = viewer?.querySelector('.media-gallery__playpause');
-  const progress  = viewer?.querySelector('.media-gallery__progress');
-  const thumbsWrap= root.querySelector('.media-gallery__thumbs-wrap');
+  const viewer     = root.querySelector('.media-gallery');
+  const frame      = viewer?.querySelector('.media-gallery__frame');
+  const imgEl      = frame?.querySelector('.media-gallery__image');
+  const btnPrev    = frame?.querySelector('.media-gallery__prev');
+  const btnNext    = frame?.querySelector('.media-gallery__next');
+  const btnPlay    = frame?.querySelector('.media-gallery__playpause');
+  const progress   = frame?.querySelector('.media-gallery__progress');
+  const thumbs     = viewer?.querySelector('.media-gallery__thumbs');
+  const thumbsWrap = thumbs?.querySelector('.media-gallery__thumbs-wrap');
+  const thumbsPrev = thumbs?.querySelector('.media-gallery__thumbs-prev');
+  const thumbsNext = thumbs?.querySelector('.media-gallery__thumbs-next');
 
- if (!viewer || !imgEl || !btnPrev || !btnNext || !btnPlay || !progress || !thumbsWrap) return;
+  if (!viewer || !frame || !imgEl || !btnPrev || !btnNext || !btnPlay || !progress || !thumbsWrap || !thumbsPrev || !thumbsNext) return;
 
   // hier: items kommen bereits mit gehashten URLs aus itemsBySlug
   const items = itemsBySlug.get(slug) ?? [];
@@ -45,6 +50,8 @@ export default function initGalleryPage() {
     btnNext.disabled = true;
     btnPlay.disabled = true;
     btnPlay.hidden = true;
+    thumbsPrev.hidden = true;
+    thumbsNext.hidden = true;
     const empty = document.createElement('p');
     empty.className = 'media-gallery__empty';
     empty.textContent = 'No artworks available yet.';
@@ -55,14 +62,167 @@ export default function initGalleryPage() {
 
   const hasMultiple = order.length > 1;
   btnPrev.disabled = btnNext.disabled = !hasMultiple;
+  btnPrev.hidden = btnNext.hidden = !hasMultiple;
   btnPlay.hidden = !hasMultiple;
   progress.hidden = !hasMultiple;
-
   let i = 0;
   let timer = null;
   let playing = hasMultiple && autoplay;
+  let resumeAfterLightbox = false;
+  let windowStart = 0;
+  const maxVisible = Math.max(1, Math.min(parseInt(thumbs.getAttribute('data-window') || '', 10) || MAX_VISIBLE_THUMBS, MAX_VISIBLE_THUMBS));
+
+  thumbs.toggleAttribute('data-has-multiple', hasMultiple);
+  thumbsPrev.hidden = thumbsNext.hidden = order.length <= maxVisible;
 
   const setProgress = (p) => progress.style.setProperty('--p', String(p));
+  const updatePlayButton = () => {
+    btnPlay.textContent = playing ? '⏸' : '▶';
+    btnPlay.setAttribute('aria-label', playing ? 'Pause autoplay' : 'Resume autoplay');
+  };
+
+  const computeFit = (item, loader) => {
+    const width = item?.width ?? loader?.naturalWidth;
+    const height = item?.height ?? loader?.naturalHeight;
+    if (!width || !height) return 'contain';
+    const rect = frame.getBoundingClientRect();
+    if (!rect.width || !rect.height) return 'contain';
+    const imageRatio = width / height;
+    const frameRatio = rect.width / rect.height;
+    const ratioDelta = Math.abs(imageRatio - frameRatio);
+    const extremeAspect = imageRatio < 0.66 || imageRatio > 1.8;
+    const threshold = frame.classList.contains('compact') ? 0.35 : 0.25;
+    if (extremeAspect || ratioDelta > threshold) {
+      return 'contain';
+    }
+    return 'cover';
+  };
+
+  const lightbox = (() => {
+    let overlay = document.querySelector('.media-gallery__lightbox');
+    let created = false;
+    if (!(overlay instanceof HTMLElement)) {
+      overlay = document.createElement('div');
+      overlay.className = 'media-gallery__lightbox';
+      overlay.innerHTML = `
+        <figure>
+          <img class="media-gallery__lightbox-image" alt="" />
+          <figcaption class="media-gallery__lightbox-caption"></figcaption>
+          <button class="media-gallery__lightbox-close" type="button" aria-label="Close">×</button>
+        </figure>
+      `;
+      document.body.appendChild(overlay);
+      created = true;
+    }
+
+    const img = overlay.querySelector('.media-gallery__lightbox-image');
+    const caption = overlay.querySelector('.media-gallery__lightbox-caption');
+    const btnClose = overlay.querySelector('.media-gallery__lightbox-close');
+
+    if (!img || !caption || !btnClose) {
+      if (created) overlay.remove();
+      return null;
+    }
+
+    const close = () => {
+      overlay.classList.remove('is-open');
+      document.body.classList.remove('media-gallery__lightbox-open');
+      document.removeEventListener('keydown', handleKey);
+      if (resumeAfterLightbox) {
+        playing = true;
+        resumeAfterLightbox = false;
+        updatePlayButton();
+        run();
+      }
+    };
+
+    const handleKey = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+      }
+    };
+
+    if (!(overlay instanceof HTMLElement)) return null;
+
+    if (!overlay.dataset.bound) {
+      btnClose.addEventListener('click', close);
+      overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) close();
+      });
+      overlay.dataset.bound = 'true';
+    }
+
+    return {
+      open(item) {
+        if (!item) return;
+        caption.textContent = item.title || item.alt || '';
+        img.src = item.full;
+        img.alt = item.alt || '';
+        overlay.classList.add('is-open');
+        document.body.classList.add('media-gallery__lightbox-open');
+        document.addEventListener('keydown', handleKey);
+      },
+      close,
+    };
+  })();
+
+  const renderThumbs = () => {
+    const fragment = document.createDocumentFragment();
+    const end = Math.min(order.length, windowStart + maxVisible);
+
+    for (let orderIdx = windowStart; orderIdx < end; orderIdx += 1) {
+      const item = items[order[orderIdx]];
+      if (!item) continue;
+      const button = document.createElement('button');
+      button.className = 'media-gallery__thumb';
+      button.type = 'button';
+      button.dataset.index = String(orderIdx);
+      button.setAttribute('aria-label', item.alt || `Image ${orderIdx + 1}`);
+      button.setAttribute('role', 'listitem');
+
+      const img = document.createElement('img');
+      img.src = item.thumb;
+      img.alt = '';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      button.appendChild(img);
+      button.addEventListener('click', () => {
+        show(orderIdx);
+        run();
+      });
+      fragment.appendChild(button);
+    }
+
+    thumbsWrap.replaceChildren(fragment);
+    highlightThumbs();
+    updateThumbNav();
+  };
+
+  const highlightThumbs = () => {
+    thumbsWrap.querySelectorAll('.media-gallery__thumb').forEach((thumb) => {
+      const thumbIndex = parseInt(thumb.dataset.index || '', 10);
+      const isActive = thumbIndex === i;
+      thumb.classList.toggle('active', isActive);
+      thumb.setAttribute('aria-current', isActive ? 'true' : 'false');
+    });
+  };
+
+  const ensureThumbVisibility = () => {
+    if (i < windowStart) {
+      windowStart = i;
+    } else if (i >= windowStart + maxVisible) {
+      windowStart = Math.max(0, i - maxVisible + 1);
+    }
+    renderThumbs();
+  };
+
+  const updateThumbNav = () => {
+    thumbsPrev.disabled = windowStart === 0;
+    thumbsNext.disabled = windowStart + maxVisible >= order.length;
+    thumbsPrev.hidden = thumbsNext.hidden = order.length <= maxVisible;
+  };
 
   const show = (idx) => {
     if (order.length === 0) return;
@@ -70,13 +230,35 @@ export default function initGalleryPage() {
     const item = items[order[i]];
     if (!item) return;
 
-    // benutze die bereits gemappten, gehashten URLs
-    imgEl.src = item.full;
-    imgEl.alt = item.alt || '';
+    const loader = new Image();
+    loader.decoding = 'async';
+    imgEl.classList.add('is-transitioning');
 
-    thumbsWrap.querySelectorAll('.media-gallery__thumb').forEach((t, k) => {
-      t.classList.toggle('active', k === i);
+    const applyImage = () => {
+      const fit = computeFit(item, loader);
+      imgEl.dataset.fit = fit;
+      imgEl.src = loader.src;
+      imgEl.alt = item.alt || '';
+      requestAnimationFrame(() => {
+        imgEl.classList.remove('is-transitioning');
+      });
+    };
+
+    loader.addEventListener('load', () => {
+      applyImage();
     });
+    loader.addEventListener('error', () => {
+      // Fallback to direct assignment if preload fails
+      imgEl.dataset.fit = 'contain';
+      imgEl.src = item.full;
+      imgEl.alt = item.alt || '';
+      requestAnimationFrame(() => {
+        imgEl.classList.remove('is-transitioning');
+      });
+    }, { once: true });
+    loader.src = item.full;
+
+    ensureThumbVisibility();
     setProgress(0);
   };
 
@@ -106,36 +288,59 @@ export default function initGalleryPage() {
     if (playing) tick();
   };
 
-  btnPrev.addEventListener('click', () => { prev(); run(); });
-  btnNext.addEventListener('click', () => { next(); run(); });
-  btnPlay.addEventListener('click', () => {
+  btnPrev.addEventListener('click', (event) => {
+    event.stopPropagation();
+    prev();
+    run();
+  });
+  btnNext.addEventListener('click', (event) => {
+    event.stopPropagation();
+    next();
+    run();
+  });
+  btnPlay.addEventListener('click', (event) => {
+    event.stopPropagation();
     playing = !playing;
-    btnPlay.textContent = playing ? '⏸' : '▶';
+    updatePlayButton();
     run();
   });
 
-  // Thumbnails rendern
-  const fragment = document.createDocumentFragment();
-  order.forEach((itemIdx, orderIdx) => {
-    const item = items[itemIdx];
-    const a = document.createElement('button');
-    a.className = 'media-gallery__thumb';
-    a.type = 'button';
-    a.setAttribute('aria-label', item.alt || `Image ${orderIdx + 1}`);
- 
-    const t = document.createElement('img');
-    t.src = item.thumb;
-    t.alt = '';
-    t.loading = 'lazy';
-    t.decoding = 'async';
-
- 
-    a.appendChild(t);
-    a.addEventListener('click', () => { show(orderIdx); run(); });
-    fragment.appendChild(a);
+  thumbsPrev.addEventListener('click', () => {
+    windowStart = Math.max(0, windowStart - maxVisible);
+    renderThumbs();
   });
-  thumbsWrap.replaceChildren(fragment);
-  // Galerie starten
+  thumbsNext.addEventListener('click', () => {
+    if (windowStart + maxVisible < order.length) {
+      const maxStart = Math.max(0, order.length - maxVisible);
+      windowStart = Math.min(maxStart, windowStart + maxVisible);
+      renderThumbs();
+    }
+  });
+
+  frame.addEventListener('click', (event) => {
+    const target = event.target;
+    if (target instanceof HTMLElement && target.closest('button')) return;
+    if (lightbox) {
+      if (playing) {
+        resumeAfterLightbox = true;
+        playing = false;
+        updatePlayButton();
+        if (timer) cancelAnimationFrame(timer);
+      }
+      lightbox.open(items[order[i]]);
+    }
+  });
+
+  frame.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      frame.click();
+    }
+  });
+
+  // Thumbnails rendern
+  renderThumbs();
+  updatePlayButton();
   show(0);
-  if (autoplay) run();
+  if (autoplay && hasMultiple) run();
 }
