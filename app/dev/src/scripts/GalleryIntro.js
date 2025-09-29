@@ -58,6 +58,7 @@ export default function initGalleryIntro() {
 
     const loader = new Image();
     loader.decoding = 'async';
+    imgEl.classList.remove('is-animating');
     imgEl.classList.add('is-transitioning');
 
     const applyImage = () => {
@@ -65,6 +66,7 @@ export default function initGalleryIntro() {
       imgEl.alt = item.alt || '';
       requestAnimationFrame(() => {
         void imgEl.offsetWidth;
+        imgEl.classList.add('is-animating');
         imgEl.classList.remove('is-transitioning');
       });
     };
@@ -77,6 +79,7 @@ export default function initGalleryIntro() {
       imgEl.alt = item.alt || '';
       requestAnimationFrame(() => {
         void imgEl.offsetWidth;
+        imgEl.classList.add('is-animating');
         imgEl.classList.remove('is-transitioning');
       });
     }, { once: true });
