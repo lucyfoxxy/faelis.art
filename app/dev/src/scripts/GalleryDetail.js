@@ -21,7 +21,7 @@ export default function initGalleryPage() {
   const slug     = root.getAttribute('data-slug');
   const autoplay = root.getAttribute('data-autoplay') === 'true';
   const random   = root.getAttribute('data-random') === 'true';
-  const interval = parseInt(root.getAttribute('data-interval') || '5000', 10);
+  const interval = parseInt(root.getAttribute('data-interval') || '10000', 10);
 
   const viewer     = root.querySelector('.media-gallery');
   const frame      = viewer?.querySelector('.media-gallery__frame');
@@ -81,22 +81,7 @@ export default function initGalleryPage() {
     btnPlay.setAttribute('aria-label', playing ? 'Pause autoplay' : 'Resume autoplay');
   };
 
-  const computeFit = (item, loader) => {
-    const width = item?.width ?? loader?.naturalWidth;
-    const height = item?.height ?? loader?.naturalHeight;
-    if (!width || !height) return 'contain';
-    const rect = frame.getBoundingClientRect();
-    if (!rect.width || !rect.height) return 'contain';
-    const imageRatio = width / height;
-    const frameRatio = rect.width / rect.height;
-    const ratioDelta = Math.abs(imageRatio - frameRatio);
-    const extremeAspect = imageRatio < 0.66 || imageRatio > 1.8;
-    const threshold = frame.classList.contains('compact') ? 0.35 : 0.25;
-    if (extremeAspect || ratioDelta > threshold) {
-      return 'contain';
-    }
-    return 'cover';
-  };
+  frame.style.setProperty('--gallery-interval', `${interval}ms`);
 
   const lightbox = (() => {
     let overlay = document.querySelector('.media-gallery__lightbox');
@@ -232,14 +217,15 @@ export default function initGalleryPage() {
 
     const loader = new Image();
     loader.decoding = 'async';
+    imgEl.classList.remove('is-animating');
     imgEl.classList.add('is-transitioning');
 
     const applyImage = () => {
-      const fit = computeFit(item, loader);
-      imgEl.dataset.fit = fit;
       imgEl.src = loader.src;
       imgEl.alt = item.alt || '';
       requestAnimationFrame(() => {
+        void imgEl.offsetWidth;
+        imgEl.classList.add('is-animating');
         imgEl.classList.remove('is-transitioning');
       });
     };
@@ -249,10 +235,11 @@ export default function initGalleryPage() {
     });
     loader.addEventListener('error', () => {
       // Fallback to direct assignment if preload fails
-      imgEl.dataset.fit = 'contain';
       imgEl.src = item.full;
       imgEl.alt = item.alt || '';
       requestAnimationFrame(() => {
+        void imgEl.offsetWidth;
+        imgEl.classList.add('is-animating');
         imgEl.classList.remove('is-transitioning');
       });
     }, { once: true });

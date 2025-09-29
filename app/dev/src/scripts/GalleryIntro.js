@@ -50,23 +50,6 @@ export default function initGalleryIntro() {
 
   const setProgress = (p) => progress.style.setProperty('--p', String(p));
 
-  const computeFit = (item, loader) => {
-    const width = item?.width ?? loader?.naturalWidth;
-    const height = item?.height ?? loader?.naturalHeight;
-    if (!width || !height) return 'contain';
-    const rect = frame.getBoundingClientRect();
-    if (!rect.width || !rect.height) return 'contain';
-    const imageRatio = width / height;
-    const frameRatio = rect.width / rect.height;
-    const ratioDelta = Math.abs(imageRatio - frameRatio);
-    const extremeAspect = imageRatio < 0.66 || imageRatio > 1.8;
-    const threshold = frame.classList.contains('compact') ? 0.35 : 0.25;
-    if (extremeAspect || ratioDelta > threshold) {
-      return 'contain';
-    }
-    return 'cover';
-  };
-
   const show = (idx) => {
     if (order.length === 0) return;
     i = (idx + order.length) % order.length;
@@ -78,11 +61,10 @@ export default function initGalleryIntro() {
     imgEl.classList.add('is-transitioning');
 
     const applyImage = () => {
-      const fit = computeFit(item, loader);
-      imgEl.dataset.fit = fit;
       imgEl.src = loader.src;
       imgEl.alt = item.alt || '';
       requestAnimationFrame(() => {
+        void imgEl.offsetWidth;
         imgEl.classList.remove('is-transitioning');
       });
     };
@@ -91,10 +73,10 @@ export default function initGalleryIntro() {
       applyImage();
     });
     loader.addEventListener('error', () => {
-      imgEl.dataset.fit = 'contain';
       imgEl.src = item.full;
       imgEl.alt = item.alt || '';
       requestAnimationFrame(() => {
+        void imgEl.offsetWidth;
         imgEl.classList.remove('is-transitioning');
       });
     }, { once: true });
