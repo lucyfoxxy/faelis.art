@@ -245,7 +245,7 @@
 }
 
 .media-gallery__thumbs {
-  --thumb-size: clamp(64px, 9vw, 116px);
+  
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;

@@ -90,7 +90,7 @@
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
   /* ====== Gallery ====== */
-  --thumb:                      clamp(96px, 10vw, 164px);
+  --thumb-size: clamp(64px, 9vw, 128px);
   --gallery-frame-size:         clamp(240px, 45vh, 480px);                       
   --gallery-frame-size-compact: clamp(160px, 26vh, 360px);
 
