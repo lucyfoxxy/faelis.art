@@ -21,7 +21,7 @@ export default function initGalleryPage() {
   const slug     = root.getAttribute('data-slug');
   const autoplay = root.getAttribute('data-autoplay') === 'true';
   const random   = root.getAttribute('data-random') === 'true';
-  const interval = parseInt(root.getAttribute('data-interval') || '10000', 10);
+  const interval = parseInt(root.getAttribute('data-interval') || '8000', 10);
 
   const viewer     = root.querySelector('.media-gallery');
   const frame      = viewer?.querySelector('.media-gallery__frame');
