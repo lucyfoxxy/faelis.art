@@ -7,8 +7,9 @@
 **/deploy.log
 **/*.log
 *.log
-**thumb-**
-**full-**
+
+**/assets/albums/**/**.webp
+!**/_covers/** 
 **/.env
 .env
 **/**/.env
@@ -23,5 +24,7 @@ package-lock.json
 **/prod/src/**
 **/prod/public/
 **/prod/public/**
-**/patch.diff
+**/patch.*
+**/*.kra
+**/*.*~
 **/app_dev_tree.txt

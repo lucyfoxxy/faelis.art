@@ -5,15 +5,16 @@
 - some tokens need renaming to fit introduced naming patterns
 
 ## Gallery Detail Page:
-- nur eine (oder zwei) reihe(n) thumbnails statt alle, dafür rechts und links davon buttons prev/next
-- bei click aufs bild lightbox inkl. thumbnail navigation, pause auto slideshow während lightbox offen ist
-- thumbnails mit in gallery content card
-
-## Gallery Frame (large)
-- player controls mit ins image-frame, (overlay?)
+- lets reduce the amount of thumbnails displayed below the image frame and introduce a slim thumbnail navigation limited to a maximum of 10 or 12 thumbs displayed simultaneously
+  and let it load the next ones dynamically, i think you got my point here. 
+- Add translateY on hover to the thumbnail-bar
+- add "lightbox" as frame:on-click action, displaying the fullsize version, pausing the auto slide while open
+- move the altered thumbnail bar closer to the frame-card (inside the same content card) and add progressbar and prev/next as overlays with reduced opacity. Feel free to recommend me some styles for that.
+  basically: make the frame looks more consitent
 
 ## Gallery-Frame (both compact + large)
 - progress bar as overlay on the frames bottom
-- fix improper frame scaling in some cases
+- adjust the frame's scaling, especially for the compact version, which should avoid both letterboxing and heavily cutoffs.
+  Recommend me some best practices regarding src images, goal would be to find a good balance suitable for a wide range of src image aspect ratios.
 - implement smoother image transitions but keep them decent
 

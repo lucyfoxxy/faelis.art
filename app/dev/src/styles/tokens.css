@@ -9,11 +9,11 @@
   --secondary-background-color: oklch(20% 0.08 310 / 0.75); /* noch dunkler für Layer */
   --outline-color:              oklch(26% 0.09 310 / 10%);
 
-  --primary-shadow-color:       oklch(25% 0.08 310 / 0.7);
-  --secondary-shadow-color:     oklch(30% 0.05 310 / 0.3);
+  --primary-shadow-color:       oklch(25% 0.08 310 / 0.75);
+  --secondary-shadow-color:     oklch(30% 0.05 310 / 0.35);
 
-  --primary-text-color:         oklch(91% 0.055 310); 
-  --secondary-text-color:       oklch(87% 0.085 310);
+  --primary-text-color:         oklch(89% 0.08 310); 
+  --secondary-text-color:       oklch(80% 0.11 315);
 
 
   /* ====== Decorations ====== */
@@ -27,9 +27,11 @@
   --medium-radius:              14px;
   --large-radius:               18px;
  
-  --small-shadow:               10px 44px 100px 320px var(--secondary-shadow-color);
-  --medium-shadow:              0 0 0.175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
-  --large-shadow:               0 0 0.225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
+  --primary-text-shadow:        0 0 .075rem var(--primary-shadow-color);
+  --secondary-text-shadow:      0 0 .125rem var(--primary-shadow-color);
+  --accent-text-shadow:         0 0 .1rem color-mix(in oklab,(--secondary-text-color) 55%, black 6%);
+  --medium-shadow:              0 0 .175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
+  --large-shadow:               0 0 .225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color);
   /* ====== Fonts ====== */
   --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --secondary-font-family:      'Fuzzy Bubbles', var(--primary-font-family);

@@ -36,7 +36,7 @@ body {
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
-  text-shadow: var(--primary-shadow-color);
+  text-shadow: var(--primary-text-shadow);
   text-decoration: none;
 }
 
@@ -49,6 +49,7 @@ p :where(em,i) {
 .panel :where(a),
 .site-footer :where(a) {
   font-weight: var(--thick-font-weight);
+
 }
 
 .site-footer,
@@ -83,6 +84,10 @@ p :where(em,i) {
 .panel :where(h1,h2,h3,.prose p) { 
   margin: 0; 
 }
+.panel :where(h1,h2) { 
+  text-shadow: var(--secondary-text-shadow);
+} 
+
 
 .panel :where(h1) {
   font-weight: var(--bold-font-weight);
@@ -100,6 +105,7 @@ p :where(em,i) {
   color: var(--secondary-text-color);
   font-weight: var(--normal-font-weight);
   font-size: var(--large-font-size);
+  text-shadow: var(--accent-text-shadow);
 }
 
 /* ====== PROSE & LISTEN ====== */
