@@ -3,22 +3,25 @@ type Props = { albumSlug: string; title?: string; description?: string };
 const { albumSlug, title, description } = Astro.props as Props;
 const pricingHref = `/pricing#${albumSlug}`;
 ---
-<section class="content-head section">
 
-    
-  <div class="content-card__rows">
-    <p><a class="ui-chip" href="../../galleries">← Back</a></p>
-    <p><a class="ui-chip" href={pricingHref}>Pricing →</a></p>
 
-  </div>
-    <h2>{title}</h2>    
-    <p class="prose">{description}</p>
+  <section class="content-card__rows section">
+    <p><a class="ui-chip" href="../../galleries">← Galleries</a></p>
+    <p class="ui-chip">Galleries > {title}</p>
+    <p><a class="ui-chip" href={pricingHref}>Price Info →</a></p>
 
-</section>
+  </section>
 
-<section class="content-layout media-gallery__hook" data-slug={albumSlug} data-autoplay="true" data-interval="8000" data-random="true">
+
+
+<section class="content-layout media-gallery__hook section" data-slug={albumSlug} data-autoplay="true" data-interval="8000" data-random="true">
+
   <section class="content-card content-card--gallery-detail">
-    <div class="media-gallery">
+        <section class="content-head section">
+    <h2>{title}</h2>    
+    <p>{description}</p>  </section>
+</section>
+    <div class="media-gallery content-card section">
       <div class="media-gallery__frame" role="button" tabindex="0" aria-label="Open artwork in lightbox">
         <img class="media-gallery__image" alt="" />
         <button class="media-gallery__nav media-gallery__prev" aria-label="Previous" type="button">❮</button>

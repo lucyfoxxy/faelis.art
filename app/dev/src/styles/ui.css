@@ -25,7 +25,7 @@
 .ui-chip {
   transition: color .15s ease, color .15s ease, box-shadow .15s ease;
   border-radius: var(--large-radius);
-  padding: .7rem 1.5rem;
+  padding: .5rem .85rem;
 }
 .ui-chip:hover {
   background: color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);

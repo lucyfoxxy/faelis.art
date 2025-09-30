@@ -74,7 +74,7 @@ p :where(em,i) {
   line-height: var(--xsmall-line-height);
 }
 .ui-chip {
-  font-size: var(--small-font-size);
+  font-size: var(--thick-font-size);
   font-weight: var(--normal-font-weight);
 }
 

@@ -11,7 +11,7 @@
 /* ====== FULL-SIZE CONTENT HEAD ====== */
 .content-head {  display: grid; }
 .content-head > :where(h1, h2, h3, p) { margin: 0; }
-.content-head > p { opacity: .9; max-inline-size: 100%; }
+.content-head > p { opacity: .9; max-inline-size: 80ch; }
 
 /* ====== GENERAL CONTENT LAYOUTS ====== */
 .content-layout {
