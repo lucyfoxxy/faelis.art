@@ -8,10 +8,8 @@ body { min-height: 100dvh; }
 
 /* ====== DEFAULT  ====== */
 body {
-  
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  color: var(--primary-text-color);
   background: none; 
   display: flex;
   flex-direction: column;  
@@ -26,6 +24,17 @@ body::before{
     var(--background-overlay),
     var(--background-image, none) center / cover no-repeat;
   will-change: transform; transform: translateZ(0);
+}
+
+:where(a){
+  text-decoration: none;
+  text-shadow: var(--primary-text-shadow);
+  color: var(--accent-color);
+  transition: color .2s ease, text-shadow .2s ease;
+}
+:where(a):hover,
+:where(a):focus-visible {
+  text-shadow: var(--accent-text-shadow);
 }
 
 img, picture, video, canvas, svg { display: block; max-inline-size: 100%; }

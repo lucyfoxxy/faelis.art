@@ -1,19 +1,18 @@
 :root { 
   /* ====== Main Colors ====== */
-  /*--primary-color:              oklch(60% 0.15 305);   /* dunkler, weniger gesättigt Lila 
-  --accent-color:               oklch(55% 0.1 315); */  /* heller Akzent, leicht pinkiger */
-  --primary-color:              oklch(30% 0.10 310);   /* dunkler, weniger gesättigt Lila */
-  /*--accent-color:               oklch(55% 0.11 315);   /* heller Akzent, leicht pinkiger */
-  --accent-color:               oklch(0.91 0.0437 240);
-  --primary-background-color:   oklch(26% 0.08 310 / 0.65); /* dunkles, gedämpftes Violett */
-  --secondary-background-color: oklch(20% 0.065 310 / 0.80); /* noch dunkler für Layer */
-  --outline-color:              oklch(26% 0.09 310 / 10%);
+  --primary-text-color:         oklch(92% 0.03 310);
 
-  --primary-shadow-color:       oklch(25% 0.08 310 / 0.65);
-  --secondary-shadow-color:     oklch(30% 0.05 310 / 0.35);
+  --accent-color:               oklch(91% 0.0437 240);
+  --highlight-color:            oklch(83% 0.07 315);
+  --outline-color:              color-mix(in oklch, var(--highlight-color) 20%, transparent);
 
-  --primary-text-color:         oklch(92% 0.03 310); 
-  --secondary-text-color:       oklch(83% 0.07 315);
+  --primary-background-color:   oklch(26% 0.08 310 / 0.65);
+  --secondary-background-color: oklch(20% 0.065 310 / 0.80); 
+
+  --primary-shadow-color:       color-mix(in oklch, var(--primary-background-color) 70%, black);
+  --secondary-shadow-color:     color-mix(in oklch, var(--secondary-background-color) 70%, black);
+  --highlight-shadow-color:     color-mix(in oklch, var(--highlight-color) 70%, black); 
+  --accent-shadow-color:        color-mix(in oklch, var(--accent-color) 70%, black); 
 
 
   /* ====== Decorations ====== */
@@ -27,18 +26,25 @@
   --medium-radius:              14px;
   --large-radius:               18px;
  
-  --primary-text-shadow:        0 0 10px var(--primary-background-color),0 0 4px color-mix(in oklab, var(--secondary-text-color) 60%, transparent 10%);
-  --secondary-text-shadow:      0 0 10px var(--primary-background-color),0 0 3px var(--secondary-text-color);
-  --accent-text-shadow:         0 0 .1rem color-mix(in oklab,var(--secondary-text-color) 55%, black 6%);
-  --medium-shadow:              0 0 .175rem var(--primary-shadow-color), 0 12px 36px var(--secondary-shadow-color);  
-  --large-shadow:               0 0 .225rem var(--primary-shadow-color), 0 18px 54px var(--secondary-shadow-color),0 0 10px var(--primary-background-color);
+  --primary-text-shadow:        0 0 10px var(--primary-background-color),0 0 4px color-mix(in oklab, var(--highlight-color) 60%, transparent 10%);
+  --secondary-text-shadow:      0 0 10px var(--primary-background-color),0 0 3px var(--highlight-color);
+  --accent-text-shadow:         0 0 11px var(--accent--shadow-color);
+  --highlight-text-shadow:      0 0 9px var(--highlight-shadow-color);
+
+  --medium-shadow:              0 0 14px 4px var(--primary-shadow-color), 0 0 24px -14px var(--highlight-shadow-color);
+  --large-shadow:               0 0 3px -13px var(--primary-shadow-color), 0 0 12px -4px var(--secondary-shadow-color);
+
+  --focus-glow-accent:          0 0 16px -12px var(--accent-shadow-color)   , 0 0 0 1px var(--accent-color), 0 0 5px 3px var(--accent-shadow-color);
+  --focus-glow-highlight:       0 0 20px -12px var(--highlight-shadow-color), 0 0 0 2px var(--highlight-color), 0 0 7px 4px var(--highlight-color);
+
+
   /* ====== Fonts ====== */
   --primary-font-family:        Grandstander, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --secondary-font-family:      'Fuzzy Bubbles', var(--primary-font-family);
 
-  --thin-font-weight:           250;
-  --normal-font-weight:         350;
-  --thick-font-weight:          550;
+  --thin-font-weight:           300;
+  --normal-font-weight:         400;
+  --thick-font-weight:          500;
   --bold-font-weight:           700;
 
   --xsmall-font-size:           clamp(.85rem, .5rem + .4vw, 1.05rem);
@@ -90,8 +96,13 @@
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
   /* ====== Gallery ====== */
+  --gallery-frame-size: calc(
+      (var(--container-max) - 
+        (var(--container-gap) + var(--panel-padding)+var(--content-margin)+var(--content-gap)) * 2
+      ) / 2
+    );
   --thumb-size: clamp(64px, 9vw, 128px);
-  --gallery-frame-size:         clamp(240px, 45vh, 480px);                       
-  --gallery-frame-size-compact: clamp(160px, 26vh, 360px);
-
+  --kenburns-offset: clamp(8rem, 20vh, 25rem);                                  
+  --gallery-interval: 8000ms;  
+  --gallery-interval-compact: 7000ms;
 }

@@ -2,7 +2,7 @@
 /* ====== Depends on: tokens.css (vars), site.css (layout) ====== */
 
 /* ====== TYPO FLOW (Panel) ====== */
-.panel :where(p, .prose) { hyphens: auto; }
+
 
 /* ====== Section ====== */
 .section + .section { margin-top: var(--content-margin); }
@@ -46,7 +46,9 @@
 }
 .content-card__title {
 text-align: center;
-
+}
+.content-card__subtitle {
+  font-size: var(--small-font-size);
 }
 .content-card__rows {
   flex-direction: row;
@@ -54,9 +56,8 @@ text-align: center;
   justify-content: space-between;
   width: 100%;
 }
-.content-card__subtitle {
-  font-size: var(--small-font-size);
-}
+
+
 
 /* ====== PROSE CONTENT ====== */
 .prose {
@@ -72,4 +73,10 @@ text-align: center;
   margin: 0;
 }
 .prose li + li { margin-top: calc(var(--prose-flow-spacing) * .5); }
-
+.prose a { 
+  text-underline-offset: 2px; 
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: var(--highlight-color);
+  text-shadow: var(--secondary-text-shadow);
+}

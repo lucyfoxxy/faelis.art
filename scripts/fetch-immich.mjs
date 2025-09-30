@@ -278,8 +278,8 @@ async function renderVariants({ buffer, thumbPath, fullPath, needThumb, needFull
     await sharp(buffer)
       .rotate()
       .resize({
-        width: 256,
-        height: 256,
+        width: 196,
+        height: 196,
         fit: 'contain',
         background: { r: 0, g: 0, b: 0, alpha: 0 }
       })

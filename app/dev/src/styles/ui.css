@@ -8,15 +8,12 @@
 .ui-badge,
 .ui-chip {
   display: inline-block;
-
-
   vertical-align: middle;  
   text-decoration: none;
   background: color-mix(in oklab, var(--content-background) 45%, black 5%);
   box-shadow: var(--content-shadow);
   backdrop-filter: blur(var(--content-blur));
-  
-  color: var(--secondary-text-color);
+  color: var(--highlight-color);
 }
 .ui-badge {
   opacity: .9;
@@ -25,7 +22,7 @@
   padding: .35rem .75rem;
 }
 .ui-chip {
-  transition: color .15s ease, color .15s ease, box-shadow .15s ease;
+  transition: color .15s ease, box-shadow .15s ease; 
   border-radius: var(--large-radius);
   padding: .5rem .85rem;
 }
@@ -33,6 +30,7 @@
   background: color-mix(in oklab,var(--secondary-background-color) 75%,black 5%);
   color:var(--accent-color);
   transform: translateY(-1px);
+  box-shadow: var(--focus-glow-accent);
 }
 
 /* ====== Contact Buttons ====== */
@@ -43,12 +41,12 @@
   margin-block: .75rem 1rem;
 }
 .ui-btn__contact {
-  --bg: var(--primary-background-color);              /* pro Button überschreiben */
-  --fg: #fff;              /* Textfarbe fix: gute Lesbarkeit */
+  --bg: var(--primary-background-color);
+  --fg: #fff;
   --fg-hover: var(--primary-text-color);
   display: inline-flex;
   align-items: center;
-  justify-content: center; /* Text zentriert */
+  justify-content: center;
   gap: .55rem;
   padding: .72rem 1.05rem;
   border-radius: var(--large-radius);
@@ -60,7 +58,7 @@
   box-shadow:
     0 10px 22px -12px oklch(0% 0 0 / .55),
     inset 0 1px 0 0 oklch(100% 0 0 / .20),
-    0 0 12px -2px color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+    var(--medium-shadow);
   transition: color .15s ease, transform .12s ease, box-shadow .12s ease, filter .15s ease;
 }
 .ui-btn__contact--telegram   { --bg: #28a8e9; }
@@ -71,7 +69,7 @@
 .ui-btn__contact:hover {
   background: color-mix(in oklch, var(--bg) 82%, white 22%);
   transform: translateY(-1px);
-  box-shadow: 0 0 24px -14px oklch(0% 0 0 / .6);
+  box-shadow: var(--medium-shadow);
   color: var(--fg-hover);
 }
 .ui-btn__contact:active {

@@ -36,7 +36,6 @@ body {
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
-  text-shadow: var(--primary-text-shadow);
   text-decoration: none;
 }
 
@@ -49,8 +48,6 @@ p :where(em,i) {
 .prose :where(a),
 .site-footer :where(a) {
   font-weight: var(--thick-font-weight);
-  color: var(--secondary-text-color);
-  text-shadow: var(--secondary-text-shadow);
 }
 
 .site-footer,
@@ -102,7 +99,7 @@ p :where(em,i) {
 }
 
 .panel :where(h3){
-  color: var(--secondary-text-color);
+  color: var(--highlight-color);
   font-weight: var(--normal-font-weight);
   font-size: var(--large-font-size);
   
