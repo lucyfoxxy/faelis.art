@@ -13,6 +13,12 @@ const assetModules = import.meta.glob('@Assets/albums/**/*', {
 
 const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
 const MAX_VISIBLE_THUMBS = 10;
+const EXTRA_VISIBLE_THUMBS = 1;
+
+const parseLength = (value) => {
+  const length = parseFloat(value);
+  return Number.isFinite(length) ? length : null;
+};
 
 export default function initGalleryPage() {
   const root = document.querySelector('.media-gallery__hook[data-slug]');
@@ -68,9 +74,54 @@ export default function initGalleryPage() {
   let i = 0;
   let timer = null;
   let playing = hasMultiple && autoplay;
+  let elapsedBeforePause = 0;
+  let tickStartTime = 0;
   let resumeAfterLightbox = false;
+  let pauseKenBurns = () => {};
+  let resumeKenBurns = () => {};
   let windowStart = 0;
-  const maxVisible = Math.max(1, Math.min(parseInt(thumbs.getAttribute('data-window') || '', 10) || MAX_VISIBLE_THUMBS, MAX_VISIBLE_THUMBS));
+  const configuredWindow = Math.max(
+    1,
+    Math.min(parseInt(thumbs.getAttribute('data-window') || '', 10) || MAX_VISIBLE_THUMBS, MAX_VISIBLE_THUMBS),
+  );
+  let maxVisible = configuredWindow;
+
+  const computeWindowFromLayout = () => {
+    const wrapRect = thumbsWrap.getBoundingClientRect();
+    const thumbsRect = thumbs.getBoundingClientRect();
+    const availableWidth = wrapRect.width || thumbsRect.width;
+
+    if (!availableWidth) return configuredWindow;
+
+    const styles = getComputedStyle(thumbsWrap);
+    const sampleThumb = thumbsWrap.querySelector('.media-gallery__thumb');
+    const sampleWidth = sampleThumb?.getBoundingClientRect().width;
+    const thumbSize = (sampleWidth && sampleWidth > 0)
+      ? sampleWidth
+      : parseLength(styles.gridAutoColumns)
+        ?? parseLength(styles.getPropertyValue('--thumb-size'));
+    const gap = parseLength(styles.columnGap) ?? parseLength(styles.gap) ?? 0;
+
+    if (!thumbSize || thumbSize <= 0) return configuredWindow;
+
+    const totalWidthPerThumb = thumbSize + gap;
+    if (totalWidthPerThumb <= 0) return configuredWindow;
+
+    const fit = Math.floor((availableWidth + gap) / totalWidthPerThumb);
+    return Math.max(1, fit);
+  };
+
+  const updateMaxVisible = () => {
+    const layoutWindow = computeWindowFromLayout();
+    const next = Math.max(1, Math.min(configuredWindow, layoutWindow));
+    if (next === maxVisible) return false;
+
+    maxVisible = next;
+    if (windowStart + maxVisible > order.length) {
+      windowStart = Math.max(0, order.length - maxVisible);
+    }
+    return true;
+  };
 
   thumbs.toggleAttribute('data-has-multiple', hasMultiple);
   thumbsPrev.hidden = thumbsNext.hidden = order.length <= maxVisible;
@@ -117,7 +168,8 @@ export default function initGalleryPage() {
         playing = true;
         resumeAfterLightbox = false;
         updatePlayButton();
-        run();
+        resumeKenBurns();
+        run({ resetProgress: false });
       }
     };
 
@@ -152,9 +204,12 @@ export default function initGalleryPage() {
     };
   })();
 
+  const getMaxStart = () => Math.max(0, order.length - maxVisible);
+
   const renderThumbs = () => {
+    updateMaxVisible();
     const fragment = document.createDocumentFragment();
-    const end = Math.min(order.length, windowStart + maxVisible);
+    const end = Math.min(order.length, windowStart + maxVisible + EXTRA_VISIBLE_THUMBS);
 
     for (let orderIdx = windowStart; orderIdx < end; orderIdx += 1) {
       const item = items[order[orderIdx]];
@@ -174,7 +229,7 @@ export default function initGalleryPage() {
 
       button.appendChild(img);
       button.addEventListener('click', () => {
-        show(orderIdx);
+        show(orderIdx, 0);
         run();
       });
       fragment.appendChild(button);
@@ -194,22 +249,47 @@ export default function initGalleryPage() {
     });
   };
 
-  const ensureThumbVisibility = () => {
-    if (i < windowStart) {
-      windowStart = i;
-    } else if (i >= windowStart + maxVisible) {
-      windowStart = Math.max(0, i - maxVisible + 1);
+  const ensureThumbVisibility = (direction = 0) => {
+    const maxStart = getMaxStart();
+
+    if (direction > 0) {
+      if (i < windowStart) {
+        windowStart = i;
+      } else if (i >= windowStart + maxVisible - 1 && windowStart < maxStart) {
+        windowStart = Math.min(i, maxStart);
+      }
+    } else if (direction < 0) {
+      if (i > windowStart + maxVisible - 1) {
+        windowStart = Math.max(0, Math.min(i - maxVisible + 1, maxStart));
+      } else if (i <= windowStart && windowStart > 0) {
+        const target = Math.max(0, Math.min(maxStart, i - maxVisible + 1));
+        windowStart = target;
+      }
+    } else {
+      if (i < windowStart) {
+        windowStart = i;
+      } else if (i >= windowStart + maxVisible) {
+        windowStart = Math.max(0, Math.min(i - maxVisible + 1, maxStart));
+      }
     }
+
     renderThumbs();
   };
 
+  const handleResize = () => {
+    if (updateMaxVisible()) {
+      ensureThumbVisibility(0);
+    }
+  };
+
   const updateThumbNav = () => {
+    const maxStart = getMaxStart();
     thumbsPrev.disabled = windowStart === 0;
-    thumbsNext.disabled = windowStart + maxVisible >= order.length;
+    thumbsNext.disabled = windowStart >= maxStart;
     thumbsPrev.hidden = thumbsNext.hidden = order.length <= maxVisible;
   };
 
-  const show = (idx) => {
+  const show = (idx, direction = 0) => {
     if (order.length === 0) return;
     i = (idx + order.length) % order.length;
     const item = items[order[i]];
@@ -245,21 +325,24 @@ export default function initGalleryPage() {
     }, { once: true });
     loader.src = item.full;
 
-    ensureThumbVisibility();
+    ensureThumbVisibility(direction);
     setProgress(0);
   };
 
-  const next = () => show(i + 1);
-  const prev = () => show(i - 1);
+  const next = () => show(i + 1, 1);
+  const prev = () => show(i - 1, -1);
 
   const tick = () => {
-    const started = performance.now();
+    tickStartTime = performance.now();
     const step = () => {
       if (!playing) return;
-      const dt = performance.now() - started;
-      const p = Math.min(1, dt / interval);
-      setProgress(p);
-      if (p >= 1) {
+      const now = performance.now();
+      const elapsed = Math.min(interval, elapsedBeforePause + (now - tickStartTime));
+      const progressValue = elapsed / interval;
+      setProgress(progressValue);
+      if (progressValue >= 1) {
+        elapsedBeforePause = 0;
+        tickStartTime = 0;
         next();
         run();
       } else {
@@ -269,10 +352,40 @@ export default function initGalleryPage() {
     timer = requestAnimationFrame(step);
   };
 
-  const run = () => {
+  pauseKenBurns = () => {
+    imgEl.classList.remove('is-transitioning');
+    imgEl.style.opacity = '1';
+    imgEl.style.animationPlayState = 'paused';
+  };
+
+  resumeKenBurns = () => {
+    if (imgEl.style.animationPlayState !== 'paused') return;
+    imgEl.style.animationPlayState = '';
+    imgEl.style.opacity = '';
+  };
+
+  const run = ({ resetProgress = true } = {}) => {
     if (timer) cancelAnimationFrame(timer);
-    setProgress(0);
-    if (playing) tick();
+    timer = null;
+    if (resetProgress) {
+      elapsedBeforePause = 0;
+      setProgress(0);
+    } else {
+      setProgress(Math.min(1, elapsedBeforePause / interval));
+    }
+    if (playing) {
+      resumeKenBurns();
+      tick();
+    }
+  };
+
+  const captureElapsed = () => {
+    if (!timer) return;
+    const now = performance.now();
+    elapsedBeforePause = Math.min(interval, elapsedBeforePause + (now - tickStartTime));
+    cancelAnimationFrame(timer);
+    timer = null;
+    tickStartTime = 0;
   };
 
   btnPrev.addEventListener('click', (event) => {
@@ -287,18 +400,27 @@ export default function initGalleryPage() {
   });
   btnPlay.addEventListener('click', (event) => {
     event.stopPropagation();
+    const wasPlaying = playing;
     playing = !playing;
     updatePlayButton();
-    run();
+    if (wasPlaying && !playing) {
+      captureElapsed();
+      pauseKenBurns();
+    } else if (!wasPlaying && playing) {
+      resumeKenBurns();
+      run({ resetProgress: false });
+    }
   });
+
+  window.addEventListener('resize', handleResize);
 
   thumbsPrev.addEventListener('click', () => {
     windowStart = Math.max(0, windowStart - maxVisible);
     renderThumbs();
   });
   thumbsNext.addEventListener('click', () => {
-    if (windowStart + maxVisible < order.length) {
-      const maxStart = Math.max(0, order.length - maxVisible);
+    const maxStart = getMaxStart();
+    if (windowStart < maxStart) {
       windowStart = Math.min(maxStart, windowStart + maxVisible);
       renderThumbs();
     }
@@ -309,11 +431,12 @@ export default function initGalleryPage() {
     if (target instanceof HTMLElement && target.closest('button')) return;
     if (lightbox) {
       if (playing) {
+        captureElapsed();
         resumeAfterLightbox = true;
         playing = false;
         updatePlayButton();
-        if (timer) cancelAnimationFrame(timer);
       }
+      pauseKenBurns();
       lightbox.open(items[order[i]]);
     }
   });
@@ -328,6 +451,7 @@ export default function initGalleryPage() {
   // Thumbnails rendern
   renderThumbs();
   updatePlayButton();
-  show(0);
+  show(0, 0);
+  requestAnimationFrame(handleResize);
   if (autoplay && hasMultiple) run();
 }

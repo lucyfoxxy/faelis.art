@@ -14,6 +14,7 @@
   text-decoration: none;
   background: color-mix(in oklab,var(--secondary-background-color) 85%,white 0%);
   box-shadow:  0 0 14px -2px color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+  color: var(--secondary-text-color);
 }
 .ui-badge {
   opacity: .9;

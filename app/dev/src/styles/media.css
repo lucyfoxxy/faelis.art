@@ -224,7 +224,7 @@
   inset: 0;
   transform-origin: left center;
   transform: scaleX(var(--p, 0));
-  background: color-mix(in oklab, var(--secondary-text-color) 70%, white 6%);
+  background: color-mix(in oklab, var(--secondary-text-color) 80%, black 10%);
   opacity: .95;
   transition: transform .12s linear;
 }
@@ -256,7 +256,6 @@
   box-shadow: 0 10px 20px -14px rgba(0, 0, 0, .55);
   transition: transform .3s ease, box-shadow .3s ease;
 }
-
 .media-gallery__thumbs-wrap {
   display: grid;
   grid-auto-flow: column;
@@ -280,14 +279,14 @@
 .media-gallery__thumbs-nav:hover,
 .media-gallery__thumbs-nav:focus-visible {
   opacity: 1;
-  transform: scale(1.5);
+
 }
 .media-gallery__thumbs-nav[disabled] {
   opacity: .25;
   pointer-events: none;
 }
 
-.media-gallery__thumb.active { box-shadow: 0 0 0 2px var(--secondary-text-color), var(--medium-shadow); }
+.media-gallery__thumb.active { box-shadow: 0 0 0 2px color-mix(in oklab, var(--secondary-background-color) 50%, white 30%), var(--medium-shadow); }
 .media-gallery__thumb {
   position: relative;
   display: block;
@@ -295,7 +294,7 @@
   aspect-ratio: 1 / 1;
   padding: 0;
   border: 0;
-  border-radius: calc(var(--medium-radius) - 2px);
+  border-radius: calc(var(--large-radius) - 2px);
   overflow: hidden;
   background: color-mix(in oklab, var(--primary-background-color) 94%, white 6%);
   box-shadow: 0 0 10px -6px rgba(0, 0, 0, .6);
@@ -309,6 +308,7 @@
   object-position: center;
   display: block;
   transition: transform .35s ease;
+  transform: scale(1.15);
 }
 .media-gallery__thumb:hover,
 .media-gallery__thumb:focus-visible {
@@ -317,12 +317,10 @@
 }
 .media-gallery__thumb:hover img,
 .media-gallery__thumb:focus-visible img {
-  transform: scale(1.04);
+  transform: scale(1.5);
 }
-
-
 .media-gallery__thumb[aria-current="true"] {
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-color) 80%, white 20%), var(--medium-shadow);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--secondary-text-color) 80%, black 10%), var(--medium-shadow);
 }
 
 .media-gallery__lightbox {
@@ -395,10 +393,4 @@
 
 body.media-gallery__lightbox-open {
   overflow: hidden;
-}
-
-.media-gallery__empty {
-  margin: .5rem 0;
-  text-align: center;
-  opacity: .75;
 }

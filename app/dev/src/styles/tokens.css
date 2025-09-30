@@ -12,8 +12,8 @@
   --primary-shadow-color:       oklch(25% 0.08 310 / 0.75);
   --secondary-shadow-color:     oklch(30% 0.05 310 / 0.35);
 
-  --primary-text-color:         oklch(87% 0.03 310); 
-  --secondary-text-color:       oklch(82% 0.09 315);
+  --primary-text-color:         oklch(92% 0.03 310); 
+  --secondary-text-color:       oklch(83% 0.07 315);
 
 
   /* ====== Decorations ====== */
@@ -62,7 +62,7 @@
 
   /* ====== Layout / Structures ====== */
   --container-max:              1280px;
-  --container-gap:              clamp(1.5rem, 3.5vw, 2.75rem);
+  --container-gap:              clamp(.75rem, 3.5vw, 2.75rem);
   --container-padding:          max(var(--container-gap), calc((100vw - var(--container-max)) / 2));
 
   --navbar-background:          color-mix(in oklab, var(--secondary-background-color), black 6%);
@@ -73,14 +73,14 @@
   --navbar-gap:                 clamp(.75rem, 2vw, 2rem);
 
   --panel-background:           var(--primary-background-color); 
-  --panel-padding:              clamp(1.5rem, 2vw, 3rem);
+  --panel-padding:              clamp(1rem, 2vw, 3rem);
   --panel-blur:                 var(--large-blur);   
   --panel-shadow:               var(--large-shadow);
 
   --content-gap:                clamp(1rem, 2vw, 1.5rem);
   --content-background:         color-mix(in oklab, var(--navbar-background), transparent 56%);          
   --content-padding:            var(--panel-padding);
-  --content-margin:             clamp(1.5rem, 2vw, 1.75rem);
+  --content-margin:             clamp(1rem, 2vw, 1.75rem);
   --content-blur:               var(--panel-blur);   
   --content-shadow:             var(--panel-shadow);
   --content-media-size:         min(360px, 100%);
