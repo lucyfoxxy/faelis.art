@@ -22,6 +22,10 @@ const isExternalLink = (href: string) => href.startsWith('http');
 
 export const title = 'Home - Faelis Paw Artistry';
 ---
+<head>
+  <link rel="preload" href={ASSETS.mascot.src} as="image" type="image/webp" />
+</head>
+
 <section class="media-hero section">
   <img class="media-hero__mascot" src={ASSETS.mascot.src}  alt="" />
   <img class="media-hero__logo" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
