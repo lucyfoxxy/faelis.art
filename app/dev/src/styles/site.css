@@ -71,7 +71,7 @@ main.panel {
 .site-header {
   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
   margin-block: var(--navbar-margin);
-  justify-content: space-between;
+  flex-direction: column;
   gap: var(--navbar-gap);
   margin-inline: var(--container-padding);
 }
