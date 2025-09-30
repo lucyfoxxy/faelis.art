@@ -260,7 +260,8 @@
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: var(--thumb-size);
-  gap: clamp(.35rem, .8vw, .55rem);
+  gap: var(--content-gap);
+  margin-block: calc(var(--content-margin) * .25);
   overflow: hidden;
 }
 .media-gallery__thumbs-nav {
@@ -293,6 +294,7 @@
   inline-size: 100%;
   aspect-ratio: 1 / 1;
   padding: 0;
+  margin: calc(var(--content-margin)*.25);
   border: 0;
   border-radius: calc(var(--large-radius) - 2px);
   overflow: hidden;

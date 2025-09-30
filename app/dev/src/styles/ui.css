@@ -8,8 +8,8 @@
 .ui-badge,
 .ui-chip {
   display: inline-block;
-  padding: .35rem .75rem;
-  border-radius: 999px;
+
+
   vertical-align: middle;  
   text-decoration: none;
   background: color-mix(in oklab,var(--secondary-background-color) 85%,white 0%);
@@ -19,9 +19,13 @@
 .ui-badge {
   opacity: .9;
   margin-inline-end: .25rem;
+  border-radius: 999px;
+  padding: .35rem .75rem;
 }
 .ui-chip {
   transition: color .15s ease, color .15s ease, box-shadow .15s ease;
+  border-radius: var(--large-radius);
+  padding: .7rem 1.5rem;
 }
 .ui-chip:hover {
   background: color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);

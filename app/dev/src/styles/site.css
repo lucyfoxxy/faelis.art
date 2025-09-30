@@ -71,7 +71,8 @@ main.panel {
 .site-header {
   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
   margin-block: var(--navbar-margin);
-  justify-content: space-around;
+  padding-inline: var(--container-padding);
+  justify-content: space-between;
   gap: var(--navbar-gap);
 }
 .site-footer {
