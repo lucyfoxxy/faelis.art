@@ -32,11 +32,11 @@ const toSlug = (value: string) =>
     .replace(/-{2,}/g, "-");
 const categories: PriceCategoryWithAnchor[] = catalog.categories.map((cat) => {
   const slug = cat.slug?.trim();
-  const anchorId = slug && slug.length > 0 ? slug : toSlug(cat.title);
+  const anchorId = slug?.length ? slug : toSlug(cat.title);
   const albumHref = slug ? `/galleries/${slug}` : undefined;
   return {
     ...cat,
-    anchorId: anchorId || toSlug(cat.title),
+    anchorId,
     albumHref,
   };
 });
@@ -44,13 +44,23 @@ const categories: PriceCategoryWithAnchor[] = catalog.categories.map((cat) => {
 const COLS = ["60%", "40%"]; // Type / Price(+Note)
 const title = "Pricing";
 const currency = catalog.currency ?? "EUR";
-const fmt = (value?: number) => {
-  if (value == null) return "–";
-  try { return new Intl.NumberFormat("de-DE", { style: "currency", currency, minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(value); }
-  catch { return `${value} ${currency}`; }
+const createCurrencyFormatter = (currency: string) => {
+  try {
+    const formatter = new Intl.NumberFormat("de-DE", {
+      style: "currency",
+      currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    });
+    return (value: number) => formatter.format(value);
+  }
+  catch {
+    return (value: number) => `${value} ${currency}`;
+  }
 };
+const formatCurrency = createCurrencyFormatter(currency);
 const formatPrice = (it: PriceItem) => {
-  if (it.price != null) return fmt(it.price);
+  if (it.price != null) return formatCurrency(it.price);
   return "auf Anfrage";
 };
 ---
@@ -64,13 +74,12 @@ const formatPrice = (it: PriceItem) => {
 
 <section class="section content-layout">
   {categories.map((cat) => {
-    const linkLabelTitle = cat.title;
     return (
       <section id={cat.anchorId} class="content-card content-card--head">
         <div class="content-card__rows">
           <h3>{cat.title}</h3>
           <p>{cat.albumHref ? (
-            <a class="ui-chip" href={cat.albumHref} aria-label={`Open ${linkLabelTitle} album`}>
+            <a class="ui-chip" href={cat.albumHref} aria-label={`Open ${cat.title} album`}>
                 → Examples
             </a> ) : cat.title}
           </p>
