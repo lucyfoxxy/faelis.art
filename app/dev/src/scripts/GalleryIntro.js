@@ -1,4 +1,5 @@
 import { createGalleryItemsBySlug } from './galleryData';
+import { loadImageWithTransition } from './galleryImage';
 
 const metas = import.meta.glob('@Content/albumData/bestof.json', {
   query: '?json',
@@ -56,34 +57,11 @@ export default function initGalleryIntro() {
     const item = items[order[i]];
     if (!item) return;
 
-    const loader = new Image();
-    loader.decoding = 'async';
-    imgEl.classList.remove('is-animating');
-    imgEl.classList.add('is-transitioning');
-
-    const applyImage = () => {
-      imgEl.src = loader.src;
-      imgEl.alt = item.alt || '';
-      requestAnimationFrame(() => {
-        void imgEl.offsetWidth;
-        imgEl.classList.add('is-animating');
-        imgEl.classList.remove('is-transitioning');
-      });
-    };
-
-    loader.addEventListener('load', () => {
-      applyImage();
+    loadImageWithTransition(imgEl, {
+      src: item.full,
+      alt: item.alt || '',
+      fallbackSrc: item.full,
     });
-    loader.addEventListener('error', () => {
-      imgEl.src = item.full;
-      imgEl.alt = item.alt || '';
-      requestAnimationFrame(() => {
-        void imgEl.offsetWidth;
-        imgEl.classList.add('is-animating');
-        imgEl.classList.remove('is-transitioning');
-      });
-    }, { once: true });
-    loader.src = item.full;
 
     setProgress(0);
   };

@@ -2,20 +2,25 @@
 import Icon from '@Design/Icons.astro';
 import { ASSETS } from '@Design/Assets.astro';
 import type { Props as IconProps } from '@Design/Icons.astro';
+
 type IconKind = IconProps['kind'];
-const links: { href: string; label: string; kind: IconKind }[] = [ 
-  { href: 'https://t.me/faelispawartistry',          label: 'Telegram',    kind: 'telegram'   },
-  { href: 'mailto:info@faelis.art',                  label: 'Email',       kind: 'mail'       },
-  { href: 'https://www.facebook.com/FaelisPawArtistry', label: 'Facebook', kind: 'facebook'   },
-  { href: 'https://www.instagram.com/faeliskitty',   label: 'Instagram',   kind: 'instagram'  },
-  { href: 'https://www.furaffinity.net/user/faelis', label: 'FurAffinity', kind: 'furaffinity'}
+
+const links: { href: string; label: string; kind: IconKind }[] = [
+  { href: 'https://t.me/faelispawartistry',              label: 'Telegram',    kind: 'telegram'   },
+  { href: 'mailto:info@faelis.art',                      label: 'Email',       kind: 'mail'       },
+  { href: 'https://www.facebook.com/FaelisPawArtistry',  label: 'Facebook',    kind: 'facebook'   },
+  { href: 'https://www.instagram.com/faeliskitty',       label: 'Instagram',   kind: 'instagram'  },
+  { href: 'https://www.furaffinity.net/user/faelis',     label: 'FurAffinity', kind: 'furaffinity'}
 ] as const;
+
 const slug = 'bestof';
 const autoplay = true;
-const interval = 7000;   
-const random   = true;
+const interval = 7000;
+const random = true;
+
 const isExternalLink = (href: string) => href.startsWith('http');
-export const title = 'Home - Faelis Paw Artistry'
+
+export const title = 'Home - Faelis Paw Artistry';
 ---
 <section class="media-hero section">
   <img class="media-hero__mascot" src={ASSETS.mascot.src}  alt="" />
@@ -35,7 +40,13 @@ export const title = 'Home - Faelis Paw Artistry'
     <h3><i>Faelis Skribblekitty 💜</i></h3>
   </section>
 
-  <section class="content-card media-gallery__hook"  data-slug={slug}  data-autoplay={String(autoplay)}  data-interval={String(interval)}  data-random={String(random)}>
+  <section
+    class="content-card media-gallery__hook"
+    data-slug={slug}
+    data-autoplay={String(autoplay)}
+    data-interval={String(interval)}
+    data-random={String(random)}
+  >
     <h2>Preview:</h2>    
     <div class="prose">  
       <div class="media-gallery">
@@ -69,13 +80,8 @@ export const title = 'Home - Faelis Paw Artistry'
 </section>
 
 <script>
-  import initGalleryIntro from "@Scripts/GalleryIntro.js";
-  const boot = () => initGalleryIntro();
+  import initGalleryIntro from '@Scripts/GalleryIntro.js';
+  import { runOnReady } from '@Scripts/utils/runOnReady.js';
 
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    requestAnimationFrame(boot);
-  } else {
-    document.addEventListener("DOMContentLoaded", boot, { once: true });
-    document.addEventListener("astro:page-load", boot, { once: true });
-  }
+  runOnReady(initGalleryIntro);
 </script>

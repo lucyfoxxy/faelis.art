@@ -27,14 +27,8 @@ const { categories } = Astro.props as { categories: CategoryEntry[] };
 </section>
 
 <script>
-  import initGalleryCovers from "@Scripts/GalleryOverview.js";
-  const boot = () => initGalleryCovers();
+  import initGalleryCovers from '@Scripts/GalleryOverview.js';
+  import { runOnReady } from '@Scripts/utils/runOnReady.js';
 
-  // robust für SSR, CSR und Astro View-Transitions
-  if (document.readyState === "complete" || document.readyState === "interactive") {
-    requestAnimationFrame(boot);
-  } else {
-    document.addEventListener("DOMContentLoaded", boot, { once: true });
-    document.addEventListener("astro:page-load", boot, { once: true });
-  }
+  runOnReady(initGalleryCovers);
 </script>
