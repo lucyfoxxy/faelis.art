@@ -27,8 +27,8 @@ const { categories } = Astro.props as { categories: CategoryEntry[] };
 </section>
 
 <script>
-  import initGalleryCovers from '@Scripts/GalleryOverview.js';
-  import { runOnReady } from '@Scripts/utils/runOnReady.js';
+  import initGalleryCovers from '@Scripts/galleryOverview.js';
+  import { runOnReady } from '@Scripts/utils/_runOnReady.js';
 
   runOnReady(initGalleryCovers);
 </script>
