@@ -9,12 +9,19 @@
   gap: .5rem; /* falls Text/Img nebeneinander */
   height: 50px;
 }
-.prose :where(a),.site-footer :where(a) {text-underline-offset: 2px;}
-.prose a:hover,.prose a:focus-visible,.site-footer a:hover, .site-footer a:focus-visible, .site-header__nav a:hover,.site-header__nav a:focus-visible { 
+.prose :where(a),
+.site-footer :where(a) {text-underline-offset: 2px;}
+
+.prose a:hover,
+.prose a:focus-visible,
+.site-footer a:hover, 
+.site-footer a:focus-visible, 
+.site-header__nav a:hover,
+.site-header__nav a:focus-visible { 
   color: var(--accent-color); 
   transition: color .2s ease; 
   transform: translateY(-1px) ;
-  text-shadow: 0 12px 24px -14px oklch(0% 0 0 / .6);
+  text-shadow: var(--accent-text-shadow);
 }
 /* Navigation */
 .site-header__nav {
@@ -81,7 +88,7 @@ main.panel {
   margin-block: var(--navbar-gap) 0;
   justify-content: center;
   text-decoration: none;
-  text-shadow: var(--primary-shadow-color);
+  text-shadow: var(--secondary-text-shadow);
 }
 
 
