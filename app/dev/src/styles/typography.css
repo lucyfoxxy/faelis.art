@@ -74,8 +74,8 @@ p :where(em,i) {
   line-height: var(--xsmall-line-height);
 }
 .ui-chip {
-  font-size: var(--thick-font-size);
-  font-weight: var(--normal-font-weight);
+  font-size: var(--small-font-size);
+  font-weight: var(--thin-font-weight);
 }
 
 /* ====== HEADINGS ====== */
@@ -105,6 +105,7 @@ p :where(em,i) {
   color: var(--secondary-text-color);
   font-weight: var(--normal-font-weight);
   font-size: var(--large-font-size);
+  
   text-shadow: var(--accent-text-shadow);
 }
 

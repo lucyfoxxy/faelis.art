@@ -31,7 +31,7 @@
 }
 
 /* ====== CONTENT CARD ====== */
-.content-card,.content-card__rows {
+.content-card,.content-card__rows,.content-card--gallery-detail {
   display: flex;
 }
 .content-card {
@@ -44,9 +44,20 @@
   -webkit-backdrop-filter: blur(var(--content-blur)); 
   border-radius: var(--large-radius);  
 }
+.content-card--gallery-detail {
+    flex-direction: column;
+  height: 100%;
+  padding: var(--content-padding);
+  background: color-mix(in oklab, var(--content-background) 65%, white 5%);
+  box-shadow: var(--content-shadow);
+  backdrop-filter: blur(var(--content-blur));
+  -webkit-backdrop-filter: blur(var(--content-blur)); 
+  border-radius: var(--large-radius); 
+  justify-content: center;
+}
 .content-card__rows {
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   width: 100%;
 }

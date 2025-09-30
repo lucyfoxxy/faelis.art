@@ -12,8 +12,10 @@
 
   vertical-align: middle;  
   text-decoration: none;
-  background: color-mix(in oklab,var(--secondary-background-color) 85%,white 0%);
-  box-shadow:  0 0 14px -2px color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+  background: color-mix(in oklab, var(--content-background) 45%, black 5%);
+  box-shadow: var(--content-shadow);
+  backdrop-filter: blur(var(--content-blur));
+  
   color: var(--secondary-text-color);
 }
 .ui-badge {
@@ -28,7 +30,7 @@
   padding: .5rem .85rem;
 }
 .ui-chip:hover {
-  background: color-mix(in oklab,var(--secondary-background-color) 85%,black 15%);
+  background: color-mix(in oklab,var(--secondary-background-color) 75%,black 5%);
   color:var(--accent-color);
   transform: translateY(-1px);
 }

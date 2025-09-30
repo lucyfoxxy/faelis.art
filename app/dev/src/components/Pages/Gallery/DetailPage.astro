@@ -7,7 +7,7 @@ const pricingHref = `/pricing#${albumSlug}`;
 
   <section class="content-card__rows section">
     <p><a class="ui-chip" href="../../galleries">← Galleries</a></p>
-    <p class="ui-chip">Galleries > {title}</p>
+    <p>Gallery</p>
     <p><a class="ui-chip" href={pricingHref}>Price Info →</a></p>
 
   </section>
@@ -16,12 +16,13 @@ const pricingHref = `/pricing#${albumSlug}`;
 
 <section class="content-layout media-gallery__hook section" data-slug={albumSlug} data-autoplay="true" data-interval="8000" data-random="true">
 
-  <section class="content-card content-card--gallery-detail">
+  <section class="content-card--gallery-detail">
         <section class="content-head section">
-    <h2>{title}</h2>    
+    <h3>{title}</h3>    
     <p>{description}</p>  </section>
 </section>
     <div class="media-gallery content-card section">
+
       <div class="media-gallery__frame" role="button" tabindex="0" aria-label="Open artwork in lightbox">
         <img class="media-gallery__image" alt="" />
         <button class="media-gallery__nav media-gallery__prev" aria-label="Previous" type="button">❮</button>
