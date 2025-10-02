@@ -47,6 +47,9 @@
 .content-card__title {
 text-align: center;
 }
+.content-card__title h2{
+color: var(--highlight-color);
+}
 .content-card__subtitle {
   font-size: var(--small-font-size);
 }

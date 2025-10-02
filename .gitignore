@@ -28,3 +28,4 @@ package-lock.json
 **/*.kra
 **/*.*~
 **/app_dev_tree.txt
+**/*.txt

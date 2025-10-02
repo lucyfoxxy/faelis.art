@@ -49,7 +49,7 @@
 .media-galleries {
   display: grid;
   gap: var(--content-gap);
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(296px, 1fr));
   min-inline-size: 0;
 }
 @media (max-width: 780px) {
@@ -60,10 +60,18 @@
 .media-galleries__card {
   display: flex;                
   flex-direction: column;
-  gap: .6rem;
+  gap: .75rem;
   background: var(--content-background);
   border-radius: var(--medium-radius);
   padding: .75rem;
+  box-shadow: var(--large-shadow);
+  outline: 1px solid var(--outline-color);
+  transition: transform .25s ease, box-shadow .25s;
+}
+.media-galleries__card:hover
+{
+  transform: scale(1.05);
+box-shadow: var(--focus-glow-accent);
 }
 .media-galleries__thumb {
   aspect-ratio: 1 / 1;

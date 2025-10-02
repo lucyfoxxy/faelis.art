@@ -53,7 +53,8 @@ p :where(em,i) {
 .site-footer,
 .site-header__nav a,
 .panel :where(h2) { 
-  letter-spacing: var(--large-letter-spacing); 
+  letter-spacing: var(--large-letter-spacing);
+  font-size: var(--large-font-size);
 }
 
 .site-header__nav a {
