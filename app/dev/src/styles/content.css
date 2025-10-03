@@ -55,7 +55,7 @@
 }
 .content-card__title {
   margin-block-end: calc(var(--prose-flow-spacing)*1.2);
-  margin-block-start: calc(var(--prose-flow-spacing)*1.1);
+
   max-inline-size: var(--content-text-size);
 }
 .content-card__subtitle {

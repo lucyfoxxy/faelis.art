@@ -12,6 +12,7 @@
   margin-block: 0 var(--content-margin);
   padding-inline: var(--panel-padding);
   position: relative;
+  padding-block-end: var(--prose-flow-spacing);
 }
 .media-hero::after {
   content: "";
