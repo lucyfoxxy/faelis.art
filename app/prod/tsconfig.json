@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",   // oder "NodeNext", beides geht mit Astro 4+
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@Design/*": ["src/components/Design/*"],
+      "@Styles/*": ["src/styles/*"],
+      "@Pages/*": ["src/components/Pages/*"],
+      "@Content/*": ["src/content/*"],
+      "@Assets/*": ["src/assets/*"],
+      "@Scripts/*": ["src/scripts/*"]
+    },
+    "types": ["astro/client"]
+  }
+}

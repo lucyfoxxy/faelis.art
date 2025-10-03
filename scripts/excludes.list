@@ -1,5 +1,5 @@
 thumb-*
-full-*
+full-*-*-*
 index.json
 node_modules
 dist
@@ -7,3 +7,4 @@ dist
 package-lock.json
 package.json
 ToDo.md
+*.webp~

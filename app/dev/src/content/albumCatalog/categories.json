@@ -28,17 +28,6 @@
       ]
     },
     {
-      "title": "Badges",
-      "slug": "badges",
-      "subtitle": "incl. laminating, die-cutting & keychain eyelet · digital / traditional",
-      "description": "Wearable art pieces made for conventions or everyday use. Badges are laminated and cut to shape, often used for identification or just to show off your character.",
-      "items": [
-        { "name": "Halfbody (Head & Chest only)", "price": 35 },
-        { "name": "Fullbody", "price": 40, "note": "from" },
-        { "name": "Background", "price": 10, "note": "extra" }
-      ]
-    },
-    {
       "title": "Reference Sheets",
       "slug": "ref-sheets",
       "subtitle": "Price depends on character complexity / number of views. · digital only",
@@ -50,7 +39,18 @@
         { "name": "Additional view", "price": 20, "note": "each" },
         { "name": "Accessories (e.g. collar)", "price": 10, "note": "each" }
       ]
-    },    
+    },        
+    {
+      "title": "Badges",
+      "slug": "badges",
+      "subtitle": "incl. laminating, die-cutting & keychain eyelet · digital / traditional",
+      "description": "Wearable art pieces made for conventions or everyday use. Badges are laminated and cut to shape, often used for identification or just to show off your character.",
+      "items": [
+        { "name": "Halfbody (Head & Chest only)", "price": 35 },
+        { "name": "Fullbody", "price": 40, "note": "from" },
+        { "name": "Background", "price": 10, "note": "extra" }
+      ]
+    },
     {
       "title": "Sticker Packs",
       "slug": "sticker-packs",
