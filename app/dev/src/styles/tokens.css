@@ -68,33 +68,30 @@
 
   /* ====== Layout / Structures ====== */
   --container-max:              1280px;
-  --container-gap:              clamp(.75rem, 2.5vw, 2.25rem);
+  --container-gap:              clamp(.75rem, 3.5vw, 2.75rem);
   --container-padding:          max(var(--container-gap), calc((100vw - var(--container-max)) / 2));
 
   --navbar-background:          color-mix(in oklab, var(--secondary-background-color), black 6%);
   --navbar-blur:                var(--medium-blur);   
   --navbar-shadow:              var(--medium-shadow); 
   --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
-  --navbar-gap:                 clamp(.75rem, 2.5vw, 2.25rem);
-
   --navbar-margin:              0 var(--navbar-gap);
-  
+  --navbar-gap:                 clamp(1rem, 2vw, 2rem);
 
   --panel-background:           var(--primary-background-color); 
-  --panel-padding:             clamp(1rem, 2.5vw, 2.25rem);
+  --panel-padding:              clamp(1rem, 2vw, 3rem);
   --panel-blur:                 var(--large-blur);   
   --panel-shadow:               var(--large-shadow);
 
-  --content-gap:                clamp(1rem, 1.2vw, 1.75rem);
+  --content-gap:                clamp(1rem, 2vw, 1.75rem);
   --content-background:         color-mix(in oklab, var(--navbar-background), transparent 40%);          
   --content-padding:            var(--panel-padding);
-  --content-margin:             clamp(1rem, 1.2vw, 1.75rem);
+  --content-margin:             clamp(1rem, 2vw, 1.75rem);
   --content-blur:               var(--panel-blur);   
   --content-shadow:             var(--panel-shadow);
   --content-media-size:         min(360px, 100%);
-  --content-text-size:          clamp(45ch,65vw,60ch);
 
-  --brand-size:                 clamp(60px, 12vw, 240px);
+  --brand-size:                 clamp(70px, 12vw, 180px);
   --brand-gap:                  calc(var(--content-gap) * .85);
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 

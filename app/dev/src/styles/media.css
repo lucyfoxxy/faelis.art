@@ -69,6 +69,9 @@
   outline: 1px solid var(--outline-color);
   transition: transform .25s ease, box-shadow .25s;
 }
+.media-galleries__card > .content-card__title{
+  margin-block-start: var(--prose-flow-spacing);
+}
 .media-galleries__card:hover {
   transform: scale(1.05);
 }
