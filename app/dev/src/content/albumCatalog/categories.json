@@ -1,10 +1,36 @@
 {
   "currency": "EUR",
   "categories": [
+
+
+    {
+      "title": "Full Art - SFW",
+      "slug": "full-art-sfw",
+      "subtitle": "Full-color illustration (incl. shadings) · SFW · digital / traditional",
+      "description": "Detailed, full-color illustration - bring your character to life! Perfect as a wallpaper, poster, or heartfelt gift for your beloved ones!",
+      "items": [
+        { "name": "Headshot", "price": 40 },
+        { "name": "Fullbody", "price": 50 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 20, "note": "each" }
+      ]
+    },
+    {
+      "title": "Full Art - NSFW",
+      "slug": "full-art-nsfw",
+      "subtitle": "Full-color illustration (incl. shadings) · NSFW (18+) · digital / traditional",
+      "description": "Detailed, kinky illustrations making your wildest and darkest dreams come true - at least as a piece of art!",
+      "items": [
+        { "name": "Headshot", "price": 45 },
+        { "name": "Fullbody", "price": 55 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 20, "note": "each" }
+      ]
+    },
     {
       "title": "Badges",
       "slug": "badges",
-      "subtitle": "Price incl. laminating, die-cutting and keychain eyelet · digital / traditional",
+      "subtitle": "incl. laminating, die-cutting & keychain eyelet · digital / traditional",
       "description": "Wearable art pieces made for conventions or everyday use. Badges are laminated and cut to shape, often used for identification or just to show off your character.",
       "items": [
         { "name": "Halfbody (Head & Chest only)", "price": 35 },
@@ -24,7 +50,32 @@
         { "name": "Additional view", "price": 20, "note": "each" },
         { "name": "Accessories (e.g. collar)", "price": 10, "note": "each" }
       ]
+    },    
+    {
+      "title": "Sticker Packs",
+      "slug": "sticker-packs",
+      "subtitle": "Shadings will add +2€ / sticker · Bundled as sticker pack (on request) · SFW / NSFW · digital only",
+      "description": "Let’s create your very own personal sticker pack for messengers like Telegram. Any emotion or expression — including NSFW — is possible!",
+      "items": [
+        { "name": "1 Sticker", "price": 13 },
+        { "name": "5 Stickers", "price": 60 },
+        { "name": "10 Stickers", "price": 110 },
+        { "name": "15+ Stickers", "price": 150, "note": "from" }
+      ]
     },
+    {
+      "title": "Prints",
+      "slug": "prints",
+      "subtitle": "Physical items · Various designs available (see gallery) · Custom designs on request.",
+      "description": "The good old evergreens every furry needs: physical stickers and buttons — perfect to decorate your bag, trade at conventions, or stick to that lantern right outside your door!",
+      "items": [
+        { "name": "1–9 pcs.", "price": 4, "note": "each" },
+        { "name": "10–19 pcs.", "price": 3, "note": "each" },
+        { "name": "20–49 pcs.", "price": 2, "note": "each" },
+        { "name": "50+ pcs.", "price": 1, "note": "each" },
+        { "name": "Custom design", "price": 30, "note": "from" }
+      ]
+    },  
     {
       "title": "Sketches",
       "slug": "sketch",
@@ -48,65 +99,16 @@
         { "name": "Background", "price": 15, "note": "from" },
         { "name": "Additional character", "price": 20, "note": "each" }
       ]
-    },
-    {
-      "title": "Full Art (SFW)",
-      "slug": "full-art-sfw",
-      "subtitle": "Full-color illustration (incl. shadings) · SFW · digital / traditional",
-      "description": "Detailed, full-colored illustration (incl. shadings) - bringing your character to life! Perfect as a wallpaper, a poster, or a heartfelt gift for your beloved ones!",
-      "items": [
-        { "name": "Headshot", "price": 40 },
-        { "name": "Fullbody", "price": 50 },
-        { "name": "Background", "price": 15, "note": "from" },
-        { "name": "Additional character", "price": 20, "note": "each" }
-      ]
-    },
-    {
-      "title": "Full Art (NSFW)",
-      "slug": "full-art-nsfw",
-      "subtitle": "Full-color illustration (incl. shadings) · NSFW (18+) · digital / traditional",
-      "description": "Detailed, kinky illustrations making your wildest and darkest desires come true - at least as a piece of art!",
-      "items": [
-        { "name": "Headshot", "price": 45 },
-        { "name": "Fullbody", "price": 55 },
-        { "name": "Background", "price": 15, "note": "from" },
-        { "name": "Additional character", "price": 20, "note": "each" }
-      ]
-    },
+    },      
     {
       "title": "Logos & Tribals",
       "slug": "logos-tribals",
-      "subtitle": "Custom symbol or mark for use as wall-, car-, body-tattoo etc. · b/w or colored · I won't apply them to your wall, car or body! · digital only",
-      "description": "Unique logos and tribal designs made just for you — whether for your wall, your car, or even yourself. (Disclaimer: I won’t be the one sticking them on!)",
+      "subtitle": "Custom symbol or mark for use as wall-, car-, body-tattoo etc. · b/w or colored · digital only",
+      "description": "Unique logos and tribal designs made just for you — whether for your wall, your car, or even yourself. Disclaimer: I won’t be the one sticking them on!",
       "items": [
         { "name": "Simple (B/W)", "price": 30 },
         { "name": "Detailed (B/W)", "price": 45, "note": "from" },
         { "name": "Detailed (Colored)", "price": 55, "note": "from" }
-      ]
-    },
-    {
-      "title": "Sticker Packs (Telegram)",
-      "slug": "sticker-packs",
-      "subtitle": "Shadings will add +2€ per sticker · Bundled as sticker pack (on request) · SFW / NSFW · digital only",
-      "description": "Let’s create your very own personal sticker pack for messengers like Telegram. Any emotion or expression — including NSFW — is possible!",
-      "items": [
-        { "name": "1 Sticker", "price": 13 },
-        { "name": "5 Stickers", "price": 60 },
-        { "name": "10 Stickers", "price": 110 },
-        { "name": "15+ Stickers", "price": 150, "note": "from" }
-      ]
-    },
-    {
-      "title": "Button- & Sticker-Prints",
-      "slug": "prints",
-      "subtitle": "Physical items · Various designs available (see gallery) · Custom designs on request.",
-      "description": "The good old evergreens every furry needs: physical stickers and buttons — perfect to decorate your bag, trade at conventions, or stick to that lantern right outside your door!",
-      "items": [
-        { "name": "1–9 pcs.", "price": 4, "note": "each" },
-        { "name": "10–19 pcs.", "price": 3, "note": "each" },
-        { "name": "20–49 pcs.", "price": 2, "note": "each" },
-        { "name": "50+ pcs.", "price": 1, "note": "each" },
-        { "name": "Custom design", "price": 30, "note": "from" }
       ]
     }
   ]

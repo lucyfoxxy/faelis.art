@@ -7,6 +7,7 @@
   grid-template-columns: auto 1fr;
   gap: .35rem .75rem;
   margin: .5rem 0 0;
+  text-align: left;
 }
 .deflist__term {  opacity: .8;  white-space: nowrap;  }
 .deflist__desc {  margin: 0;  word-break: break-word; }

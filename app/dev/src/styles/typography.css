@@ -32,7 +32,7 @@
 body {
   font-family: var(--primary-font-family);
   font-weight: var(--thin-font-weight);
-  font-size: var(--medium-font-size);
+  font-size: var(--small-font-size);
   line-height: var(--small-line-height);
   letter-spacing: var(--small-letter-spacing);
   color: var(--primary-text-color);
@@ -52,13 +52,13 @@ p :where(em,i) {
 
 .site-footer,
 .site-header__nav a,
-.panel :where(h2) { 
+.panel :where(h2) {
   letter-spacing: var(--large-letter-spacing);
-  font-size: var(--large-font-size);
 }
 
 .site-header__nav a {
   font-weight: var(--thick-font-weight);
+  font-size: var(--medium-font-size);
 }
 
 .site-footer,
@@ -97,13 +97,16 @@ p :where(em,i) {
   font-size: var(--large-font-size);
   line-height: var(--large-line-height);
   text-shadow: var(--primary-text-shadow);
+  font-weight: var(--normal-font-weight);
+  color: var(--highlight-color);
+  text-shadow: var(--highlight-text-shadow);
 }
 
 .panel :where(h3){
   color: var(--highlight-color);
   font-weight: var(--normal-font-weight);
-  font-size: var(--large-font-size);
-  
+  font-size: var(--medium-font-size);
+
   text-shadow: var(--accent-text-shadow);
 }
 

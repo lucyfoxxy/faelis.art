@@ -64,11 +64,13 @@ const formatPrice = (it: PriceItem) => {
   return "auf Anfrage";
 };
 ---
-<section class="content-head section">
+<section class="content-head content-card__title section">
   <h1>{title}</h1>
-  <div class="prose">
-    <p>Here's my current pricing table.<br>
-    Approximate, per character prices (depending on complexity) · Final price will be dicussed beforehand · excl. shipping (traditional / prints)</p>
+  <div class="prose ">
+    <p>Here is my current pricing table. - Prices are:<br>
+    per character · depending on complexity  · excl. shipping <br>
+    Final prices are always dicussed in advance.
+  </p>
   </div>
 </section>
 
@@ -77,10 +79,10 @@ const formatPrice = (it: PriceItem) => {
     return (
       <section id={cat.anchorId} class="content-card content-card--head">
         <div class="content-card__rows">
-          <h3>{cat.title}</h3>
+          <h2>{cat.title}</h2>
           <p>{cat.albumHref ? (
             <a class="ui-chip" href={cat.albumHref} aria-label={`Open ${cat.title} album`}>
-                → Examples
+                → See Examples
             </a> ) : cat.title}
           </p>
         </div>

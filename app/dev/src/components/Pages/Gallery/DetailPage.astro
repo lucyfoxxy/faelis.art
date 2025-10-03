@@ -7,14 +7,15 @@ const detailTitle = title ?? 'Gallery';
 ---
 
 <section class="content-head section">
-  <div class="content-card__rows">
-    <p><a class="ui-chip" href="/galleries">← Galleries</a></p>
-    <p><a class="ui-chip" href={pricingHref}>Price Info →</a></p>
-  </div>
+
   <div class="content-card__title">
     <h1>{detailTitle}</h1>
-    {description && <p>{description}</p>}
+    {description && <p class="prose">{description}</p>}
   </div>
+   <div class="content-card__rows">
+    <p><a class="ui-chip" href="/galleries">← Back to Overview</a></p>
+    <p><a class="ui-chip" href={pricingHref}>See Price Info →</a></p>
+  </div> 
 </section>
 
 <section

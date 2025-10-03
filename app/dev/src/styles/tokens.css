@@ -11,7 +11,7 @@
 
   --primary-shadow-color:       color-mix(in oklch, var(--primary-background-color) 70%, black);
   --secondary-shadow-color:     color-mix(in oklch, var(--secondary-background-color) 70%, black);
-  --highlight-shadow-color:     color-mix(in oklch, var(--highlight-color) 70%, black); 
+  --highlight-shadow-color:     color-mix(in oklch, var(--highlight-color) 80%, black); 
   --accent-shadow-color:        color-mix(in oklch, var(--accent-color) 70%, black); 
 
 
@@ -34,8 +34,8 @@
   --medium-shadow:              0 0 14px 4px var(--primary-shadow-color), 0 0 24px -14px var(--highlight-shadow-color);
   --large-shadow:               0 0 3px -13px var(--primary-shadow-color), 0 0 12px -4px var(--secondary-shadow-color);
 
-  --focus-glow-accent:          0 0 16px -12px var(--accent-shadow-color)   , 0 0 0 1px var(--accent-color), 0 0 5px 3px var(--accent-shadow-color);
-  --focus-glow-highlight:       0 0 20px -12px var(--highlight-shadow-color), 0 0 0 2px var(--highlight-color), 0 0 7px 4px var(--highlight-color);
+  --focus-glow-accent:          0 0 16px -12px var(--accent-shadow-color)   , 0 0 0 1px var(--accent-color), 0 0 4px 1px var(--accent-shadow-color) ;
+  --focus-glow-highlight:       0 0 20px -12px var(--highlight-shadow-color), 0 0 0 2px var(--highlight-color), 0 0 7px 4px var(--highlight-color), inset 0 0 12px 0 var(--highlight-shadow-color);
 
 
   /* ====== Fonts ====== */
@@ -47,11 +47,11 @@
   --thick-font-weight:          500;
   --bold-font-weight:           700;
 
-  --xsmall-font-size:           clamp(.85rem, .5rem + .4vw, 1.05rem);
-  --small-font-size:            clamp(.9rem,  .6rem + .45vw, 1.15rem);
-  --medium-font-size:           clamp(.98rem, .7rem + .55vw, 1.2rem);
-  --large-font-size:            clamp(1.3rem, .85rem + .9vw, 1.7rem);
-  --xlarge-font-size:           clamp(1.7rem, 1.1rem + 1.3vw, 2.3rem);
+  --xsmall-font-size:           clamp(.82rem, .48rem + .35vw, 1rem);
+  --small-font-size:            clamp(.98rem,  .7rem + .55vw, 1.22rem);
+  --medium-font-size:           clamp(1.15rem, .82rem + .75vw, 1.4rem);
+  --large-font-size:            clamp(1.25rem, .87rem + .9vw, 1.65rem);
+  --xlarge-font-size:           clamp(1.45rem, 1.1rem + 1.1vw, 2.45rem);
 
   --xsmall-line-height:         1;
   --small-line-height:          1.5;
@@ -67,8 +67,8 @@
 
 
   /* ====== Layout / Structures ====== */
-  --container-max:              1280px;
-  --container-gap:              clamp(.75rem, 3.5vw, 2.75rem);
+  --container-max:              1300px;
+  --container-gap:              clamp(.75rem, 2.5vw, 2.25rem);
   --container-padding:          max(var(--container-gap), calc((100vw - var(--container-max)) / 2));
 
   --navbar-background:          color-mix(in oklab, var(--secondary-background-color), black 6%);
@@ -76,22 +76,23 @@
   --navbar-shadow:              var(--medium-shadow); 
   --navbar-padding:             clamp(.75rem, 1.2vw, 1rem);
   --navbar-margin:              0 var(--navbar-gap);
-  --navbar-gap:                 clamp(.75rem, 2vw, 2rem);
+  --navbar-gap:                 clamp(1rem, 2.5vw, 2.25rem);
 
   --panel-background:           var(--primary-background-color); 
-  --panel-padding:              clamp(1rem, 2vw, 3rem);
+  --panel-padding:              clamp(1rem, 2vw, 2.25rem);
   --panel-blur:                 var(--large-blur);   
   --panel-shadow:               var(--large-shadow);
 
-  --content-gap:                clamp(1rem, 2vw, 1.75rem);
+  --content-gap:                clamp(1rem, 2vw, 2.25rem);
   --content-background:         color-mix(in oklab, var(--navbar-background), transparent 40%);          
   --content-padding:            var(--panel-padding);
-  --content-margin:             clamp(1rem, 2vw, 1.75rem);
+  --content-margin:             clamp(.75rem, 1.2vw, 1.75rem);
   --content-blur:               var(--panel-blur);   
   --content-shadow:             var(--panel-shadow);
   --content-media-size:         min(360px, 100%);
+  --content-text-size:          clamp(45ch,65vw,60ch);
 
-  --brand-size:                 clamp(80px, 12vw, 160px);
+  --brand-size:                 clamp(50px, 15vh, 240px);
   --brand-gap:                  calc(var(--content-gap) * .85);
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 

@@ -21,7 +21,11 @@
   outline: 1px solid var(--outline-color);
   margin-inline: 0;
 }
-
+@media (max-width: 720px) {
+  .site-header {
+    flex-direction: column;
+  }
+}
 .site-header {
   border-radius: 0 0 var(--medium-radius) var(--medium-radius);
   margin-block: var(--navbar-margin);
