@@ -61,10 +61,6 @@
 .content-card__subtitle {
   font-style: italic;
 }
-.content-card__title h2{
-
-}
-
 .content-card__rows {
   flex-direction: row;
   flex-wrap: nowrap;
