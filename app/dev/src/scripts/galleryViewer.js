@@ -144,7 +144,7 @@ export default function initGalleryPage() {
       overlay.innerHTML = `
         <figure>
           <img class="media-gallery__lightbox-image" alt="" />
-          <figcaption class="media-gallery__lightbox-caption"></figcaption>
+          
           <button class="media-gallery__lightbox-close" type="button" aria-label="Close">×</button>
         </figure>
       `;
@@ -153,10 +153,10 @@ export default function initGalleryPage() {
     }
 
     const img = overlay.querySelector('.media-gallery__lightbox-image');
-    const caption = overlay.querySelector('.media-gallery__lightbox-caption');
+    
     const btnClose = overlay.querySelector('.media-gallery__lightbox-close');
 
-    if (!img || !caption || !btnClose) {
+    if (!img || !btnClose) {
       if (created) overlay.remove();
       return null;
     }
@@ -194,7 +194,7 @@ export default function initGalleryPage() {
     return {
       open(item) {
         if (!item) return;
-        caption.textContent = item.title || item.alt || '';
+        
         img.src = item.full;
         img.alt = item.alt || '';
         overlay.classList.add('is-open');
