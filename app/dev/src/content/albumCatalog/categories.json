@@ -12,7 +12,7 @@
         { "name": "Headshot", "price": 40 },
         { "name": "Fullbody", "price": 50 },
         { "name": "Background", "price": 15, "note": "from" },
-        { "name": "Additional character", "price": 20, "note": "each" }
+        { "name": "Additional character", "price": 25, "note": "each" }
       ]
     },
     {
@@ -24,7 +24,7 @@
         { "name": "Headshot", "price": 45 },
         { "name": "Fullbody", "price": 55 },
         { "name": "Background", "price": 15, "note": "from" },
-        { "name": "Additional character", "price": 20, "note": "each" }
+        { "name": "Additional character", "price": 25, "note": "each" }
       ]
     },
     {
@@ -34,7 +34,7 @@
       "description": "A complete overview of your fursona including every single detail (accessories, markings), mainly used by Suitmakers and other artists.",
       "items": [
         { "name": "Simple – 2 Views", "price": 45 },
-        { "name": "Medium – 3 Views", "price": 60 },
+        { "name": "Medium – 3 Views", "price": 65 },
         { "name": "High – 4+ Views", "price": 80, "note": "from" },
         { "name": "Additional view", "price": 20, "note": "each" },
         { "name": "Accessories (e.g. collar)", "price": 10, "note": "each" }
@@ -57,10 +57,10 @@
       "subtitle": "Shadings will add +2€ / sticker · Bundled as sticker pack (on request) · SFW / NSFW · digital only",
       "description": "Let’s create your very own personal sticker pack for messengers like Telegram. Any emotion or expression — including NSFW — is possible!",
       "items": [
-        { "name": "1 Sticker", "price": 13 },
-        { "name": "5 Stickers", "price": 60 },
-        { "name": "10 Stickers", "price": 110 },
-        { "name": "15+ Stickers", "price": 150, "note": "from" }
+        { "name": "1 Sticker", "price": 15 },
+        { "name": "5 Stickers", "price": 70 },
+        { "name": "10 Stickers", "price": 135 },
+        { "name": "15+ Stickers", "price": 200, "note": "from" }
       ]
     },
     {
@@ -82,10 +82,10 @@
       "subtitle": "Quick sketch style · SFW / NSFW · digital / traditional",
       "description": "Not sure how your idea might turn out? Let’s explore it together with a quick sketch first!",
       "items": [
-        { "name": "Headshot", "price": 20 },
-        { "name": "Fullbody", "price": 30 },
+        { "name": "Headshot", "price": 25 },
+        { "name": "Fullbody", "price": 35 },
         { "name": "Background", "price": 15, "note": "from" },
-        { "name": "Additional character", "price": 20, "note": "each" }
+        { "name": "Additional character", "price": 25, "note": "each" }
       ]
     },
     {
@@ -95,9 +95,9 @@
       "description": "Clear, clean line art — ready for you to colorize, or simply enjoy as it is. Great if you want to add your own creative touch.",
       "items": [
         { "name": "Headshot", "price": 30 },
-        { "name": "Fullbody", "price": 35 },
+        { "name": "Fullbody", "price": 40 },
         { "name": "Background", "price": 15, "note": "from" },
-        { "name": "Additional character", "price": 20, "note": "each" }
+        { "name": "Additional character", "price": 25, "note": "each" }
       ]
     },      
     {
