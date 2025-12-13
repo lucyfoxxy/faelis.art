@@ -1,6 +1,8 @@
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
 import { fileURLToPath } from 'node:url';
+import 'dotenv/config';
+import goatcounterInline from './integrations/goatcounter-inline.js';
 
 export default defineConfig({
   vite: {
@@ -18,5 +20,13 @@ export default defineConfig({
         '@Scripts': fileURLToPath(new URL('./src/scripts', import.meta.url)),
       }
     }
-  }
+  },
+  integrations: [
+    goatcounterInline({
+      endpoint: process.env.GOATCOUNTER_ENDPOINT || "https://stats.foxx.pet/count",
+      enabled: process.env.GOATCOUNTER_ENABLED || false,
+      fallbackPath: process.env.GOATCOUNTER_FALLBACK || "/var/www/shared/goatcounter/count.js",
+    }),
+  ],
 });
+
