@@ -1,7 +1,23 @@
 {
   "slug": "line-art",
-  "count": 15,
+  "count": 17,
   "items": [
+    {
+      "id": "90098345-e166-4d2f-928f-43efd7bc7f1a",
+      "thumb": "albums/line-art/thumb-90098345-e166-4d2f-928f-43efd7bc7f1a.webp",
+      "full": "albums/line-art/full-90098345-e166-4d2f-928f-43efd7bc7f1a.webp",
+      "filename": "Jahrestag.jpg",
+      "width": 1024,
+      "height": 717
+    },
+    {
+      "id": "1bddcfae-be17-4690-8f2e-832ded0e6f63",
+      "thumb": "albums/line-art/thumb-1bddcfae-be17-4690-8f2e-832ded0e6f63.webp",
+      "full": "albums/line-art/full-1bddcfae-be17-4690-8f2e-832ded0e6f63.webp",
+      "filename": "alucard-sketch.jpg",
+      "width": 960,
+      "height": 1280
+    },
     {
       "id": "c28b60ae-78f5-4d6c-972b-8bfd5d53855d",
       "thumb": "albums/line-art/thumb-c28b60ae-78f5-4d6c-972b-8bfd5d53855d.webp",

@@ -1,7 +1,23 @@
 {
   "slug": "bestof",
-  "count": 6,
+  "count": 8,
   "items": [
+    {
+      "id": "940637e3-461b-4b96-af11-e26fd5fbe9d9",
+      "thumb": "albums/bestof/thumb-940637e3-461b-4b96-af11-e26fd5fbe9d9.webp",
+      "full": "albums/bestof/full-940637e3-461b-4b96-af11-e26fd5fbe9d9.webp",
+      "filename": "cozycuddling.jpg",
+      "width": 1500,
+      "height": 1491
+    },
+    {
+      "id": "83d22654-b45a-4d6f-abcc-b39709bbfe27",
+      "thumb": "albums/bestof/thumb-83d22654-b45a-4d6f-abcc-b39709bbfe27.webp",
+      "full": "albums/bestof/full-83d22654-b45a-4d6f-abcc-b39709bbfe27.webp",
+      "filename": "Heiße Quelle im Licht.jpg",
+      "width": 1200,
+      "height": 835
+    },
     {
       "id": "e8ce43d5-231a-4f5d-8192-1754985d88da",
       "thumb": "albums/bestof/thumb-e8ce43d5-231a-4f5d-8192-1754985d88da.webp",

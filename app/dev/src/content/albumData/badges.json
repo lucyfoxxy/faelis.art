@@ -1,7 +1,23 @@
 {
   "slug": "badges",
-  "count": 53,
+  "count": 55,
   "items": [
+    {
+      "id": "5b3eef7a-951b-41be-92a9-e3ee85706251",
+      "thumb": "albums/badges/thumb-5b3eef7a-951b-41be-92a9-e3ee85706251.webp",
+      "full": "albums/badges/full-5b3eef7a-951b-41be-92a9-e3ee85706251.webp",
+      "filename": "Jinwo-Badge.jpg",
+      "width": 826,
+      "height": 900
+    },
+    {
+      "id": "bda766de-151a-4e7f-b904-03aa240375a4",
+      "thumb": "albums/badges/thumb-bda766de-151a-4e7f-b904-03aa240375a4.webp",
+      "full": "albums/badges/full-bda766de-151a-4e7f-b904-03aa240375a4.webp",
+      "filename": "Orion_Badge_1.jpg",
+      "width": 811,
+      "height": 1200
+    },
     {
       "id": "c8d7e994-7e5b-45a8-8b2b-eddb87cda6e6",
       "thumb": "albums/badges/thumb-c8d7e994-7e5b-45a8-8b2b-eddb87cda6e6.webp",

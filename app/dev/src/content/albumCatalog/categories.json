@@ -28,6 +28,18 @@
       ]
     },
     {
+      "title": "Full Art - NSFW (Gore)",
+      "slug": "full-art-nsfw-gore",
+      "subtitle": "Full-color illustration (incl. shadings) · NSFW (18+) · digital / traditional",
+      "description": "Detailed, bloody illustrations making your cruelst fantasies real - at least as a piece of art!",
+      "items": [
+        { "name": "Headshot", "price": 45 },
+        { "name": "Fullbody", "price": 55 },
+        { "name": "Background", "price": 15, "note": "from" },
+        { "name": "Additional character", "price": 25, "note": "each" }
+      ]
+    },    
+    {
       "title": "Reference Sheets",
       "slug": "ref-sheets",
       "subtitle": "Price depends on character complexity / number of views. · digital only",
@@ -110,6 +122,15 @@
         { "name": "Detailed (B/W)", "price": 45, "note": "from" },
         { "name": "Detailed (Colored)", "price": 55, "note": "from" }
       ]
-    }
+    },
+    {
+      "title": "Fan & Other Art",
+      "slug": "fan-art",
+      "subtitle": "Fan Art · Non-furry artwork · personal pieces · experiments · digital / traditional",
+      "description": "A mixed gallery containing fan art, non-furry artwork, personal pieces, experiments, studies and everything that does not neatly fit into the main furry commission categories.",
+      "items": [
+        { "name": "Price on request" }
+      ]
+    }    
   ]
 }

@@ -98,7 +98,7 @@
   /* ====== Gallery ====== */
   --gallery-frame-size: calc(
       (var(--container-max) - 
-        (var(--container-gap) + var(--panel-padding)+var(--content-margin)+var(--content-gap)) * 2
+        (var(--container-gap) + var(--panel-padding) + var(--content-margin) + var(--content-gap)) * 2
       ) / 2
     );
   --thumb-size: clamp(64px, 9vw, 128px);
