@@ -1,0 +1,8 @@
+---
+import Layout from '@Design/Layout.astro';
+import GuestbookPage, { title } from '@Pages/GuestbookPage.astro';
+export const prerender = true;
+---
+<Layout {title}>
+  <GuestbookPage />
+</Layout>

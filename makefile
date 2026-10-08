@@ -14,7 +14,8 @@ PROD_PUB			  ?= ${WEB_ROOT}/faelis.art/public
 
 .PHONY: sync-src do-release \
         dev-install dev-dev dev-build dev-deploy dev-fetch dev-gen dev-publish dev-clean-gen \
-        prod-install prod-dev prod-build prod-deploy prod-fetch prod-gen prod-publish prod-clean-gen prod-pretty-publish
+        prod-install prod-dev prod-build prod-deploy prod-fetch prod-gen prod-publish prod-clean-gen prod-pretty-publish \
+        guestbook-install guestbook-restart guestbook-status
 
 # ===== Common =====
 
@@ -128,3 +129,23 @@ prod-pretty-publish:
 	
 	echo ""; 
 	echo "🎉 Gallery update successful! 🎉"
+
+# ===== Guestbook service =====
+GUESTBOOK_UNIT ?= faelis-guestbook.service
+GUESTBOOK_DATA ?= /srv/faelis.art/data
+
+guestbook-install:
+	@echo "📮 Installing guestbook service"
+	sudo install -d -o www-data -g www-data -m 750 $(GUESTBOOK_DATA)
+	sudo install -m 644 config/systemd/faelis-guestbook.service /etc/systemd/system/$(GUESTBOOK_UNIT)
+	sudo systemctl daemon-reload
+	sudo systemctl enable $(GUESTBOOK_UNIT)
+	@echo "✅ Guestbook unit installed (configure services/guestbook/.env before starting)"
+
+guestbook-restart:
+	@echo "📮 Restarting guestbook service"
+	sudo systemctl restart $(GUESTBOOK_UNIT)
+	sudo systemctl --no-pager --full status $(GUESTBOOK_UNIT)
+
+guestbook-status:
+	sudo systemctl --no-pager --full status $(GUESTBOOK_UNIT)
