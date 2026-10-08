@@ -1,0 +1,69 @@
+---
+export const title = 'Guestbook - Faelis Paw Artistry';
+---
+<section class="content-card section guestbook">
+  <div class="content-head">
+    <h1>Guestbook 💜</h1>
+    <p>Leave a little pawprint! Entries appear after approval.</p>
+  </div>
+
+  <form class="guestbook__form" data-guestbook-form action="/api/guestbook" method="post">
+    <div class="guestbook__field">
+      <label for="guestbook-name">Name <span aria-hidden="true">*</span></label>
+      <input id="guestbook-name" name="name" type="text" maxlength="60" autocomplete="name" required />
+    </div>
+
+    <div class="guestbook__field">
+      <label for="guestbook-message">Public message <span aria-hidden="true">*</span></label>
+      <textarea id="guestbook-message" name="message" rows="5" maxlength="2000" required></textarea>
+      <small>This will be visible publicly after approval.</small>
+    </div>
+
+    <div class="content-layout content-layout__split guestbook__optional">
+      <div class="guestbook__field">
+        <label for="guestbook-private">Private message <span>optional</span></label>
+        <textarea id="guestbook-private" name="privateMessage" rows="3" maxlength="2000"></textarea>
+        <small>Only Faelis will receive this.</small>
+      </div>
+
+      <div class="guestbook__field-stack">
+        <div class="guestbook__field">
+          <label for="guestbook-contact">Contact <span>optional</span></label>
+          <input id="guestbook-contact" name="contact" type="text" maxlength="320" placeholder="Email, Telegram, Discord, …" />
+          <small>Private, only if you want a reply.</small>
+        </div>
+        <div class="guestbook__field">
+          <label for="guestbook-website">Website <span>optional</span></label>
+          <input id="guestbook-website" name="website" type="text" maxlength="500" inputmode="url" placeholder="https://…" />
+          <small>Shown with your public entry.</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="guestbook__trap" aria-hidden="true">
+      <label for="guestbook-company">Company</label>
+      <input id="guestbook-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+    <input name="startedAt" type="hidden" value="" data-guestbook-started-at />
+
+    <div class="guestbook__actions">
+      <button class="guestbook__submit" type="submit">Sign guestbook</button>
+      <p class="guestbook__status" data-guestbook-status role="status" aria-live="polite"></p>
+    </div>
+  </form>
+</section>
+
+<section class="content-card section guestbook__entries-card">
+  <div class="content-head guestbook__entries-head">
+    <h2>Messages</h2>
+  </div>
+  <div class="guestbook__entries" data-guestbook-entries aria-live="polite">
+    <p class="guestbook__empty">Loading guestbook…</p>
+  </div>
+</section>
+
+<script>
+  import initGuestbook from '@Scripts/guestbook.js';
+  import { runOnReady } from '@Scripts/utils/_runOnReady.js';
+  runOnReady(initGuestbook);
+</script>

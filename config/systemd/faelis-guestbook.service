@@ -1,0 +1,23 @@
+[Unit]
+Description=Faelis Art Guestbook API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/srv/faelis.art/services/guestbook
+EnvironmentFile=/srv/faelis.art/services/guestbook/.env
+ExecStart=/usr/bin/node /srv/faelis.art/services/guestbook/src/server.mjs
+Restart=on-failure
+RestartSec=3
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/srv/faelis.art/data
+
+[Install]
+WantedBy=multi-user.target

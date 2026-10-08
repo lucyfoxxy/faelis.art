@@ -63,6 +63,12 @@ export const title = 'Home - Faelis Paw Artistry';
   </section>
 </section>
 
+<section class="content-card section guestbook-latest" data-guestbook-latest hidden>
+  <h2>Latest guestbook entries 💜</h2>
+  <div class="guestbook__entries" data-guestbook-latest-entries></div>
+  <p class="guestbook-latest__footer"><a href="/guestbook">View guestbook →</a></p>
+</section>
+
 <section class="content-card section">
   <h2>Contact:</h2>
   <div class="ui-btn__contact--wrap">
@@ -85,7 +91,9 @@ export const title = 'Home - Faelis Paw Artistry';
 
 <script>
   import initGalleryIntro from '@Scripts/galleryViewer_compact.js';
+  import initGuestbookLatest from '@Scripts/guestbookLatest.js';
   import { runOnReady } from '@Scripts/utils/_runOnReady.js';
 
   runOnReady(initGalleryIntro);
+  runOnReady(initGuestbookLatest);
 </script>

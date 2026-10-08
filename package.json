@@ -2,7 +2,7 @@
   "name": "faelis.art",
   "private": true,
   "type": "module",
-  "workspaces": ["app/dev", "app/prod"],
+  "workspaces": ["app/dev", "app/prod", "services/guestbook"],
   "scripts": {
     "fetch:dev": "npm run -w app/dev fetch",
     "fetch:prod": "npm run -w app/prod fetch",
