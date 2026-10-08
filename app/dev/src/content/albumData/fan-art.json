@@ -1,0 +1,62 @@
+{
+  "slug": "fan-art",
+  "count": 7,
+  "items": [
+    {
+      "id": "513964dd-9481-4290-b2c9-488bda39b349",
+      "thumb": "albums/fan-art/thumb-513964dd-9481-4290-b2c9-488bda39b349.webp",
+      "full": "albums/fan-art/full-513964dd-9481-4290-b2c9-488bda39b349.webp",
+      "filename": "Fluffball.png",
+      "width": 440,
+      "height": 512
+    },
+    {
+      "id": "54c5aa42-1006-4ae5-9d39-afd58494243d",
+      "thumb": "albums/fan-art/thumb-54c5aa42-1006-4ae5-9d39-afd58494243d.webp",
+      "full": "albums/fan-art/full-54c5aa42-1006-4ae5-9d39-afd58494243d.webp",
+      "filename": "faelis_and_noodle.jpg",
+      "width": 800,
+      "height": 568
+    },
+    {
+      "id": "40769631-b516-4af3-a54b-a80896a87ed3",
+      "thumb": "albums/fan-art/thumb-40769631-b516-4af3-a54b-a80896a87ed3.webp",
+      "full": "albums/fan-art/full-40769631-b516-4af3-a54b-a80896a87ed3.webp",
+      "filename": "2D_handy.jpg",
+      "width": 572,
+      "height": 1000
+    },
+    {
+      "id": "9adb7283-9f58-46c3-98ad-fd987af35c1f",
+      "thumb": "albums/fan-art/thumb-9adb7283-9f58-46c3-98ad-fd987af35c1f.webp",
+      "full": "albums/fan-art/full-9adb7283-9f58-46c3-98ad-fd987af35c1f.webp",
+      "filename": "uebermuedete_gorillaz.jpg",
+      "width": 900,
+      "height": 642
+    },
+    {
+      "id": "c1a069eb-3602-40f4-8ec9-f7219a4d4b83",
+      "thumb": "albums/fan-art/thumb-c1a069eb-3602-40f4-8ec9-f7219a4d4b83.webp",
+      "full": "albums/fan-art/full-c1a069eb-3602-40f4-8ec9-f7219a4d4b83.webp",
+      "filename": "saddy noodle.jpg",
+      "width": 800,
+      "height": 599
+    },
+    {
+      "id": "c491a069-1690-449d-9398-cd745d1631bf",
+      "thumb": "albums/fan-art/thumb-c491a069-1690-449d-9398-cd745d1631bf.webp",
+      "full": "albums/fan-art/full-c491a069-1690-449d-9398-cd745d1631bf.webp",
+      "filename": "marce_enervating.jpg",
+      "width": 557,
+      "height": 715
+    },
+    {
+      "id": "70af9613-320b-41f1-93cd-89dc6ed2ef7f",
+      "thumb": "albums/fan-art/thumb-70af9613-320b-41f1-93cd-89dc6ed2ef7f.webp",
+      "full": "albums/fan-art/full-70af9613-320b-41f1-93cd-89dc6ed2ef7f.webp",
+      "filename": "skating_noodle.jpeg",
+      "width": 932,
+      "height": 1180
+    }
+  ]
+}

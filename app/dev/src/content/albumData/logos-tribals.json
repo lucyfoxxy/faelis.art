@@ -1,7 +1,15 @@
 {
   "slug": "logos-tribals",
-  "count": 20,
+  "count": 21,
   "items": [
+    {
+      "id": "621a1588-b82a-4a85-a704-8ae9e1566382",
+      "thumb": "albums/logos-tribals/thumb-621a1588-b82a-4a85-a704-8ae9e1566382.webp",
+      "full": "albums/logos-tribals/full-621a1588-b82a-4a85-a704-8ae9e1566382.webp",
+      "filename": "Rowan_logo2.png",
+      "width": 3114,
+      "height": 5146
+    },
     {
       "id": "365fd353-749c-4239-9acc-3a1a6afe62b5",
       "thumb": "albums/logos-tribals/thumb-365fd353-749c-4239-9acc-3a1a6afe62b5.webp",

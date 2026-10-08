@@ -1,7 +1,103 @@
 {
   "slug": "full-art-sfw",
-  "count": 80,
+  "count": 92,
   "items": [
+    {
+      "id": "cd08edef-f100-4058-85b8-06860d3d45ce",
+      "thumb": "albums/full-art-sfw/thumb-cd08edef-f100-4058-85b8-06860d3d45ce.webp",
+      "full": "albums/full-art-sfw/full-cd08edef-f100-4058-85b8-06860d3d45ce.webp",
+      "filename": "Pickaboo-Loona.jpg",
+      "width": 1201,
+      "height": 1200
+    },
+    {
+      "id": "24c698f3-633b-4ff2-9aea-f8a8b4b94660",
+      "thumb": "albums/full-art-sfw/thumb-24c698f3-633b-4ff2-9aea-f8a8b4b94660.webp",
+      "full": "albums/full-art-sfw/full-24c698f3-633b-4ff2-9aea-f8a8b4b94660.webp",
+      "filename": "Wolfineko.jpg",
+      "width": 836,
+      "height": 1500
+    },
+    {
+      "id": "4472e410-0b45-4718-a062-f8c700b65594",
+      "thumb": "albums/full-art-sfw/thumb-4472e410-0b45-4718-a062-f8c700b65594.webp",
+      "full": "albums/full-art-sfw/full-4472e410-0b45-4718-a062-f8c700b65594.webp",
+      "filename": "Spätes-Eis-essen.jpg",
+      "width": 1200,
+      "height": 1289
+    },
+    {
+      "id": "b747bd80-2fde-466c-9b83-3a982234f12b",
+      "thumb": "albums/full-art-sfw/thumb-b747bd80-2fde-466c-9b83-3a982234f12b.webp",
+      "full": "albums/full-art-sfw/full-b747bd80-2fde-466c-9b83-3a982234f12b.webp",
+      "filename": "Verschneite-Arctic.jpg",
+      "width": 1500,
+      "height": 1500
+    },
+    {
+      "id": "a9749b31-7881-468a-9140-db7421ff452b",
+      "thumb": "albums/full-art-sfw/thumb-a9749b31-7881-468a-9140-db7421ff452b.webp",
+      "full": "albums/full-art-sfw/full-a9749b31-7881-468a-9140-db7421ff452b.webp",
+      "filename": "7-Jahre.jpg",
+      "width": 2200,
+      "height": 1238
+    },
+    {
+      "id": "993f7744-4d65-4b0b-8b1e-1ad44e077c8f",
+      "thumb": "albums/full-art-sfw/thumb-993f7744-4d65-4b0b-8b1e-1ad44e077c8f.webp",
+      "full": "albums/full-art-sfw/full-993f7744-4d65-4b0b-8b1e-1ad44e077c8f.webp",
+      "filename": "photo_2026-07-13_17-34-51.jpg",
+      "width": 1280,
+      "height": 902
+    },
+    {
+      "id": "fb33839a-164b-44de-ab5d-4ad9d9256ccd",
+      "thumb": "albums/full-art-sfw/thumb-fb33839a-164b-44de-ab5d-4ad9d9256ccd.webp",
+      "full": "albums/full-art-sfw/full-fb33839a-164b-44de-ab5d-4ad9d9256ccd.webp",
+      "filename": "photo_2026-07-28_10-21-27.jpg",
+      "width": 1280,
+      "height": 946
+    },
+    {
+      "id": "3c3d608d-47d4-4445-bd51-dcbd7bf40dc0",
+      "thumb": "albums/full-art-sfw/thumb-3c3d608d-47d4-4445-bd51-dcbd7bf40dc0.webp",
+      "full": "albums/full-art-sfw/full-3c3d608d-47d4-4445-bd51-dcbd7bf40dc0.webp",
+      "filename": "Einkaufen-bei-Action.jpg",
+      "width": 996,
+      "height": 1200
+    },
+    {
+      "id": "ddf3f746-b872-4b4d-b898-473be75cc5f0",
+      "thumb": "albums/full-art-sfw/thumb-ddf3f746-b872-4b4d-b898-473be75cc5f0.webp",
+      "full": "albums/full-art-sfw/full-ddf3f746-b872-4b4d-b898-473be75cc5f0.webp",
+      "filename": "Doorbadge_Shadowfang_Darky_A3.jpg",
+      "width": 1200,
+      "height": 849
+    },
+    {
+      "id": "8ac53ead-de73-4e12-9c22-b9e5c025585c",
+      "thumb": "albums/full-art-sfw/thumb-8ac53ead-de73-4e12-9c22-b9e5c025585c.webp",
+      "full": "albums/full-art-sfw/full-8ac53ead-de73-4e12-9c22-b9e5c025585c.webp",
+      "filename": "Doorbadge_Bardo_Sir_Mauselot_A3.jpg",
+      "width": 1500,
+      "height": 1061
+    },
+    {
+      "id": "09a9cec5-491d-40f3-a22a-a7d1c93a6b74",
+      "thumb": "albums/full-art-sfw/thumb-09a9cec5-491d-40f3-a22a-a7d1c93a6b74.webp",
+      "full": "albums/full-art-sfw/full-09a9cec5-491d-40f3-a22a-a7d1c93a6b74.webp",
+      "filename": "Beschützerfuchs.jpg",
+      "width": 1200,
+      "height": 1048
+    },
+    {
+      "id": "ebf1d9fa-deef-4d97-afcf-5c2e8112cf27",
+      "thumb": "albums/full-art-sfw/thumb-ebf1d9fa-deef-4d97-afcf-5c2e8112cf27.webp",
+      "full": "albums/full-art-sfw/full-ebf1d9fa-deef-4d97-afcf-5c2e8112cf27.webp",
+      "filename": "DUSTY.jpg",
+      "width": 1200,
+      "height": 671
+    },
     {
       "id": "f9811d25-e632-4d24-85a8-907128ef8589",
       "thumb": "albums/full-art-sfw/thumb-f9811d25-e632-4d24-85a8-907128ef8589.webp",

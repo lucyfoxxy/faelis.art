@@ -1,7 +1,127 @@
 {
   "slug": "badges",
-  "count": 55,
+  "count": 70,
   "items": [
+    {
+      "id": "e4bec53d-9bb0-4ea1-8b6c-ac90d923bde9",
+      "thumb": "albums/badges/thumb-e4bec53d-9bb0-4ea1-8b6c-ac90d923bde9.webp",
+      "full": "albums/badges/full-e4bec53d-9bb0-4ea1-8b6c-ac90d923bde9.webp",
+      "filename": "Levi_Badge.jpg",
+      "width": 607,
+      "height": 900
+    },
+    {
+      "id": "c9a5edb2-c6b6-46d5-a232-c99580d16e64",
+      "thumb": "albums/badges/thumb-c9a5edb2-c6b6-46d5-a232-c99580d16e64.webp",
+      "full": "albums/badges/full-c9a5edb2-c6b6-46d5-a232-c99580d16e64.webp",
+      "filename": "Rowan_Badge.jpg",
+      "width": 906,
+      "height": 1200
+    },
+    {
+      "id": "9b2f258d-e6bb-48b0-84b4-1a2b184c731b",
+      "thumb": "albums/badges/thumb-9b2f258d-e6bb-48b0-84b4-1a2b184c731b.webp",
+      "full": "albums/badges/full-9b2f258d-e6bb-48b0-84b4-1a2b184c731b.webp",
+      "filename": "Hazel_Badge.jpg",
+      "width": 572,
+      "height": 900
+    },
+    {
+      "id": "1ed1e3bf-9141-4b4d-8c56-bf94bd849d59",
+      "thumb": "albums/badges/thumb-1ed1e3bf-9141-4b4d-8c56-bf94bd849d59.webp",
+      "full": "albums/badges/full-1ed1e3bf-9141-4b4d-8c56-bf94bd849d59.webp",
+      "filename": "Hope_Badge.jpg",
+      "width": 651,
+      "height": 900
+    },
+    {
+      "id": "feebf292-c834-413b-b32b-225afa0ba7e7",
+      "thumb": "albums/badges/thumb-feebf292-c834-413b-b32b-225afa0ba7e7.webp",
+      "full": "albums/badges/full-feebf292-c834-413b-b32b-225afa0ba7e7.webp",
+      "filename": "Victor_Badge.jpg",
+      "width": 686,
+      "height": 900
+    },
+    {
+      "id": "48dab933-8ad6-4328-a50d-db5c1304eea4",
+      "thumb": "albums/badges/thumb-48dab933-8ad6-4328-a50d-db5c1304eea4.webp",
+      "full": "albums/badges/full-48dab933-8ad6-4328-a50d-db5c1304eea4.webp",
+      "filename": "WolfHulkBadge.jpg",
+      "width": 745,
+      "height": 900
+    },
+    {
+      "id": "bc3038c6-6984-4b1c-bc9a-715574e1955c",
+      "thumb": "albums/badges/thumb-bc3038c6-6984-4b1c-bc9a-715574e1955c.webp",
+      "full": "albums/badges/full-bc3038c6-6984-4b1c-bc9a-715574e1955c.webp",
+      "filename": "Faelis_Badge_2026_HG.jpg",
+      "width": 772,
+      "height": 1027
+    },
+    {
+      "id": "a8201053-a1df-47a2-818a-1540d86fd2c6",
+      "thumb": "albums/badges/thumb-a8201053-a1df-47a2-818a-1540d86fd2c6.webp",
+      "full": "albums/badges/full-a8201053-a1df-47a2-818a-1540d86fd2c6.webp",
+      "filename": "Aron_Badge.jpg",
+      "width": 742,
+      "height": 900
+    },
+    {
+      "id": "5612f550-a037-49d1-b000-4cb75c129de3",
+      "thumb": "albums/badges/thumb-5612f550-a037-49d1-b000-4cb75c129de3.webp",
+      "full": "albums/badges/full-5612f550-a037-49d1-b000-4cb75c129de3.webp",
+      "filename": "Dragoneye_Medusa_Badge.jpg",
+      "width": 632,
+      "height": 900
+    },
+    {
+      "id": "58b3acda-f423-425a-af4b-8b22b5c902cd",
+      "thumb": "albums/badges/thumb-58b3acda-f423-425a-af4b-8b22b5c902cd.webp",
+      "full": "albums/badges/full-58b3acda-f423-425a-af4b-8b22b5c902cd.webp",
+      "filename": "Serlue-Badge_nsfw.jpg",
+      "width": 800,
+      "height": 606
+    },
+    {
+      "id": "dfbee5b4-ee53-46fe-b98e-387cd241ab83",
+      "thumb": "albums/badges/thumb-dfbee5b4-ee53-46fe-b98e-387cd241ab83.webp",
+      "full": "albums/badges/full-dfbee5b4-ee53-46fe-b98e-387cd241ab83.webp",
+      "filename": "Serlue-Badge.jpg",
+      "width": 800,
+      "height": 606
+    },
+    {
+      "id": "83049b43-7516-435f-b811-926183cb4ec4",
+      "thumb": "albums/badges/thumb-83049b43-7516-435f-b811-926183cb4ec4.webp",
+      "full": "albums/badges/full-83049b43-7516-435f-b811-926183cb4ec4.webp",
+      "filename": "Chrisey-das-Brot_BADGE.jpg",
+      "width": 900,
+      "height": 900
+    },
+    {
+      "id": "ddb0c360-8a9f-44bf-aad2-260f3280911f",
+      "thumb": "albums/badges/thumb-ddb0c360-8a9f-44bf-aad2-260f3280911f.webp",
+      "full": "albums/badges/full-ddb0c360-8a9f-44bf-aad2-260f3280911f.webp",
+      "filename": "Soja_Badge.jpg",
+      "width": 800,
+      "height": 1014
+    },
+    {
+      "id": "3f372e70-b097-4b36-baf9-8cd76990f7b9",
+      "thumb": "albums/badges/thumb-3f372e70-b097-4b36-baf9-8cd76990f7b9.webp",
+      "full": "albums/badges/full-3f372e70-b097-4b36-baf9-8cd76990f7b9.webp",
+      "filename": "Zyra_Badge.jpg",
+      "width": 1125,
+      "height": 1660
+    },
+    {
+      "id": "7966626d-31fd-4cad-ac09-b1999eb7d9ba",
+      "thumb": "albums/badges/thumb-7966626d-31fd-4cad-ac09-b1999eb7d9ba.webp",
+      "full": "albums/badges/full-7966626d-31fd-4cad-ac09-b1999eb7d9ba.webp",
+      "filename": "Lost_Badge.jpg",
+      "width": 715,
+      "height": 900
+    },
     {
       "id": "5b3eef7a-951b-41be-92a9-e3ee85706251",
       "thumb": "albums/badges/thumb-5b3eef7a-951b-41be-92a9-e3ee85706251.webp",
