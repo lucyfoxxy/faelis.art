@@ -96,10 +96,13 @@
   --brand-gap-mobile:           calc(var(--content-gap) * .5);
 
   /* ====== Gallery ====== */
-  --gallery-frame-size: calc(
-      (var(--container-max) - 
-        (var(--container-gap) + var(--panel-padding) + var(--content-margin) + var(--content-gap)) * 2
-      ) / 2
+  --gallery-frame-size: min(
+      100%,
+      calc(
+        (var(--container-max) -
+          (var(--container-gap) + var(--panel-padding) + var(--content-margin) + var(--content-gap)) * 2
+        ) / 2
+      )
     );
   --thumb-size: clamp(64px, 9vw, 128px);
   --kenburns-offset: clamp(8rem, 20vh, 25rem);                                  
