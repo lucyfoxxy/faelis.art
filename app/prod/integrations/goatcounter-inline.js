@@ -6,11 +6,13 @@ export default function goatcounterInline(opts = {}) {
     fallbackPath = process.env.GOATCOUNTER_FALLBACK || "/var/www/shared/goatcounter/count.js",
   } = opts;
 
+  const isEnabled = enabled === true || String(enabled).trim().toLowerCase() === "true";
+
   return {
     name: "goatcounter-inline",
     hooks: {
       "astro:config:setup": async ({ injectScript, logger }) => {
-        if (!enabled) {
+        if (!isEnabled) {
           logger.info("goatcounter-inline: disabled (enabled=false)");
           return;
         }
