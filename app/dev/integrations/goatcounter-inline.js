@@ -1,7 +1,7 @@
 // integrations/goatcounter-inline.js
 export default function goatcounterInline(opts = {}) {
   const {
-    endpoint = process.env.GOATCOUNTER_ENDPOINT || "https://stats.foxx.pet/count",
+    endpoint = process.env.GOATCOUNTER_ENDPOINT || "https://stats.faelis.art/count",
     enabled = process.env.GOATCOUNTER_ENABLED || false,
     fallbackPath = process.env.GOATCOUNTER_FALLBACK || "/var/www/shared/goatcounter/count.js",
   } = opts;
