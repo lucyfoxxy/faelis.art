@@ -1,18 +1,46 @@
 import { createGalleryItemsBySlug } from './utils/_slugLoader.js';
 import { loadImageWithTransition } from './utils/_transitionLoader.js';
 
-const metas = import.meta.glob('@Content/albumData/bestof.json', {
+const metas = import.meta.glob('@Content/albumData/*.json', {
   query: '?json',
   eager: true,
 });
 
-const assetModules = import.meta.glob('@Assets/albums/bestof/*', {
+const assetModules = import.meta.glob('@Assets/albums/**/*', {
   query: '?url',
   import: 'default',
   eager: true,
 });
 
 const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
+
+const isHomepageGallery = (slug) => {
+  const normalized = slug.toLowerCase();
+  return normalized !== 'bestof' && !normalized.includes('nsfw');
+};
+
+const timestampOf = (item) => {
+  const timestamp = Date.parse(item.createdAt || '');
+  return Number.isFinite(timestamp) ? timestamp : 0;
+};
+
+const latestItems = (() => {
+  const items = [];
+  const seen = new Set();
+
+  for (const [slug, galleryItems] of itemsBySlug.entries()) {
+    if (!isHomepageGallery(slug)) continue;
+
+    for (const item of galleryItems) {
+      const key = item.id || `${slug}:${item.full}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      items.push(item);
+    }
+  }
+
+  return items.sort((a, b) => timestampOf(b) - timestampOf(a));
+})();
 
 export default function initGalleryIntro() {
   const root = document.querySelector('.media-gallery__hook[data-slug]');
@@ -30,8 +58,7 @@ export default function initGalleryIntro() {
 
   if (!viewer || !frame || !imgEl || !progress) return;
 
-  // hier: items kommen bereits mit gehashten URLs aus itemsBySlug
-  const items = itemsBySlug.get(slug) ?? [];
+  const items = slug === 'latest' ? latestItems : (itemsBySlug.get(slug) ?? []);
   const order = items.map((_, index) => index);
   if (random) order.sort(() => Math.random() - 0.5);
 
@@ -59,7 +86,7 @@ export default function initGalleryIntro() {
 
     loadImageWithTransition(imgEl, {
       src: item.full,
-      alt: item.alt || '',
+      alt: item.alt || item.filename || '',
       fallbackSrc: item.full,
     });
 
@@ -67,7 +94,6 @@ export default function initGalleryIntro() {
   };
 
   const next = () => show(i + 1);
-
 
   const tick = () => {
     const started = performance.now();
@@ -92,9 +118,6 @@ export default function initGalleryIntro() {
     if (playing) tick();
   };
 
-
-
-  // Galerie starten
   show(0);
   if (playing) run();
 }
