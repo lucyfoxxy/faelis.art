@@ -16,6 +16,34 @@ const itemsBySlug = createGalleryItemsBySlug(metas, assetModules);
 const MAX_VISIBLE_THUMBS = 10;
 const EXTRA_VISIBLE_THUMBS = 1;
 
+const isLatestGallerySource = (slug) => {
+  const normalized = slug.toLowerCase();
+  return normalized !== 'bestof' && !normalized.includes('nsfw');
+};
+
+const timestampOf = (item) => {
+  const timestamp = Date.parse(item.createdAt || '');
+  return Number.isFinite(timestamp) ? timestamp : 0;
+};
+
+const latestItems = (() => {
+  const items = [];
+  const seen = new Set();
+
+  for (const [slug, galleryItems] of itemsBySlug.entries()) {
+    if (!isLatestGallerySource(slug)) continue;
+
+    for (const item of galleryItems) {
+      const key = item.id || `${slug}:${item.full}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      items.push(item);
+    }
+  }
+
+  return items.sort((a, b) => timestampOf(b) - timestampOf(a));
+})();
+
 const parseLength = (value) => {
   const length = parseFloat(value);
   return Number.isFinite(length) ? length : null;
@@ -42,10 +70,9 @@ export default function initGalleryPage() {
   const thumbsPrev = thumbs?.querySelector('.media-gallery__thumbs-prev');
   const thumbsNext = thumbs?.querySelector('.media-gallery__thumbs-next');
 
-  if (!viewer || !frame || !imgEl || !btnPrev || !btnNext || !btnPlay || !progress || !thumbsWrap || !thumbsPrev || !thumbsNext) return;
+  if (!viewer || !frame || !imgEl || !btnPrev || !btnNext || !btnPlay || !progress || !thumbs || !thumbsWrap || !thumbsPrev || !thumbsNext) return;
 
-  // hier: items kommen bereits mit gehashten URLs aus itemsBySlug
-  const items = itemsBySlug.get(slug) ?? [];
+  const items = slug === 'latest' ? latestItems : (itemsBySlug.get(slug) ?? []);
   const order = items.map((_, index) => index);
   if (random) order.sort(() => Math.random() - 0.5);
 
@@ -144,7 +171,6 @@ export default function initGalleryPage() {
       overlay.innerHTML = `
         <figure>
           <img class="media-gallery__lightbox-image" alt="" />
-          
           <button class="media-gallery__lightbox-close" type="button" aria-label="Close">×</button>
         </figure>
       `;
@@ -153,7 +179,6 @@ export default function initGalleryPage() {
     }
 
     const img = overlay.querySelector('.media-gallery__lightbox-image');
-    
     const btnClose = overlay.querySelector('.media-gallery__lightbox-close');
 
     if (!img || !btnClose) {
@@ -194,9 +219,8 @@ export default function initGalleryPage() {
     return {
       open(item) {
         if (!item) return;
-        
         img.src = item.full;
-        img.alt = item.alt || '';
+        img.alt = item.alt || item.filename || '';
         overlay.classList.add('is-open');
         document.body.classList.add('media-gallery__lightbox-open');
         document.addEventListener('keydown', handleKey);
@@ -219,7 +243,7 @@ export default function initGalleryPage() {
       button.className = 'media-gallery__thumb';
       button.type = 'button';
       button.dataset.index = String(orderIdx);
-      button.setAttribute('aria-label', item.alt || `Image ${orderIdx + 1}`);
+      button.setAttribute('aria-label', item.alt || item.filename || `Image ${orderIdx + 1}`);
       button.setAttribute('role', 'listitem');
 
       const img = document.createElement('img');
@@ -298,7 +322,7 @@ export default function initGalleryPage() {
 
     loadImageWithTransition(imgEl, {
       src: item.full,
-      alt: item.alt || '',
+      alt: item.alt || item.filename || '',
       fallbackSrc: item.full,
     });
 
@@ -425,7 +449,6 @@ export default function initGalleryPage() {
     }
   });
 
-  // Thumbnails rendern
   renderThumbs();
   updatePlayButton();
   show(0, 0);
