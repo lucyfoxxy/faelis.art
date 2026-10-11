@@ -11,10 +11,11 @@ DEV_PUB			      ?= ${WEB_ROOT}/dev.faelis.art/public
 PROD_APP        	  ?= ${BASE_PATH}/prod
 PROD_DIST  			  ?= ${PROD_APP}/dist
 PROD_PUB			  ?= ${WEB_ROOT}/faelis.art/public
+NEWS_FILE            ?= src/content/news.txt
 
 .PHONY: sync-src do-release \
         dev-install dev-dev dev-build dev-deploy dev-fetch dev-gen dev-publish dev-clean-gen \
-        prod-install prod-dev prod-build prod-deploy prod-fetch prod-gen prod-publish prod-clean-gen prod-pretty-publish \
+        prod-install prod-dev prod-build prod-deploy prod-fetch prod-gen prod-publish prod-clean-gen prod-pretty-publish prod-news-publish \
         guestbook-install guestbook-restart guestbook-status
 
 # ===== Common =====
@@ -129,6 +130,16 @@ prod-pretty-publish:
 	
 	echo ""; 
 	echo "🎉 Gallery update successful! 🎉"
+
+prod-news-publish:
+	@echo "📰 News update started"
+	@test -f "$(DEV_APP)/$(NEWS_FILE)" || (echo "❌ Missing $(DEV_APP)/$(NEWS_FILE)"; exit 1)
+	sudo install -D -m 644 "$(DEV_APP)/$(NEWS_FILE)" "$(PROD_APP)/$(NEWS_FILE)"
+	@echo "🔨 Building site..."
+	$(MAKE) -s prod-build
+	@echo "📤 Publishing site..."
+	$(MAKE) -s prod-deploy
+	@echo "✅ News update published"
 
 # ===== Guestbook service =====
 GUESTBOOK_UNIT ?= faelis-guestbook.service
