@@ -176,6 +176,7 @@ async function processAlbum({
         thumb: `albums/${slug}/${thumbName}`,
         full: `albums/${slug}/${fullName}`,
         filename: asset.originalFileName,
+        createdAt: asset.fileCreatedAt ?? asset.localDateTime ?? asset.exifInfo?.dateTimeOriginal ?? null,
         width: asset.exifInfo?.exifImageWidth ?? null,
         height: asset.exifInfo?.exifImageHeight ?? null
       });
