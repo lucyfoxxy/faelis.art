@@ -2,6 +2,7 @@
 import Icon from '@Design/Icons.astro';
 import { ASSETS } from '@Design/Assets.astro';
 import type { Props as IconProps } from '@Design/Icons.astro';
+import newsText from '@Content/news.txt?raw';
 
 type IconKind = IconProps['kind'];
 
@@ -13,10 +14,11 @@ const links: { href: string; label: string; kind: IconKind }[] = [
   { href: 'https://www.furaffinity.net/user/faelis',     label: 'FurAffinity', kind: 'furaffinity'}
 ] as const;
 
-const slug = 'bestof';
+const slug = 'latest';
 const autoplay = true;
 const interval = 7000;
-const random = true;
+const random = false;
+const news = newsText.trim();
 
 const isExternalLink = (href: string) => href.startsWith('http');
 
@@ -30,6 +32,15 @@ export const title = 'Home - Faelis Paw Artistry';
   <img class="media-hero__mascot" src={ASSETS.mascot.src}  alt="" />
   <img class="media-hero__logo" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
 </section>
+
+{news && (
+  <section class="content-card section home-news">
+    <h2>News:</h2>
+    <div class="prose">
+      <p class="home-news__body">{news}</p>
+    </div>
+  </section>
+)}
 
 <section class="content-layout content-layout__split section">
   <section class="content-card">
@@ -51,15 +62,14 @@ export const title = 'Home - Faelis Paw Artistry';
     data-interval={String(interval)}
     data-random={String(random)}
   >
-    <h2>Preview:</h2>    
+    <h2>Latest Artworks:</h2>
  
-      <div class="media-gallery">
-        <div class="media-gallery__frame compact">
-          <img class="media-gallery__image compact" alt="Best of artworks" loading="lazy" />
-          <div class="media-gallery__progress compact" />
-        </div>
+    <div class="media-gallery">
+      <div class="media-gallery__frame compact">
+        <img class="media-gallery__image compact" alt="Latest artwork" loading="lazy" />
+        <div class="media-gallery__progress compact" />
       </div>
-     
+    </div>
   </section>
 </section>
 
