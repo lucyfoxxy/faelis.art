@@ -16,7 +16,7 @@ const links: { href: string; label: string; kind: IconKind }[] = [
 
 const slug = 'latest';
 const autoplay = true;
-const interval = 7000;
+const interval = 8000;
 const random = false;
 const news = newsText.trim();
 
@@ -29,7 +29,7 @@ export const title = 'Home - Faelis Paw Artistry';
 </head>
 
 <section class="media-hero section">
-  <img class="media-hero__mascot" src={ASSETS.mascot.src}  alt="" />
+  <img class="media-hero__mascot" src={ASSETS.mascot.src} alt="" />
   <img class="media-hero__logo" src={ASSETS.logo.src} alt="Faelis Paw Artistry" />
 </section>
 
@@ -56,18 +56,26 @@ export const title = 'Home - Faelis Paw Artistry';
   </section>
 
   <section
-    class="content-card media-gallery__hook"
+    class="content-card media-gallery__hook home-latest"
     data-slug={slug}
     data-autoplay={String(autoplay)}
     data-interval={String(interval)}
     data-random={String(random)}
   >
     <h2>Latest Artworks:</h2>
- 
+
     <div class="media-gallery">
-      <div class="media-gallery__frame compact">
-        <img class="media-gallery__image compact" alt="Latest artwork" loading="lazy" />
-        <div class="media-gallery__progress compact" />
+      <div class="media-gallery__frame" role="button" tabindex="0" aria-label="Open artwork in lightbox">
+        <img class="media-gallery__image" alt="Latest artwork" loading="lazy" />
+        <button class="media-gallery__nav media-gallery__prev" aria-label="Previous" type="button">❮</button>
+        <button class="media-gallery__nav media-gallery__next" aria-label="Next" type="button">❯</button>
+        <button class="media-gallery__playpause" aria-label="Pause autoplay" type="button">⏸</button>
+        <div class="media-gallery__progress" aria-hidden="true"></div>
+      </div>
+      <div class="media-gallery__thumbs" data-window="4">
+        <button class="media-gallery__thumbs-nav media-gallery__thumbs-prev" aria-label="Previous thumbnails" type="button">❮</button>
+        <div class="media-gallery__thumbs-wrap" role="list"></div>
+        <button class="media-gallery__thumbs-nav media-gallery__thumbs-next" aria-label="Next thumbnails" type="button">❯</button>
       </div>
     </div>
   </section>
@@ -99,11 +107,17 @@ export const title = 'Home - Faelis Paw Artistry';
   </div>
 </section>
 
+<style>
+  .home-latest .media-gallery__frame {
+    align-self: center;
+  }
+</style>
+
 <script>
-  import initGalleryIntro from '@Scripts/galleryViewer_compact.js';
+  import initGalleryPage from '@Scripts/galleryViewer.js';
   import initGuestbookLatest from '@Scripts/guestbookLatest.js';
   import { runOnReady } from '@Scripts/utils/_runOnReady.js';
 
-  runOnReady(initGalleryIntro);
+  runOnReady(initGalleryPage);
   runOnReady(initGuestbookLatest);
 </script>
