@@ -91,3 +91,7 @@
   color: var(--highlight-color);
   text-shadow: var(--secondary-text-shadow);
 }
+
+.home-news__body {
+  white-space: pre-line;
+}
